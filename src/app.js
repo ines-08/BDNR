@@ -36,10 +36,8 @@ etcd.watch()
   .create()
   .then(watcher => {
     watcher
-      .on('disconnected', () => console.log('disconnected...'))
-      .on('connected', () => console.log('successfully reconnected!'))
       .on('put', res => {
-        const message = `key 'bdnr' got set to: ${res.value.toString()}`;
+        const message = `Key 'bdnr' got set to value '${res.value.toString()}'}`;
         messages.push(message);
         console.log(message);
       });
@@ -64,13 +62,13 @@ app.get("/admin", async (req, res) => {
 
     const nodeID = req?.query?.node;
     await etcd.put(`bdnr`).value(`node${nodeID}`);
-    const keys = await etcd.getAll().strings();
-    const logs = messages.join('</br>');
+    const value = await etcd.get(`bdnr`).string();
+    const logs = '<ul>' + messages.map(m => `<li>${m}</li>`).join('') + '</ul>';
 
     const html = node.replace('<main></main>', `<main>
                                                     Node: ${nodeID} </br>
-                                                    Current keys: ${JSON.stringify(keys)} </br>
-                                                    Messages: </br> ${messages} </br>
+                                                    Current value of 'bdnr': '${value}' </br></br>
+                                                    Server logs: ${logs} </br>
                                                 </main>`)
     res.send(html);
 });
