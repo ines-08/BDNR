@@ -8,7 +8,8 @@
     },
     "dependencies": {
       "cors": "^2.8.5",
-      "express": "^4.18.2"
+      "express": "^4.18.2",
+      "etcd3": "1.1.2"
     }
   }
   

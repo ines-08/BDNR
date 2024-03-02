@@ -1,2 +1,2 @@
 docker rmi $(docker images -q)
-docker-compose up
+docker-compose up -d
