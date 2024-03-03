@@ -28,7 +28,7 @@ Long story short -> IBM.
 etcd is designed as a general substrate for large scale distributed systems. These are systems that will never tolerate split-brain operation and are willing to sacrifice availability to achieve this end. etcd stores metadata in a consistent and fault-tolerant way. An etcd cluster is meant to provide key-value storage with best of class stability, reliability, scalability and performance.
 
 Distributed systems use etcd as a consistent key-value store for configuration management, service discovery, and coordinating distributed work.
-Common distributed patterns using etcd include leader election, distributed locks, and monitoring machine liveness.
+Common distributed patterns using etcd include leader election, distributed locks, and monitoring machine liveness. It is recommended to have an odd number of members in a cluster. An odd-size cluster tolerates the same number of failures as an even-size cluster but with fewer nodes, based on Raft consensus algorithm.
 
 ## Why etcd?
 
