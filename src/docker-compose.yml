@@ -2,33 +2,114 @@ version: '3'
 
 services:
 
-  nodejs:
-    build: .
+  server1:
+    build: 
+      context: .
+      dockerfile: Dockerfile-nodejs
     ports:
-      - "3000:3000"
-    depends_on:
-      - etcd1
-      - etcd2
-      - etcd3
-      - etcd4
-      - etcd5
+      - "3001:3001"
+    command: ["node", "app.js", "3001"]
+    container_name: server1
+
+  server2:
+    build: 
+      context: .
+      dockerfile: Dockerfile-nodejs
+    ports:
+      - "3002:3002"
+    command: ["node", "app.js", "3002"]
+    container_name: server2
+
+  server3:
+    build: 
+      context: .
+      dockerfile: Dockerfile-nodejs
+    ports:
+      - "3003:3003"
+    command: ["node", "app.js", "3003"]
+    container_name: server3
 
   etcd1:
     image: quay.io/coreos/etcd
-    command: ["etcd", "--name", "node1", "--initial-advertise-peer-urls", "http://etcd1:2380", "--listen-peer-urls", "http://0.0.0.0:2380", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://etcd1:2379", "--initial-cluster-token", "etcd-cluster", "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", "--initial-cluster-state", "new"]
+    command: [
+      "etcd", 
+      "--name", "node1", 
+      "--initial-advertise-peer-urls", "http://etcd1:2380", 
+      "--listen-peer-urls", "http://0.0.0.0:2380", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd1:2379", 
+      "--initial-cluster-token", "etcd-cluster", 
+      "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
+      "--initial-cluster-state", "new"
+    ]
+    container_name: etcd1
+    volumes: 
+      - ./data/etcd1:/ectd-data
 
   etcd2:
     image: quay.io/coreos/etcd
-    command: ["etcd", "--name", "node2", "--initial-advertise-peer-urls", "http://etcd2:2380", "--listen-peer-urls", "http://0.0.0.0:2380", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://etcd2:2379", "--initial-cluster-token", "etcd-cluster", "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", "--initial-cluster-state", "new"]
+    command: [
+      "etcd", 
+      "--name", "node2", 
+      "--initial-advertise-peer-urls", "http://etcd2:2380", 
+      "--listen-peer-urls", "http://0.0.0.0:2380", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd2:2379",
+      "--initial-cluster-token", "etcd-cluster", 
+      "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
+      "--initial-cluster-state", "new"
+    ]
+    container_name: etcd2
+    volumes: 
+      - ./data/etcd2:/ectd-data
 
   etcd3:
     image: quay.io/coreos/etcd
-    command: ["etcd", "--name", "node3", "--initial-advertise-peer-urls", "http://etcd3:2380", "--listen-peer-urls", "http://0.0.0.0:2380", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://etcd3:2379", "--initial-cluster-token", "etcd-cluster", "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", "--initial-cluster-state", "new"]
-
+    command: [
+      "etcd", 
+      "--name", "node3", 
+      "--initial-advertise-peer-urls", "http://etcd3:2380", 
+      "--listen-peer-urls", "http://0.0.0.0:2380", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd3:2379", 
+      "--initial-cluster-token", "etcd-cluster", 
+      "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
+      "--initial-cluster-state", "new"
+    ]
+    container_name: etcd3
+    volumes: 
+      - ./data/etcd3:/ectd-data
+  
   etcd4:
     image: quay.io/coreos/etcd
-    command: ["etcd", "--name", "node4", "--initial-advertise-peer-urls", "http://etcd4:2380", "--listen-peer-urls", "http://0.0.0.0:2380", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://etcd4:2379", "--initial-cluster-token", "etcd-cluster", "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", "--initial-cluster-state", "new"]
-
+    command: [
+      "etcd", 
+      "--name", "node4", 
+      "--initial-advertise-peer-urls", "http://etcd4:2380", 
+      "--listen-peer-urls", "http://0.0.0.0:2380", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd4:2379", 
+      "--initial-cluster-token", "etcd-cluster", 
+      "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
+      "--initial-cluster-state", "new"
+    ]
+    container_name: etcd4
+    volumes: 
+      - ./data/etcd4:/ectd-data
+  
   etcd5:
     image: quay.io/coreos/etcd
-    command: ["etcd", "--name", "node5", "--initial-advertise-peer-urls", "http://etcd5:2380", "--listen-peer-urls", "http://0.0.0.0:2380", "--listen-client-urls", "http://0.0.0.0:2379", "--advertise-client-urls", "http://etcd5:2379", "--initial-cluster-token", "etcd-cluster", "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", "--initial-cluster-state", "new"]
+    command: [
+      "etcd", 
+      "--name", "node5", 
+      "--initial-advertise-peer-urls", "http://etcd5:2380", 
+      "--listen-peer-urls", "http://0.0.0.0:2380", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd5:2379", 
+      "--initial-cluster-token", "etcd-cluster", 
+      "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
+      "--initial-cluster-state", "new"
+    ]
+    container_name: etcd5
+    volumes: 
+      - ./data/etcd5:/ectd-data

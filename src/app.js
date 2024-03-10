@@ -4,7 +4,7 @@ const app = express();
 const fs = require("fs");
 const { Etcd3 } = require("etcd3");
 
-const PORT = 3000;
+const PORT = parseInt(process.argv[2], 10) || 3001;
 const htmlPath = path.join(__dirname, "html");
 
 const home = fs.readFileSync(
@@ -54,7 +54,7 @@ async function getResponse(request) {
 
 // Home
 app.get("/", async (req, res) => {
-    res.send(home);
+    res.send(home.replace('<h3></h3>', `<h3>Server on port: ${PORT}</h3>`));
 });
 
 // Node info
