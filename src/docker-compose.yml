@@ -10,6 +10,8 @@ services:
       - "3001:3001"
     command: ["node", "app.js", "3001"]
     container_name: server1
+    volumes: 
+      - ./logs:/logs
 
   server2:
     build: 
@@ -19,6 +21,8 @@ services:
       - "3002:3002"
     command: ["node", "app.js", "3002"]
     container_name: server2
+    volumes: 
+      - ./logs:/logs
 
   server3:
     build: 
@@ -28,6 +32,8 @@ services:
       - "3003:3003"
     command: ["node", "app.js", "3003"]
     container_name: server3
+    volumes: 
+      - ./logs:/logs
 
   etcd1:
     image: quay.io/coreos/etcd
@@ -44,7 +50,7 @@ services:
     ]
     container_name: etcd1
     volumes: 
-      - ./data/etcd1:/ectd-data
+          - ./logs:/logs
 
   etcd2:
     image: quay.io/coreos/etcd
@@ -61,7 +67,7 @@ services:
     ]
     container_name: etcd2
     volumes: 
-      - ./data/etcd2:/ectd-data
+      - ./logs:/logs
 
   etcd3:
     image: quay.io/coreos/etcd
@@ -78,7 +84,7 @@ services:
     ]
     container_name: etcd3
     volumes: 
-      - ./data/etcd3:/ectd-data
+      - ./logs:/logs
   
   etcd4:
     image: quay.io/coreos/etcd
@@ -95,7 +101,7 @@ services:
     ]
     container_name: etcd4
     volumes: 
-      - ./data/etcd4:/ectd-data
+          - ./logs:/logs
   
   etcd5:
     image: quay.io/coreos/etcd
@@ -112,4 +118,4 @@ services:
     ]
     container_name: etcd5
     volumes: 
-      - ./data/etcd5:/ectd-data
+          - ./logs:/logs
