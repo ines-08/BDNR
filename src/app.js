@@ -1,76 +1,116 @@
 const express = require("express");
-const path = require("path");
+const session = require("express-session");
+const flash = require("connect-flash");
 const app = express();
-const fs = require("fs");
 const { Etcd3 } = require("etcd3");
 
 const PORT = parseInt(process.argv[2], 10) || 3001;
-const htmlPath = path.join(__dirname, "html");
+const CLUSTER = [
+    'http://etcd1:2379',
+    'http://etcd2:2379',
+    'http://etcd3:2379',
+    'http://etcd4:2379',
+    'http://etcd5:2379'
+];
 
-const home = fs.readFileSync(
-    path.join(htmlPath, "index.html"),
-    "utf8"
-);
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
+app.use(flash());
+app.set('view engine', 'ejs');
+app.set('views', './views');
+const db = new Etcd3({ hosts: CLUSTER });
 
-const node = fs.readFileSync(
-    path.join(htmlPath, "node.html"),
-    "utf8"
-);
-
-// Connect to etcd
-const etcd = new Etcd3({
-    hosts: [
-      'http://etcd1:2379',
-      'http://etcd2:2379',
-      'http://etcd3:2379',
-      'http://etcd4:2379',
-      'http://etcd5:2379'
-    ]
-});
-
-// Array to store messages
-const messages = [];
-
-etcd.watch()
-  .key('bdnr')
-  .create()
-  .then(watcher => {
-    watcher
-      .on('put', res => {
-        const message = `Key 'bdnr' got set to value '${res.value.toString()}'}`;
-        messages.push(message);
-        console.log(message);
-      });
-  });
-
-// Fetch the response of a request
-async function getResponse(request) {
-    const response = await fetch(request);
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
+// User middleware
+const authenticationMiddleware = (req, res, next) => {
+    if (req.session.userInfo) {
+        next();
+    } else {
+        req.flash('error', 'You need to login first!');
+        res.redirect('/');
     }
-    return await response.json();
-}
+};
 
-// Home
-app.get("/", async (req, res) => {
-    res.send(home.replace('<h3></h3>', `<h3>Server on port: ${PORT}</h3>`));
+// Admin middleware
+const adminMiddleware = (req, res, next) => {
+    if (req.session.userInfo && req.session.userInfo.role === 'admin') {
+        next();
+    } else {
+        req.flash('error', 'Non-admin users cannot access this page');
+        res.redirect('/home');
+    }
+};
+
+// root
+app.get('/', (req, res) => {
+    res.render('index', { 
+        error_message: req.flash('error'), 
+        success_message: req.flash('success') 
+    });
 });
 
-// Node info
-app.get("/admin", async (req, res) => {
+// home
+app.get('/home', authenticationMiddleware, (req, res) => {
+    res.render('home', { userInfo: req.session.userInfo });
+});
 
-    const nodeID = req?.query?.node;
-    await etcd.put(`bdnr`).value(`node${nodeID}`);
-    const value = await etcd.get(`bdnr`).string();
-    const logs = '<ul>' + messages.map(m => `<li>${m}</li>`).join('') + '</ul>';
+// admin
+app.get('/admin', adminMiddleware, (req, res) => {
+    res.render('admin');
+});
 
-    const html = node.replace('<main></main>', `<main>
-                                                    Node: ${nodeID} </br>
-                                                    Current value of 'bdnr': '${value}' </br></br>
-                                                    Server logs: ${logs} </br>
-                                                </main>`)
-    res.send(html);
+// event
+app.get('/event', authenticationMiddleware, (req, res) => {
+    res.render('event');
+});
+
+// profile
+app.get('/profile', authenticationMiddleware, (req, res) => {
+    res.render('profile');
+});
+
+// login action
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const user = await db.get(`user:${username}`).json();  
+
+        if (user && user.password === password) {
+            req.session.userInfo = user;
+            res.redirect('/home');
+        } else {
+            req.flash('error', 'Invalid login credentials');
+            res.redirect('/');
+        }
+
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/');
+    }
+});
+
+// register action
+app.post('/register', async (req, res) => {
+    const { email, username, password } = req.body;
+
+    try {
+        const user = await db.get(`user:${username}`);
+    
+        if (!user) {
+            const userInfo = { email: email, username: username, password: password, role: 'user' };
+            await db.put(`user:${username}`).value(JSON.stringify(userInfo));
+            req.flash('success', 'Registed successfuly');
+        } else {
+            req.flash('error', 'Invalid register: username already exists!');
+        }
+
+        res.redirect('/');
+
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/');
+    }
 });
 
 // Create server

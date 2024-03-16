@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TickETCD</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header>
+    <h1>TickETCD</h1>
+    <h2>Consistency in Every Ticket</h2>
+  </header>
+
+  <main>
+
+    <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
+      <div class="error-message"><%= error_message %></div>
+    <% } %>
+
+    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
+      <div class="success-message"><%= success_message %></div>
+    <% } %>
+  
+    <div class="form-container">
+      <section id="login">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password"><br><br>
+          <input type="submit" value="Login">
+        </form>
+      </section>
+
+      <section id="register">
+        <h2>Register</h2>
+        <form action="/register" method="POST">
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email"><br>
+          <label for="username">Username:</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password">Password:</label><br>
+          <input type="password" id="password" name="password"><br><br>
+          <input type="submit" value="Register">
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>BDNR @ 2024</p>
+  </footer>
+
+</body>
+</html>
