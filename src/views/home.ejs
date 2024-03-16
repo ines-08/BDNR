@@ -14,7 +14,23 @@
   </header>
 
   <main>
-    Home!
+
+    <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
+      <div class="error-message"><%= error_message %></div>
+    <% } %>
+
+    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
+      <div class="success-message"><%= success_message %></div>
+    <% } %>
+
+    <h2>Homepage</h2>
+    <h3>User info:</h3>
+
+    <h4>Username: <%= userInfo.username %> </h4>
+    <h4>Email: <%= userInfo.email %> </h4>
+    <h4>Password: <%= userInfo.password %> :D</h4>
+    <h4>Role: <%= userInfo.role %> </h4>
+
   </main>
 
   <footer>

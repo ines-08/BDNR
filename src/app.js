@@ -12,6 +12,7 @@ const CLUSTER = [
     'http://etcd4:2379',
     'http://etcd5:2379'
 ];
+const DEFAULT_ROLE = 'admin'; // TODO: change later
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -51,7 +52,11 @@ app.get('/', (req, res) => {
 
 // home
 app.get('/home', authenticationMiddleware, (req, res) => {
-    res.render('home', { userInfo: req.session.userInfo });
+    res.render('home', { 
+        userInfo: req.session.userInfo, 
+        error_message: req.flash('error'), 
+        success_message: req.flash('success') 
+    });
 });
 
 // admin
@@ -98,7 +103,7 @@ app.post('/register', async (req, res) => {
         const user = await db.get(`user:${username}`);
     
         if (!user) {
-            const userInfo = { email: email, username: username, password: password, role: 'user' };
+            const userInfo = { email: email, username: username, password: password, role: DEFAULT_ROLE };
             await db.put(`user:${username}`).value(JSON.stringify(userInfo));
             req.flash('success', 'Registed successfuly');
         } else {
