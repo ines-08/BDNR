@@ -2,11 +2,26 @@ from faker import Faker
 import json
 import sys
 import uuid
-
+import re
 
 NUM_USERS = 10
 NUM_EVENTS = 10
+EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
+NORMALIZE_PATTERN = r'[^\w\s]'
+
 fake = Faker('en_US')
+
+def normalize(text):
+    return re.sub(NORMALIZE_PATTERN, ' ', text).lower()
+
+def extract_words(text):
+    return [x.strip() for x in normalize(text).split(' ')]
+
+def extract_event_words(value):
+    words = []
+    for field in EVENT_SEARCH_FIELDS:
+        words.extend(extract_words(value[field]))
+    return set(words)
 
 def generate_user_data():
     users = {}
@@ -30,8 +45,17 @@ def generate_event_data():
     return events
 
 def generate_events_search(events_data):
-    # TODO
-    return {}
+    search = {}
+    for event, details in events_data.items():
+        event_id = event.split(':')[1]
+        words = extract_event_words(details)
+        for word in words:
+            word_key = f'search:event:{word}'
+            if word_key in search.keys():
+                search[word_key].append(event_id)
+            else:
+                search[word_key] = [event_id]
+    return search
 
 def main():
 
@@ -40,9 +64,11 @@ def main():
         sys.exit(1)
 
     JSON_FILE = sys.argv[1]
+
     user_data = generate_user_data()
     event_data = generate_event_data()
     event_search = generate_events_search(event_data)
+
     data = { **user_data, **event_data, **event_search }
 
     with open(JSON_FILE, "w") as file:
