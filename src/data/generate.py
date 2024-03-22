@@ -23,6 +23,8 @@ def extract_event_words(value):
         words.extend(extract_words(value[field]))
     return set(words)
 
+# TODO: USER EMAIL
+
 def generate_user_data():
     users = {}
     for _ in range(NUM_USERS):
@@ -30,7 +32,7 @@ def generate_user_data():
         password = fake.password(length=10, digits=False, upper_case=True, lower_case=True, special_chars=False)
         users[f"user:{username}"] = { 
             "name": fake.name(), "username": username, "password": password, "role": "user" 
-        } 
+        }
     return users
 
 def generate_event_data():
@@ -60,7 +62,7 @@ def generate_events_search(events_data):
 def main():
 
     if len(sys.argv) != 2:
-        print("Usage: python create.py <output JSON file path>")
+        print("Usage: python generate.py <OUTPUT>")
         sys.exit(1)
 
     JSON_FILE = sys.argv[1]

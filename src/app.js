@@ -120,6 +120,31 @@ app.post('/register', async (req, res) => {
     }
 });
 
+// API - search events
+app.get('/api/search', async (req, res) => {
+    const input = req.query?.input;
+    const events = [];
+
+    try {
+        const matches = await db.get(`search:event:${input}`).json();
+
+        if (matches) {
+            for (const id of matches) {
+                const event = await db.get(`event:${id}`).json();
+                if (event) {
+                    event.id = id
+                    events.push(event);
+                }
+            }   
+        }
+
+        res.send(JSON.stringify(events, null, 2));
+
+    } catch (error) {
+        res.send('Internal server error: lost DB connection');
+    }
+});
+
 // Create server
 app.listen(PORT, () => {
     console.log(`Server listening at http://localhost:${PORT}`);

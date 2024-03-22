@@ -5,7 +5,7 @@ import subprocess
 ETCD_NODE = "etcd1"
 
 if len(sys.argv) != 2:
-    print("Usage: python populate.py <input JSON file path>")
+    print("Usage: python populate.py <INPUT>")
     sys.exit(1)
 
 JSON_FILE = sys.argv[1]
