@@ -79,7 +79,9 @@ app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await db.get(`user:${username}`).json();  
+        const user = await db.get(`user:${username}`)?.json();  
+        console.log('username:');
+        console.log(user);
 
         if (user && user.password === password) {
             req.session.userInfo = user;

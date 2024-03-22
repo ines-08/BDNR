@@ -1,0 +1,5 @@
+{ 
+    "user:username1": { "name": "username", "username": "username", "password": "123", "role": "user" },
+    "user:username2": { "name": "username", "username": "username", "password": "123", "role": "user" },
+    "user:username3": { "name": "username", "username": "username", "password": "123", "role": "user" } 
+}
