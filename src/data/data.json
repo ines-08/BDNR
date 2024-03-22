@@ -1,5 +1,112 @@
-{ 
-    "user:username1": { "name": "username", "username": "username", "password": "123", "role": "user" },
-    "user:username2": { "name": "username", "username": "username", "password": "123", "role": "user" },
-    "user:username3": { "name": "username", "username": "username", "password": "123", "role": "user" } 
+{
+  "user:lisajohnston": {
+    "name": "Alyssa Figueroa",
+    "username": "lisajohnston",
+    "password": "TSHcbaVdlP",
+    "role": "user"
+  },
+  "user:melody22": {
+    "name": "David Moss",
+    "username": "melody22",
+    "password": "BqvUZXrylw",
+    "role": "user"
+  },
+  "user:melissajohnson": {
+    "name": "Daniel Duarte",
+    "username": "melissajohnson",
+    "password": "kYusZMfuxX",
+    "role": "user"
+  },
+  "user:kyle02": {
+    "name": "Dakota Marsh",
+    "username": "kyle02",
+    "password": "ZGlwDqWitS",
+    "role": "user"
+  },
+  "user:michael43": {
+    "name": "John Rich",
+    "username": "michael43",
+    "password": "coRoUyGxtK",
+    "role": "user"
+  },
+  "user:reeseamber": {
+    "name": "Jessica Salazar",
+    "username": "reeseamber",
+    "password": "lxhVAvrBAL",
+    "role": "user"
+  },
+  "user:jgray": {
+    "name": "Tanya Marsh",
+    "username": "jgray",
+    "password": "xwYIUjpOdO",
+    "role": "user"
+  },
+  "user:opham": {
+    "name": "Andrew Owens",
+    "username": "opham",
+    "password": "AJOtraqeVe",
+    "role": "user"
+  },
+  "user:jakegood": {
+    "name": "William Smith",
+    "username": "jakegood",
+    "password": "VlumDCdTIw",
+    "role": "user"
+  },
+  "user:scottturner": {
+    "name": "Mike Richardson",
+    "username": "scottturner",
+    "password": "KoYunsOHvw",
+    "role": "user"
+  },
+  "event:67d1778a-11e0-4536-866f-a287052cc4ee": {
+    "name": "Until energy everybody in lawyer five.",
+    "description": "Trip house international day worry. Else push specific could some his until head. Present wife rate. By start agreement sound yeah early artist.",
+    "location": "Port Evan"
+  },
+  "event:4eeef2c0-cced-4297-8446-20128da668f1": {
+    "name": "Never without away plant research agent.",
+    "description": "Book almost writer key question. Human others benefit garden. Their statement bed either PM feeling. Morning like fast modern morning some face billion. Rich smile field can very.",
+    "location": "Kevinburgh"
+  },
+  "event:7587615c-c1e7-48c5-9753-395cc799fb05": {
+    "name": "Charge weight suffer level understand.",
+    "description": "Carry writer certain easy crime win finally. Management guy go herself see. Everybody finish job soldier. According exactly white population sign decade.",
+    "location": "Alejandraland"
+  },
+  "event:eb6fa37b-5dbd-46dc-a2e9-77718bceffc9": {
+    "name": "Body decide generation thus present.",
+    "description": "Others east take bit rise. Yourself west produce situation play some. Level power order stop role majority commercial behavior.",
+    "location": "East James"
+  },
+  "event:e961eb39-0482-430b-a9d0-754bafa70372": {
+    "name": "Allow follow rise.",
+    "description": "Fear mention million occur. Environment media leader respond two over buy send.",
+    "location": "Anthonytown"
+  },
+  "event:aee9aa63-be39-4f16-9de1-2a1342a6f737": {
+    "name": "Discuss learn authority either order.",
+    "description": "Sometimes born seat wall. Health director light western situation standard. Painting likely article rich serious house church. Pressure school doctor friend few theory few. Personal still defense country.",
+    "location": "South Christyview"
+  },
+  "event:4b3fe1ca-354e-4f0b-a90c-07a5d25df408": {
+    "name": "Too trial concern thank which write.",
+    "description": "Commercial unit indicate anything myself whether maybe. It attack past nice sing. Early deal year oil charge anything break. Participant board central idea.",
+    "location": "North Samantha"
+  },
+  "event:3dc3af22-d753-40b9-b60e-1828c3375209": {
+    "name": "Month building her west.",
+    "description": "Training generation miss marriage again it woman. You item myself do.",
+    "location": "Matthewborough"
+  },
+  "event:7fec4e98-e814-48d4-93e1-d68080822c85": {
+    "name": "Same resource theory nor.",
+    "description": "Think always health camera specific. Realize maybe wide girl technology choose. Door apply however light reach kid thank. Necessary break fish grow. Artist last indicate which item buy style.",
+    "location": "Moralesbury"
+  },
+  "event:47743f7f-7184-4e3a-b461-4cdc85a2665c": {
+    "name": "Scientist pattern condition market kid.",
+    "description": "Board voice risk paper. Person chance friend couple value. Receive east education market. List beyond minute. Keep bill remember tree billion seek level.",
+    "location": "Santiagoside"
+  }
 }
