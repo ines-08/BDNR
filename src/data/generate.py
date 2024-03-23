@@ -3,16 +3,17 @@ import json
 import sys
 import uuid
 import re
+import random
 
 NUM_USERS = 10
 NUM_EVENTS = 10
-EVENT_SEARCH_FIELDS = ['name'] # description, location
-NORMALIZE_PATTERN = r'[^\w\s]'
+FAVOURITE_PROBABILITY = 0.3 # Probability of an event being marked as favorite
+EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
 fake = Faker('en_US')
 
 def normalize(text):
-    return re.sub(NORMALIZE_PATTERN, ' ', text).lower()
+    return re.sub(r'[^\w\s]', ' ', text).lower()
 
 def extract_words(text):
     return [x.strip() for x in normalize(text).split(' ') if x]
@@ -57,6 +58,18 @@ def generate_events_search(events_data):
                 search[word_key] = [event_id]
     return search
 
+def generate_favourites(user_data, event_data):
+    favorites = {}
+    for user in user_data.keys():
+        user_id = user.split(':')[1]
+        user_favorites = []
+        for event in event_data.keys():
+            event_id = event.split(':')[1]
+            if random.random() < FAVOURITE_PROBABILITY:
+                user_favorites.append(event_id)
+        favorites[f'favourite:{user_id}'] = user_favorites
+    return favorites
+
 def main():
 
     if len(sys.argv) != 2:
@@ -68,8 +81,14 @@ def main():
     user_data = generate_user_data()
     event_data = generate_event_data()
     event_search = generate_events_search(event_data)
+    favourites_data = generate_favourites(user_data, event_data)
 
-    data = { **user_data, **event_data, **event_search }
+    data = { 
+        **user_data, 
+        **event_data, 
+        **event_search, 
+        **favourites_data 
+    }
 
     with open(JSON_FILE, "w") as file:
         json.dump(data, file, indent=2)
