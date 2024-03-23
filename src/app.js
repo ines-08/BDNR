@@ -204,6 +204,7 @@ app.get('/api/search', async (req, res) => {
             }
         }
 
+        // TODO: remove duplicates
         res.send(JSON.stringify(events, null, 2));
 
     } catch (error) {
