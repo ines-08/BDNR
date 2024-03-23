@@ -14,7 +14,7 @@ $ cd src/
 $ bash start.sh
 ```
 
-`start.sh` irá:
+O script `start.sh` irá:
 
 - Criar toda a infraestrutura/containers do projecto: 5 nós ectd e 3 servers;
 - Instalar as dependências necessárias do Python para os passos seguintes;
@@ -23,13 +23,16 @@ $ bash start.sh
 
 Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [localhost:3002](http://localhost:3002) ou [localhost:3003](http://localhost:3003).
 
-## Endpoints
+## Endpoints 
 
-
+- `/`, para login ou register;
+- `/home[?search=<SOMETHING>]`, para a homepage. Por default são apresentados alguns eventos, caso o utilizador pesquise (search field), são apresentados os seus resultados;
+- `/profile?username=<USERNAME>`, para apresentação dos detalhes de um profile;
+- `/event?id=<ID>`, para apresentação dos detalhes de um evento;
 
 ## API
 
-
+- `/api/search?input=<INPUT>`, retorna os detalhes dos eventos em JSON que têm textos que fazem match total ou parcial com INPUT;
 
 ## Data & Keys
 
@@ -37,14 +40,15 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 
 Os dados gerados seguem as configurações presentes no header do ficheiro `generate.py`:
 
-```py
+```python
 NUM_USERS = 50
 NUM_EVENTS = 20
 
 # Probabilidade de um evento ser marcado como favorito
 FAVOURITE_PROBABILITY = 0.3
 
-# Acrescentar ou remover fields de acordo com o que queremos que seja alvo de pesquisa nos eventos
+# Acrescentar ou remover fields de acordo com o que 
+# queremos que seja alvo de pesquisa nos eventos
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 ```
 
