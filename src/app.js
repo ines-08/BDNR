@@ -186,7 +186,7 @@ app.post('/register', async (req, res) => {
  *     res -> db.get(`search:${type}:${input}`)
  */
 app.get('/api/search', async (req, res) => {
-    const input = req.query?.input;
+    const input = req.query?.input?.toLowerCase();
     const events = [];
 
     try {
