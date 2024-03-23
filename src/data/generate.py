@@ -5,7 +5,7 @@ import uuid
 import re
 
 NUM_USERS = 10
-NUM_EVENTS = 10
+NUM_EVENTS = 3
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 NORMALIZE_PATTERN = r'[^\w\s]'
 
@@ -15,7 +15,7 @@ def normalize(text):
     return re.sub(NORMALIZE_PATTERN, ' ', text).lower()
 
 def extract_words(text):
-    return [x.strip() for x in normalize(text).split(' ')]
+    return [x.strip() for x in normalize(text).split(' ') if x]
 
 def extract_event_words(value):
     words = []
@@ -23,15 +23,13 @@ def extract_event_words(value):
         words.extend(extract_words(value[field]))
     return set(words)
 
-# TODO: USER EMAIL
-
 def generate_user_data():
     users = {}
     for _ in range(NUM_USERS):
         username = fake.user_name()
         password = fake.password(length=10, digits=False, upper_case=True, lower_case=True, special_chars=False)
         users[f"user:{username}"] = { 
-            "name": fake.name(), "username": username, "password": password, "role": "user" 
+            "name": fake.name(), "username": username, "email": fake.email(), "password": password, "role": "user" 
         }
     return users
 

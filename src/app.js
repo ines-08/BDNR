@@ -42,6 +42,15 @@ const adminMiddleware = (req, res, next) => {
     }
 };
 
+// Fetch the response of a request
+async function getResponse(request) {
+    const response = await fetch(request);
+    if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+    }
+    return await response.json();
+}
+
 // root
 app.get('/', (req, res) => {
     res.render('index', { 
@@ -51,11 +60,32 @@ app.get('/', (req, res) => {
 });
 
 // home
-app.get('/home', authenticationMiddleware, (req, res) => {
+app.get('/home', authenticationMiddleware, async (req, res) => {
+    const search = req.query?.search;
+    let events = [];
+    console.log("search");
+    console.log(search);
+    console.log("---------");
+
+    if (search) {
+        events = await getResponse(new URL(`/api/search?input=${search}`));
+    } else {
+        events = await db.getAll().prefix('event:').limit(10).json();
+    }
+
+    events = Object.keys(events).map(key => {
+        return {
+            id: key.split(':')[1],
+            ...events[key]
+        };
+    });
+
     res.render('home', { 
         userInfo: req.session.userInfo, 
         error_message: req.flash('error'), 
-        success_message: req.flash('success') 
+        success_message: req.flash('success'),
+        search: search,
+        events: events,
     });
 });
 
@@ -80,9 +110,6 @@ app.post('/login', async (req, res) => {
 
     try {
         const user = await db.get(`user:${username}`)?.json();  
-        console.log('username:');
-        console.log(user);
-
         if (user && user.password === password) {
             req.session.userInfo = user;
             res.redirect('/home');
@@ -120,7 +147,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// API - search events
+// Search events
 app.get('/api/search', async (req, res) => {
     const input = req.query?.input;
     const events = [];

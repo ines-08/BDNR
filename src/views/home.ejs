@@ -31,6 +31,26 @@
     <h4>Password: <%= userInfo.password %> :D</h4>
     <h4>Role: <%= userInfo.role %> </h4>
 
+    <!-- Adicionar a barra de pesquisa -->
+    <form action="/home" method="GET">
+      <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+      <button type="submit">Search</button>
+    </form>
+
+
+    <!-- Exibir os eventos -->
+    <% if (events && events.length > 0) { %>
+      <h3>Events:</h3>
+      <ul>
+        <% events.forEach(event => { %>
+          <li><a href="event/<%= event.id %>"><%= event.name %> - <%= event.location %></a></li> <!-- Exemplo: ajuste para corresponder à estrutura dos seus eventos -->
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No events found.</p>
+    <% } %>
+
+
   </main>
 
   <footer>
