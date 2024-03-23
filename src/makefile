@@ -1,4 +1,4 @@
-all: cleanup requirements setup generate
+all: cleanup requirements setup generate populate
 
 cleanup:
 	-docker stop etcd1
