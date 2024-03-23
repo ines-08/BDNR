@@ -24,21 +24,13 @@
     <% } %>
 
     <h2>Homepage</h2>
-    <h3>User info:</h3>
+    <h4>Visit <a href="/profile?username=<%= user.username %>"><%= user.name %> profile</a></h4>
 
-    <h4>Username: <%= userInfo.username %> </h4>
-    <h4>Email: <%= userInfo.email %> </h4>
-    <h4>Password: <%= userInfo.password %> :D</h4>
-    <h4>Role: <%= userInfo.role %> </h4>
-
-    <!-- Adicionar a barra de pesquisa -->
     <form action="/home" method="GET">
       <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>">
       <button type="submit">Search</button>
     </form>
 
-
-    <!-- Exibir os eventos -->
     <% if (events && events.length > 0) { %>
       <h3>Events:</h3>
       <ul>

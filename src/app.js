@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 const db = new Etcd3({ hosts: CLUSTER });
 
-// User middleware
+// Authentication middleware
 const authenticationMiddleware = (req, res, next) => {
     if (req.session.userInfo) {
         next();
@@ -42,7 +42,7 @@ const adminMiddleware = (req, res, next) => {
     }
 };
 
-// Fetch the response of a request
+// Fetch the response
 async function getResponse(request) {
     const response = await fetch(request);
     if (!response.ok) {
@@ -63,12 +63,9 @@ app.get('/', (req, res) => {
 app.get('/home', authenticationMiddleware, async (req, res) => {
     const search = req.query?.search;
     let events = [];
-    console.log("search");
-    console.log(search);
-    console.log("---------");
 
     if (search) {
-        events = await getResponse(new URL(`/api/search?input=${search}`));
+        events = await getResponse(`http://localhost:${PORT}/api/search?input=${search}`);
     } else {
         events = await db.getAll().prefix('event:').limit(10).json();
     }
@@ -81,7 +78,7 @@ app.get('/home', authenticationMiddleware, async (req, res) => {
     });
 
     res.render('home', { 
-        userInfo: req.session.userInfo, 
+        user: req.session.userInfo, 
         error_message: req.flash('error'), 
         success_message: req.flash('success'),
         search: search,
@@ -100,8 +97,26 @@ app.get('/event', authenticationMiddleware, (req, res) => {
 });
 
 // profile
-app.get('/profile', authenticationMiddleware, (req, res) => {
-    res.render('profile');
+app.get('/profile', authenticationMiddleware, async (req, res) => {
+    const userID = req.query?.username;
+
+    try {
+        const user = await db.get(`user:${userID}`)?.json(); 
+        if (!user) {
+            req.flash('error', 'User not found');
+            res.redirect('/home');
+        }
+    
+        res.render('profile', { 
+            user: user, 
+            error_message: req.flash('error'), 
+            success_message: req.flash('success'),
+        });
+
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/');
+    }
 });
 
 // login action
@@ -147,28 +162,35 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Search events
+/**
+ * Search API
+ * TODO: se houver necessidade, dar update ao método:
+ *     req -> /api/search?type=event&input=something
+ *     res -> db.get(`search:${type}:${input}`)
+ */
 app.get('/api/search', async (req, res) => {
     const input = req.query?.input;
     const events = [];
 
     try {
-        const matches = await db.get(`search:event:${input}`).json();
+        const matches = await db.getAll().prefix(`search:event:${input}`).json();
 
         if (matches) {
-            for (const id of matches) {
-                const event = await db.get(`event:${id}`).json();
-                if (event) {
-                    event.id = id
-                    events.push(event);
-                }
-            }   
+            for (const key in matches) {
+                for (const id of matches[key]) {
+                    const event = await db.get(`event:${id}`).json();
+                    if (event) {
+                        event.id = id
+                        events.push(event);
+                    }
+                }   
+            }
         }
 
         res.send(JSON.stringify(events, null, 2));
 
     } catch (error) {
-        res.send('Internal server error: lost DB connection');
+        res.send(JSON.stringify([]));
     }
 });
 
