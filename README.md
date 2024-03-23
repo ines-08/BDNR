@@ -1,29 +1,96 @@
 # TickETCD - BDNR Project
 
+- [Run](#run)
+- [Endpoints](#endpoints)
+- [API](#api)
+- [Data & Keys](#data--keys)
+
 ## Run
 
-### Docker
+O projecto está disponível apenas em Docker:
 
 ```bash
 $ cd src/
 $ bash start.sh
 ```
 
-This will set up 8 containers into Docker within the same network:
+`start.sh` irá:
 
-- a distributed etcd cluster of 5 nodes;
-- three servers for the web application;
+- Criar toda a infraestrutura/containers do projecto: 5 nós ectd e 3 servers;
+- Instalar as dependências necessárias do Python para os passos seguintes;
+- Gerar dados;
+- Povoar o cluster com os dados gerados de forma paralela;
 
-Then open [localhost:3001](http://localhost:3001), [localhost:3002](http://localhost:3002) or [localhost:3003](http://localhost:3003) to see multiple instances of the app running.
+Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [localhost:3002](http://localhost:3002) ou [localhost:3003](http://localhost:3003).
 
-### Local
+## Endpoints
 
-Simply run the following commands:
 
-```bash
-$ cd src/
-$ npm install
-$ node app.js
+
+## API
+
+
+
+## Data & Keys
+
+### Data
+
+Os dados gerados seguem as configurações presentes no header do ficheiro `generate.py`:
+
+```py
+NUM_USERS = 50
+NUM_EVENTS = 20
+
+# Probabilidade de um evento ser marcado como favorito
+FAVOURITE_PROBABILITY = 0.3
+
+# Acrescentar ou remover fields de acordo com o que queremos que seja alvo de pesquisa nos eventos
+EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 ```
 
-Then open [localhost:3001](http://localhost:3001) to see the app running.
+Atualmente há geração completa dos seguintes agregados:
+
+- `User` (username, user, email, password, role);
+- `Event` (id, name, description, location);
+
+E há geração das seguintes relações:
+
+- `Favourite` (entre um user e eventos)
+
+### Keys
+
+As keys seguem uma formatação rígida:
+
+```json
+{
+    // User
+    "user:<USERNAME>": { 
+        "name": "something", 
+        "username": "something", 
+        "email": "something", 
+        "password": "something", 
+        "role": "something"
+    },
+
+    // Event
+    "event:<ID>": {
+        "name": "something", 
+        "description": "something", 
+        "location": "something"
+    },
+
+    // Search Events
+    "search:event:<WORD>": [
+        "EVENT_ID_1",
+        "EVENT_ID_2",
+        "EVENT_ID_3",
+    ],
+
+    // Favourite relationship
+    "favourite:<USERNAME>": [
+        "EVENT_ID_1",
+        "EVENT_ID_2",
+        "EVENT_ID_3",
+    ]
+}
+```
