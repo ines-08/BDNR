@@ -11,12 +11,15 @@ O projecto está disponível apenas em Docker:
 
 ```bash
 $ cd src/
-$ bash start.sh
+$ make
 ```
 
-O script `start.sh` irá:
+O script irá:
 
-- Criar toda a infraestrutura/containers do projecto: 5 nós ectd e 3 servers;
+- Parar e eliminar os anteriores containers, caso existam;
+- Eliminar antigas versões da base de dados em /db, caso existam;
+- Criar toda uma nova infraestrutura/containers do projecto: 5 nós ectd e 3 servers;
+- Criar volumes /db/etcdX para todos os nós ETCD existentes no cluster;
 - Instalar as dependências necessárias do Python para os passos seguintes;
 - Gerar dados;
 - Povoar o cluster com os dados gerados de forma paralela;

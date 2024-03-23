@@ -10,8 +10,6 @@ services:
       - "3001:3001"
     command: ["node", "app.js", "3001"]
     container_name: server1
-    volumes: 
-      - ./logs:/logs
 
   server2:
     build: 
@@ -21,8 +19,6 @@ services:
       - "3002:3002"
     command: ["node", "app.js", "3002"]
     container_name: server2
-    volumes: 
-      - ./logs:/logs
 
   server3:
     build: 
@@ -32,14 +28,13 @@ services:
       - "3003:3003"
     command: ["node", "app.js", "3003"]
     container_name: server3
-    volumes: 
-      - ./logs:/logs
 
   etcd1:
     image: quay.io/coreos/etcd
     command: [
       "etcd", 
       "--name", "node1", 
+      "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd1:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
       "--listen-client-urls", "http://0.0.0.0:2379", 
@@ -50,13 +45,14 @@ services:
     ]
     container_name: etcd1
     volumes: 
-          - ./logs:/logs
+          - ./db/etcd1:/etcd-data
 
   etcd2:
     image: quay.io/coreos/etcd
     command: [
       "etcd", 
       "--name", "node2", 
+      "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd2:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
       "--listen-client-urls", "http://0.0.0.0:2379", 
@@ -67,13 +63,14 @@ services:
     ]
     container_name: etcd2
     volumes: 
-      - ./logs:/logs
+          - ./db/etcd2:/etcd-data
 
   etcd3:
     image: quay.io/coreos/etcd
     command: [
       "etcd", 
       "--name", "node3", 
+      "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd3:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
       "--listen-client-urls", "http://0.0.0.0:2379", 
@@ -84,13 +81,14 @@ services:
     ]
     container_name: etcd3
     volumes: 
-      - ./logs:/logs
+          - ./db/etcd3:/etcd-data
   
   etcd4:
     image: quay.io/coreos/etcd
     command: [
       "etcd", 
       "--name", "node4", 
+      "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd4:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
       "--listen-client-urls", "http://0.0.0.0:2379", 
@@ -101,13 +99,14 @@ services:
     ]
     container_name: etcd4
     volumes: 
-          - ./logs:/logs
+          - ./db/etcd4:/etcd-data
   
   etcd5:
     image: quay.io/coreos/etcd
     command: [
       "etcd", 
       "--name", "node5", 
+      "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd5:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
       "--listen-client-urls", "http://0.0.0.0:2379", 
@@ -118,4 +117,4 @@ services:
     ]
     container_name: etcd5
     volumes: 
-          - ./logs:/logs
+          - ./db/etcd5:/etcd-data

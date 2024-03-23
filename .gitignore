@@ -3,3 +3,8 @@ redis-data/
 mongo-data/
 node_modules/
 package-lock.json
+db/etcd1/
+db/etcd2/
+db/etcd3/
+db/etcd4/
+db/etcd5/
