@@ -35,13 +35,12 @@
       <h3>Events:</h3>
       <ul>
         <% events.forEach(event => { %>
-          <li><a href="event/<%= event.id %>"><%= event.name %> - <%= event.location %></a></li> <!-- Exemplo: ajuste para corresponder à estrutura dos seus eventos -->
+          <li><a href="/event?id=<%= event.id %>"><%= event.name %></a></li>
         <% }); %>
       </ul>
     <% } else { %>
-      <p>No events found.</p>
+      <p>No events found!</p>
     <% } %>
-
 
   </main>
 

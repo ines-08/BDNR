@@ -77,12 +77,14 @@ app.get('/home', authenticationMiddleware, async (req, res) => {
         };
     });
 
+    console.log(events);
+
     res.render('home', { 
         user: req.session.userInfo, 
         error_message: req.flash('error'), 
         success_message: req.flash('success'),
         search: search,
-        events: events,
+        events: [],
     });
 });
 
@@ -92,8 +94,26 @@ app.get('/admin', adminMiddleware, (req, res) => {
 });
 
 // event
-app.get('/event', authenticationMiddleware, (req, res) => {
-    res.render('event');
+app.get('/event', authenticationMiddleware, async (req, res) => {
+    const eventID = req.query?.id;
+
+    try {
+        const event = await db.get(`event:${eventID}`)?.json(); 
+        if (!event) {
+            req.flash('error', 'Event not found');
+            res.redirect('/home');
+        }
+    
+        res.render('event', { 
+            event: event, 
+            error_message: req.flash('error'), 
+            success_message: req.flash('success'),
+        });
+
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/home');
+    }
 });
 
 // profile
@@ -164,11 +184,12 @@ app.post('/register', async (req, res) => {
 
 /**
  * Search API
+ * TODO: suporte a múltiplas palavras / partes de palavra. Discutir a melhor forma.
  * TODO: se houver necessidade, dar update ao método:
  *     req -> /api/search?type=event&input=something
  *     res -> db.get(`search:${type}:${input}`)
  */
-app.get('/api/search', async (req, res) => {
+app.get('/api/search', authenticationMiddleware, async (req, res) => {
     const input = req.query?.input;
     const events = [];
 
@@ -190,7 +211,7 @@ app.get('/api/search', async (req, res) => {
         res.send(JSON.stringify(events, null, 2));
 
     } catch (error) {
-        res.send(JSON.stringify([]));
+        res.send(JSON.stringify(events, null, 2));
     }
 });
 
