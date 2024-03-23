@@ -77,14 +77,12 @@ app.get('/home', authenticationMiddleware, async (req, res) => {
         };
     });
 
-    console.log(events);
-
     res.render('home', { 
         user: req.session.userInfo, 
         error_message: req.flash('error'), 
         success_message: req.flash('success'),
         search: search,
-        events: [],
+        events: events,
     });
 });
 
@@ -105,9 +103,7 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
         }
     
         res.render('event', { 
-            event: event, 
-            error_message: req.flash('error'), 
-            success_message: req.flash('success'),
+            event: event
         });
 
     } catch (error) {
@@ -189,7 +185,7 @@ app.post('/register', async (req, res) => {
  *     req -> /api/search?type=event&input=something
  *     res -> db.get(`search:${type}:${input}`)
  */
-app.get('/api/search', authenticationMiddleware, async (req, res) => {
+app.get('/api/search', async (req, res) => {
     const input = req.query?.input;
     const events = [];
 
@@ -211,7 +207,7 @@ app.get('/api/search', authenticationMiddleware, async (req, res) => {
         res.send(JSON.stringify(events, null, 2));
 
     } catch (error) {
-        res.send(JSON.stringify(events, null, 2));
+        res.send(JSON.stringify([]));
     }
 });
 

@@ -5,8 +5,8 @@ import uuid
 import re
 
 NUM_USERS = 10
-NUM_EVENTS = 3
-EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
+NUM_EVENTS = 10
+EVENT_SEARCH_FIELDS = ['name'] # description, location
 NORMALIZE_PATTERN = r'[^\w\s]'
 
 fake = Faker('en_US')
