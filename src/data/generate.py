@@ -5,8 +5,8 @@ import uuid
 import re
 import random
 
-NUM_USERS = 10
-NUM_EVENTS = 20
+NUM_USERS = 1
+NUM_EVENTS = 1
 FAVOURITE_PROBABILITY = 0.3 # Probability of an event being marked as favorite
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
@@ -52,7 +52,8 @@ def generate_event_data():
             "description": fake.paragraph(nb_sentences=4),
             "location": fake.city(),
             "type": random.choice(EVENT_TYPES),
-            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M")
+            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
+            "current_quantity": 0,
         }
     return events
 
@@ -84,14 +85,17 @@ def generate_favourites(user_data, event_data):
 def generate_tickets(event_data):
     tickets = {}
     for event in event_data.keys():
+        current_quantity = 0
         event_id = event.split(':')[1]
         for type, details in TICKET_TYPES.items():
             quantity = random.randint(details['minQuantity'], details['maxQuantity'])
+            current_quantity += quantity
             tickets[f'ticket:{event_id}:{type}'] = {
                 "total_quantity" : quantity,
                 "current_quantity" : quantity,
                 "price" : round(random.uniform(details['minPrice'], details['maxPrice']), 2),
             }
+        event_data[event]['current_quantity'] = current_quantity
     return tickets
 
 def main():
@@ -111,8 +115,8 @@ def main():
     data = { 
         **user_data, 
         **event_data, 
-        **event_search, 
-        **favourites_data,
+        # **event_search, 
+        # **favourites_data,
         **tickets_data,
     }
 
