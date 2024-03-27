@@ -6,9 +6,12 @@ import re
 import random
 
 NUM_USERS = 10
-NUM_EVENTS = 2
+NUM_EVENTS = 20
 FAVOURITE_PROBABILITY = 0.3 # Probability of an event being marked as favorite
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
+
+EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
+
 TICKET_TYPES = {
     'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
     'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
@@ -47,7 +50,9 @@ def generate_event_data():
         events[f"event:{id}"] = {
             "name": fake.sentence(nb_words=5),
             "description": fake.paragraph(nb_sentences=4),
-            "location": fake.city()
+            "location": fake.city(),
+            "type": random.choice(EVENT_TYPES),
+            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M")
         }
     return events
 
@@ -81,10 +86,12 @@ def generate_tickets(event_data):
     for event in event_data.keys():
         event_id = event.split(':')[1]
         for type, details in TICKET_TYPES.items():
+            quantity = random.randint(details['minQuantity'], details['maxQuantity'])
             tickets[f'ticket:{event_id}:{type}'] = {
-            "quantity" : random.randint(details['minQuantity'], details['maxQuantity']),
-            "price" : round(random.uniform(details['minPrice'], details['maxPrice']), 2),
-        }
+                "total_quantity" : quantity,
+                "current_quantity" : quantity,
+                "price" : round(random.uniform(details['minPrice'], details['maxPrice']), 2),
+            }
     return tickets
 
 def main():
@@ -112,7 +119,6 @@ def main():
     with open(JSON_FILE, "w") as file:
         json.dump(data, file, indent=2)
         file.close()
-
 
 if __name__ == "__main__":
     main()

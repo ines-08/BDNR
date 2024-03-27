@@ -83,7 +83,9 @@ As keys seguem uma formatação rígida:
     "event:<ID>": {
         "name": "something", 
         "description": "something", 
-        "location": "something"
+        "location": "something",
+        "type": "something",
+        "date": "something",
     },
 
     // Search Events
@@ -98,6 +100,35 @@ As keys seguem uma formatação rígida:
         "EVENT_ID_1",
         "EVENT_ID_2",
         "EVENT_ID_3",
-    ]
+    ],
+
+    // Ticket
+    "ticket:<EVENT_ID>:<TYPE>": {
+        "total_quantity": "something", 
+        "current_quantity": "something", 
+        "price": "something",
+    },
+
+    // Purchase
+    "purchase:<USERNAME>:<EVENT_ID>": [
+        {
+            "date": "something",
+            "tickets": [
+                {
+                    "type": "something",
+                    "quantity": "something",
+                },
+                {
+                    "type": "something",
+                    "quantity": "something",
+                },
+            ]
+        },
+    ],
+
+    // Notification
+    "" : {
+        
+    }
 }
 ```
