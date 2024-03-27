@@ -86,6 +86,7 @@ As keys seguem uma formatação rígida:
         "location": "something",
         "type": "something",
         "date": "something",
+        "current_quantity": "something",
     },
 
     // Search Events
@@ -127,8 +128,6 @@ As keys seguem uma formatação rígida:
     ],
 
     // Notification
-    "" : {
-        
-    }
+    "notification:<USERNAME>:<EVENT_ID>" : "quantity"
 }
 ```
