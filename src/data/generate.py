@@ -1,14 +1,20 @@
 from faker import Faker
-import json
 import sys
+import json
 import uuid
 import re
 import random
 
 NUM_USERS = 10
-NUM_EVENTS = 10
+NUM_EVENTS = 2
 FAVOURITE_PROBABILITY = 0.3 # Probability of an event being marked as favorite
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
+TICKET_TYPES = {
+    'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
+    'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
+    'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
+    'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
+}
 
 fake = Faker('en_US')
 
@@ -70,6 +76,17 @@ def generate_favourites(user_data, event_data):
         favorites[f'favourite:{user_id}'] = user_favorites
     return favorites
 
+def generate_tickets(event_data):
+    tickets = {}
+    for event in event_data.keys():
+        event_id = event.split(':')[1]
+        for type, details in TICKET_TYPES.items():
+            tickets[f'ticket:{event_id}:{type}'] = {
+            "quantity" : random.randint(details['minQuantity'], details['maxQuantity']),
+            "price" : round(random.uniform(details['minPrice'], details['maxPrice']), 2),
+        }
+    return tickets
+
 def main():
 
     if len(sys.argv) != 2:
@@ -82,17 +99,20 @@ def main():
     event_data = generate_event_data()
     event_search = generate_events_search(event_data)
     favourites_data = generate_favourites(user_data, event_data)
+    tickets_data = generate_tickets(event_data)
 
     data = { 
         **user_data, 
         **event_data, 
         **event_search, 
-        **favourites_data 
+        **favourites_data,
+        **tickets_data,
     }
 
     with open(JSON_FILE, "w") as file:
         json.dump(data, file, indent=2)
         file.close()
+
 
 if __name__ == "__main__":
     main()

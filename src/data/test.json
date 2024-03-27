@@ -1,0 +1,300 @@
+{
+  "user:andersonanne": {
+    "name": "Joseph Sanchez",
+    "username": "andersonanne",
+    "email": "jleblanc@example.org",
+    "password": "heyOEhNQGj",
+    "role": "user"
+  },
+  "user:meganwebb": {
+    "name": "James Jackson",
+    "username": "meganwebb",
+    "email": "lbarnett@example.com",
+    "password": "VzSbOosgSM",
+    "role": "user"
+  },
+  "user:julie15": {
+    "name": "Shirley Hunter",
+    "username": "julie15",
+    "email": "wolfkenneth@example.net",
+    "password": "PTpwqRYycC",
+    "role": "user"
+  },
+  "user:carrjuan": {
+    "name": "James Williams",
+    "username": "carrjuan",
+    "email": "wbrown@example.com",
+    "password": "cuiabRpcFS",
+    "role": "user"
+  },
+  "user:wwilliams": {
+    "name": "Donna Lopez",
+    "username": "wwilliams",
+    "email": "breyes@example.org",
+    "password": "fXgzBDoGCd",
+    "role": "user"
+  },
+  "user:williamsamber": {
+    "name": "Amanda Wilkins",
+    "username": "williamsamber",
+    "email": "hollyhurst@example.org",
+    "password": "uvkKaLcxnP",
+    "role": "user"
+  },
+  "user:fshah": {
+    "name": "Harold Craig",
+    "username": "fshah",
+    "email": "ashley66@example.org",
+    "password": "EegMndfKDG",
+    "role": "user"
+  },
+  "user:stephaniechan": {
+    "name": "Donald Spencer",
+    "username": "stephaniechan",
+    "email": "qblankenship@example.com",
+    "password": "OeLHYgCqBv",
+    "role": "user"
+  },
+  "user:maddoxmatthew": {
+    "name": "Stephanie Green",
+    "username": "maddoxmatthew",
+    "email": "monicalewis@example.org",
+    "password": "MBZrCRJztT",
+    "role": "user"
+  },
+  "user:kirksusan": {
+    "name": "Julian Olson",
+    "username": "kirksusan",
+    "email": "dustin10@example.com",
+    "password": "hKDXFtXNRi",
+    "role": "user"
+  },
+  "event:23ca9276-ac82-454d-a7ab-3ee1c206e3d5": {
+    "name": "Sort then be little business.",
+    "description": "Soldier financial threat later. Often on yard personal which measure. Often hit writer television evidence become. Budget there window argue.",
+    "location": "South Johnny"
+  },
+  "event:b8a8a7ea-4796-48cb-967a-b772491933db": {
+    "name": "Successful would remain.",
+    "description": "Music from maybe prepare local win break. Majority discuss three sea PM. Little probably part red over. What food until part. Accept may card somebody quality.",
+    "location": "Port Amanda"
+  },
+  "search:event:hit": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:writer": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:little": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5",
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:evidence": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:television": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:financial": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:often": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:business": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:become": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:soldier": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:threat": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:johnny": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:sort": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:budget": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:later": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:yard": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:then": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:measure": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:personal": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:which": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:there": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:argue": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:window": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:south": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:be": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:on": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "search:event:successful": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:majority": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:break": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:three": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:port": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:sea": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:music": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:from": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:prepare": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:probably": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:may": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:somebody": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:card": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:pm": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:part": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:over": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:would": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:amanda": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:until": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:discuss": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:win": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:quality": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:what": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:remain": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:local": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:red": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:accept": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:food": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "search:event:maybe": [
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "favourite:andersonanne": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5",
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "favourite:meganwebb": [],
+  "favourite:julie15": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "favourite:carrjuan": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5",
+    "b8a8a7ea-4796-48cb-967a-b772491933db"
+  ],
+  "favourite:wwilliams": [],
+  "favourite:williamsamber": [],
+  "favourite:fshah": [],
+  "favourite:stephaniechan": [],
+  "favourite:maddoxmatthew": [
+    "23ca9276-ac82-454d-a7ab-3ee1c206e3d5"
+  ],
+  "favourite:kirksusan": [],
+  "ticket:23ca9276-ac82-454d-a7ab-3ee1c206e3d5:pink": {
+    "quantity": 70,
+    "price": 125.82
+  },
+  "ticket:23ca9276-ac82-454d-a7ab-3ee1c206e3d5:yellow": {
+    "quantity": 96,
+    "price": 258.88
+  },
+  "ticket:23ca9276-ac82-454d-a7ab-3ee1c206e3d5:green": {
+    "quantity": 477,
+    "price": 70.02
+  },
+  "ticket:23ca9276-ac82-454d-a7ab-3ee1c206e3d5:red": {
+    "quantity": 392,
+    "price": 62.13
+  },
+  "ticket:b8a8a7ea-4796-48cb-967a-b772491933db:pink": {
+    "quantity": 84,
+    "price": 173.16
+  },
+  "ticket:b8a8a7ea-4796-48cb-967a-b772491933db:yellow": {
+    "quantity": 85,
+    "price": 243.03
+  },
+  "ticket:b8a8a7ea-4796-48cb-967a-b772491933db:green": {
+    "quantity": 345,
+    "price": 71.64
+  },
+  "ticket:b8a8a7ea-4796-48cb-967a-b772491933db:red": {
+    "quantity": 367,
+    "price": 63.72
+  }
+}
