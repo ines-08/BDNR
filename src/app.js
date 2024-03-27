@@ -98,10 +98,20 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
             res.redirect('/home');
         }
 
-        // TODO: show quantity total, partial and quantity/price per ticket type
+        const tickets = []
+        const ticket_info = await db.getAll().prefix(`ticket:${eventID}:`).json();
+        if (ticket_info) {
+            for (const key in ticket_info) {
+                tickets.push({
+                    'type': key.split(':')[2],
+                    ...ticket_info[key],
+                });
+            }
+        }
     
         res.render('event', { 
-            event: event
+            event: event,
+            tickets: tickets
         });
 
     } catch (error) {
@@ -111,8 +121,7 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
 });
 
 // profile
-// TODO: replace authenticationMiddleware
-app.get('/profile', async (req, res) => {
+app.get('/profile', authenticationMiddleware, async (req, res) => {
     const userID = req.query?.username;
 
     try {

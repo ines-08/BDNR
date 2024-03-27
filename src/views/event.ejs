@@ -14,9 +14,33 @@
   </header>
 
   <main>
+
     <h2>Event '<%= event.name %>'<h2>
     <h4><%= event.description %></h4>
     <h4>In: <%= event.location %></h4>
+    <h4>Type: <%= event.type %></h4>
+    <h4>Date: <%= event.date %></h4>
+    <h4>Current we've <%= event.current_quantity %> total tickets to purchase</h4>
+
+    <hr></hr>
+
+    <h3>Tickets details</h3>
+
+    <% if (tickets && tickets.length > 0) { %>
+      <ul>
+        <% tickets.forEach(ticket => { %>
+          <li><%= ticket.type %></li>
+          <ul>
+            <li>Price: <%= ticket.price %></li>
+            <li>Current quantity: <%= ticket.current_quantity %></li>
+            <li>Total quantity: <%= ticket.total_quantity %></li>
+          </ul>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No tickets found!</p>
+    <% } %>
+
   </main>
 
   <hr>
