@@ -5,9 +5,14 @@ import uuid
 import re
 import random
 
-NUM_USERS = 1
-NUM_EVENTS = 1
-FAVOURITE_PROBABILITY = 0.3 # Probability of an event being marked as favorite
+NUM_USERS = 10
+NUM_EVENTS = 10
+
+FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
+EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
+EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
+TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
+
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
 EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
@@ -98,19 +103,65 @@ def generate_tickets(event_data):
         event_data[event]['current_quantity'] = current_quantity
     return tickets
 
+def generate_purchases(user_data, event_data, tickets_data):
+    purchases = {}
+
+    for user in user_data.keys():
+        user_id = user.split(':')[1]
+        for event in event_data.keys():
+            event_id = event.split(':')[1]
+            event_purchases = [] # [{ date, tickets }]
+
+            # Simulate the probability of having a purchase for a certain event
+            if random.random() < EVENT_PURCHASE_PROBABILITY:
+
+                # Simulate multiple purchases for the same event
+                for _ in range(0, random.randint(1, EVENT_PURCHASE_LIMIT)):
+                    purchase_tickets = [] # {type, quantity}
+                    for type in TICKET_TYPES.keys():
+
+                        # Simulate the probability of selecting a certain ticket type(s)
+                        if random.random() < TICKET_PURCHASE_PROBABILITY:
+                            ticket_id = f"ticket:{event_id}:{type}"
+
+                            # If possible, generate purchase
+                            if tickets_data[ticket_id]['current_quantity'] != 0:
+                                
+                                purchased_quantity = random.randint(1, tickets_data[ticket_id]['current_quantity'])
+                                purchase_tickets.append({
+                                    "type": type,
+                                    "quantity": purchased_quantity
+                                })
+                                
+                                # Update tickets and event quantities
+                                tickets_data[ticket_id]['current_quantity'] -= purchased_quantity
+                                event_data[event]['current_quantity'] -= purchased_quantity
+
+                    # If we have at least one purchased ticket, insert record
+                    if len(purchase_tickets):
+                        event_purchases.append({
+                            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
+                            "tickets": purchase_tickets
+                        })
+
+            # If we have at least one purchase for the current event, insert record
+            if len(event_purchases):
+                purchases[f"purchase:{user_id}:{event_id}"] = event_purchases
+
+    return purchases
+
 def main():
 
     if len(sys.argv) != 2:
         print("Usage: python generate.py <OUTPUT>")
         sys.exit(1)
 
-    JSON_FILE = sys.argv[1]
-
     user_data = generate_user_data()
     event_data = generate_event_data()
     event_search = generate_events_search(event_data)
     favourites_data = generate_favourites(user_data, event_data)
     tickets_data = generate_tickets(event_data)
+    purchase_data = generate_purchases(user_data, event_data, tickets_data)
 
     data = { 
         **user_data, 
@@ -118,9 +169,10 @@ def main():
         # **event_search, 
         # **favourites_data,
         **tickets_data,
+        **purchase_data,
     }
 
-    with open(JSON_FILE, "w") as file:
+    with open(sys.argv[1], "w") as file:
         json.dump(data, file, indent=2)
         file.close()
 

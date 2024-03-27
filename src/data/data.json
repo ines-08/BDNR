@@ -1,37 +1,1319 @@
 {
-  "user:iramirez": {
-    "name": "Cynthia Hall",
-    "username": "iramirez",
-    "email": "pamela07@example.org",
-    "password": "lzWyfifkWP",
+  "user:alexander67": {
+    "name": "Pamela Jones",
+    "username": "alexander67",
+    "email": "xpena@example.org",
+    "password": "YEjdenSbqO",
     "role": "user"
   },
-  "event:51b86f37-c189-42a0-b2ca-55cc08f2c438": {
-    "name": "Natural add onto measure growth.",
-    "description": "Reality lead on various law. Much report field expert bit free.",
-    "location": "Gutierrezville",
+  "user:silvapenny": {
+    "name": "Amanda Smith",
+    "username": "silvapenny",
+    "email": "woodkimberly@example.org",
+    "password": "faHiSRvFCW",
+    "role": "user"
+  },
+  "user:pottermisty": {
+    "name": "Paul Davis",
+    "username": "pottermisty",
+    "email": "laurielogan@example.net",
+    "password": "eyIqbzXuSB",
+    "role": "user"
+  },
+  "user:jbishop": {
+    "name": "Joshua Mathews",
+    "username": "jbishop",
+    "email": "davischristina@example.com",
+    "password": "wkmJuVNMUs",
+    "role": "user"
+  },
+  "user:zswanson": {
+    "name": "Jerry Dixon",
+    "username": "zswanson",
+    "email": "markmartin@example.org",
+    "password": "TLTUStSPUI",
+    "role": "user"
+  },
+  "user:scisneros": {
+    "name": "Elizabeth Glass",
+    "username": "scisneros",
+    "email": "zlane@example.net",
+    "password": "ynbnRjHjHE",
+    "role": "user"
+  },
+  "user:matthew74": {
+    "name": "Mark Martinez",
+    "username": "matthew74",
+    "email": "jessica01@example.net",
+    "password": "JtjZsHZlcP",
+    "role": "user"
+  },
+  "user:erikpitts": {
+    "name": "James Esparza",
+    "username": "erikpitts",
+    "email": "rlopez@example.org",
+    "password": "aZCRVynoZo",
+    "role": "user"
+  },
+  "user:john63": {
+    "name": "Christine Hensley",
+    "username": "john63",
+    "email": "donnaramirez@example.com",
+    "password": "gDiwkAMMDG",
+    "role": "user"
+  },
+  "user:danielsdale": {
+    "name": "Patricia Calhoun",
+    "username": "danielsdale",
+    "email": "powellrichard@example.org",
+    "password": "ZqPDGywHEc",
+    "role": "user"
+  },
+  "event:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": {
+    "name": "Machine lay likely.",
+    "description": "Ok policy individual article. Have year bag try. Raise choice despite manager.",
+    "location": "Lake Zachary",
+    "type": "Theater",
+    "date": "28-03-2024 12:40",
+    "current_quantity": 20
+  },
+  "event:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": {
+    "name": "Class environmental him newspaper sense do.",
+    "description": "Why site join friend of understand resource. Support impact building appear. Decision stand audience serve decision big probably fine.",
+    "location": "Valentinefort",
+    "type": "Magic",
+    "date": "21-04-2024 09:24",
+    "current_quantity": 15
+  },
+  "event:76bec10c-48f6-4a9c-bc6c-9c7853f674ff": {
+    "name": "Laugh rule yet million toward lose.",
+    "description": "Seat fill ability buy artist role site. Street avoid their center blood course evening. Bad around budget difficult hard. Pay present glass box star.",
+    "location": "Kyleburgh",
+    "type": "Concert",
+    "date": "13-04-2024 14:42",
+    "current_quantity": 273
+  },
+  "event:c4edecb3-eb76-4e2c-90bb-7754f821d0ce": {
+    "name": "Suffer song look speak skill.",
+    "description": "Indeed case section another I system reason draw. Investment ahead computer recognize remain buy.",
+    "location": "East Jasonfort",
+    "type": "Magic",
+    "date": "31-03-2024 21:58",
+    "current_quantity": 355
+  },
+  "event:c7bcb0eb-27fc-499d-82a5-0419550d435d": {
+    "name": "Will investment make edge health.",
+    "description": "With produce suggest water attention reach. Tv reach parent since author that. Have west else wife fill. See on our much spring claim see.",
+    "location": "Emilyfurt",
     "type": "Circus",
-    "date": "15-04-2024 04:32",
-    "current_quantity": 979
+    "date": "07-04-2024 09:40",
+    "current_quantity": 68
   },
-  "ticket:51b86f37-c189-42a0-b2ca-55cc08f2c438:pink": {
-    "total_quantity": 73,
-    "current_quantity": 73,
-    "price": 164.28
+  "event:1315fb68-9958-4139-a6db-d3e5b1c63f5b": {
+    "name": "Maybe by system air strategy.",
+    "description": "Six media life only body itself represent. Usually husband like off almost stuff. Should next or both table.",
+    "location": "Port Jacqueline",
+    "type": "Circus",
+    "date": "07-04-2024 03:20",
+    "current_quantity": 26
   },
-  "ticket:51b86f37-c189-42a0-b2ca-55cc08f2c438:yellow": {
+  "event:078b916c-2297-48fa-a06c-ad302cc7a79c": {
+    "name": "Like reality loss individual.",
+    "description": "Specific off firm almost well. Heavy cell now bit I fill.",
+    "location": "Montesbury",
+    "type": "Magic",
+    "date": "11-04-2024 05:45",
+    "current_quantity": 361
+  },
+  "event:234e221c-2072-45f5-b223-d5801663084f": {
+    "name": "Painting heart hour service respond.",
+    "description": "Page simply back huge remember center. Across exactly force particularly cell impact anyone. Open whether drop experience. Development ago window effect.",
+    "location": "Walterstown",
+    "type": "Theater",
+    "date": "24-04-2024 23:05",
+    "current_quantity": 78
+  },
+  "event:fdda667a-c932-4423-852c-d1a7c4940f47": {
+    "name": "Type kitchen deal purpose everyone two.",
+    "description": "Culture everything fast per listen that responsibility. Relate PM high think appear. Fund sound card system. Fire factor best turn into must. Minute majority manager worker south go son.",
+    "location": "Lake Omarbury",
+    "type": "Circus",
+    "date": "01-04-2024 13:19",
+    "current_quantity": 0
+  },
+  "event:4753e72c-8d98-4df4-b20d-859449f82aa7": {
+    "name": "Floor bag light eye hot world.",
+    "description": "Partner explain man morning hear yet plan. Where prevent action newspaper well. Defense without pay good one family entire.",
+    "location": "Bruceland",
+    "type": "Dance",
+    "date": "28-03-2024 00:17",
+    "current_quantity": 4
+  },
+  "ticket:ef5a9aac-0d5a-4288-b341-31f0bb5f9232:pink": {
+    "total_quantity": 38,
+    "current_quantity": 0,
+    "price": 104.45
+  },
+  "ticket:ef5a9aac-0d5a-4288-b341-31f0bb5f9232:yellow": {
+    "total_quantity": 85,
+    "current_quantity": 0,
+    "price": 292.66
+  },
+  "ticket:ef5a9aac-0d5a-4288-b341-31f0bb5f9232:green": {
+    "total_quantity": 155,
+    "current_quantity": 1,
+    "price": 74.21
+  },
+  "ticket:ef5a9aac-0d5a-4288-b341-31f0bb5f9232:red": {
+    "total_quantity": 468,
+    "current_quantity": 19,
+    "price": 64.31
+  },
+  "ticket:49d21c21-5b5e-4111-8c04-0b6dcf7643d7:pink": {
+    "total_quantity": 12,
+    "current_quantity": 0,
+    "price": 157.33
+  },
+  "ticket:49d21c21-5b5e-4111-8c04-0b6dcf7643d7:yellow": {
+    "total_quantity": 81,
+    "current_quantity": 0,
+    "price": 215.99
+  },
+  "ticket:49d21c21-5b5e-4111-8c04-0b6dcf7643d7:green": {
+    "total_quantity": 189,
+    "current_quantity": 15,
+    "price": 74.71
+  },
+  "ticket:49d21c21-5b5e-4111-8c04-0b6dcf7643d7:red": {
+    "total_quantity": 267,
+    "current_quantity": 0,
+    "price": 59.87
+  },
+  "ticket:76bec10c-48f6-4a9c-bc6c-9c7853f674ff:pink": {
+    "total_quantity": 15,
+    "current_quantity": 9,
+    "price": 178.23
+  },
+  "ticket:76bec10c-48f6-4a9c-bc6c-9c7853f674ff:yellow": {
+    "total_quantity": 97,
+    "current_quantity": 21,
+    "price": 248.45
+  },
+  "ticket:76bec10c-48f6-4a9c-bc6c-9c7853f674ff:green": {
+    "total_quantity": 288,
+    "current_quantity": 74,
+    "price": 74.79
+  },
+  "ticket:76bec10c-48f6-4a9c-bc6c-9c7853f674ff:red": {
+    "total_quantity": 238,
+    "current_quantity": 169,
+    "price": 51.35
+  },
+  "ticket:c4edecb3-eb76-4e2c-90bb-7754f821d0ce:pink": {
+    "total_quantity": 52,
+    "current_quantity": 2,
+    "price": 192.28
+  },
+  "ticket:c4edecb3-eb76-4e2c-90bb-7754f821d0ce:yellow": {
     "total_quantity": 100,
-    "current_quantity": 100,
-    "price": 346.88
+    "current_quantity": 39,
+    "price": 328.5
   },
-  "ticket:51b86f37-c189-42a0-b2ca-55cc08f2c438:green": {
-    "total_quantity": 302,
-    "current_quantity": 302,
-    "price": 71.05
+  "ticket:c4edecb3-eb76-4e2c-90bb-7754f821d0ce:green": {
+    "total_quantity": 65,
+    "current_quantity": 8,
+    "price": 73.47
   },
-  "ticket:51b86f37-c189-42a0-b2ca-55cc08f2c438:red": {
-    "total_quantity": 504,
-    "current_quantity": 504,
-    "price": 55.3
-  }
+  "ticket:c4edecb3-eb76-4e2c-90bb-7754f821d0ce:red": {
+    "total_quantity": 306,
+    "current_quantity": 306,
+    "price": 60.94
+  },
+  "ticket:c7bcb0eb-27fc-499d-82a5-0419550d435d:pink": {
+    "total_quantity": 82,
+    "current_quantity": 45,
+    "price": 127.47
+  },
+  "ticket:c7bcb0eb-27fc-499d-82a5-0419550d435d:yellow": {
+    "total_quantity": 99,
+    "current_quantity": 22,
+    "price": 344.5
+  },
+  "ticket:c7bcb0eb-27fc-499d-82a5-0419550d435d:green": {
+    "total_quantity": 130,
+    "current_quantity": 0,
+    "price": 79.4
+  },
+  "ticket:c7bcb0eb-27fc-499d-82a5-0419550d435d:red": {
+    "total_quantity": 375,
+    "current_quantity": 1,
+    "price": 66.03
+  },
+  "ticket:1315fb68-9958-4139-a6db-d3e5b1c63f5b:pink": {
+    "total_quantity": 26,
+    "current_quantity": 0,
+    "price": 120.86
+  },
+  "ticket:1315fb68-9958-4139-a6db-d3e5b1c63f5b:yellow": {
+    "total_quantity": 88,
+    "current_quantity": 2,
+    "price": 242.59
+  },
+  "ticket:1315fb68-9958-4139-a6db-d3e5b1c63f5b:green": {
+    "total_quantity": 95,
+    "current_quantity": 1,
+    "price": 71.41
+  },
+  "ticket:1315fb68-9958-4139-a6db-d3e5b1c63f5b:red": {
+    "total_quantity": 166,
+    "current_quantity": 23,
+    "price": 67.92
+  },
+  "ticket:078b916c-2297-48fa-a06c-ad302cc7a79c:pink": {
+    "total_quantity": 35,
+    "current_quantity": 12,
+    "price": 191.97
+  },
+  "ticket:078b916c-2297-48fa-a06c-ad302cc7a79c:yellow": {
+    "total_quantity": 81,
+    "current_quantity": 29,
+    "price": 200.81
+  },
+  "ticket:078b916c-2297-48fa-a06c-ad302cc7a79c:green": {
+    "total_quantity": 462,
+    "current_quantity": 117,
+    "price": 76.49
+  },
+  "ticket:078b916c-2297-48fa-a06c-ad302cc7a79c:red": {
+    "total_quantity": 467,
+    "current_quantity": 203,
+    "price": 54.12
+  },
+  "ticket:234e221c-2072-45f5-b223-d5801663084f:pink": {
+    "total_quantity": 42,
+    "current_quantity": 0,
+    "price": 116.89
+  },
+  "ticket:234e221c-2072-45f5-b223-d5801663084f:yellow": {
+    "total_quantity": 96,
+    "current_quantity": 0,
+    "price": 238.49
+  },
+  "ticket:234e221c-2072-45f5-b223-d5801663084f:green": {
+    "total_quantity": 380,
+    "current_quantity": 4,
+    "price": 78.81
+  },
+  "ticket:234e221c-2072-45f5-b223-d5801663084f:red": {
+    "total_quantity": 130,
+    "current_quantity": 74,
+    "price": 54.08
+  },
+  "ticket:fdda667a-c932-4423-852c-d1a7c4940f47:pink": {
+    "total_quantity": 44,
+    "current_quantity": 0,
+    "price": 174.36
+  },
+  "ticket:fdda667a-c932-4423-852c-d1a7c4940f47:yellow": {
+    "total_quantity": 82,
+    "current_quantity": 0,
+    "price": 233.01
+  },
+  "ticket:fdda667a-c932-4423-852c-d1a7c4940f47:green": {
+    "total_quantity": 123,
+    "current_quantity": 0,
+    "price": 73.55
+  },
+  "ticket:fdda667a-c932-4423-852c-d1a7c4940f47:red": {
+    "total_quantity": 562,
+    "current_quantity": 0,
+    "price": 61.01
+  },
+  "ticket:4753e72c-8d98-4df4-b20d-859449f82aa7:pink": {
+    "total_quantity": 27,
+    "current_quantity": 0,
+    "price": 142.14
+  },
+  "ticket:4753e72c-8d98-4df4-b20d-859449f82aa7:yellow": {
+    "total_quantity": 98,
+    "current_quantity": 0,
+    "price": 239.25
+  },
+  "ticket:4753e72c-8d98-4df4-b20d-859449f82aa7:green": {
+    "total_quantity": 408,
+    "current_quantity": 4,
+    "price": 71.47
+  },
+  "ticket:4753e72c-8d98-4df4-b20d-859449f82aa7:red": {
+    "total_quantity": 462,
+    "current_quantity": 0,
+    "price": 55.58
+  },
+  "purchase:alexander67:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": [
+    {
+      "date": "10-04-2024 15:36",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 32
+        }
+      ]
+    },
+    {
+      "date": "29-03-2024 17:45",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "yellow",
+          "quantity": 57
+        },
+        {
+          "type": "green",
+          "quantity": 17
+        }
+      ]
+    },
+    {
+      "date": "02-04-2024 13:42",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 4
+        },
+        {
+          "type": "yellow",
+          "quantity": 23
+        },
+        {
+          "type": "red",
+          "quantity": 148
+        }
+      ]
+    }
+  ],
+  "purchase:alexander67:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "05-04-2024 17:45",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 7
+        },
+        {
+          "type": "yellow",
+          "quantity": 54
+        },
+        {
+          "type": "green",
+          "quantity": 72
+        },
+        {
+          "type": "red",
+          "quantity": 221
+        }
+      ]
+    }
+  ],
+  "purchase:alexander67:1315fb68-9958-4139-a6db-d3e5b1c63f5b": [
+    {
+      "date": "28-03-2024 03:25",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 3
+        },
+        {
+          "type": "red",
+          "quantity": 32
+        }
+      ]
+    }
+  ],
+  "purchase:alexander67:078b916c-2297-48fa-a06c-ad302cc7a79c": [
+    {
+      "date": "29-03-2024 09:40",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 62
+        }
+      ]
+    },
+    {
+      "date": "17-04-2024 12:50",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 78
+        },
+        {
+          "type": "red",
+          "quantity": 124
+        }
+      ]
+    }
+  ],
+  "purchase:alexander67:234e221c-2072-45f5-b223-d5801663084f": [
+    {
+      "date": "17-04-2024 16:46",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 32
+        }
+      ]
+    },
+    {
+      "date": "08-04-2024 15:40",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 74
+        },
+        {
+          "type": "green",
+          "quantity": 338
+        },
+        {
+          "type": "red",
+          "quantity": 40
+        }
+      ]
+    }
+  ],
+  "purchase:alexander67:fdda667a-c932-4423-852c-d1a7c4940f47": [
+    {
+      "date": "03-04-2024 14:38",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 48
+        },
+        {
+          "type": "red",
+          "quantity": 11
+        }
+      ]
+    }
+  ],
+  "purchase:silvapenny:c7bcb0eb-27fc-499d-82a5-0419550d435d": [
+    {
+      "date": "21-04-2024 16:31",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 111
+        },
+        {
+          "type": "red",
+          "quantity": 312
+        }
+      ]
+    },
+    {
+      "date": "14-04-2024 22:37",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 47
+        }
+      ]
+    }
+  ],
+  "purchase:silvapenny:1315fb68-9958-4139-a6db-d3e5b1c63f5b": [
+    {
+      "date": "26-04-2024 15:58",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "21-04-2024 21:04",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 17
+        },
+        {
+          "type": "green",
+          "quantity": 53
+        },
+        {
+          "type": "red",
+          "quantity": 99
+        }
+      ]
+    },
+    {
+      "date": "07-04-2024 01:14",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 85
+        },
+        {
+          "type": "green",
+          "quantity": 38
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": [
+    {
+      "date": "04-04-2024 03:40",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "01-04-2024 13:31",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 13
+        },
+        {
+          "type": "green",
+          "quantity": 11
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:76bec10c-48f6-4a9c-bc6c-9c7853f674ff": [
+    {
+      "date": "15-04-2024 08:31",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 58
+        },
+        {
+          "type": "red",
+          "quantity": 19
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024 08:47",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 6
+        },
+        {
+          "type": "green",
+          "quantity": 68
+        },
+        {
+          "type": "red",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:c4edecb3-eb76-4e2c-90bb-7754f821d0ce": [
+    {
+      "date": "17-04-2024 04:30",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 26
+        },
+        {
+          "type": "green",
+          "quantity": 48
+        }
+      ]
+    },
+    {
+      "date": "15-04-2024 19:20",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 23
+        },
+        {
+          "type": "yellow",
+          "quantity": 61
+        },
+        {
+          "type": "green",
+          "quantity": 9
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:234e221c-2072-45f5-b223-d5801663084f": [
+    {
+      "date": "17-04-2024 21:30",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 5
+        },
+        {
+          "type": "green",
+          "quantity": 29
+        },
+        {
+          "type": "red",
+          "quantity": 16
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:fdda667a-c932-4423-852c-d1a7c4940f47": [
+    {
+      "date": "24-04-2024 22:07",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 41
+        },
+        {
+          "type": "yellow",
+          "quantity": 76
+        },
+        {
+          "type": "red",
+          "quantity": 74
+        }
+      ]
+    },
+    {
+      "date": "20-04-2024 20:00",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "red",
+          "quantity": 470
+        }
+      ]
+    },
+    {
+      "date": "07-04-2024 21:28",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "yellow",
+          "quantity": 3
+        },
+        {
+          "type": "green",
+          "quantity": 39
+        }
+      ]
+    }
+  ],
+  "purchase:pottermisty:4753e72c-8d98-4df4-b20d-859449f82aa7": [
+    {
+      "date": "29-03-2024 23:00",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 87
+        },
+        {
+          "type": "red",
+          "quantity": 134
+        }
+      ]
+    },
+    {
+      "date": "14-04-2024 06:39",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 7
+        },
+        {
+          "type": "green",
+          "quantity": 147
+        },
+        {
+          "type": "red",
+          "quantity": 205
+        }
+      ]
+    },
+    {
+      "date": "02-04-2024 01:23",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:jbishop:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "06-04-2024 13:22",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 13
+        }
+      ]
+    }
+  ],
+  "purchase:jbishop:c7bcb0eb-27fc-499d-82a5-0419550d435d": [
+    {
+      "date": "06-04-2024 21:09",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 47
+        },
+        {
+          "type": "green",
+          "quantity": 2
+        },
+        {
+          "type": "red",
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "date": "04-04-2024 16:37",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 5
+        },
+        {
+          "type": "red",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:jbishop:1315fb68-9958-4139-a6db-d3e5b1c63f5b": [
+    {
+      "date": "20-04-2024 08:32",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "date": "05-04-2024 17:44",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 4
+        },
+        {
+          "type": "red",
+          "quantity": 12
+        }
+      ]
+    }
+  ],
+  "purchase:jbishop:fdda667a-c932-4423-852c-d1a7c4940f47": [
+    {
+      "date": "17-04-2024 14:35",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 3
+        },
+        {
+          "type": "red",
+          "quantity": 7
+        }
+      ]
+    }
+  ],
+  "purchase:zswanson:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": [
+    {
+      "date": "23-04-2024 17:27",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 69
+        }
+      ]
+    },
+    {
+      "date": "30-03-2024 02:17",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:zswanson:c7bcb0eb-27fc-499d-82a5-0419550d435d": [
+    {
+      "date": "19-04-2024 16:14",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "date": "03-04-2024 22:29",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 8
+        },
+        {
+          "type": "green",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:zswanson:1315fb68-9958-4139-a6db-d3e5b1c63f5b": [
+    {
+      "date": "24-04-2024 16:17",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:zswanson:234e221c-2072-45f5-b223-d5801663084f": [
+    {
+      "date": "19-04-2024 08:17",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:scisneros:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "28-03-2024 15:30",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 4
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 41
+        }
+      ]
+    },
+    {
+      "date": "30-03-2024 22:29",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 16
+        },
+        {
+          "type": "red",
+          "quantity": 36
+        }
+      ]
+    }
+  ],
+  "purchase:scisneros:c4edecb3-eb76-4e2c-90bb-7754f821d0ce": [
+    {
+      "date": "24-04-2024 23:34",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:scisneros:fdda667a-c932-4423-852c-d1a7c4940f47": [
+    {
+      "date": "24-04-2024 18:43",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "date": "03-04-2024 14:22",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 17
+        }
+      ]
+    }
+  ],
+  "purchase:erikpitts:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": [
+    {
+      "date": "12-04-2024 18:45",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 44
+        },
+        {
+          "type": "red",
+          "quantity": 222
+        }
+      ]
+    },
+    {
+      "date": "06-04-2024 21:24",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 27
+        }
+      ]
+    }
+  ],
+  "purchase:erikpitts:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "20-04-2024 03:14",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 4
+        },
+        {
+          "type": "red",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:erikpitts:76bec10c-48f6-4a9c-bc6c-9c7853f674ff": [
+    {
+      "date": "08-04-2024 08:49",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 11
+        }
+      ]
+    },
+    {
+      "date": "21-04-2024 22:48",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 7
+        },
+        {
+          "type": "green",
+          "quantity": 146
+        },
+        {
+          "type": "red",
+          "quantity": 46
+        }
+      ]
+    }
+  ],
+  "purchase:erikpitts:078b916c-2297-48fa-a06c-ad302cc7a79c": [
+    {
+      "date": "25-04-2024 21:18",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 15
+        },
+        {
+          "type": "yellow",
+          "quantity": 42
+        },
+        {
+          "type": "green",
+          "quantity": 205
+        }
+      ]
+    },
+    {
+      "date": "29-03-2024 21:27",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 8
+        },
+        {
+          "type": "yellow",
+          "quantity": 10
+        },
+        {
+          "type": "red",
+          "quantity": 140
+        }
+      ]
+    }
+  ],
+  "purchase:john63:ef5a9aac-0d5a-4288-b341-31f0bb5f9232": [
+    {
+      "date": "31-03-2024 00:57",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "date": "16-04-2024 23:08",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 48
+        }
+      ]
+    },
+    {
+      "date": "21-04-2024 22:15",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:john63:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "23-04-2024 20:29",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 10
+        },
+        {
+          "type": "red",
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "date": "09-04-2024 13:58",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 3
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024 13:50",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 1
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:john63:234e221c-2072-45f5-b223-d5801663084f": [
+    {
+      "date": "12-04-2024 13:02",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "yellow",
+          "quantity": 22
+        },
+        {
+          "type": "green",
+          "quantity": 8
+        }
+      ]
+    }
+  ],
+  "purchase:john63:fdda667a-c932-4423-852c-d1a7c4940f47": [
+    {
+      "date": "03-04-2024 08:08",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "date": "05-04-2024 07:15",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:john63:4753e72c-8d98-4df4-b20d-859449f82aa7": [
+    {
+      "date": "28-03-2024 18:44",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 25
+        },
+        {
+          "type": "yellow",
+          "quantity": 2
+        },
+        {
+          "type": "green",
+          "quantity": 228
+        }
+      ]
+    },
+    {
+      "date": "12-04-2024 06:44",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "red",
+          "quantity": 122
+        }
+      ]
+    }
+  ],
+  "purchase:danielsdale:49d21c21-5b5e-4111-8c04-0b6dcf7643d7": [
+    {
+      "date": "31-03-2024 02:15",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 16
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:danielsdale:c7bcb0eb-27fc-499d-82a5-0419550d435d": [
+    {
+      "date": "09-04-2024 20:15",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 37
+        },
+        {
+          "type": "red",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "date": "28-03-2024 19:22",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 22
+        },
+        {
+          "type": "green",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:danielsdale:234e221c-2072-45f5-b223-d5801663084f": [
+    {
+      "date": "22-04-2024 11:18",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:danielsdale:4753e72c-8d98-4df4-b20d-859449f82aa7": [
+    {
+      "date": "17-04-2024 08:19",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 10
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "16-04-2024 19:01",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 19
+        }
+      ]
+    }
+  ]
 }
