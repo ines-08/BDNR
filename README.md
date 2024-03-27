@@ -44,25 +44,38 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 Os dados gerados seguem as configurações presentes no header do ficheiro `generate.py`:
 
 ```python
-NUM_USERS = 50
-NUM_EVENTS = 20
+NUM_USERS = 10
+NUM_EVENTS = 10
 
-# Probabilidade de um evento ser marcado como favorito
-FAVOURITE_PROBABILITY = 0.3
+FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
+EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
+EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
+TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
 
-# Acrescentar ou remover fields de acordo com o que 
-# queremos que seja alvo de pesquisa nos eventos
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
+
+EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
+
+TICKET_TYPES = {
+    'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
+    'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
+    'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
+    'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
+}
 ```
 
 Atualmente há geração completa dos seguintes agregados:
 
 - `User` (username, user, email, password, role);
-- `Event` (id, name, description, location);
+- `Event` (id, name, description, location, type, date, current_quantity);
+- `Ticket` (total_quantity, current_quantity, price);
 
 E há geração das seguintes relações:
 
-- `Favourite` (entre um user e eventos)
+- `Favourite` (entre um user e eventos);
+- `Search Event` (event string index);
+- `Purchase` (entre um user e um evento);
+- `Notification` (entre um user e um evento);
 
 ### Keys
 
