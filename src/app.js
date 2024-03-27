@@ -62,13 +62,9 @@ app.get('/', (req, res) => {
 // home
 app.get('/home', authenticationMiddleware, async (req, res) => {
     const search = req.query?.search;
-    let events = [];
-
-    if (search) {
-        events = await getResponse(`http://localhost:${PORT}/api/search?input=${search}`);
-    } else {
-        events = await db.getAll().prefix('event:').limit(10).json();
-    }
+    let events = search 
+        ? await getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
+        : await db.getAll().prefix('event:').limit(10).json();
 
     events = Object.keys(events).map(key => {
         return {
@@ -101,6 +97,8 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
             req.flash('error', 'Event not found');
             res.redirect('/home');
         }
+
+        // TODO: show quantity total, partial and quantity/price per ticket type
     
         res.render('event', { 
             event: event
@@ -113,7 +111,8 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
 });
 
 // profile
-app.get('/profile', authenticationMiddleware, async (req, res) => {
+// TODO: replace authenticationMiddleware
+app.get('/profile', async (req, res) => {
     const userID = req.query?.username;
 
     try {
@@ -122,9 +121,24 @@ app.get('/profile', authenticationMiddleware, async (req, res) => {
             req.flash('error', 'User not found');
             res.redirect('/home');
         }
-    
+
+        const purchases = [];
+        const user_purchases = await db.getAll().prefix(`purchase:${userID}:`).json();
+        if (user_purchases) {
+            for (const key in user_purchases) {
+                const event_id = key.split(':')[2];
+                const event_name = (await db.get(`event:${event_id}`).json()).name;
+                purchases.push({
+                    'event_name': event_name,
+                    'event_id': event_id,
+                    'info': user_purchases[key]
+                })
+            }
+        }
+
         res.render('profile', { 
             user: user, 
+            purchases: purchases,
             error_message: req.flash('error'), 
             success_message: req.flash('success'),
         });

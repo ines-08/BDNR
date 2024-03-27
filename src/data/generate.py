@@ -53,7 +53,7 @@ def generate_event_data():
     for _ in range(NUM_EVENTS):
         id = str(uuid.uuid4())
         events[f"event:{id}"] = {
-            "name": fake.sentence(nb_words=5),
+            "name": fake.sentence(nb_words=5).replace('.', ''),
             "description": fake.paragraph(nb_sentences=4),
             "location": fake.city(),
             "type": random.choice(EVENT_TYPES),

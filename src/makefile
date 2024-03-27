@@ -1,6 +1,6 @@
 all: cleanup requirements setup generate populate
 
-cleanup:
+cleanup_containers:
 	-docker stop etcd1
 	-docker stop etcd2
 	-docker stop etcd3
@@ -17,6 +17,8 @@ cleanup:
 	-docker rm server1
 	-docker rm server2
 	-docker rm server3
+
+cleanup_db:
 	rm -rf db
 	mkdir db
 	touch db/db.empty
@@ -32,3 +34,7 @@ generate:
 
 populate:
 	python3 data/populate.py data/data.json
+
+cleanup: cleanup_containers cleanup_db
+
+restart: cleanup_containers setup populate
