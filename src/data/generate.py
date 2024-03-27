@@ -117,7 +117,7 @@ def generate_purchases(user_data, event_data, tickets_data):
 
                 # Simulate multiple purchases for the same event
                 for _ in range(0, random.randint(1, EVENT_PURCHASE_LIMIT)):
-                    purchase_tickets = [] # {type, quantity}
+                    purchase_tickets = [] # [{type, quantity}]
                     for type in TICKET_TYPES.keys():
 
                         # Simulate the probability of selecting a certain ticket type(s)
@@ -125,7 +125,7 @@ def generate_purchases(user_data, event_data, tickets_data):
                             ticket_id = f"ticket:{event_id}:{type}"
 
                             # If possible, generate purchase
-                            if tickets_data[ticket_id]['current_quantity'] != 0:
+                            if tickets_data[ticket_id]['current_quantity'] > 0:
                                 
                                 purchased_quantity = random.randint(1, tickets_data[ticket_id]['current_quantity'])
                                 purchase_tickets.append({
@@ -166,8 +166,8 @@ def main():
     data = { 
         **user_data, 
         **event_data, 
-        # **event_search, 
-        # **favourites_data,
+        **event_search, 
+        **favourites_data,
         **tickets_data,
         **purchase_data,
     }
