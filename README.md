@@ -86,7 +86,6 @@ As keys seguem uma formatação rígida:
     // User
     "user:<USERNAME>": { 
         "name": "something", 
-        "username": "something", 
         "email": "something", 
         "password": "something", 
         "role": "something"

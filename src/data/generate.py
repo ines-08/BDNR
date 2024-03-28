@@ -44,7 +44,7 @@ def generate_user_data():
         username = fake.user_name()
         password = fake.password(length=10, digits=False, upper_case=True, lower_case=True, special_chars=False)
         users[f"user:{username}"] = { 
-            "name": fake.name(), "username": username, "email": fake.email(), "password": password, "role": "user" 
+            "name": fake.name(), "email": fake.email(), "password": password, "role": "user" 
         }
     return users
 
