@@ -165,7 +165,7 @@ app.post('/login', async (req, res) => {
     try {
         const user = await db.get(`user:${username}`)?.json();  
         if (user && user.password === password) {
-            req.session.userInfo = user;
+            req.session.userInfo = { ...user, username: username };
             res.redirect('/home');
         } else {
             req.flash('error', 'Invalid login credentials');
