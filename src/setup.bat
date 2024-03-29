@@ -17,7 +17,7 @@ docker rm etcd5
 docker rm server1
 docker rm server2
 docker rm server3
-for /f "tokens=*" %%i in ('docker images -q') do docker rmi %%i
+for /f "tokens=*" %%i in ('docker images -q') do docker rmi -f %%i
 
 rem Cleanup Database
 rmdir /s /q db

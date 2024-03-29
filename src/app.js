@@ -209,25 +209,81 @@ app.post('/register', async (req, res) => {
  *     res -> db.get(`search:${type}:${input}`)
  */
 app.get('/api/search', async (req, res) => {
-    const input = req.query?.input?.toLowerCase();
+    console.log('QUERY:')
+    console.log(req.query?.input)
+
+
+    const wordsArray = req.query?.input.split(" ");
+    
+    // Iterate through the array and decode each word and convert to lowercase
+    for (let i = 0; i < wordsArray.length; i++) {
+        // Decode the URI component to replace "%20" with space
+        wordsArray[i] = decodeURIComponent(wordsArray[i]).toLowerCase();
+    }
+
+    //const input = req.query?.input?.toLowerCase();
     const events = [];
 
+    console.log('WORDS')
+    for (let i = 0; i < wordsArray.length; i++) 
+        console.log(wordsArray[i])
+    console.log('-----------------')
     try {
-        const matches = await db.getAll().prefix(`search:event:${input}`).json();
 
-        if (matches) {
-            for (const key in matches) {
-                for (const id of matches[key]) {
-                    const event = await db.get(`event:${id}`).json();
-                    if (event) {
-                        event.id = id
-                        events.push(event);
+        // Initialize a map to keep track of matches for each event ID
+        const eventMatches = new Map();
+
+        // Loop through each word in wordsArray
+        for (const input of wordsArray) {
+            console.log('WORD')
+            console.log(input);
+            const matches = await db.getAll().prefix(`search:event:${input}`).json();
+
+            // If there are matches for the current word
+            if (matches) {
+                // Loop through each key (event ID) in matches
+                for (const key in matches) {
+                    for (const id of matches[key]) {
+                        // If the event ID already exists in the map, update its match status
+                        if (eventMatches.has(input)) {                
+                            eventMatches.get(input).push(id);
+                        } else {
+                            // Otherwise, initialize an array with the current input
+                            eventMatches.set(input, [id]);
+                        }
                     }
-                }   
+                }
             }
         }
+        console.log('MAP')
+        console.log(eventMatches)
+        // Filter events that match all words in wordsArray
+        // Initialize commonWords with the first set of matchedWords
+        const values = Array.from(eventMatches.values());
+        console.log('VALUES')
+        console.log(values)
+        // Convert the array of values into an array of sets
+        const sets = values.map(value => new Set(value));
 
-        // TODO: remove duplicates
+        // Find the intersection of all sets
+        const commonWordsArraySet = sets.reduce((accumulator, current) => {
+            return new Set([...accumulator].filter(value => current.has(value)));
+        });
+
+        let commonWordsArray = Array.from(commonWordsArraySet)
+
+        console.log('COMMON WORDS')
+        console.log(commonWordsArray)
+
+        // Iterate over the commonWordsArray and add the corresponding events to the events array
+        for (const event_id of commonWordsArray) {
+            const event = await db.get(`event:${event_id}`).json();
+            if (event) {
+                event.id = event_id;
+                events.push(event);
+            }
+        }
+        
         res.send(JSON.stringify(events, null, 2));
 
     } catch (error) {
