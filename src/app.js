@@ -209,10 +209,6 @@ app.post('/register', async (req, res) => {
  *     res -> db.get(`search:${type}:${input}`)
  */
 app.get('/api/search', async (req, res) => {
-    console.log('QUERY:')
-    console.log(req.query?.input)
-
-
     const wordsArray = req.query?.input.split(" ");
     
     // Iterate through the array and decode each word and convert to lowercase
@@ -221,59 +217,33 @@ app.get('/api/search', async (req, res) => {
         wordsArray[i] = decodeURIComponent(wordsArray[i]).toLowerCase();
     }
 
-    //const input = req.query?.input?.toLowerCase();
     const events = [];
-
-    console.log('WORDS')
-    for (let i = 0; i < wordsArray.length; i++) 
-        console.log(wordsArray[i])
-    console.log('-----------------')
     try {
-
-        // Initialize a map to keep track of matches for each event ID
         const eventMatches = new Map();
 
-        // Loop through each word in wordsArray
         for (const input of wordsArray) {
-            console.log('WORD')
-            console.log(input);
             const matches = await db.getAll().prefix(`search:event:${input}`).json();
-
-            // If there are matches for the current word
             if (matches) {
-                // Loop through each key (event ID) in matches
                 for (const key in matches) {
                     for (const id of matches[key]) {
-                        // If the event ID already exists in the map, update its match status
                         if (eventMatches.has(input)) {                
                             eventMatches.get(input).push(id);
                         } else {
-                            // Otherwise, initialize an array with the current input
                             eventMatches.set(input, [id]);
                         }
                     }
                 }
             }
         }
-        console.log('MAP')
-        console.log(eventMatches)
+        
         // Filter events that match all words in wordsArray
-        // Initialize commonWords with the first set of matchedWords
         const values = Array.from(eventMatches.values());
-        console.log('VALUES')
-        console.log(values)
-        // Convert the array of values into an array of sets
         const sets = values.map(value => new Set(value));
-
-        // Find the intersection of all sets
         const commonWordsArraySet = sets.reduce((accumulator, current) => {
             return new Set([...accumulator].filter(value => current.has(value)));
         });
 
         let commonWordsArray = Array.from(commonWordsArraySet)
-
-        console.log('COMMON WORDS')
-        console.log(commonWordsArray)
 
         // Iterate over the commonWordsArray and add the corresponding events to the events array
         for (const event_id of commonWordsArray) {
