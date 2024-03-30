@@ -3,10 +3,10 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 const adminMiddleware = require('./middlewares/adminMiddleware');
-const authMiddleware = require('./middlewares/authMiddleware');
 const profileRoutes = require('./routes/profileRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const eventRoutes = require('./routes/eventRoutes');
+const rootRoutes = require('./routes/rootRoutes');
 
 const app = express();
 const { Etcd3 } = require("etcd3");
@@ -40,12 +40,9 @@ app.set('views', './views');
 const db = new Etcd3({ hosts: CLUSTER_DEV });
 
 // Root
-app.get('/', (req, res) => {
-    res.render('index', { 
-        error_message: req.flash('error'), 
-        success_message: req.flash('success') 
-    });
-});
+app.use('/', rootRoutes(db));
+app.use('/login', rootRoutes(db));
+app.use('/register', rootRoutes(db));
 
 // Home
 app.use('/home', homeRoutes(db));
@@ -60,49 +57,6 @@ app.use('/event', eventRoutes(db));
 
 // Profile
 app.use('/profile', profileRoutes(db));
-
-// login action
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        const user = await db.get(`user:${username}`)?.json();  
-        if (user && user.password === password) {
-            req.session.userInfo = { ...user, username: username };
-            res.redirect('/home');
-        } else {
-            req.flash('error', 'Invalid login credentials');
-            res.redirect('/');
-        }
-
-    } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/');
-    }
-});
-
-// register action
-app.post('/register', async (req, res) => {
-    const { email, username, password } = req.body;
-
-    try {
-        const user = await db.get(`user:${username}`);
-    
-        if (!user) {
-            const userInfo = { email: email, username: username, password: password, role: DEFAULT_ROLE };
-            await db.put(`user:${username}`).value(JSON.stringify(userInfo));
-            req.flash('success', 'Registed successfuly');
-        } else {
-            req.flash('error', 'Invalid register: username already exists!');
-        }
-
-        res.redirect('/');
-
-    } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/');
-    }
-});
 
 // Search API
 app.get('/api/search', async (req, res) => {
