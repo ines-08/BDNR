@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 const adminMiddleware = require('./middlewares/adminMiddleware');
 const authMiddleware = require('./middlewares/authMiddleware');
 const utils = require('./utils/utils');
+const profileRoutes = require('./routes/profileRoutes');
 
 const app = express();
 const { Etcd3 } = require("etcd3");
@@ -106,43 +107,8 @@ app.get('/event', authMiddleware, async (req, res) => {
     }
 });
 
-// profile
-app.get('/profile', authMiddleware, async (req, res) => {
-    const userID = req.query?.username;
-
-    try {
-        const user = await db.get(`user:${userID}`)?.json(); 
-        if (!user) {
-            req.flash('error', 'User not found');
-            res.redirect('/home');
-        }
-
-        const purchases = [];
-        const user_purchases = await db.getAll().prefix(`purchase:${userID}:`).json();
-        if (user_purchases) {
-            for (const key in user_purchases) {
-                const event_id = key.split(':')[2];
-                const event_name = (await db.get(`event:${event_id}`).json()).name;
-                purchases.push({
-                    'event_name': event_name,
-                    'event_id': event_id,
-                    'info': user_purchases[key]
-                })
-            }
-        }
-
-        res.render('profile', { 
-            user: user, 
-            purchases: purchases,
-            error_message: req.flash('error'), 
-            success_message: req.flash('success'),
-        });
-
-    } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/');
-    }
-});
+// Profile
+app.use('/profile', profileRoutes);
 
 // login action
 app.post('/login', async (req, res) => {
