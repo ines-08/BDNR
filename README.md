@@ -1,13 +1,28 @@
 # TickETCD - BDNR Project
 
 - [Run](#run)
+    - [Dev](#dev)
+    - [Docker](#docker)
 - [Endpoints](#endpoints)
 - [API](#api)
 - [Data & Keys](#data--keys)
 
 ## Run
 
-O projecto está disponível apenas em Docker:
+### Dev
+
+```bash
+$ cd src/
+$ python3 /data/generate.py data/data.json
+$ python3 /data/populate.py data/data.json
+$ docker-compose -f docker-compose-dev.yml up -d
+$ npm install
+$ npm run
+```
+
+Só há um servidor disponível: [localhost:3001](http://localhost:3001) e à partida é só necessário inicializar os containers ETCD apenas uma vez, assim como a criação de dados e povoação.
+
+### Docker
 
 ```bash
 $ cd src/
