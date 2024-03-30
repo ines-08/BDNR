@@ -5,6 +5,7 @@ const PORT = 3001; // TODO: change
 async function getHomePage(db, req, res) {
     try {
         const search = req.query?.search;
+        
         let events = search 
             ? await utils.getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
             : await db.getAll().prefix('event:').limit(10).json();
@@ -27,7 +28,7 @@ async function getHomePage(db, req, res) {
     } catch (error) {
         console.error(error);
         req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/');
+        res.redirect('/home');
     }
 }
 
