@@ -62,10 +62,12 @@ Os dados gerados seguem as configurações presentes no header do ficheiro `gene
 NUM_USERS = 10
 NUM_EVENTS = 10
 
-FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
-EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
-EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
-TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
+ADMIN_PROBABILITY = 0.1           
+FAVOURITE_PROBABILITY = 0.3      
+EVENT_PURCHASE_LIMIT = 3        
+EVENT_PURCHASE_PROBABILITY = 0.5   
+TICKET_PURCHASE_PROBABILITY = 0.5 
+NOTIFICATION_PROBABILITY = 0.3 
 
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
@@ -77,6 +79,7 @@ TICKET_TYPES = {
     'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
     'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
 }
+
 ```
 
 Atualmente há geração completa dos seguintes agregados:
