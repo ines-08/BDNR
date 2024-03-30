@@ -1,4 +1,3 @@
-// Search API
 async function getSearchResults(db, req, res) {
     const wordsArray = req.query?.input.split(" ");
     

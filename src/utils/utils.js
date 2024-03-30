@@ -1,3 +1,7 @@
+const fs = require('fs');
+
+const config = JSON.parse(fs.readFileSync('configuration.json'));
+
 async function getResponse(request) {
     const response = await fetch(request);
     if (!response.ok) {
@@ -6,4 +10,4 @@ async function getResponse(request) {
     return await response.json();
 }
 
-module.exports = { getResponse };
+module.exports = { getResponse, config };

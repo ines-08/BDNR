@@ -1,4 +1,4 @@
-const DEFAULT_ROLE = 'admin'; // TODO: change
+const utils = require('../utils/utils');
 
 async function getRootPage(req, res) {
     res.render('index', { 
@@ -33,7 +33,7 @@ async function register(db, req, res) {
         const user = await db.get(`user:${username}`);
     
         if (!user) {
-            const userInfo = { email: email, username: username, password: password, role: DEFAULT_ROLE };
+            const userInfo = { email: email, username: username, password: password, role: utils.config.default_role };
             await db.put(`user:${username}`).value(JSON.stringify(userInfo));
             req.flash('success', 'Registed successfuly');
         } else {
