@@ -1,6 +1,10 @@
 const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash");
+
+const adminMiddleware = require('./middlewares/adminMiddleware.js');
+const authMiddleware = require('./middlewares/authMiddleware.js');
+
 const app = express();
 const { Etcd3 } = require("etcd3");
 
@@ -32,26 +36,6 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 const db = new Etcd3({ hosts: CLUSTER_DEV });
 
-// Authentication middleware
-const authenticationMiddleware = (req, res, next) => {
-    if (req.session.userInfo) {
-        next();
-    } else {
-        req.flash('error', 'You need to login first!');
-        res.redirect('/');
-    }
-};
-
-// Admin middleware
-const adminMiddleware = (req, res, next) => {
-    if (req.session.userInfo && req.session.userInfo.role === 'admin') {
-        next();
-    } else {
-        req.flash('error', 'Non-admin users cannot access this page');
-        res.redirect('/home');
-    }
-};
-
 // Fetch the response
 async function getResponse(request) {
     const response = await fetch(request);
@@ -70,7 +54,7 @@ app.get('/', (req, res) => {
 });
 
 // home
-app.get('/home', authenticationMiddleware, async (req, res) => {
+app.get('/home', authMiddleware, async (req, res) => {
     const search = req.query?.search;
     let events = search 
         ? await getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
@@ -98,7 +82,7 @@ app.get('/admin', adminMiddleware, (req, res) => {
 });
 
 // event
-app.get('/event', authenticationMiddleware, async (req, res) => {
+app.get('/event', authMiddleware, async (req, res) => {
     const eventID = req.query?.id;
 
     try {
@@ -131,7 +115,7 @@ app.get('/event', authenticationMiddleware, async (req, res) => {
 });
 
 // profile
-app.get('/profile', authenticationMiddleware, async (req, res) => {
+app.get('/profile', authMiddleware, async (req, res) => {
     const userID = req.query?.username;
 
     try {
