@@ -2,8 +2,9 @@ const express = require("express");
 const session = require("express-session");
 const flash = require("connect-flash");
 
-const adminMiddleware = require('./middlewares/adminMiddleware.js');
-const authMiddleware = require('./middlewares/authMiddleware.js');
+const adminMiddleware = require('./middlewares/adminMiddleware');
+const authMiddleware = require('./middlewares/authMiddleware');
+const utils = require('./utils/utils');
 
 const app = express();
 const { Etcd3 } = require("etcd3");
@@ -36,15 +37,6 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 const db = new Etcd3({ hosts: CLUSTER_DEV });
 
-// Fetch the response
-async function getResponse(request) {
-    const response = await fetch(request);
-    if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-    }
-    return await response.json();
-}
-
 // root
 app.get('/', (req, res) => {
     res.render('index', { 
@@ -57,7 +49,7 @@ app.get('/', (req, res) => {
 app.get('/home', authMiddleware, async (req, res) => {
     const search = req.query?.search;
     let events = search 
-        ? await getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
+        ? await utils.getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
         : await db.getAll().prefix('event:').limit(10).json();
 
     events = Object.keys(events).map(key => {
@@ -195,13 +187,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-/**
- * Search API
- * TODO: suporte a múltiplas palavras / partes de palavra. Discutir a melhor forma.
- * TODO: se houver necessidade, dar update ao método:
- *     req -> /api/search?type=event&input=something
- *     res -> db.get(`search:${type}:${input}`)
- */
+// Search API
 app.get('/api/search', async (req, res) => {
     const wordsArray = req.query?.input.split(" ");
     
@@ -237,7 +223,7 @@ app.get('/api/search', async (req, res) => {
             return new Set([...accumulator].filter(value => current.has(value)));
         });
 
-        let commonWordsArray = Array.from(commonWordsArraySet)
+        const commonWordsArray = Array.from(commonWordsArraySet)
 
         // Iterate over the commonWordsArray and add the corresponding events to the events array
         for (const event_id of commonWordsArray) {
