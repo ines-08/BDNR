@@ -4,8 +4,9 @@ const flash = require("connect-flash");
 
 const adminMiddleware = require('./middlewares/adminMiddleware');
 const authMiddleware = require('./middlewares/authMiddleware');
-const utils = require('./utils/utils');
 const profileRoutes = require('./routes/profileRoutes');
+const homeRoutes = require('./routes/homeRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 
 const app = express();
 const { Etcd3 } = require("etcd3");
@@ -38,7 +39,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 const db = new Etcd3({ hosts: CLUSTER_DEV });
 
-// root
+// Root
 app.get('/', (req, res) => {
     res.render('index', { 
         error_message: req.flash('error'), 
@@ -46,69 +47,19 @@ app.get('/', (req, res) => {
     });
 });
 
-// home
-app.get('/home', authMiddleware, async (req, res) => {
-    const search = req.query?.search;
-    let events = search 
-        ? await utils.getResponse(`http://localhost:${PORT}/api/search?input=${search}`) 
-        : await db.getAll().prefix('event:').limit(10).json();
+// Home
+app.use('/home', homeRoutes(db));
 
-    events = Object.keys(events).map(key => {
-        return {
-            id: key.split(':')[1],
-            ...events[key]
-        };
-    });
-
-    res.render('home', { 
-        user: req.session.userInfo, 
-        error_message: req.flash('error'), 
-        success_message: req.flash('success'),
-        search: search,
-        events: events,
-    });
-});
-
-// admin
+// Admin
 app.get('/admin', adminMiddleware, (req, res) => {
     res.render('admin');
 });
 
-// event
-app.get('/event', authMiddleware, async (req, res) => {
-    const eventID = req.query?.id;
-
-    try {
-        const event = await db.get(`event:${eventID}`)?.json(); 
-        if (!event) {
-            req.flash('error', 'Event not found');
-            res.redirect('/home');
-        }
-
-        const tickets = []
-        const ticket_info = await db.getAll().prefix(`ticket:${eventID}:`).json();
-        if (ticket_info) {
-            for (const key in ticket_info) {
-                tickets.push({
-                    'type': key.split(':')[2],
-                    ...ticket_info[key],
-                });
-            }
-        }
-    
-        res.render('event', { 
-            event: event,
-            tickets: tickets
-        });
-
-    } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/home');
-    }
-});
+// Event
+app.use('/event', eventRoutes(db));
 
 // Profile
-app.use('/profile', profileRoutes);
+app.use('/profile', profileRoutes(db));
 
 // login action
 app.post('/login', async (req, res) => {
