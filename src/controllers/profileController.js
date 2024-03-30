@@ -6,7 +6,7 @@ async function getProfilePage(db, req, res) {
         if (!user) {
             req.flash('error', 'User not found');
             res.redirect('/home');
-            return; // Encerrar a função se o usuário não for encontrado
+            return;
         }
 
         const purchases = [];

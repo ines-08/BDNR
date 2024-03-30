@@ -27,7 +27,7 @@ requirements:
 	pip3 install Faker
 
 setup:
-	docker-compose up -d
+	docker-compose -f docker-compose-dev.yml up -d
 
 generate:
 	python3 data/generate.py data/data.json
