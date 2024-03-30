@@ -10,4 +10,12 @@ async function getResponse(request) {
     return await response.json();
 }
 
-module.exports = { getResponse, config };
+async function getNodeInfo(node) {
+    return getResponse(`${node}/v2/stats/self`);
+}
+
+async function getClusterMembers(node) {
+    return getResponse(`${node}/v2/members`);
+}
+
+module.exports = { getResponse, getNodeInfo, getClusterMembers, config };

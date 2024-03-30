@@ -1,4 +1,3 @@
-from distutils.command.clean import clean
 import sys
 import json
 import subprocess

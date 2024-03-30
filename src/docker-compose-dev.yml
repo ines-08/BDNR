@@ -30,8 +30,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd2:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://127.0.0.1:2382", 
-      "--advertise-client-urls", "http://127.0.0.1:2382",
+      "--listen-client-urls", "http://0.0.0.0:2382", 
+      "--advertise-client-urls", "http://etcd2:2382", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -50,8 +50,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd3:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://127.0.0.1:2383", 
-      "--advertise-client-urls", "http://127.0.0.1:2383", 
+      "--listen-client-urls", "http://0.0.0.0:2383", 
+      "--advertise-client-urls", "http://etcd3:2383", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -70,8 +70,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd4:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://127.0.0.1:2384", 
-      "--advertise-client-urls", "http://127.0.0.1:2384", 
+      "--listen-client-urls", "http://0.0.0.0:2384", 
+      "--advertise-client-urls", "http://etcd4:2384",  
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -90,8 +90,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd5:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://127.0.0.1:2385", 
-      "--advertise-client-urls", "http://127.0.0.1:2385", 
+      "--listen-client-urls", "http://0.0.0.0:2385", 
+      "--advertise-client-urls", "http://etcd5:2385", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
