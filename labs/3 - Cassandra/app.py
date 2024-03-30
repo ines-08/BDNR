@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from cassandra.cluster import Cluster
 
 app = Flask(__name__)
@@ -6,6 +6,21 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/add')
+def add():
+    return render_template('add.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        url = request.form['url']
+        tag = request.form['tags']
+
+        print(f"URL: {url}, Tag: {tag}")
+
+        return "Book submitted with success"    
+
 
 @app.route('/products')
 def products():
