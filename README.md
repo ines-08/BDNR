@@ -1,13 +1,28 @@
 # TickETCD - BDNR Project
 
 - [Run](#run)
+    - [Dev](#dev)
+    - [Docker](#docker)
 - [Endpoints](#endpoints)
 - [API](#api)
 - [Data & Keys](#data--keys)
 
 ## Run
 
-O projecto está disponível apenas em Docker:
+### Dev
+
+```bash
+$ cd src/
+$ python3 /data/generate.py data/data.json
+$ python3 /data/populate.py data/data.json
+$ docker-compose -f docker-compose-dev.yml up -d
+$ npm install
+$ npm run
+```
+
+Só há um servidor disponível: [localhost:3001](http://localhost:3001) e à partida é só necessário inicializar os containers ETCD apenas uma vez, assim como a criação de dados e povoação.
+
+### Docker
 
 ```bash
 $ cd src/
@@ -47,10 +62,12 @@ Os dados gerados seguem as configurações presentes no header do ficheiro `gene
 NUM_USERS = 10
 NUM_EVENTS = 10
 
-FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
-EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
-EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
-TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
+ADMIN_PROBABILITY = 0.1           
+FAVOURITE_PROBABILITY = 0.3      
+EVENT_PURCHASE_LIMIT = 3        
+EVENT_PURCHASE_PROBABILITY = 0.5   
+TICKET_PURCHASE_PROBABILITY = 0.5 
+NOTIFICATION_PROBABILITY = 0.3 
 
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
@@ -62,6 +79,7 @@ TICKET_TYPES = {
     'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
     'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
 }
+
 ```
 
 Atualmente há geração completa dos seguintes agregados:

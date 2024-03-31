@@ -8,10 +8,12 @@ import random
 NUM_USERS = 10
 NUM_EVENTS = 10
 
+ADMIN_PROBABILITY = 0.1             # User admin probability
 FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
 EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
 EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
 TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
+NOTIFICATION_PROBABILITY = 0.3      # Probability to active a notification given the event
 
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
@@ -43,8 +45,9 @@ def generate_user_data():
     for _ in range(NUM_USERS):
         username = fake.user_name()
         password = fake.password(length=10, digits=False, upper_case=True, lower_case=True, special_chars=False)
+        role = 'admin' if random.random() < ADMIN_PROBABILITY else 'user'
         users[f"user:{username}"] = { 
-            "name": fake.name(), "email": fake.email(), "password": password, "role": "user" 
+            "name": fake.name(), "email": fake.email(), "password": password, "role": role 
         }
     return users
 
@@ -150,6 +153,19 @@ def generate_purchases(user_data, event_data, tickets_data):
 
     return purchases
 
+def generate_notifications(user_data, event_data):
+    notifications = {}
+
+    for user in user_data:
+        user_id = user.split(':')[1]
+        for event, info in event_data.items():
+            n_tickets = info['current_quantity']
+            if random.random() < NOTIFICATION_PROBABILITY and n_tickets > 0:
+                event_id = event.split(':')[1]
+                notifications[f'notification:{user_id}:{event_id}'] = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
+
+    return notifications
+
 def main():
 
     if len(sys.argv) != 2:
@@ -162,6 +178,7 @@ def main():
     favourites_data = generate_favourites(user_data, event_data)
     tickets_data = generate_tickets(event_data)
     purchase_data = generate_purchases(user_data, event_data, tickets_data)
+    notifications_data = generate_notifications(user_data, event_data)
 
     data = { 
         **user_data, 
@@ -170,6 +187,7 @@ def main():
         **favourites_data,
         **tickets_data,
         **purchase_data,
+        **notifications_data,
     }
 
     with open(sys.argv[1], "w") as file:

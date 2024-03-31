@@ -14,7 +14,21 @@
   </header>
 
   <main>
-    Admin!
+    <h2>Admin Page</h2>
+
+    <h3>Cluster Info</h3>
+    <h4><%= clusterInfo %></h4>
+
+    <h3>Nodes Info</h3>
+    
+    <% if (nodes && nodes.length > 0) { %>
+      <% nodes.forEach(node => { %>
+        <h4><%= node %></h4>
+      <% }); %>
+    <% } else { %>
+      <p>No nodes found!</p>
+    <% } %>
+
   </main>
 
   <footer>
