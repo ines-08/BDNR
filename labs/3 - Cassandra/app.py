@@ -3,9 +3,19 @@ from cassandra.cluster import Cluster
 
 app = Flask(__name__)
 
+cluster = Cluster()
+session = cluster.connect()
+
+session.set_keyspace('bookit')
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/bookmarks')
+def bookmarks():
+    all_bookmarks = session.execute('SELECT * FROM bookmarks')
+    return render_template('bookmarks.html', bookmarks=all_bookmarks)
 
 @app.route('/add')
 def add():
@@ -19,18 +29,29 @@ def submit():
 
         print(f"URL: {url}, Tag: {tag}")
 
+        session.execute(
+            """
+            INSERT INTO bookmarks VALUES (%s, %s, %s, %s)
+            """, 
+            tag, sha256(url), url, datetime.now()
+        )
+
+        session.execute(
+            """
+            INSERT INTO bookmarks_by_ta VALUES (%s, %s, %s)
+            """,
+            tag, sha256(url), url, datetime.now()
+        )    
+
         return "Book submitted with success"    
 
 
-@app.route('/products')
-def products():
-    # cluster = Cluster(['127.0.0.1'])  # Connect to Cassandra cluster
-    # session = cluster.connect('bdnr_test')  # Connect to keyspace
-    # catalog = session.execute('SELECT * FROM catalog')  # Fetch data from Cassandra
-    # products = [{'product_id': row.product_id, 'product_description': row.product_description} for row in catalog]
-    # session.shutdown()
-    # cluster.shutdown()
-    return render_template('products.html', products=products)
+@app.route('/bookmark/<int:bookmark_id>')
+def bookmark(bookmark_id):
+    query_prepare = session.prepare('SELECT * FROM bookmarks WHERE id=?')
+    bookmark_spec = session.execute(query_prepare, [bookmark_id])
+    bookmark = [{'bookmark_url': row.url, 'bookmark_tags': row.tags} for row in bookmark_spec] 
+    return render_template('bookmark.html', bookmark=bookmark)
 
 if __name__ == '__main__':
     app.run(debug=True)
