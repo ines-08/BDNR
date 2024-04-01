@@ -56,30 +56,32 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 
 ### Data
 
-Os dados gerados seguem as configurações presentes no header do ficheiro `generate.py`:
+Os dados gerados seguem as configurações em `configuration.json`:
 
-```python
-NUM_USERS = 10
-NUM_EVENTS = 10
-
-ADMIN_PROBABILITY = 0.1           
-FAVOURITE_PROBABILITY = 0.3      
-EVENT_PURCHASE_LIMIT = 3        
-EVENT_PURCHASE_PROBABILITY = 0.5   
-TICKET_PURCHASE_PROBABILITY = 0.5 
-NOTIFICATION_PROBABILITY = 0.3 
-
-EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
-
-EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
-
-TICKET_TYPES = {
-    'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
-    'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
-    'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
-    'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
+```json
+{
+    "NUM_USERS": 10,
+    "NUM_EVENTS": 10,
+    "ADMIN_PROBABILITY": 0.1,
+    "FAVOURITE_PROBABILITY": 0.3,
+    "EVENT_PURCHASE_LIMIT": 3,
+    "EVENT_PURCHASE_PROBABILITY": 0.5,
+    "TICKET_PURCHASE_PROBABILITY": 0.5,
+    "NOTIFICATION_PROBABILITY": 0.3,
+    "EVENT_SEARCH_FIELDS": ["name", "description", "location"],
+    "EVENT_LOCATIONS": [
+      "London",
+      "Manchester",
+      //...
+    ],
+    "EVENT_TYPES": ["concert", "theater", "dance", "magic", "circus"],
+    "TICKET_TYPES": {
+      "pink": {"minPrice": 100, "maxPrice": 200, "minQuantity": 10, "maxQuantity": 100},
+      "yellow": {"minPrice": 200, "maxPrice": 350, "minQuantity": 80, "maxQuantity": 100},
+      "green": {"minPrice": 70, "maxPrice": 80, "minQuantity": 50, "maxQuantity": 500},
+      "red": {"minPrice": 50, "maxPrice": 70, "minQuantity": 100, "maxQuantity": 600}
+    }
 }
-
 ```
 
 Atualmente há geração completa dos seguintes agregados:
@@ -91,7 +93,7 @@ Atualmente há geração completa dos seguintes agregados:
 E há geração das seguintes relações:
 
 - `Favourite` (entre um user e eventos);
-- `Search Event` (event string index);
+- `Search (text, type, location)` (event string indexes);
 - `Purchase` (entre um user e um evento);
 - `Notification` (entre um user e um evento);
 
@@ -119,11 +121,22 @@ As keys seguem uma formatação rígida:
         "current_quantity": "something",
     },
 
-    // Search Events
-    "search:event:<WORD>": [
+    // Search Events by Text
+    "search:text:<WORD>": [
         "EVENT_ID_1",
         "EVENT_ID_2",
+    ],
+
+    // Search Events by Type
+    "search:type:<TYPE>": [
         "EVENT_ID_3",
+        "EVENT_ID_4",
+    ],
+
+    // Search Events by Location
+    "search:location:<LOCATION>": [
+        "EVENT_ID_5",
+        "EVENT_ID_6",
     ],
 
     // Favourite relationship
