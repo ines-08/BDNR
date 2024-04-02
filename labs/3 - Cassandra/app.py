@@ -10,7 +10,7 @@ session = cluster.connect('bookit')
 @app.route('/')
 def index():
     bookmarks = session.execute('SELECT * FROM bookmarks')
-    bookmarks_list = [(bookmark.url_original, bookmark.tags) for bookmark in bookmarks]
+    bookmarks_list = [(bookmark.url_original, bookmark.tags, bookmark.url_md5) for bookmark in bookmarks]
     return render_template('index.html', bookmarks=bookmarks_list)
 
 @app.route('/add')
@@ -44,12 +44,12 @@ def submit():
         return redirect(url_for('index'))   
 
 
-@app.route('/bookmark/<url>')
-def bookmark(bookmark_id):
-    query_prepare = session.prepare('SELECT * FROM bookmarks WHERE id=?')
-    bookmark_spec = session.execute(query_prepare, [bookmark_id])
-    bookmark = [{'bookmark_url': row.url, 'bookmark_tags': row.tags} for row in bookmark_spec] 
-    return render_template('bookmark.html', bookmark=bookmark)
+@app.route('/bookmarks/<url_md5>')
+def bookmarks(url_md5):
+    query_prepare = session.prepare('SELECT * FROM bookmarks WHERE url_md5=?')
+    bookmark_spec = session.execute(query_prepare, [url_md5])
+    bookmarks_list = [(bookmark.url_original, bookmark.tags, bookmark.time_t) for bookmark in bookmark_spec]
+    return render_template('bookmarks.html', bookmark=bookmarks_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
