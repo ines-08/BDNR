@@ -13,9 +13,9 @@
 
 ```bash
 $ cd src/
+$ docker-compose -f docker-compose-dev.yml up -d
 $ python3 /data/generate.py data/data.json
 $ python3 /data/populate.py data/data.json
-$ docker-compose -f docker-compose-dev.yml up -d
 $ npm install
 $ npm run
 ```

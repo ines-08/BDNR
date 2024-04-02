@@ -27,6 +27,7 @@ app.set('views', './views');
 app.use('/', rootRoutes(db));
 app.use('/login', rootRoutes(db));
 app.use('/register', rootRoutes(db));
+app.use('/logout', rootRoutes(db));
 
 // Home
 app.use('/home', homeRoutes(db));

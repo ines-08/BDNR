@@ -26,6 +26,19 @@ async function login(db, req, res) {
     }
 };
 
+async function logout(req, res) {
+    try {
+        req.session.userInfo = null;
+        req.flash('success', 'Logout!');
+        res.redirect('/');
+
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/');
+    }
+};
+
+
 async function register(db, req, res) {
     const { email, username, password } = req.body;
 
@@ -51,5 +64,6 @@ async function register(db, req, res) {
 module.exports = {
     getRootPage,
     login,
-    register
+    register,
+    logout
 };
