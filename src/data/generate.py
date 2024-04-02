@@ -3,30 +3,28 @@ import sys
 import json
 import uuid
 import re
+import os
 import random
 
-NUM_USERS = 10
-NUM_EVENTS = 10
-
-ADMIN_PROBABILITY = 0.1             # User admin probability
-FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
-EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
-EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
-TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
-NOTIFICATION_PROBABILITY = 0.3      # Probability to active a notification given the event
-
-EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
-
-EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
-
-TICKET_TYPES = {
-    'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
-    'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
-    'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
-    'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
-}
-
 fake = Faker('en_US')
+
+script_dir = os.path.dirname(__file__)
+config_path = os.path.join(script_dir, 'configurations.json')
+with open(config_path, 'r') as file:
+    config = json.load(file)
+
+NUM_USERS = config['NUM_USERS']
+NUM_EVENTS = config['NUM_EVENTS']
+ADMIN_PROBABILITY = config['ADMIN_PROBABILITY']
+FAVOURITE_PROBABILITY = config['FAVOURITE_PROBABILITY']
+EVENT_PURCHASE_LIMIT = config['EVENT_PURCHASE_LIMIT']
+EVENT_PURCHASE_PROBABILITY = config['EVENT_PURCHASE_PROBABILITY']
+TICKET_PURCHASE_PROBABILITY = config['TICKET_PURCHASE_PROBABILITY']
+NOTIFICATION_PROBABILITY = config['NOTIFICATION_PROBABILITY']
+EVENT_SEARCH_FIELDS = config['EVENT_SEARCH_FIELDS']
+EVENT_LOCATIONS = config['EVENT_LOCATIONS']
+EVENT_TYPES = config['EVENT_TYPES']
+TICKET_TYPES = config['TICKET_TYPES']
 
 def normalize(text):
     return re.sub(r'[^\w\s]', ' ', text).lower()
@@ -58,24 +56,46 @@ def generate_event_data():
         events[f"event:{id}"] = {
             "name": fake.sentence(nb_words=5).replace('.', ''),
             "description": fake.paragraph(nb_sentences=4),
-            "location": fake.city(),
+            "location": random.choice(EVENT_LOCATIONS),
             "type": random.choice(EVENT_TYPES),
             "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
             "current_quantity": 0,
         }
     return events
 
-def generate_events_search(events_data):
+def generate_text_search(events_data):
     search = {}
     for event, details in events_data.items():
         event_id = event.split(':')[1]
         words = extract_event_words(details)
         for word in words:
-            word_key = f'search:event:{word}'
+            word_key = f'search:text:{word}'
             if word_key in search.keys():
                 search[word_key].append(event_id)
             else:
                 search[word_key] = [event_id]
+    return search
+
+def generate_type_search(events_data):
+    search = {}
+    for type in EVENT_TYPES:
+        search[f'search:type:{type}'] = []
+
+    for event, details in events_data.items():
+        event_id = event.split(':')[1]
+        search[f"search:type:{details['type']}"].append(event_id)
+
+    return search
+
+def generate_location_search(events_data):
+    search = {}
+    for location in EVENT_LOCATIONS:
+        search[f'search:location:{location}'] = []
+
+    for event, details in events_data.items():
+        event_id = event.split(':')[1]
+        search[f"search:location:{details['location']}"].append(event_id)
+
     return search
 
 def generate_favourites(user_data, event_data):
@@ -108,7 +128,6 @@ def generate_tickets(event_data):
 
 def generate_purchases(user_data, event_data, tickets_data):
     purchases = {}
-
     for user in user_data.keys():
         user_id = user.split(':')[1]
         for event in event_data.keys():
@@ -155,7 +174,6 @@ def generate_purchases(user_data, event_data, tickets_data):
 
 def generate_notifications(user_data, event_data):
     notifications = {}
-
     for user in user_data:
         user_id = user.split(':')[1]
         for event, info in event_data.items():
@@ -174,7 +192,9 @@ def main():
 
     user_data = generate_user_data()
     event_data = generate_event_data()
-    event_search = generate_events_search(event_data)
+    text_search = generate_text_search(event_data)
+    type_search = generate_type_search(event_data)
+    location_search = generate_location_search(event_data)
     favourites_data = generate_favourites(user_data, event_data)
     tickets_data = generate_tickets(event_data)
     purchase_data = generate_purchases(user_data, event_data, tickets_data)
@@ -183,7 +203,9 @@ def main():
     data = { 
         **user_data, 
         **event_data, 
-        **event_search, 
+        **text_search, 
+        **type_search,
+        **location_search,
         **favourites_data,
         **tickets_data,
         **purchase_data,

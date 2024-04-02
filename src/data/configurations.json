@@ -1,0 +1,41 @@
+{
+    "NUM_USERS": 10,
+    "NUM_EVENTS": 10,
+    "ADMIN_PROBABILITY": 0.1,
+    "FAVOURITE_PROBABILITY": 0.3,
+    "EVENT_PURCHASE_LIMIT": 3,
+    "EVENT_PURCHASE_PROBABILITY": 0.5,
+    "TICKET_PURCHASE_PROBABILITY": 0.5,
+    "NOTIFICATION_PROBABILITY": 0.3,
+    "EVENT_SEARCH_FIELDS": ["name", "description", "location"],
+    "EVENT_LOCATIONS": [
+      "Aveiro",
+      "Beja",
+      "Braga",
+      "Bragança",
+      "Castelo Branco",
+      "Coimbra",
+      "Évora",
+      "Faro",
+      "Guarda",
+      "Leiria",
+      "Lisboa",
+      "Portalegre",
+      "Porto",
+      "Santarém",
+      "Setúbal",
+      "Viana do Castelo",
+      "Vila Real",
+      "Viseu",
+      "Açores",
+      "Madeira"
+    ],
+    "EVENT_TYPES": ["concert", "theater", "dance", "magic", "circus"],
+    "TICKET_TYPES": {
+      "pink": {"minPrice": 100, "maxPrice": 200, "minQuantity": 10, "maxQuantity": 100},
+      "yellow": {"minPrice": 200, "maxPrice": 350, "minQuantity": 80, "maxQuantity": 100},
+      "green": {"minPrice": 70, "maxPrice": 80, "minQuantity": 50, "maxQuantity": 500},
+      "red": {"minPrice": 50, "maxPrice": 70, "minQuantity": 100, "maxQuantity": 600}
+    }
+  }
+  
