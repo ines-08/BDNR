@@ -1,21 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from cassandra.cluster import Cluster
+from datetime import datetime
 
 app = Flask(__name__)
 
 cluster = Cluster()
-session = cluster.connect()
-
-session.set_keyspace('bookit')
+session = cluster.connect('bookit')
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-@app.route('/bookmarks')
-def bookmarks():
-    all_bookmarks = session.execute('SELECT * FROM bookmarks')
-    return render_template('bookmarks.html', bookmarks=all_bookmarks)
+    bookmarks = session.execute('SELECT * FROM bookmarks')
+    bookmarks_list = [(bookmark.url_original, bookmark.tags) for bookmark in bookmarks]
+    return render_template('index.html', bookmarks=bookmarks_list)
 
 @app.route('/add')
 def add():
@@ -25,28 +21,30 @@ def add():
 def submit():
     if request.method == 'POST':
         url = request.form['url']
-        tag = request.form['tags']
+        tag = {request.form['tags']}
 
-        print(f"URL: {url}, Tag: {tag}")
-
+        print(f"URL: {url}, Tag: {tag}, Hash: {hash(url)}")
         session.execute(
-            """
-            INSERT INTO bookmarks VALUES (%s, %s, %s, %s)
-            """, 
-            tag, sha256(url), url, datetime.now()
+             """
+             INSERT INTO bookmarks (url_md5, url_original, time_t, tags)
+             VALUES (%s, %s, %s, %s)
+             """, 
+             (str(hash(url)), url, datetime.now(), tag)
         )
 
-        session.execute(
-            """
-            INSERT INTO bookmarks_by_ta VALUES (%s, %s, %s)
-            """,
-            tag, sha256(url), url, datetime.now()
-        )    
+        for tag_unique in tag:
+            session.execute(
+                """
+                INSERT INTO bookmarks_by_tags (tag, url_md5, url_original, time_t)
+                VALUES (%s, %s, %s, %s)
+                """,
+                (tag_unique, str(hash(url)), url, datetime.now())
+            )    
 
-        return "Book submitted with success"    
+        return redirect(url_for('index'))   
 
 
-@app.route('/bookmark/<int:bookmark_id>')
+@app.route('/bookmark/<url>')
 def bookmark(bookmark_id):
     query_prepare = session.prepare('SELECT * FROM bookmarks WHERE id=?')
     bookmark_spec = session.execute(query_prepare, [bookmark_id])

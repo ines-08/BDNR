@@ -8,7 +8,18 @@
         <h1>Bookit! 2</h1>
         <h2>Latest Bookmarks</h2>
         <ul>
-            Cocktails
+            {% for bookmark in bookmarks %}
+            <li>
+                <h2>
+                    <a href="{bookmark[0]}">{{ bookmark[0] }}</a>
+                </h2>
+                <ul>
+                    {% for tag in bookmark[1] %}
+                    <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
         </ul>
     </body>
 
