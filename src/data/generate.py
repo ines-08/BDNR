@@ -17,7 +17,12 @@ NOTIFICATION_PROBABILITY = 0.3      # Probability to active a notification given
 
 EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
 
-EVENT_TYPES = ['Concert', 'Theater', 'Dance', 'Magic', 'Circus']
+EVENT_LOCATIONS = ['Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra', 'Évora', 'Faro',
+                    'Guarda', 'Leiria', 'Lisboa', 'Portalegre', 'Porto', 'Santarém', 'Setúbal','Viana do Castelo',
+                    'Vila Real', 'Viseu', 'Açores', 'Madeira'
+                    ]
+                    
+EVENT_TYPES = ['concert', 'theater', 'dance', 'magic', 'circus']
 
 TICKET_TYPES = {
     'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
@@ -58,24 +63,46 @@ def generate_event_data():
         events[f"event:{id}"] = {
             "name": fake.sentence(nb_words=5).replace('.', ''),
             "description": fake.paragraph(nb_sentences=4),
-            "location": fake.city(),
+            "location": random.choice(EVENT_LOCATIONS),
             "type": random.choice(EVENT_TYPES),
             "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
             "current_quantity": 0,
         }
     return events
 
-def generate_events_search(events_data):
+def generate_text_search(events_data):
     search = {}
     for event, details in events_data.items():
         event_id = event.split(':')[1]
         words = extract_event_words(details)
         for word in words:
-            word_key = f'search:event:{word}'
+            word_key = f'search:text:{word}'
             if word_key in search.keys():
                 search[word_key].append(event_id)
             else:
                 search[word_key] = [event_id]
+    return search
+
+def generate_type_search(events_data):
+    search = {}
+    for type in EVENT_TYPES:
+        search[f'search:type:{type}'] = []
+
+    for event, details in events_data.items():
+        event_id = event.split(':')[1]
+        search[f"search:type:{details['type']}"].append(event_id)
+
+    return search
+
+def generate_location_search(events_data):
+    search = {}
+    for location in EVENT_LOCATIONS:
+        search[f'search:location:{location}'] = []
+
+    for event, details in events_data.items():
+        event_id = event.split(':')[1]
+        search[f"search:location:{details['location']}"].append(event_id)
+
     return search
 
 def generate_favourites(user_data, event_data):
@@ -108,7 +135,6 @@ def generate_tickets(event_data):
 
 def generate_purchases(user_data, event_data, tickets_data):
     purchases = {}
-
     for user in user_data.keys():
         user_id = user.split(':')[1]
         for event in event_data.keys():
@@ -155,7 +181,6 @@ def generate_purchases(user_data, event_data, tickets_data):
 
 def generate_notifications(user_data, event_data):
     notifications = {}
-
     for user in user_data:
         user_id = user.split(':')[1]
         for event, info in event_data.items():
@@ -174,7 +199,9 @@ def main():
 
     user_data = generate_user_data()
     event_data = generate_event_data()
-    event_search = generate_events_search(event_data)
+    text_search = generate_text_search(event_data)
+    type_search = generate_type_search(event_data)
+    location_search = generate_location_search(event_data)
     favourites_data = generate_favourites(user_data, event_data)
     tickets_data = generate_tickets(event_data)
     purchase_data = generate_purchases(user_data, event_data, tickets_data)
@@ -183,7 +210,9 @@ def main():
     data = { 
         **user_data, 
         **event_data, 
-        **event_search, 
+        **text_search, 
+        **type_search,
+        **location_search,
         **favourites_data,
         **tickets_data,
         **purchase_data,
