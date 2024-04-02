@@ -3,35 +3,28 @@ import sys
 import json
 import uuid
 import re
+import os
 import random
 
-NUM_USERS = 10
-NUM_EVENTS = 10
-
-ADMIN_PROBABILITY = 0.1             # User admin probability
-FAVOURITE_PROBABILITY = 0.3         # Probability that a user marks an event as favorite given the event
-EVENT_PURCHASE_LIMIT = 3            # Maximum number of times a user purchases from the same event
-EVENT_PURCHASE_PROBABILITY = 0.5    # Probability that a user purchases any ticket given the event
-TICKET_PURCHASE_PROBABILITY = 0.5   # Probability that a user purchases a specific type of ticket
-NOTIFICATION_PROBABILITY = 0.3      # Probability to active a notification given the event
-
-EVENT_SEARCH_FIELDS = ['name', 'description', 'location']
-
-EVENT_LOCATIONS = ['Aveiro', 'Beja', 'Braga', 'Bragança', 'Castelo Branco', 'Coimbra', 'Évora', 'Faro',
-                    'Guarda', 'Leiria', 'Lisboa', 'Portalegre', 'Porto', 'Santarém', 'Setúbal','Viana do Castelo',
-                    'Vila Real', 'Viseu', 'Açores', 'Madeira'
-                    ]
-                    
-EVENT_TYPES = ['concert', 'theater', 'dance', 'magic', 'circus']
-
-TICKET_TYPES = {
-    'pink': { 'minPrice': 100, 'maxPrice': 200, 'minQuantity': 10, 'maxQuantity': 100 },
-    'yellow': { 'minPrice': 200, 'maxPrice': 350, 'minQuantity': 80, 'maxQuantity': 100 },
-    'green': { 'minPrice': 70, 'maxPrice': 80, 'minQuantity': 50, 'maxQuantity': 500 },
-    'red': { 'minPrice': 50, 'maxPrice': 70, 'minQuantity': 100, 'maxQuantity': 600 },
-}
-
 fake = Faker('en_US')
+
+script_dir = os.path.dirname(__file__)
+config_path = os.path.join(script_dir, 'configurations.json')
+with open(config_path, 'r') as file:
+    config = json.load(file)
+
+NUM_USERS = config['NUM_USERS']
+NUM_EVENTS = config['NUM_EVENTS']
+ADMIN_PROBABILITY = config['ADMIN_PROBABILITY']
+FAVOURITE_PROBABILITY = config['FAVOURITE_PROBABILITY']
+EVENT_PURCHASE_LIMIT = config['EVENT_PURCHASE_LIMIT']
+EVENT_PURCHASE_PROBABILITY = config['EVENT_PURCHASE_PROBABILITY']
+TICKET_PURCHASE_PROBABILITY = config['TICKET_PURCHASE_PROBABILITY']
+NOTIFICATION_PROBABILITY = config['NOTIFICATION_PROBABILITY']
+EVENT_SEARCH_FIELDS = config['EVENT_SEARCH_FIELDS']
+EVENT_LOCATIONS = config['EVENT_LOCATIONS']
+EVENT_TYPES = config['EVENT_TYPES']
+TICKET_TYPES = config['TICKET_TYPES']
 
 def normalize(text):
     return re.sub(r'[^\w\s]', ' ', text).lower()
