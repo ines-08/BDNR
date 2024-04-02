@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const config = JSON.parse(fs.readFileSync('configuration.json'));
+const data_config = JSON.parse(fs.readFileSync('data/configurations.json'));
 
 async function getResponse(request) {
     const response = await fetch(request);
@@ -18,4 +19,4 @@ async function getClusterMembers(node) {
     return getResponse(`${node}/v2/members`);
 }
 
-module.exports = { getResponse, getNodeInfo, getClusterMembers, config };
+module.exports = { getResponse, getNodeInfo, getClusterMembers, config , data_config};

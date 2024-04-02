@@ -14,13 +14,15 @@ async function getHomePage(db, req, res) {
                 ...events[key]
             };
         });
-    
+        
         res.render('home', { 
             user: req.session.userInfo, 
             error_message: req.flash('error'), 
             success_message: req.flash('success'),
             search: search,
             events: events,
+            eventTypes: utils.data_config.EVENT_TYPES,
+            locations: utils.data_config.EVENT_LOCATIONS
         });
     
     } catch (error) {

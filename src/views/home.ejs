@@ -28,6 +28,22 @@
 
     <form action="/home" method="GET">
       <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+      <select name="type">
+        <option value="all">All Event Types</option>
+        <% if (eventTypes && eventTypes.length > 0) { %>
+          <% eventTypes.forEach(eventType => { %>
+            <option value="<%= eventType %>"><%= eventType %></option>
+          <% }); %>
+        <% } %>
+      </select>
+      <select name="location">
+        <option value="all">All Locations</option>
+        <% if (locations && locations.length > 0) { %>
+          <% locations.forEach(location => { %>
+            <option value="<%= location %>"><%= location %></option>
+          <% }); %>
+        <% } %>
+      </select>
       <button type="submit">Search</button>
     </form>
 
