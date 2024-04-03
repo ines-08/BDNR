@@ -5,7 +5,6 @@ async function getHomePage(db, req, res) {
         const search = req.query?.search;
         const type = req.query?.type;
         const location = req.query?.location;
-        console.log(req?.query);
         let events = (!search && !type && !location) 
             ? await db.getAll().prefix('event:').limit(10).json() 
             : await utils.getResponse(`http://localhost:${utils.config.port}/api/search?input=${search}&type=${type}&location=${location}`)

@@ -72,8 +72,6 @@ async function locationSearch(location, res, db) {
 }
 
 async function getSearchResults(db, req, res) {
-    console.log('query:', req.query);
-
     // ensure we do not have default values
     if (req?.query.input === '' && req?.query.type === 'all' && req?.query.location === 'all') {
         const default_search = await db.getAll().prefix('event:').limit(10).json();
@@ -84,20 +82,16 @@ async function getSearchResults(db, req, res) {
     let searchedFields = [];
 
     if (req?.query.input !== ''){
-        console.log('here');
         const inputSet = await inputSearch(req?.query.input, res, db);
         searchedFields.push(inputSet);
-        console.log('inputSet: ', inputSet);      
     }
     if(req?.query.type !== 'all') {
         const typeSet = await typeSearch(req?.query.type, res, db);
         searchedFields.push(typeSet);
-        console.log('typeSet: ', typeSet);
     }
     if(req?.query.location !== 'all') {
         const locationSet = await locationSearch(req?.query.location, res, db);
         searchedFields.push(locationSet);
-        console.log('locationSet: ', locationSet);
     }
 
     let result = new Set(searchedFields[0]);
@@ -110,8 +104,7 @@ async function getSearchResults(db, req, res) {
         }, result);
     }
     
-    const commonEventsArray = Array.from(result); // must be result 
-    console.log(commonEventsArray);
+    const commonEventsArray = Array.from(result);
 
     const events = [];
     
