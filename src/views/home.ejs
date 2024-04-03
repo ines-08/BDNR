@@ -29,23 +29,26 @@
     <form action="/home" method="GET">
       <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>">
       <select name="type">
-        <option value="all">All Event Types</option>
+        <option value="all" <%= typeof type !== 'undefined' && type === 'all' ? 'selected' : '' %>>All Event Types</option>
         <% if (eventTypes && eventTypes.length > 0) { %>
           <% eventTypes.forEach(eventType => { %>
-            <option value="<%= eventType %>"><%= eventType %></option>
+            <option value="<%= eventType %>" <%= typeof type !== 'undefined' && type === eventType ? 'selected' : '' %>><%= eventType %></option>
           <% }); %>
         <% } %>
       </select>
       <select name="location">
-        <option value="all">All Locations</option>
-        <% if (locations && locations.length > 0) { %>
-          <% locations.forEach(location => { %>
-            <option value="<%= location %>"><%= location %></option>
+        <% if (eventLocations && eventLocations.length > 0) { %>
+          <% eventLocations.forEach(eventLocation => { %>
+            <option value="<%= eventLocation %>" <%= typeof location !== 'undefined' && location === eventLocation ? 'selected' : '' %>><%= eventLocation %></option>
           <% }); %>
         <% } %>
+        <option value="all" <%= typeof location === 'undefined' || location === 'all' ? 'selected' : '' %>>All Locations</option>
+
       </select>
       <button type="submit">Search</button>
     </form>
+    
+    
 
     <% if (events && events.length > 0) { %>
       <h3>Events:</h3>
