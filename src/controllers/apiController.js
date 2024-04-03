@@ -1,18 +1,17 @@
-async function getSearchResults(db, req, res) {
-    const wordsArray = req.query?.input.split(" ");
-    
+async function inputSearch(input, res, db) {
+    const wordsArray = input.split(" ");
+
     // Iterate through the array and decode each word and convert to lowercase
     for (let i = 0; i < wordsArray.length; i++) {
         // Decode the URI component to replace "%20" with space
         wordsArray[i] = decodeURIComponent(wordsArray[i]).toLowerCase();
     }
 
-    const events = [];
-    try {
-        const eventMatches = new Map();
+    const eventMatches = new Map();
 
+    try {
         for (const input of wordsArray) {
-            const matches = await db.getAll().prefix(`search:event:${input}`).json();
+            const matches = await db.getAll().prefix(`search:text:${input}`).json();
             if (matches) {
                 for (const key in matches) {
                     for (const id of matches[key]) {
@@ -25,18 +24,100 @@ async function getSearchResults(db, req, res) {
                 }
             }
         }
-        
         // Filter events that match all words in wordsArray
         const values = Array.from(eventMatches.values());
         const sets = values.map(value => new Set(value));
-        const commonWordsArraySet = sets.reduce((accumulator, current) => {
+        return sets.reduce((accumulator, current) => {
             return new Set([...accumulator].filter(value => current.has(value)));
         });
 
-        const commonWordsArray = Array.from(commonWordsArraySet)
+    } catch (error) {
+        res.send(JSON.stringify([]));
+    }
 
+}
+
+async function typeSearch(type, res, db) {
+    result = new Set();
+    try {
+        const matches = await db.getAll().prefix(`search:type:${type}`).json();
+        if (matches) {
+            for (const key in matches) {
+                for (const id of matches[key]) {
+                    result.add(id);
+                }
+            }
+        }
+        return result;
+    } catch (error) {
+        res.send(JSON.stringify([]));
+    }
+}
+
+async function locationSearch(location, res, db) {
+    result = new Set();
+    try {
+        const matches = await db.getAll().prefix(`search:location:${location}`).json();
+        if (matches) {
+            for (const key in matches) {
+                for (const id of matches[key]) {
+                    result.add(id);
+                }
+            }
+        }
+        return result;
+    } catch (error) {
+        res.send(JSON.stringify([]));
+    }
+}
+
+async function getSearchResults(db, req, res) {
+    console.log('query:', req.query);
+
+    // ensure we do not have default values
+    if (req?.query.input === '' && req?.query.type === 'all' && req?.query.location === 'all') {
+        const default_search = await db.getAll().prefix('event:').limit(10).json();
+        res.send(JSON.stringify(default_search, null, 2));
+        return;
+    }
+
+    let searchedFields = [];
+
+    if (req?.query.input !== ''){
+        console.log('here');
+        const inputSet = await inputSearch(req?.query.input, res, db);
+        searchedFields.push(inputSet);
+        console.log('inputSet: ', inputSet);      
+    }
+    if(req?.query.type !== 'all') {
+        const typeSet = await typeSearch(req?.query.type, res, db);
+        searchedFields.push(typeSet);
+        console.log('typeSet: ', typeSet);
+    }
+    if(req?.query.location !== 'all') {
+        const locationSet = await locationSearch(req?.query.location, res, db);
+        searchedFields.push(locationSet);
+        console.log('locationSet: ', locationSet);
+    }
+
+    let result = new Set(searchedFields[0]);
+
+    if (searchedFields.length > 1) {
+        // Use reduce to compute the intersection
+        result = searchedFields.slice(1).reduce((intersection, set) => {
+            // Filter elements in intersection set to keep only those present in the current set
+            return new Set([...intersection].filter(element => set.has(element)));
+        }, result);
+    }
+    
+    const commonEventsArray = Array.from(result); // must be result 
+    console.log(commonEventsArray);
+
+    const events = [];
+    
+    try {
         // Iterate over the commonWordsArray and add the corresponding events to the events array
-        for (const event_id of commonWordsArray) {
+        for (const event_id of commonEventsArray) {
             const event = await db.get(`event:${event_id}`).json();
             if (event) {
                 event.id = event_id;
@@ -45,7 +126,6 @@ async function getSearchResults(db, req, res) {
         }
         
         res.send(JSON.stringify(events, null, 2));
-
     } catch (error) {
         res.send(JSON.stringify([]));
     }

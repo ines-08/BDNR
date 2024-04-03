@@ -3,10 +3,12 @@ const utils = require('../utils/utils');
 async function getHomePage(db, req, res) {
     try {
         const search = req.query?.search;
-        
-        let events = search 
-            ? await utils.getResponse(`http://localhost:${utils.config.port}/api/search?input=${search}`) 
-            : await db.getAll().prefix('event:').limit(10).json();
+        const type = req.query?.type;
+        const location = req.query?.location;
+        console.log(req?.query);
+        let events = (!search && !type && !location) 
+            ? await db.getAll().prefix('event:').limit(10).json() 
+            : await utils.getResponse(`http://localhost:${utils.config.port}/api/search?input=${search}&type=${type}&location=${location}`)
     
         events = Object.keys(events).map(key => {
             return {
