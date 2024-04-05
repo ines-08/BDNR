@@ -15,7 +15,14 @@ async function getHomePage(db, req, res) {
                 ...events[key]
             };
         });
+
+        let eventTypes = await db.getAll().prefix('search:type:').keys();   
+        eventTypes = eventTypes.map(type => type.split(":").pop());
         
+        
+        let eventLocations = await db.getAll().prefix('search:location:').keys();   
+        eventLocations = eventLocations.map(type => type.split(":").pop());
+
         res.render('home', { 
             user: req.session.userInfo, 
             error_message: req.flash('error'), 
@@ -24,8 +31,8 @@ async function getHomePage(db, req, res) {
             type: type,
             location: location,
             events: events,
-            eventTypes: utils.data_config.EVENT_TYPES,
-            eventLocations: utils.data_config.EVENT_LOCATIONS
+            eventTypes: eventTypes,
+            eventLocations: eventLocations
         });
     
     } catch (error) {
