@@ -21,7 +21,12 @@
     <h4>Type: <%= event.type %></h4>
     <h4>Date: <%= event.date %></h4>
     <h4>Current we've <%= event.current_quantity %> total tickets to purchase</h4>
-
+    
+    <form>
+      <button>
+        <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
+      </button>
+    </form>
     <hr></hr>
 
     <h3>Tickets details</h3>

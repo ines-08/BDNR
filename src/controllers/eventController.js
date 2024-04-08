@@ -18,10 +18,15 @@ async function getEventPage(db, req, res) {
                 });
             }
         }
+
+        const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
+        const isFavourites = favourites.includes(eventID);
+
     
         res.render('event', { 
             event: event,
-            tickets: tickets
+            tickets: tickets,
+            isFavourite: isFavourites
         });
 
     } catch (error) {
