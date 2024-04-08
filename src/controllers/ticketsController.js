@@ -32,17 +32,14 @@ async function getTicketsPage(db, req, res) {
 };
 
 async function buytickets(db, req, res) {
-    console.log(req.body)
+    const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const listType = req.body?.tickettype;
-    const listQuantity = req.body?.ticketquantity
+    const listQuantity = req.body?.ticketquantity;
     
-    const value = []
-    console.log(eventID)
-    console.log('/event?id=<%= eventID %>')
+    const value = [];
 
     for (const index in listType) {
-        console.log("index", index)
         if (listQuantity[index] > 0) {
             value.push({
                 'type': listType[index],
@@ -51,7 +48,10 @@ async function buytickets(db, req, res) {
         }
     }
     
-    res.redirect(`/event?id=${eventID}`)
+    console.log(value)
+    console.log(username)
+    let thing = await db.put(`purchase:${username}:${eventID}`).value(value);
+    res.redirect(`/home`);
 };
 
 
