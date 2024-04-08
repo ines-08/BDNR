@@ -22,8 +22,9 @@
     <h4>Date: <%= event.date %></h4>
     <h4>Current we've <%= event.current_quantity %> total tickets to purchase</h4>
     
-    <form>
-      <button>
+    <form method="POST" action="/event/<%= isFavourite ? 'remove-favourite' : 'add-favourite' %>">
+      <input value="<%= eventID %>" name="eventID" type="hidden">
+      <button type="submit">
         <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
       </button>
     </form>

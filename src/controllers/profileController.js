@@ -35,8 +35,6 @@ async function getProfilePage(db, req, res) {
             });
         }
 
-        console.log(favourite_names);
-
         res.render('profile', { 
             user: user, 
             purchases: purchases,

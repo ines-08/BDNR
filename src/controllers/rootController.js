@@ -40,13 +40,13 @@ async function logout(req, res) {
 
 
 async function register(db, req, res) {
-    const { email, username, password } = req.body;
+    const { name, email, username, password } = req.body;
 
     try {
         const user = await db.get(`user:${username}`);
     
         if (!user) {
-            const userInfo = { email: email, username: username, password: password, role: utils.config.default_role };
+            const userInfo = { name:name, email: email, password: password, role: utils.config.default_role };
             await db.put(`user:${username}`).value(JSON.stringify(userInfo));
             req.flash('success', 'Registed successfuly');
         } else {
