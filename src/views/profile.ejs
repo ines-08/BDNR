@@ -54,6 +54,20 @@
       <p>No purchases found!</p>
     <% } %>
 
+    <hr></hr>
+
+    <h3>Favourite Events</h3>
+    <% if (favourites && favourites.length > 0) { %>
+      <ul>
+        <% favourites.forEach(favorite => { %>
+          <li><a href="/event?id=<%= favorite.event_id %>"><%= favorite.event_name %></a></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No purchases found!</p>
+    <% } %>
+
+
   </main>
 
   <footer>

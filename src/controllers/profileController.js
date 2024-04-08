@@ -23,9 +23,22 @@ async function getProfilePage(db, req, res) {
             }
         }
 
+        const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
+        const favourite_names = [];
+
+        for (const key in favourites) {
+            const event_id = favourites[key];
+            const event_name = (await db.get(`event:${event_id}`).json()).name;
+            favourite_names.push({
+                "event_id" : event_id,
+                "event_name": event_name
+            });
+        }
+
         res.render('profile', { 
             user: user, 
             purchases: purchases,
+            favourites: favourite_names,
             error_message: req.flash('error'), 
             success_message: req.flash('success'),
         });
