@@ -40,12 +40,10 @@ async function inputSearch(input, res, db) {
 async function typeSearch(type, res, db) {
     result = new Set();
     try {
-        const matches = await db.getAll().prefix(`search:type:${type}`).json();
+        const matches = await db.get(`search:type:${type}`).json();
         if (matches) {
             for (const key in matches) {
-                for (const id of matches[key]) {
-                    result.add(id);
-                }
+                result.add(matches[key])
             }
         }
         return result;
@@ -57,12 +55,10 @@ async function typeSearch(type, res, db) {
 async function locationSearch(location, res, db) {
     result = new Set();
     try {
-        const matches = await db.getAll().prefix(`search:location:${location}`).json();
+        const matches = await db.get(`search:location:${location}`).json();
         if (matches) {
             for (const key in matches) {
-                for (const id of matches[key]) {
-                    result.add(id);
-                }
+                result.add(matches[key])
             }
         }
         return result;
