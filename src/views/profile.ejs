@@ -40,9 +40,7 @@
               <li><%= a.date %></li>
 
               <ul>
-                <% a.tickets.forEach(ticket => { %>
-                  <li>Type: <%= ticket.type %> | Quantity:  <%= ticket.quantity %></li>
-                <% }); %>
+                  <li>Type: <%= a.type %> | Quantity:  <%= a.quantity %></li>
               </ul>
               
             <% }); %>

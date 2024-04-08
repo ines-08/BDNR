@@ -31,7 +31,7 @@ async function getTicketsPage(db, req, res) {
     }
 };
 
-async function buytickets(db, req, res) {
+async function buyTickets(db, req, res) {
     const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const listType = req.body?.tickettype;
@@ -48,14 +48,18 @@ async function buytickets(db, req, res) {
         }
     }
     
-    console.log(value)
-    console.log(username)
-    let thing = await db.put(`purchase:${username}:${eventID}`).value(value);
-    res.redirect(`/home`);
+    try{
+        await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify(value));
+        res.redirect(`/event?id=${eventID}`);
+    } catch (error) {
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/home');
+    }
+
 };
 
 
 module.exports = {
     getTicketsPage,
-    buytickets
+    buyTickets
 };

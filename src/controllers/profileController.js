@@ -11,6 +11,7 @@ async function getProfilePage(db, req, res) {
 
         const purchases = [];
         const user_purchases = await db.getAll().prefix(`purchase:${userID}:`).json();
+        
         if (user_purchases) {
             for (const key in user_purchases) {
                 const event_id = key.split(':')[2];
@@ -22,6 +23,7 @@ async function getProfilePage(db, req, res) {
                 });
             }
         }
+
 
         const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
         const favourite_names = [];

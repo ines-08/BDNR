@@ -60,8 +60,6 @@ async function addFavourite(db, req, res){
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
-    
-
 
 }
 
