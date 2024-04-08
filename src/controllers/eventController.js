@@ -20,6 +20,7 @@ async function getEventPage(db, req, res) {
         }
     
         res.render('event', { 
+            eventid: eventID,
             event: event,
             tickets: tickets
         });

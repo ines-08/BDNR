@@ -40,7 +40,8 @@ app.use('/admin', adminRoutes(db));
 app.use('/event', eventRoutes(db));
 
 //Tickets
-app.use('/tickets', ticketsRoutes(db))
+app.use('/tickets', ticketsRoutes(db));
+app.use('/buytickets', ticketsRoutes(db));
 
 // Profile
 app.use('/profile', profileRoutes(db));

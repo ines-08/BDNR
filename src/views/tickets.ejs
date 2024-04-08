@@ -15,7 +15,8 @@
 
         <main>
             <h2>Tickets</h2>
-            <section>
+            <form action="/tickets/buytickets" method="POST">
+                <input hidden name="event" value="<%= eventid %>" />
                 <ul>
                     <% tickets.forEach(ticket => { %>
                         <li><%= ticket.type %></li>
@@ -23,10 +24,13 @@
                                 <li>Price: <%= ticket.price %></li>
                                 <li>Current quantity: <%= ticket.current_quantity %></li>
                             </ul>
+                            <label>Number of tickets:</label>
+                            <input hidden name="tickettype" value="<%= ticket.type %>"/>
+                            <input type="number" name="ticketquantity" min="1" max="<%= ticket.current_quantity %>"/>
                 <% }); %> 
                 </ul>
-                
-        </section>
+                <button type="submit">Comprar</button>
+            </form>
         </main>
     </body>
 </html>

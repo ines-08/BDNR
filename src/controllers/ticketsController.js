@@ -1,5 +1,4 @@
 async function getTicketsPage(db, req, res) {
-    console.log(req.query)
     const eventID = req.query?.eventid;
 
     try {
@@ -20,7 +19,8 @@ async function getTicketsPage(db, req, res) {
             }
         }
     
-        res.render('tickets', { 
+        res.render('tickets', {
+            eventid: eventID, 
             event: event,
             tickets: tickets
         });
@@ -31,22 +31,31 @@ async function getTicketsPage(db, req, res) {
     }
 };
 
-async function buyticket(db, req, res) {
-    const { event, tickettype, ticketquantity} = req.body;
+async function buytickets(db, req, res) {
+    console.log(req.body)
+    const eventID = req.body?.event;
+    const listType = req.body?.tickettype;
+    const listQuantity = req.body?.ticketquantity
+    
+    const value = []
+    console.log(eventID)
+    console.log('/event?id=<%= eventID %>')
 
-    try {
-        const tickets = await db.get(`ticket:${event}:${tickettype}`);
-        console.log(tickets)
-    }
-    catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/');
+    for (const index in listType) {
+        console.log("index", index)
+        if (listQuantity[index] > 0) {
+            value.push({
+                'type': listType[index],
+                'quantity': listQuantity[index],
+            })
+        }
     }
     
+    res.redirect(`/event?id=${eventID}`)
 };
 
 
 module.exports = {
     getTicketsPage,
-    buyticket
+    buytickets
 };
