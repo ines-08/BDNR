@@ -1,5 +1,35 @@
 const utils = require('../utils/utils');
 
+async function getStatistics(db, req, res) {
+    let stats = {}
+   
+    let event_types = await db.getAll().prefix(`search:type:`).keys()
+    event_types = event_types.map(type => type.split(':')[2]);
+    
+    for (const event_type of event_types) {
+        const events = await db.get(`search:type:${event_type}`).json();
+        let total = 0;
+        stats[event_type] = {};
+        for (const event_id in events) {
+            let ticket_types = await db.getAll().prefix(`ticket:${events[event_id]}:`).keys()
+            ticket_types = ticket_types.map(type => type.split(':')[2]);
+            for (const ticket_type in ticket_types) {
+                const details = await db.get(`ticket:${events[event_id]}:${ticket_types[ticket_type]}`).json();
+                const price_per_ticket_type = details.price * (details.total_quantity - details.current_quantity);
+                total += price_per_ticket_type;
+                if (!stats[event_type][ticket_types[ticket_type]])
+                    stats[event_type][ticket_types[ticket_type]] = price_per_ticket_type;
+                else
+                    stats[event_type][ticket_types[ticket_type]] += price_per_ticket_type;
+
+            }
+        }
+        stats[event_type]['total'] = total;
+    }
+    return stats;
+
+}
+
 async function getAdminPage(db, req, res) {
 
     try {
@@ -16,10 +46,12 @@ async function getAdminPage(db, req, res) {
                 nodes.push(JSON.stringify({ name: node, message: "NOT FOUND, MORREU!" }));
             }
         }
-
+        const stats = await getStatistics(db, req, res);
+        
         res.render('admin', {
             clusterInfo: JSON.stringify(clusterInfo),
             nodes: nodes,
+            statistics: stats
         });
 
     } catch (error) {
