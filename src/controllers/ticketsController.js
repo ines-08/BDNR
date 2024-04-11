@@ -47,9 +47,32 @@ async function buyTickets(db, req, res) {
             })
         }
     }
+
+    // let now = new Date();
+    // let d = now.toLocaleDateString();
+    // const data = [{
+    //      "date": d,
+    //      "tickets": value
+    // }]
     
     try{
+        //let oldData = await db.get(`purchase:${username}:${eventID}`).json();
+
+        //data.push(oldData)
+        //console.log("NEW DATA + OLD DATA", data)
         await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify(value));
+
+        for (v in value) {
+            let oldTickets = await db.get(`ticket:${eventID}:${value[v].type}`).json();
+
+            let data = {
+                'total_quantity': oldTickets.total_quantity,
+                'current_quantity': oldTickets.current_quantity - value[v].quantity,
+                'price': oldTickets.price
+            }
+            await db.put(`ticket:${eventID}:${value[v].type}`).value(JSON.stringify(data));
+            
+        }
         res.redirect(`/event?id=${eventID}`);
     } catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');
@@ -61,5 +84,5 @@ async function buyTickets(db, req, res) {
 
 module.exports = {
     getTicketsPage,
-    buyTickets
+    buyTickets,
 };
