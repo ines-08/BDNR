@@ -35,10 +35,11 @@
         <% purchases.forEach(purchase => { %>
           <li>
             <a href="/event?id=<%= purchase.event_id %>"><%= purchase.event_name %></a>
+            <h4><%= purchase.info.date %></h4>
           </li>
           
           <ul>
-            <% purchase.info.forEach(a => { %>
+            <% purchase.info.tickets.forEach(a => { %>
               <ul>
                   <li>Type: <%= a.type %> </li>
                   <li>Quantity:  <%= a.quantity %></li>

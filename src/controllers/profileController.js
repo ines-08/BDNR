@@ -11,18 +11,22 @@ async function getProfilePage(db, req, res) {
 
         const purchases = [];
         const user_purchases = await db.getAll().prefix(`purchase:${userID}:`).json();
+        
+        console.log("USER_PURCHASE", user_purchases);
         if (user_purchases) {
             for (const key in user_purchases) {
-                if (user_purchases[key].date == undefined) {
-                    const event_id = key.split(':')[2];
-                    const event_name = (await db.get(`event:${event_id}`).json()).name;
-                    purchases.push({
-                        'event_name': event_name,
-                        'event_id': event_id,
-                        'info': user_purchases[key]
-                    });
+                const event_id = key.split(':')[2];
+                const event_name = (await db.get(`event:${event_id}`).json()).name;
+
+                for (const index in user_purchases[key]) {
+                    if (user_purchases[key].date == undefined) {
+                        purchases.push({
+                            'event_name': event_name,
+                            'event_id': event_id,
+                            'info': user_purchases[key][index]
+                        });
+                    }
                 }
-                
             }
         }
 
