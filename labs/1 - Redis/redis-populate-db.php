@@ -14,10 +14,12 @@ try {
     echo "All keys have been cleaned from the Redis database.\n";
 
     // Add sample bookmarks
-    addBookmark("http://www.up.pt", ["education", "porto"]);
-    addBookmark("http://www.yahoo.com", ["company", "web", "search"]);
-    addBookmark("http://www.fe.up.pt", ["education", "engineering", "feup", "porto", "portugal"]);
-    addBookmark("http://www.google.com", ["company", "search", "web"]);
+    addBookmark("http://www.up.pt", ["education", "porto"], 'zeze');
+    addBookmark("http://www.yahoo.com", ["company", "web", "search"], 'nes');
+    sleep(1);
+    addBookmark("http://www.fe.up.pt", ["education", "engineering", "feup", "porto", "portugal"], 'nes');
+    sleep(1);
+    addBookmark("http://www.google.com", ["company", "search", "web"], 'nes');
 
     // Ensure that all specified tags are created
     $tags = ["company", "search", "porto", "education", "portugal", "feup", "web", "engineering", "google"];

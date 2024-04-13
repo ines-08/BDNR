@@ -27,6 +27,7 @@ try {
     // Get logged-in user's favorite users (if any)
     $favoriteUsersKey = "follows:$loggedInUser";
     $favoriteUsers = $redis->smembers($favoriteUsersKey);
+
     // Get all users from Redis database
     $allUsers = $redis->keys("user:*");
     $allUsernames = [];
@@ -60,4 +61,45 @@ try {
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
 }
+?>
+
+<h1>Latest bookmarks of your friends</h1>
+
+<?php
+    // Define a comparison function to compare the 'time' values
+    function compareByTime($a, $b) {
+        return strtotime($b['time']) - strtotime($a['time']);
+    }
+
+    $bookmarks = getRecentBookmarks();
+    $latestBookmarks = [];
+    foreach ($bookmarks as $bookmark) {
+        if (in_array($bookmark['author'], $favoriteUsers)) {
+            array_push($latestBookmarks, $bookmark);
+        }
+    }
+
+    
+    // Sort the latest bookmarks array using the defined comparison function
+    usort($latestBookmarks, 'compareByTime');
+
+    echo "<ul>";
+    foreach ($latestBookmarks as $bookmark) {
+        echo "<li><a href='{$bookmark['url']}'>{$bookmark['url']}</a>";
+        echo "<p> Author : {$bookmark['author']} at timestamp : {$bookmark['time']}</p>";
+        // Retrieve and display associated tags
+        $bookmarkId = $bookmark['id'];
+        $tags = $redis->smembers("bookmark:$bookmarkId:tags");
+        if (!empty($tags)) {
+            echo "<ul>";
+            foreach ($tags as $tag) {
+                echo "<li>{$tag}</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<span>No tags associated</span>";
+        }
+        echo "</li>";
+    }
+    echo "</ul>";
 ?>

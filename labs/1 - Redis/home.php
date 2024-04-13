@@ -42,6 +42,7 @@ try {
     echo "<ul>";
     foreach ($bookmarks as $bookmark) {
         echo "<li><a href='{$bookmark['url']}'>{$bookmark['url']}</a>";
+        echo "<p> Author : {$bookmark['author']}</p>";
         // Retrieve and display associated tags
         $bookmarkId = $bookmark['id'];
         $tags = $redis->smembers("bookmark:$bookmarkId:tags");

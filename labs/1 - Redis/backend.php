@@ -6,7 +6,7 @@ function generateBookmarkId($url) {
 }
 
 // Add bookmarks to the sorted set with timestamp
-function addBookmark($url, $tags) {
+function addBookmark($url, $tags, $author) {
 
     global $redis;
 
@@ -33,7 +33,7 @@ function addBookmark($url, $tags) {
         // GENERATE NEW ENTRY
         $timestamp = time();
         $redis->zadd("bookmarks", [$hashID => $timestamp]);
-        $redis->hmset("bookmark:$hashID", ["url" => $url, "id" => $hashID]);
+        $redis->hmset("bookmark:$hashID", ["url" => $url, "id" => $hashID, 'author' => $author, 'time' => $timestamp ]);
         foreach ($tags as $tag) {
             // Add each tag individually to the set
             $redis->sadd("bookmark:$hashID:tags", $tag);
