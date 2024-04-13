@@ -11,9 +11,8 @@ try {
 
     // Flush all keys from the Redis database.
     $redis->flushdb();
-    echo "All keys have been cleaned from the Redis database.\n\n";
+    echo "All keys have been cleaned from the Redis database.\n";
 
-    
     // Add sample bookmarks
     addBookmark("http://www.up.pt", ["education", "porto"]);
     addBookmark("http://www.yahoo.com", ["company", "web", "search"]);
@@ -26,7 +25,30 @@ try {
         $redis->sadd("tag:$tag", "");
     }
 
-    echo "Database populated successfully.";
+    // Add users
+    $users = [
+        [
+            'username' => 'zeze',
+            'password' => '123'
+        ],
+        [
+            'username' => 'nes',
+            'password' => '123'
+        ]
+    ];
+
+    foreach ($users as $user) {
+        $username = $user['username'];
+        $password = password_hash($user['password'], PASSWORD_DEFAULT); // Hash the password
+        $userData = [
+            'id' => uniqid(), // Generate a unique ID for the user
+            'username' => $username,
+            'password' => $password
+        ];
+        $redis->hmset("user:$username", $userData);
+    }
+
+    echo "Database populated successfully.\n";
 
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
