@@ -5,6 +5,7 @@ const flash = require("connect-flash");
 const profileRoutes = require('./routes/profileRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const eventRoutes = require('./routes/eventRoutes');
+const ticketsRoutes = require('./routes/ticketsRoutes')
 const rootRoutes = require('./routes/rootRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const utils = require('./utils/utils');
@@ -37,6 +38,10 @@ app.use('/admin', adminRoutes(db));
 
 // Event
 app.use('/event', eventRoutes(db));
+
+//Tickets
+app.use('/tickets', ticketsRoutes(db));
+app.use('/buytickets', ticketsRoutes(db));
 
 // Profile
 app.use('/profile', profileRoutes(db));

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TickETCD</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>TickETCD</h1>
+            <h2>Consistency in Every Ticket</h2>
+        </header>
+
+        <main>
+            <h2>Tickets</h2>
+            <form action="/tickets/buytickets" method="POST">
+                <input hidden name="event" value="<%= eventid %>" />
+                <ul>
+                    <% tickets.forEach(ticket => { %>
+                        <li><%= ticket.type %></li>
+                            <ul>
+                                <li>Price: <%= ticket.price %></li>
+                                <li>Current quantity: <%= ticket.current_quantity %></li>
+                            </ul>
+                            <label>Number of tickets:</label>
+                            <input hidden name="tickettype" value="<%= ticket.type %>"/>
+                            <input type="number" name="ticketquantity" min="1" max="<%= ticket.current_quantity %>"/>
+                <% }); %> 
+                </ul>
+                <button type="submit">Comprar</button>
+            </form>
+        </main>
+    </body>
+</html>
