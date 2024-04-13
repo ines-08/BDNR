@@ -48,19 +48,25 @@ async function buyTickets(db, req, res) {
         }
     }
 
-    // let now = new Date();
-    // let d = now.toLocaleDateString();
-    // const data = [{
-    //      "date": d,
-    //      "tickets": value
-    // }]
+    let now = new Date();
+    let d = now.toLocaleDateString();
+    const data = {
+         "date": d,
+         "tickets": value
+    }
     
     try{
-        //let oldData = await db.get(`purchase:${username}:${eventID}`).json();
+        let oldData = await db.get(`purchase:${username}:${eventID}`).json();
 
         //data.push(oldData)
-        //console.log("NEW DATA + OLD DATA", data)
-        await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify(value));
+        if(oldData) {
+            oldData.push(data);
+            await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify(oldData));
+        }
+
+        else {
+            await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify([data]));
+        }
 
         for (v in value) {
             let oldTickets = await db.get(`ticket:${eventID}:${value[v].type}`).json();
