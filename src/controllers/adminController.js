@@ -52,12 +52,13 @@ async function createEvent(db, req, res) {
             current_quantity: initial_quantity
         }
         console.log(eventInfo)
-        //await db.put(`event:${event_id}`).value(JSON.stringify(eventInfo));
+        await db.put(`event:${event_id}`).value(JSON.stringify(eventInfo));
 
         // add tickets
         for (const ticketType of ticketTypes) {
-            const quantityKey = `${ticketType.toLowerCase()}TotalQuantity`;
-            const priceKey = `${ticketType.toLowerCase()}TicketPrice`;
+            const ticketTypeLowerCase = ticketType.toLowerCase();
+            const quantityKey = `${ticketTypeLowerCase}TotalQuantity`;
+            const priceKey = `${ticketTypeLowerCase}TicketPrice`;
             const ticketInfo = {
                 total_quantity: req.body[quantityKey],
                 current_quantity: req.body[quantityKey],
@@ -65,7 +66,7 @@ async function createEvent(db, req, res) {
             };
             console.log(ticketInfo);
 
-            //await db.put(`ticket:${event_id}:${ticketType}`).value(JSON.stringify(ticketInfo));
+            await db.put(`ticket:${event_id}:${ticketTypeLowerCase}`).value(JSON.stringify(ticketInfo));
         }
 
         req.flash('success', 'Event successfully generated');
