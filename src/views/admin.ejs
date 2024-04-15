@@ -36,6 +36,46 @@
       <canvas id="<%= type %>Chart" width="400" height="400"></canvas>
       <p>Total revenue: <%= statistics[type]['total'] %> $</p>
     <% }); %>
+
+    <!-- Display the event creation -->
+    <h3>Create Event</h3>
+    <form action="createEvent" method="post">
+      <h4>Event Details</h4>
+      <label for="eventName">Event Name:</label><br>
+      <input type="text" id="eventName" name="eventName"><br>
+      
+      <label for="eventDescription">Event Description:</label><br>
+      <textarea id="eventDescription" name="eventDescription" rows="4" cols="50"></textarea><br>
+      
+      <label for="eventLocation">Event Location:</label><br>
+      <input type="text" id="eventLocation" name="eventLocation"><br>
+      
+      <label for="eventType">Event Type:</label><br>
+      <select id="eventType" name="eventType">
+        <option value="" disabled selected>Select Event Type</option>
+        <% if (eventTypes && eventTypes.length > 0) { %>
+          <% eventTypes.forEach(eventType => { %>
+            <option value="<%= eventType %>"><%= eventType %></option>
+          <% }); %>
+        <% } %>
+      </select><br>
+      
+      <label for="eventDate">Event Date:</label><br>
+      <input type="datetime-local" id="eventDate" name="eventDate"><br>
+      <h4>Tickets</h4>
+        <% ticketTypes.forEach(ticketType => { %>
+          <h5><%= ticketType %></h5>
+          <label for="<%= ticketType.toLowerCase() %>TotalQuantity">Total Quantity:</label><br>
+          <input type="number" id="<%= ticketType.toLowerCase() %>TotalQuantity" name="<%= ticketType.toLowerCase() %>TotalQuantity" required><br>
+          
+          <label for="<%= ticketType.toLowerCase() %>TicketPrice">Price:</label><br>
+          <input type="number" id="<%= ticketType.toLowerCase() %>TicketPrice" name="<%= ticketType.toLowerCase() %>TicketPrice" step="0.01" required><br>
+        <% }); %>
+      
+      
+      <input type="submit" value="Create Event">
+    </form>
+    
   </main>
 
   <footer>

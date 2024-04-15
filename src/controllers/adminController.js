@@ -47,11 +47,18 @@ async function getAdminPage(db, req, res) {
             }
         }
         const stats = await getStatistics(db, req, res);
+
+        let eventTypes = await db.getAll().prefix('search:type:').keys();   
+        eventTypes = eventTypes.map(type => type.split(":").pop());
+
+        const ticketTypes = ['Pink', 'Yellow', 'Green', 'Red'];
         
         res.render('admin', {
             clusterInfo: JSON.stringify(clusterInfo),
             nodes: nodes,
-            statistics: stats
+            statistics: stats,
+            eventTypes: eventTypes,
+            ticketTypes: ticketTypes,
         });
 
     } catch (error) {
