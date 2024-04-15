@@ -7,6 +7,10 @@
     <body>
         <h1>Bookit! 2</h1>
         <h2>Latest Bookmarks</h2>
+        <h3>Welcome {{session.username}}</h3>
+        <form action="/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
         <ul>
             {% for bookmark in bookmarks %}
             <li>
