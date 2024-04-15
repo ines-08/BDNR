@@ -1,4 +1,5 @@
 const utils = require('../utils/utils');
+const { v4: uuidv4 } = require('uuid');
 
 async function getStatistics(db, req, res) {
     let stats = {}
@@ -31,22 +32,53 @@ async function getStatistics(db, req, res) {
 }
 
 async function createEvent(db, req, res) {
-    const {
-        eventName,
-        eventDescription,
-        eventLocation,
-        eventType,
-        eventDate,
-        pinkTotalQuantity,
-        pinkTicketPrice,
-        yellowTotalQuantity,
-        yellowTicketPrice,
-        greenTotalQuantity,
-        greenTicketPrice,
-        redTotalQuantity,
-        redTicketPrice
-      } = req.body;
-    console.log(req.body)
+    const event_id = uuidv4();
+    console.log(event_id);
+    
+    let initial_quantity = 0
+    let ticketTypes = getTicketTypes();
+    ticketTypes.forEach(ticketType => {
+        const quantityKey = `${ticketType.toLowerCase()}TotalQuantity`;
+        initial_quantity += parseInt(req.body[quantityKey]) || 0; // Add quantity to current_quantity
+    });
+
+    try { 
+        const eventInfo = { 
+            name: req.body.eventName,
+            description : req.body.eventDescription,
+            location : req.body.eventLocation,
+            type : req.body.eventType,
+            date : req.body.eventDate.replace('T', ' '),
+            current_quantity: initial_quantity
+        }
+        console.log(eventInfo)
+        //await db.put(`event:${event_id}`).value(JSON.stringify(eventInfo));
+
+        // add tickets
+        for (const ticketType of ticketTypes) {
+            const quantityKey = `${ticketType.toLowerCase()}TotalQuantity`;
+            const priceKey = `${ticketType.toLowerCase()}TicketPrice`;
+            const ticketInfo = {
+                total_quantity: req.body[quantityKey],
+                current_quantity: req.body[quantityKey],
+                price: req.body[priceKey]
+            };
+            console.log(ticketInfo);
+
+            //await db.put(`ticket:${event_id}:${ticketType}`).value(JSON.stringify(ticketInfo));
+        }
+
+        req.flash('success', 'Event successfully generated');
+        res.redirect(`/event?id=${event_id}`);
+    } catch (error) {
+    req.flash('error', 'Internal server error: lost DB connection');
+    res.redirect('/home');
+    }
+
+}
+
+function getTicketTypes() {
+    return ['Pink', 'Yellow', 'Green', 'Red'];
 }
 
 async function getAdminPage(db, req, res) {
@@ -73,7 +105,7 @@ async function getAdminPage(db, req, res) {
         let eventLocations = await db.getAll().prefix('search:location:').keys();   
         eventLocations = eventLocations.map(type => type.split(":").pop());
 
-        const ticketTypes = ['Pink', 'Yellow', 'Green', 'Red'];
+        const ticketTypes = getTicketTypes();
         
         res.render('admin', {
             clusterInfo: JSON.stringify(clusterInfo),
