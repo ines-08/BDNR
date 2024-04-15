@@ -42,7 +42,8 @@ async function createEvent(db, req, res) {
         initial_quantity += parseInt(req.body[quantityKey]) || 0; // Add quantity to current_quantity
     });
 
-    try { 
+    try {
+        // add event
         const eventInfo = { 
             name: req.body.eventName,
             description : req.body.eventDescription,
@@ -69,8 +70,38 @@ async function createEvent(db, req, res) {
             await db.put(`ticket:${event_id}:${ticketTypeLowerCase}`).value(JSON.stringify(ticketInfo));
         }
 
+        // add words to search index
+        const words = getWords([req.body.eventName, req.body.eventDescription, req.body.eventLocation]);
+        for (const word of words) {
+            const wordIndex = await db.get(`search:text:${word}`);
+            if (wordIndex) {
+                const wordIndexArray = JSON.parse(wordIndex);
+                wordIndexArray.push(event_id);
+                await db.put(`search:text:${word}`).value(JSON.stringify(wordIndexArray));
+            }
+            else {
+                await db.put(`search:text:${word}`).value(JSON.stringify([event_id]));
+            }
+        }
+        // add location and type to their respective indexes
+        const eventTypeKeys = await getEventTypeKeys(db);
+        const eventLocationKeys = await getEventLocationKeys(db);
+
+        const eventTypeAndLocationKeys = eventTypeKeys.concat(eventLocationKeys);
+        console.log(eventTypeAndLocationKeys)
+
+        for (const key of eventTypeAndLocationKeys){
+            const eventIndex = await db.get(`${key}`);
+            console.log(eventIndex)
+            if ( eventIndex ) {
+                const eventIndexArray = JSON.parse(eventIndex);
+                eventIndexArray.push(event_id);
+                await db.put(key).value(JSON.stringify(eventIndexArray));
+            }
+        }
+
         req.flash('success', 'Event successfully generated');
-        res.redirect(`/event?id=${event_id}`);
+        res.redirect(`/home`);
     } catch (error) {
     req.flash('error', 'Internal server error: lost DB connection');
     res.redirect('/home');
@@ -80,6 +111,35 @@ async function createEvent(db, req, res) {
 
 function getTicketTypes() {
     return ['Pink', 'Yellow', 'Green', 'Red'];
+}
+
+function normalize(text) {
+    return text.replace(/[^\w\s]/g, ' ').toLowerCase();
+}
+
+function extractWords(text) {
+    return normalize(text).split(' ').filter(function(word) {
+        return word.trim().length > 0;
+    });
+}
+
+function getWords(textElements) {
+    let result = []
+    for (const element of textElements) {
+        const words = extractWords(element);
+        result.push(...words);
+    }
+    return result;
+}
+
+async function getEventTypeKeys(db) {
+    const eventTypeKeys = await db.getAll().prefix('search:type:').keys();
+    return eventTypeKeys
+}
+
+async function getEventLocationKeys(db) {
+    const eventLocationKeys = await db.getAll().prefix('search:location:').keys();
+    return eventLocationKeys
 }
 
 async function getAdminPage(db, req, res) {
@@ -100,10 +160,10 @@ async function getAdminPage(db, req, res) {
         }
         const stats = await getStatistics(db, req, res);
 
-        let eventTypes = await db.getAll().prefix('search:type:').keys();   
+        let eventTypes = await getEventTypeKeys(db); 
         eventTypes = eventTypes.map(type => type.split(":").pop());
 
-        let eventLocations = await db.getAll().prefix('search:location:').keys();   
+        let eventLocations = await getEventLocationKeys(db);   
         eventLocations = eventLocations.map(type => type.split(":").pop());
 
         const ticketTypes = getTicketTypes();
