@@ -30,6 +30,25 @@ async function getStatistics(db, req, res) {
 
 }
 
+async function createEvent(db, req, res) {
+    const {
+        eventName,
+        eventDescription,
+        eventLocation,
+        eventType,
+        eventDate,
+        pinkTotalQuantity,
+        pinkTicketPrice,
+        yellowTotalQuantity,
+        yellowTicketPrice,
+        greenTotalQuantity,
+        greenTicketPrice,
+        redTotalQuantity,
+        redTicketPrice
+      } = req.body;
+    console.log(req.body)
+}
+
 async function getAdminPage(db, req, res) {
 
     try {
@@ -51,6 +70,9 @@ async function getAdminPage(db, req, res) {
         let eventTypes = await db.getAll().prefix('search:type:').keys();   
         eventTypes = eventTypes.map(type => type.split(":").pop());
 
+        let eventLocations = await db.getAll().prefix('search:location:').keys();   
+        eventLocations = eventLocations.map(type => type.split(":").pop());
+
         const ticketTypes = ['Pink', 'Yellow', 'Green', 'Red'];
         
         res.render('admin', {
@@ -58,6 +80,7 @@ async function getAdminPage(db, req, res) {
             nodes: nodes,
             statistics: stats,
             eventTypes: eventTypes,
+            eventLocations: eventLocations,
             ticketTypes: ticketTypes,
         });
 
@@ -68,5 +91,6 @@ async function getAdminPage(db, req, res) {
 }
 
 module.exports = {
-    getAdminPage
+    getAdminPage,
+    createEvent
 };

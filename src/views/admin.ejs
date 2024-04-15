@@ -39,7 +39,7 @@
 
     <!-- Display the event creation -->
     <h3>Create Event</h3>
-    <form action="createEvent" method="post">
+    <form action="/admin/createEvent" method="POST">
       <h4>Event Details</h4>
       <label for="eventName">Event Name:</label><br>
       <input type="text" id="eventName" name="eventName"><br>
@@ -48,7 +48,14 @@
       <textarea id="eventDescription" name="eventDescription" rows="4" cols="50"></textarea><br>
       
       <label for="eventLocation">Event Location:</label><br>
-      <input type="text" id="eventLocation" name="eventLocation"><br>
+      <select id="eventLocation" name="eventLocation">
+        <option value="" disabled selected>Select Event Location</option>
+        <% if (eventLocations && eventLocations.length > 0) { %>
+          <% eventLocations.forEach(location => { %>
+            <option value="<%= location %>"><%= location %></option>
+          <% }); %>
+        <% } %>
+      </select><br>
       
       <label for="eventType">Event Type:</label><br>
       <select id="eventType" name="eventType">
@@ -71,8 +78,6 @@
           <label for="<%= ticketType.toLowerCase() %>TicketPrice">Price:</label><br>
           <input type="number" id="<%= ticketType.toLowerCase() %>TicketPrice" name="<%= ticketType.toLowerCase() %>TicketPrice" step="0.01" required><br>
         <% }); %>
-      
-      
       <input type="submit" value="Create Event">
     </form>
     
