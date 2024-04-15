@@ -28,6 +28,7 @@ async function getEventPage(db, req, res) {
 
     
         res.render('event', { 
+            eventid: eventID,
             event: event,
             eventID: eventID,
             tickets: tickets,
@@ -59,8 +60,6 @@ async function addFavourite(db, req, res){
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
-    
-
 
 }
 

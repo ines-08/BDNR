@@ -33,21 +33,21 @@
     <% if (purchases && purchases.length > 0) { %>
       <ul>
         <% purchases.forEach(purchase => { %>
-          <li><a href="/event?id=<%= purchase.event_id %>"><%= purchase.event_name %></a></li>
-
+          <li>
+            <a href="/event?id=<%= purchase.event_id %>"><%= purchase.event_name %></a>
+            <h4><%= purchase.info.date %></h4>
+          </li>
+          
           <ul>
-            <% purchase.info.forEach(a => { %>
-              <li><%= a.date %></li>
-
+            <% purchase.info.tickets.forEach(a => { %>
               <ul>
-                <% a.tickets.forEach(ticket => { %>
-                  <li>Type: <%= ticket.type %> | Quantity:  <%= ticket.quantity %></li>
-                <% }); %>
+                  <li>Type: <%= a.type %> </li>
+                  <li>Quantity:  <%= a.quantity %></li>
               </ul>
-              
+             
             <% }); %>
           </ul>
-
+          
         <% }); %>
       </ul>
     <% } else { %>
