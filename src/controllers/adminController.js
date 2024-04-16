@@ -3,17 +3,16 @@ const { v4: uuidv4 } = require('uuid');
 
 async function getStatistics(db, req, res) {
     let stats = {}
-   
-    let event_types = await db.getAll().prefix(`search:type:`).keys()
-    event_types = event_types.map(type => type.split(':')[2]);
+    const event_types = await utils.getEventTypeKeys(db);
     
     for (const event_type of event_types) {
         const events = await db.get(`search:type:${event_type}`).json();
         let total = 0;
         stats[event_type] = {};
         for (const event_id in events) {
-            let ticket_types = await db.getAll().prefix(`ticket:${events[event_id]}:`).keys()
-            ticket_types = ticket_types.map(type => type.split(':')[2]);
+            
+            const ticket_types = await utils.getTicketTypes(db);
+
             for (const ticket_type in ticket_types) {
                 const details = await db.get(`ticket:${events[event_id]}:${ticket_types[ticket_type]}`).json();
                 const price_per_ticket_type = details.price * (details.total_quantity - details.current_quantity);
@@ -28,14 +27,13 @@ async function getStatistics(db, req, res) {
         stats[event_type]['total'] = total;
     }
     return stats;
-
 }
 
 async function createEvent(db, req, res) {
     const event_id = uuidv4();
     
     let initial_quantity = 0
-    let ticketTypes = getTicketTypes();
+    let ticketTypes = await utils.getTicketTypes(db);
     ticketTypes.forEach(ticketType => {
         const quantityKey = `${ticketType.toLowerCase()}TotalQuantity`;
         initial_quantity += parseInt(req.body[quantityKey]) || 0; // Add quantity to current_quantity
@@ -68,7 +66,7 @@ async function createEvent(db, req, res) {
         }
 
         // add words to search index
-        const words = getWords([req.body.eventName, req.body.eventDescription, req.body.eventLocation]);
+        const words = utils.getWords([req.body.eventName, req.body.eventDescription, req.body.eventLocation]);
         for (const word of words) {
             const wordIndex = await db.get(`search:text:${word}`);
             if (wordIndex) {
@@ -80,10 +78,10 @@ async function createEvent(db, req, res) {
                 await db.put(`search:text:${word}`).value(JSON.stringify([event_id]));
             }
         }
-        // add location and type to their respective indexes
-        const eventTypeKeys = await getEventTypeKeys(db);
-        const eventLocationKeys = await getEventLocationKeys(db);
 
+        // add location and type to their respective indexes
+        const eventTypeKeys = await utils.getEventTypeKeys(db);
+        const eventLocationKeys = await utils.getEventLocationKeys(db);
         const eventTypeAndLocationKeys = eventTypeKeys.concat(eventLocationKeys);
 
         for (const key of eventTypeAndLocationKeys){
@@ -97,50 +95,18 @@ async function createEvent(db, req, res) {
 
         req.flash('success', 'Event successfully generated');
         res.redirect(`/home`);
+
     } catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
-
-}
-
-function getTicketTypes() {
-    return ['Pink', 'Yellow', 'Green', 'Red'];
-}
-
-function normalize(text) {
-    return text.replace(/[^\w\s]/g, ' ').toLowerCase();
-}
-
-function extractWords(text) {
-    return normalize(text).split(' ').filter(function(word) {
-        return word.trim().length > 0;
-    });
-}
-
-function getWords(textElements) {
-    let result = []
-    for (const element of textElements) {
-        const words = extractWords(element);
-        result.push(...words);
-    }
-    return result;
-}
-
-async function getEventTypeKeys(db) {
-    const eventTypeKeys = await db.getAll().prefix('search:type:').keys();
-    return eventTypeKeys
-}
-
-async function getEventLocationKeys(db) {
-    const eventLocationKeys = await db.getAll().prefix('search:location:').keys();
-    return eventLocationKeys
 }
 
 async function getAdminPage(db, req, res) {
 
     try {
 
+        console.log("AAAAAAAAAAAA");
         const clusterInfo = await utils.getClusterMembers(utils.config.cluster.dev[0]);
         const nodes = [];
         
@@ -153,15 +119,16 @@ async function getAdminPage(db, req, res) {
                 nodes.push(JSON.stringify({ name: node, message: "NOT FOUND, MORREU!" }));
             }
         }
+
+        console.log("A");
         const stats = await getStatistics(db, req, res);
-
-        let eventTypes = await getEventTypeKeys(db); 
-        eventTypes = eventTypes.map(type => type.split(":").pop());
-
-        let eventLocations = await getEventLocationKeys(db);   
-        eventLocations = eventLocations.map(type => type.split(":").pop());
-
-        const ticketTypes = getTicketTypes();
+        console.log("B");
+        const eventTypes = await utils.getEventTypeKeys(db); 
+        console.log("C");
+        const eventLocations = await utils.getEventLocationKeys(db);   
+        console.log("D");
+        const ticketTypes = await utils.getTicketTypes(db);
+        console.log("E");
         
         res.render('admin', {
             clusterInfo: JSON.stringify(clusterInfo),
@@ -179,6 +146,7 @@ async function getAdminPage(db, req, res) {
 }
 
 module.exports = {
+    getStatistics,
     getAdminPage,
     createEvent
 };

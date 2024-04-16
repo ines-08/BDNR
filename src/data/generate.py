@@ -1,3 +1,4 @@
+from operator import ge
 from faker import Faker
 import sys
 import json
@@ -184,6 +185,13 @@ def generate_notifications(user_data, event_data):
 
     return notifications
 
+def generate_static_data():
+    return {
+        'event:locations': EVENT_LOCATIONS,
+        'event:types': EVENT_TYPES,
+        'ticket:types': [*TICKET_TYPES],
+    }
+
 def main():
 
     if len(sys.argv) != 2:
@@ -199,6 +207,7 @@ def main():
     tickets_data = generate_tickets(event_data)
     purchase_data = generate_purchases(user_data, event_data, tickets_data)
     notifications_data = generate_notifications(user_data, event_data)
+    static_data = generate_static_data()
 
     data = { 
         **user_data, 
@@ -210,6 +219,7 @@ def main():
         **tickets_data,
         **purchase_data,
         **notifications_data,
+        **static_data,
     }
 
     with open(sys.argv[1], "w") as file:

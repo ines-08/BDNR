@@ -2,6 +2,7 @@ const utils = require('../utils/utils');
 
 async function getHomePage(db, req, res) {
     try {
+        
         const search = req.query?.search;
         const type = req.query?.type;
         const location = req.query?.location;
@@ -16,12 +17,8 @@ async function getHomePage(db, req, res) {
             };
         });
 
-        let eventTypes = await db.getAll().prefix('search:type:').keys();   
-        eventTypes = eventTypes.map(type => type.split(":").pop());
-        
-        
-        let eventLocations = await db.getAll().prefix('search:location:').keys();   
-        eventLocations = eventLocations.map(type => type.split(":").pop());
+        const eventTypes = await utils.getEventTypeKeys(db);
+        const eventLocations = await utils.getEventLocationKeys(db);   
 
         res.render('home', { 
             user: req.session.userInfo, 
