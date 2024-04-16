@@ -12,7 +12,6 @@ async function getProfilePage(db, req, res) {
         const purchases = [];
         const user_purchases = await db.getAll().prefix(`purchase:${userID}:`).json();
         
-        console.log("USER_PURCHASE", user_purchases);
         if (user_purchases) {
             for (const key in user_purchases) {
                 const event_id = key.split(':')[2];
@@ -51,7 +50,6 @@ async function getProfilePage(db, req, res) {
         });
 
     } catch (error) {
-        console.error(error);
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/');
     }

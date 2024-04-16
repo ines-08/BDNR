@@ -36,7 +36,6 @@ async function getHomePage(db, req, res) {
         });
     
     } catch (error) {
-        console.error(error);
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }

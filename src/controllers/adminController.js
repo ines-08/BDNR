@@ -33,7 +33,6 @@ async function getStatistics(db, req, res) {
 
 async function createEvent(db, req, res) {
     const event_id = uuidv4();
-    console.log(event_id);
     
     let initial_quantity = 0
     let ticketTypes = getTicketTypes();
@@ -52,7 +51,6 @@ async function createEvent(db, req, res) {
             date : req.body.eventDate.replace('T', ' '),
             current_quantity: initial_quantity
         }
-        console.log(eventInfo)
         await db.put(`event:${event_id}`).value(JSON.stringify(eventInfo));
 
         // add tickets
@@ -65,7 +63,6 @@ async function createEvent(db, req, res) {
                 current_quantity: req.body[quantityKey],
                 price: req.body[priceKey]
             };
-            console.log(ticketInfo);
 
             await db.put(`ticket:${event_id}:${ticketTypeLowerCase}`).value(JSON.stringify(ticketInfo));
         }
@@ -88,11 +85,9 @@ async function createEvent(db, req, res) {
         const eventLocationKeys = await getEventLocationKeys(db);
 
         const eventTypeAndLocationKeys = eventTypeKeys.concat(eventLocationKeys);
-        console.log(eventTypeAndLocationKeys)
 
         for (const key of eventTypeAndLocationKeys){
             const eventIndex = await db.get(`${key}`);
-            console.log(eventIndex)
             if ( eventIndex ) {
                 const eventIndexArray = JSON.parse(eventIndex);
                 eventIndexArray.push(event_id);
@@ -103,8 +98,8 @@ async function createEvent(db, req, res) {
         req.flash('success', 'Event successfully generated');
         res.redirect(`/home`);
     } catch (error) {
-    req.flash('error', 'Internal server error: lost DB connection');
-    res.redirect('/home');
+        req.flash('error', 'Internal server error: lost DB connection');
+        res.redirect('/home');
     }
 
 }
