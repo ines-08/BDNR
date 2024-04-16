@@ -39,7 +39,7 @@ app.use('/admin', adminRoutes(db));
 // Event
 app.use('/event', eventRoutes(db));
 
-//Tickets
+// Tickets
 app.use('/tickets', ticketsRoutes(db));
 app.use('/buytickets', ticketsRoutes(db));
 

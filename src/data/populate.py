@@ -14,7 +14,9 @@ ETCD_NODES = {
 
 def process_data(key, value, node):
     command = f"ETCDCTL_API=3 etcdctl put {key} '{json.dumps(value)}' --endpoints={ETCD_NODES[node]}"
-    subprocess.run(["docker-compose", "-f", "docker-compose-dev.yml", "exec", node, "sh", "-c", command], check=True)
+    with open("/dev/null", "w") as devnull:
+        subprocess.run(["docker-compose", "-f", "docker-compose-dev.yml", "exec", node, "sh", "-c", command], stdout=devnull, stderr=devnull, check=True)
+        devnull.close()
 
 def process_data_chunk(keys, values, node):
     for key, value in zip(keys, values):
@@ -38,6 +40,7 @@ def populate(data):
 def populate_single(data):
     for key, value in data.items():
         process_data(key, value, "etcd1")
+    print(f"Populate done. Inserted {len(data.items())} key-value pairs")
 
 def main():
 
