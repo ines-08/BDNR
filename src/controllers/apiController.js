@@ -24,6 +24,7 @@ async function inputSearch(input, res, db) {
                 }
             }
         }
+
         // Filter events that match all words in wordsArray
         const values = Array.from(eventMatches.values());
         const sets = values.map(value => new Set(value));
@@ -34,7 +35,6 @@ async function inputSearch(input, res, db) {
     } catch (error) {
         res.send(JSON.stringify([]));
     }
-
 }
 
 async function typeSearch(type, res, db) {
@@ -104,7 +104,6 @@ async function getSearchResults(db, req, res) {
         }
         
         const commonEventsArray = Array.from(result);
-
         const events = [];
     
         // Iterate over the commonWordsArray and add the corresponding events to the events array

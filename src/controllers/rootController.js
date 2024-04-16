@@ -38,7 +38,6 @@ async function logout(req, res) {
     }
 };
 
-
 async function register(db, req, res) {
     const { name, email, username, password } = req.body;
 

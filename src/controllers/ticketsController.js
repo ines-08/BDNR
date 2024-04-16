@@ -84,9 +84,7 @@ async function buyTickets(db, req, res) {
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
-
 };
-
 
 module.exports = {
     getTicketsPage,

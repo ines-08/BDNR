@@ -2,6 +2,7 @@ async function getEventPage(db, req, res) {
     const eventID = req.query?.id;
 
     try {
+
         const event = await db.get(`event:${eventID}`)?.json(); 
         if (!event) {
             req.flash('error', 'Event not found');
@@ -60,7 +61,6 @@ async function addFavourite(db, req, res){
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
-
 }
 
 async function removeFavourite(db, req, res){

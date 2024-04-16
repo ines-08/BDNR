@@ -36,7 +36,7 @@ async function createEvent(db, req, res) {
     let ticketTypes = await utils.getTicketTypes(db);
     ticketTypes.forEach(ticketType => {
         const quantityKey = `${ticketType.toLowerCase()}TotalQuantity`;
-        initial_quantity += parseInt(req.body[quantityKey]) || 0; // Add quantity to current_quantity
+        initial_quantity += parseInt(req.body[quantityKey]) || 0;
     });
 
     try {
@@ -106,7 +106,6 @@ async function getAdminPage(db, req, res) {
 
     try {
 
-        console.log("AAAAAAAAAAAA");
         const clusterInfo = await utils.getClusterMembers(utils.config.cluster.dev[0]);
         const nodes = [];
         
@@ -120,15 +119,10 @@ async function getAdminPage(db, req, res) {
             }
         }
 
-        console.log("A");
         const stats = await getStatistics(db, req, res);
-        console.log("B");
         const eventTypes = await utils.getEventTypeKeys(db); 
-        console.log("C");
         const eventLocations = await utils.getEventLocationKeys(db);   
-        console.log("D");
         const ticketTypes = await utils.getTicketTypes(db);
-        console.log("E");
         
         res.render('admin', {
             clusterInfo: JSON.stringify(clusterInfo),
