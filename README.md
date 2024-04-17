@@ -4,12 +4,12 @@
     - [Dev](#dev)
     - [Docker](#docker)
 - [Endpoints](#endpoints)
-- [API](#api)
-- [Data & Keys](#data--keys)
+- [Data](#data)
+- [Queries](#queries)
 
 ## Run
 
-### Dev
+### Dev -> DEPRECATE THIS STEP BEFORE SUBMISSION
 
 ```bash
 $ cd src/
@@ -44,19 +44,16 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 ## Endpoints 
 
 - `/`, para login ou register;
+- `/admin`, admin page, com estatísticas de base de dados, eventos e criação de eventos;
 - `/home[?search=<SOMETHING>]`, para a homepage. Por default são apresentados alguns eventos, caso o utilizador pesquise (search field), são apresentados os seus resultados;
 - `/profile?username=<USERNAME>`, para apresentação dos detalhes de um profile;
 - `/event?id=<ID>`, para apresentação dos detalhes de um evento;
+- `/tickets?eventid=<ID>`, para compra de bilhetes;
+- `/api/search?input=<INPUT>`, retorna, em JSON, os detalhes dos eventos que têm textos (name, location ou description) que fazem match total ou parcial com a string INPUT;
 
-## API
+## Data
 
-- `/api/search?input=<INPUT>`, retorna os detalhes dos eventos em JSON que têm textos que fazem match total ou parcial com INPUT;
-
-## Data & Keys
-
-### Data
-
-Os dados gerados seguem as configurações em `configuration.json`:
+Os dados gerados seguem as configurações descritas em `configuration.json`:
 
 ```json
 {
@@ -69,11 +66,7 @@ Os dados gerados seguem as configurações em `configuration.json`:
     "TICKET_PURCHASE_PROBABILITY": 0.5,
     "NOTIFICATION_PROBABILITY": 0.3,
     "EVENT_SEARCH_FIELDS": ["name", "description", "location"],
-    "EVENT_LOCATIONS": [
-      "London",
-      "Manchester",
-      //...
-    ],
+    "EVENT_LOCATIONS": ["London", "Manchester" ],
     "EVENT_TYPES": ["concert", "theater", "dance", "magic", "circus"],
     "TICKET_TYPES": {
       "pink": {"minPrice": 100, "maxPrice": 200, "minQuantity": 10, "maxQuantity": 100},
@@ -97,28 +90,32 @@ E há geração das seguintes relações:
 - `Purchase` (entre um user e um evento);
 - `Notification` (entre um user e um evento);
 
-### Keys
+Por motivos de eficiência, foram gerados também estas estruturas auxiliares:
 
-As keys seguem uma formatação rígida:
+- `ticket:types`: tipos possíveis para um evento;
+- `event:types`: tipos possíveis para um evento;
+- `event:locations`: localizações possíveis para um evento; 
+
+Exemplos da formatação das key-value pairs usadas no projecto:
 
 ```json
 {
     // User
     "user:<USERNAME>": { 
-        "name": "something", 
-        "email": "something", 
-        "password": "something", 
-        "role": "something"
+        "name": "user", 
+        "email": "user@gmail.com", 
+        "password": "user123", 
+        "role": "admin"
     },
 
     // Event
     "event:<ID>": {
-        "name": "something", 
-        "description": "something", 
-        "location": "something",
-        "type": "something",
-        "date": "something",
-        "current_quantity": "something",
+        "name": "event", 
+        "description": "a simple event", 
+        "location": "porto",
+        "type": "concert",
+        "date": "2024-02-13",
+        "current_quantity": "14",
     },
 
     // Search Events by Text
@@ -148,29 +145,68 @@ As keys seguem uma formatação rígida:
 
     // Ticket
     "ticket:<EVENT_ID>:<TYPE>": {
-        "total_quantity": "something", 
-        "current_quantity": "something", 
-        "price": "something",
+        "total_quantity": "34", 
+        "current_quantity": "23", 
+        "price": "23.30",
     },
 
     // Purchase
     "purchase:<USERNAME>:<EVENT_ID>": [
         {
-            "date": "something",
+            "date": "2024-03-14 13:45:00",
             "tickets": [
                 {
-                    "type": "something",
-                    "quantity": "something",
+                    "type": "red",
+                    "quantity": "3",
                 },
                 {
-                    "type": "something",
-                    "quantity": "something",
+                    "type": "green",
+                    "quantity": "42",
+                },
+            ]
+        },
+        {
+            "date": "2024-03-16 02:40:00",
+            "tickets": [
+                {
+                    "type": "pink",
+                    "quantity": "45",
+                },
+                {
+                    "type": "green",
+                    "quantity": "78",
                 },
             ]
         },
     ],
 
     // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : "quantity"
+    "notification:<USERNAME>:<EVENT_ID>" : 82,
+
+    // Static event locations
+    "event:locations": ["A", "B", "C"],
+
+    // Static event types
+    "event:types": ["D", "E", "F", "G"],
+
+    // Static ticket types
+    "ticket:types": ["H", "I", "J"],
 }
+```
+
+## Queries
+
+Há também hipótese de correr algumas queries em modo externo ao protótipo. As queries estão descritas nesta estrutura de dados presente em `data/queries.py`:
+
+```python
+QUERIES = [
+    { "description": "A simple put", "code": "put some thing", "output": False },
+    { "description": "Getting all ticket types", "code": "get ticket:types", "output": True }
+]
+```
+
+Depois dos containers da base de dados ficarem instanciados, as queries podem ser rodadas usando:
+
+```bash
+$ python3 data/queries.py
 ```
