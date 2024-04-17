@@ -4,12 +4,13 @@
     - [Dev](#dev)
     - [Docker](#docker)
 - [Endpoints](#endpoints)
-- [API](#api)
-- [Data & Keys](#data--keys)
+- [Data](#data)
+- [Keys](#keys)
+- [Queries](#queries)
 
 ## Run
 
-### Dev
+### Dev -> DEPRECATE THIS STEP BEFORE SUBMISSION
 
 ```bash
 $ cd src/
@@ -44,19 +45,16 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 ## Endpoints 
 
 - `/`, para login ou register;
+- `/admin`, admin page, com estatísticas de base de dados, eventos e criação de eventos;
 - `/home[?search=<SOMETHING>]`, para a homepage. Por default são apresentados alguns eventos, caso o utilizador pesquise (search field), são apresentados os seus resultados;
 - `/profile?username=<USERNAME>`, para apresentação dos detalhes de um profile;
 - `/event?id=<ID>`, para apresentação dos detalhes de um evento;
+- `/tickets?eventid=<ID>`, para compra de bilhetes;
+- `/api/search?input=<INPUT>`, retorna os detalhes dos eventos em JSON que têm textos que fazem match total ou parcial com a string INPUT;
 
-## API
+## Data
 
-- `/api/search?input=<INPUT>`, retorna os detalhes dos eventos em JSON que têm textos que fazem match total ou parcial com INPUT;
-
-## Data & Keys
-
-### Data
-
-Os dados gerados seguem as configurações em `configuration.json`:
+Os dados gerados seguem as configurações descritas em `configuration.json`:
 
 ```json
 {
@@ -97,9 +95,15 @@ E há geração das seguintes relações:
 - `Purchase` (entre um user e um evento);
 - `Notification` (entre um user e um evento);
 
-### Keys
+Por motivos de eficiência, foram gerados estes datatypes auxiliares:
 
-As keys seguem uma formatação rígida:
+- `ticket:types`: tipos possíveis para um evento;
+- `event:types`: tipos possíveis para um evento;
+- `event:locations`: localizações possíveis para um evento; 
+
+## Key-value pairs
+
+Exemplos da formatação das key-value pairs usadas no projecto:
 
 ```json
 {
@@ -171,6 +175,18 @@ As keys seguem uma formatação rígida:
     ],
 
     // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : "quantity"
+    "notification:<USERNAME>:<EVENT_ID>" : "quantity",
+
+    // Static event locations
+    "event:locations": ["something", "something", "something"],
+
+    // Static event types
+    "event:types": ["something", "something", "something"],
+
+    // Static ticket types
+    "ticket:types": ["something", "something", "something"],
 }
 ```
+
+## Queries
+
