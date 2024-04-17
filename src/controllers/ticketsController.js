@@ -20,6 +20,7 @@ async function getTicketsPage(db, req, res) {
         }
     
         res.render('tickets', {
+            user: req.session.userInfo,
             eventid: eventID, 
             event: event,
             tickets: tickets

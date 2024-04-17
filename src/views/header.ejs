@@ -1,0 +1,17 @@
+<header>
+    <div>
+        <h1>TickETCD</h1>
+        <h2>Consistency in Every Ticket</h2>
+    </div>
+    <% if (user && user.username) { %>
+        <div class="user-info">
+            <a href="/profile?username=<%= user.username %>">Welcome, <%= user.username %></a>
+        </div>
+    <% } %>
+    <% if (user && user.role == 'admin') { %>
+        <div class="admin-info">
+            <a href="/admin">Admin Page</a>
+        </div>
+    <% } %>
+</header>
+

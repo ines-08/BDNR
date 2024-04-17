@@ -28,7 +28,8 @@ async function getEventPage(db, req, res) {
         }
 
     
-        res.render('event', { 
+        res.render('event', {
+            user: req.session.userInfo,
             eventid: eventID,
             event: event,
             eventID: eventID,

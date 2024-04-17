@@ -18,7 +18,7 @@ async function getHomePage(db, req, res) {
         });
 
         const eventTypes = await utils.getEventTypeKeys(db);
-        const eventLocations = await utils.getEventLocationKeys(db);   
+        const eventLocations = await utils.getEventLocationKeys(db);
 
         res.render('home', { 
             user: req.session.userInfo, 

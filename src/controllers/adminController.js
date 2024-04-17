@@ -125,6 +125,7 @@ async function getAdminPage(db, req, res) {
         const ticketTypes = await utils.getTicketTypes(db);
         
         res.render('admin', {
+            user: req.session.userInfo,
             clusterInfo: JSON.stringify(clusterInfo),
             nodes: nodes,
             statistics: stats,

@@ -21,6 +21,20 @@ header h2 {
   margin: 0;
 }
 
+/* Styles for header links */
+header a {
+  color: #fff; /* Set initial color to white */
+  text-decoration: none; /* Remove underline by default */
+}
+
+header a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+header a:visited {
+  color: #fff; /* Set color to white after being visited */
+}
+
 main {
   padding: 20px;
 }
