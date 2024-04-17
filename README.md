@@ -181,7 +181,7 @@ Exemplos da formatação das key-value pairs usadas no projecto:
     ],
 
     // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : "82",
+    "notification:<USERNAME>:<EVENT_ID>" : 82,
 
     // Static event locations
     "event:locations": ["A", "B", "C"],
@@ -196,3 +196,17 @@ Exemplos da formatação das key-value pairs usadas no projecto:
 
 ## Queries
 
+Há também hipótese de correr algumas queries em modo externo ao protótipo. As queries estão descritas nesta estrutura de dados presente em `data/queries.py`:
+
+```python
+QUERIES = [
+    { "description": "A simple put", "code": "put some thing", "output": False },
+    { "description": "Getting all ticket types", "code": "get ticket:types", "output": True }
+]
+```
+
+Depois dos containers da base de dados ficarem instanciados, as queries podem ser rodadas usando:
+
+```bash
+$ python3 data/queries.py
+```
