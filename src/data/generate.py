@@ -13,6 +13,7 @@ script_dir = os.path.dirname(__file__)
 config_path = os.path.join(script_dir, 'configurations.json')
 with open(config_path, 'r') as file:
     config = json.load(file)
+    file.close()
 
 NUM_USERS = config['NUM_USERS']
 NUM_EVENTS = config['NUM_EVENTS']
