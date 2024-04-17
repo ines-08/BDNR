@@ -5,7 +5,6 @@
     - [Docker](#docker)
 - [Endpoints](#endpoints)
 - [Data](#data)
-- [Keys](#keys)
 - [Queries](#queries)
 
 ## Run
@@ -50,7 +49,7 @@ Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [l
 - `/profile?username=<USERNAME>`, para apresentação dos detalhes de um profile;
 - `/event?id=<ID>`, para apresentação dos detalhes de um evento;
 - `/tickets?eventid=<ID>`, para compra de bilhetes;
-- `/api/search?input=<INPUT>`, retorna os detalhes dos eventos em JSON que têm textos que fazem match total ou parcial com a string INPUT;
+- `/api/search?input=<INPUT>`, retorna, em JSON, os detalhes dos eventos que têm textos (name, location ou description) que fazem match total ou parcial com a string INPUT;
 
 ## Data
 
@@ -67,11 +66,7 @@ Os dados gerados seguem as configurações descritas em `configuration.json`:
     "TICKET_PURCHASE_PROBABILITY": 0.5,
     "NOTIFICATION_PROBABILITY": 0.3,
     "EVENT_SEARCH_FIELDS": ["name", "description", "location"],
-    "EVENT_LOCATIONS": [
-      "London",
-      "Manchester",
-      //...
-    ],
+    "EVENT_LOCATIONS": ["London", "Manchester" ],
     "EVENT_TYPES": ["concert", "theater", "dance", "magic", "circus"],
     "TICKET_TYPES": {
       "pink": {"minPrice": 100, "maxPrice": 200, "minQuantity": 10, "maxQuantity": 100},
@@ -95,13 +90,11 @@ E há geração das seguintes relações:
 - `Purchase` (entre um user e um evento);
 - `Notification` (entre um user e um evento);
 
-Por motivos de eficiência, foram gerados estes datatypes auxiliares:
+Por motivos de eficiência, foram gerados também estas estruturas auxiliares:
 
 - `ticket:types`: tipos possíveis para um evento;
 - `event:types`: tipos possíveis para um evento;
 - `event:locations`: localizações possíveis para um evento; 
-
-## Key-value pairs
 
 Exemplos da formatação das key-value pairs usadas no projecto:
 
@@ -109,20 +102,20 @@ Exemplos da formatação das key-value pairs usadas no projecto:
 {
     // User
     "user:<USERNAME>": { 
-        "name": "something", 
-        "email": "something", 
-        "password": "something", 
-        "role": "something"
+        "name": "user", 
+        "email": "user@gmail.com", 
+        "password": "user123", 
+        "role": "admin"
     },
 
     // Event
     "event:<ID>": {
-        "name": "something", 
-        "description": "something", 
-        "location": "something",
-        "type": "something",
-        "date": "something",
-        "current_quantity": "something",
+        "name": "event", 
+        "description": "a simple event", 
+        "location": "porto",
+        "type": "concert",
+        "date": "2024-02-13",
+        "current_quantity": "14",
     },
 
     // Search Events by Text
@@ -152,39 +145,52 @@ Exemplos da formatação das key-value pairs usadas no projecto:
 
     // Ticket
     "ticket:<EVENT_ID>:<TYPE>": {
-        "total_quantity": "something", 
-        "current_quantity": "something", 
-        "price": "something",
+        "total_quantity": "34", 
+        "current_quantity": "23", 
+        "price": "23.30",
     },
 
     // Purchase
     "purchase:<USERNAME>:<EVENT_ID>": [
         {
-            "date": "something",
+            "date": "2024-03-14 13:45:00",
             "tickets": [
                 {
-                    "type": "something",
-                    "quantity": "something",
+                    "type": "red",
+                    "quantity": "3",
                 },
                 {
-                    "type": "something",
-                    "quantity": "something",
+                    "type": "green",
+                    "quantity": "42",
+                },
+            ]
+        },
+        {
+            "date": "2024-03-16 02:40:00",
+            "tickets": [
+                {
+                    "type": "pink",
+                    "quantity": "45",
+                },
+                {
+                    "type": "green",
+                    "quantity": "78",
                 },
             ]
         },
     ],
 
     // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : "quantity",
+    "notification:<USERNAME>:<EVENT_ID>" : "82",
 
     // Static event locations
-    "event:locations": ["something", "something", "something"],
+    "event:locations": ["A", "B", "C"],
 
     // Static event types
-    "event:types": ["something", "something", "something"],
+    "event:types": ["D", "E", "F", "G"],
 
     // Static ticket types
-    "ticket:types": ["something", "something", "something"],
+    "ticket:types": ["H", "I", "J"],
 }
 ```
 
