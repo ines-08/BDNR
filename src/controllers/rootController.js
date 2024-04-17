@@ -1,6 +1,12 @@
 const utils = require('../utils/utils');
 
 async function getRootPage(req, res) {
+
+    if (req.session.userInfo) {
+        res.redirect('/home');
+        return;
+    }
+
     res.render('index', { 
         error_message: req.flash('error'), 
         success_message: req.flash('success') 
