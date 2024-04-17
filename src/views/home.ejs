@@ -9,7 +9,7 @@
 <body>
 
   <%- include('header.ejs') %>
-  
+
   <main>
 
     <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
@@ -21,7 +21,6 @@
     <% } %>
 
     <h2>Homepage</h2>
-    <h4>Visit <a href="/profile?username=<%= user.username %>"><%= user.name %> profile</a></h4>
 
     <form action="/home" method="GET">
       <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>">
