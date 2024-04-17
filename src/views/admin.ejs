@@ -32,7 +32,7 @@
     <% Object.keys(statistics).forEach(type => { %>
       <h3>Total Revenue for events of type <%= type.charAt(0).toUpperCase() + type.slice(1) %></h3>
       <canvas id="<%= type %>Chart" width="400" height="400"></canvas>
-      <p>Total revenue: <%= statistics[type]['total'] %> $</p>
+      <p>Total revenue: <%= statistics[type]['total'].toFixed(2) %> $</p>
     <% }); %>
 
     <!-- Display the event creation -->
