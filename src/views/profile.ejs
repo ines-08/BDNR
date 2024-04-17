@@ -4,69 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TickETCD</title>
+  <!-- Link to your custom CSS file -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-gray-100">
 
   <%- include('header.ejs') %>
 
 
-  <main>
+  <main class="max-w-4xl mx-auto px-4 py-8">
 
-    <h3>User info:</h3>
+    <h3 class="text-xl font-semibold mb-4">User info:</h3>
 
-    <h4>Username: <%= user.username %> </h4>
-    <h4>Email: <%= user.email %> </h4>
-    <h4>Password: <%= user.password %> :D</h4>
-    <h4>Role: <%= user.role %> </h4>
+    <div class="flex flex-wrap mb-4">
+      <div class="flex items-center mr-6 mb-2">
+        <h4 class="text-lg font-semibold mr-2">Username:</h4>
+        <p><%= user.username %></p>
+      </div>
+      <div class="flex items-center mr-6 mb-2">
+        <h4 class="text-lg font-semibold mr-2">Email:</h4>
+        <p><%= user.email %></p>
+      </div>
+      <div class="flex items-center mr-6 mb-2">
+        <h4 class="text-lg font-semibold mr-2">Password:</h4>
+        <p><%= user.password %> :D</p>
+      </div>
+      <div class="flex items-center mb-2">
+        <h4 class="text-lg font-semibold mr-2">Role:</h4>
+        <p><%= user.role %></p>
+      </div>
+    </div>
 
-    <hr></hr>
 
-    <h3>User purchases:</h3>
+
+    <hr class="my-8">
+
+    <h3 class="text-xl font-semibold mb-4">User purchases:</h3>
 
     <% if (purchases && purchases.length > 0) { %>
-      <ul>
+      <div class="grid grid-cols-1 gap-4 mb-4">
         <% purchases.forEach(purchase => { %>
-          <li>
-            <a href="/event?id=<%= purchase.event_id %>"><%= purchase.event_name %></a>
-            <h4><%= purchase.info.date %></h4>
-          </li>
-          
-          <ul>
-            <% purchase.info.tickets.forEach(a => { %>
-              <ul>
-                  <li>Type: <%= a.type %> </li>
-                  <li>Quantity:  <%= a.quantity %></li>
-              </ul>
-             
-            <% }); %>
-          </ul>
-          
+          <div class="border border-gray-200 p-4 flex justify-between items-start">
+            <div>
+              <a href="/event?id=<%= purchase.event_id %>" class="text-blue-500 font-semibold block mb-2"><%= purchase.event_name %></a>
+              <p class="text-gray-600 mb-2"><%= purchase.info.date %></p>
+            </div>
+            <ul>
+              <% purchase.info.tickets.forEach(ticket => { %>
+                <li class="mb-2">
+                  <span class="font-semibold">Type:</span> <%= ticket.type %> -
+                  <span class="font-semibold">Quantity:</span> <%= ticket.quantity %>
+                </li>
+              <% }); %>
+            </ul>
+          </div>
         <% }); %>
-      </ul>
+      </div>
     <% } else { %>
       <p>No purchases found!</p>
     <% } %>
+    
+    
 
-    <hr></hr>
+    <hr class="my-8">
 
-    <h3>Favourite Events</h3>
+    <h3 class="text-xl font-semibold mb-4">Favourite Events</h3>
     <% if (favourites && favourites.length > 0) { %>
-      <ul>
+      <ul class="mb-4">
         <% favourites.forEach(favorite => { %>
-          <li><a href="/event?id=<%= favorite.event_id %>"><%= favorite.event_name %></a></li>
+          <li><a href="/event?id=<%= favorite.event_id %>" class="text-blue-500"><%= favorite.event_name %></a></li>
         <% }); %>
       </ul>
     <% } else { %>
-      <p>No purchases found!</p>
+      <p>No favourite events found!</p>
     <% } %>
-
 
   </main>
 
-  <footer>
-    <p>BDNR @ 2024</p>
-  </footer>
+  <%- include('footer.ejs') %>
 
 </body>
 </html>

@@ -6,52 +6,60 @@
   <title>TickETCD</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-gray-100">
 
   <%- include('header.ejs', {user : undefined}) %>
 
-  <main>
-
+  <main class="flex flex-col items-center justify-center py-20">
     <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
-      <div class="error-message"><%= error_message %></div>
-    <% } %>
-
-    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
-      <div class="success-message"><%= success_message %></div>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-96 mb-4" role="alert">
+        <%= error_message %>
+      </div>
     <% } %>
   
-    <div class="form-container">
-      <section id="login">
-        <h2>Login</h2>
-        <form action="/login" method="POST">
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br><br>
-          <input type="submit" value="Login">
+    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative w-96 mb-4" role="alert">
+        <%= success_message %>
+      </div>
+    <% } %>
+  
+    <div class="form-container flex flex-col md:flex-row items-stretch justify-center space-y-8 md:space-y-0 md:space-x-8">
+      <section id="login" class="flex flex-col items-center flex-1 px-10 py-6">
+        <h2 class="text-lg font-semibold mb-4">Login</h2>
+        <form action="/login" method="POST" class="flex flex-col items-center">
+          <label for="username" class="mb-2">Username:</label>
+          <input type="text" id="username" name="username" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <label for="password" class="mb-2">Password:</label>
+          <input type="password" id="password" name="password" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <input type="submit" value="Login" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
         </form>
       </section>
-
-      <section id="register">
-        <h2>Register</h2>
-        <form action="/register" method="POST">
-          <label for="name">Name:</label><br>
-          <input type="text" id="name" name="name"><br>
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email"><br>
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br><br>
-          <input type="submit" value="Register">
+    
+      <section id="register" class="flex flex-col items-center flex-1 px-4 py-6">
+        <h2 class="text-lg font-semibold mb-4">Register</h2>
+        <form action="/register" method="POST" class="flex flex-col items-center">
+          <label for="name" class="mb-2">Name:</label>
+          <input type="text" id="name" name="name" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <label for="email" class="mb-2">Email:</label>
+          <input type="email" id="email" name="email" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <label for="username" class="mb-2">Username:</label>
+          <input type="text" id="username" name="username" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <label for="password" class="mb-2">Password:</label>
+          <input type="password" id="password" name="password" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+    
+          <input type="submit" value="Register" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
         </form>
       </section>
     </div>
+    
   </main>
+  
 
-  <footer>
-    <p>BDNR @ 2024</p>
-  </footer>
-
+    <%- include('footer.ejs') %>
 </body>
 </html>
