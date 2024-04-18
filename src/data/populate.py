@@ -12,11 +12,13 @@ ETCD_NODES = {
     "etcd5" : "http://localhost:2385",     
 }
 
-def process_data(key, value, node):
+def process_data(key, value, node, output=False):
     command = f"ETCDCTL_API=3 etcdctl put {key} '{json.dumps(value)}' --endpoints={ETCD_NODES[node]}"
-    with open("/dev/null", "w") as devnull:
-        subprocess.run(["docker-compose", "-f", "docker-compose-dev.yml", "exec", node, "sh", "-c", command], stdout=devnull, stderr=devnull, check=True)
-        devnull.close()
+    subprocess.run(["docker-compose", "-f", "docker-compose-dev.yml", "exec", node, "sh", "-c", command], 
+        stdout=subprocess.DEVNULL if not output else None, 
+        stderr=subprocess.DEVNULL if not output else None, 
+        check=True
+    )
 
 def process_data_chunk(keys, values, node):
     for key, value in zip(keys, values):
