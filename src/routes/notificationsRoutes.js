@@ -5,7 +5,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 module.exports = function(db) {
     router.use(authMiddleware);
-    router.get('/', getNotificationsPage.bind(null, db));
+    router.get('/', getNotificationsPage);
     router.post('/addnotifications', addNotifications.bind(null, db));
     return router;
 }

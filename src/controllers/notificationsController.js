@@ -1,25 +1,13 @@
-async function getNotificationsPage(db, req, res) {
-    const eventID = req.query?.eventid;
-    console.log("EVENTID", eventID)
+async function getNotificationsPage(req, res) {
 
-    try {
-
-        const event = await db.get(`event:${eventID}`)?.json(); 
-        if (!event) {
+        if (!req.session.userInfo) {
             req.flash('error', 'Event not found');
-            res.redirect('/home');
         }
     
         res.render('notifications', {
             user: req.session.userInfo,
-            eventid: eventID,
-            event: event,
         });
 
-    } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
-        res.redirect('/home');
-    }
 }
 
 async function addNotifications(db, req, res) {
@@ -29,12 +17,43 @@ async function addNotifications(db, req, res) {
     
     try {
         await db.put(`notification:${username}:${eventID}`).value(numberMin);
+      
+        // const watcher = client.watch();
+
+        // watcher.prefix('event:').create().then(() => {
+        //     console.log('Watching for changes on event quantities...');
+        // });
+
+        // watcher.on('data', (res) => {
+        //     res.events.forEach(event => {
+        //         const key = event.kv.key.toString();
+        //         const value = JSON.parse(event.kv.value.toString());
+        //         const eventID = key.split(':')[1];
+        //         const currentQuantity = parseInt(value.current_quantity);
+
+        //         if (currentQuantity < numberMin) {
+        //             sendAlarm(eventID, currentQuantity);
+        //         }
+        //     });
+        // });
+
+        // watcher.on('error', (err) => {
+        //     console.error('Watcher error:', err);
+        // });
+
         res.redirect(`/event?id=${eventID}`);
+    
     } catch(error) {
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
 }
+
+
+function sendAlarm(eventID, currentQuantity) {
+    console.log(`ALARM: Event ${eventID} has low ticket quantity (${currentQuantity})`);
+}
+
 
 module.exports = {
     getNotificationsPage,

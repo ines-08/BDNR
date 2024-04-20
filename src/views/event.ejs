@@ -55,10 +55,26 @@
     </div>
 
     <div class="flex justify-center mt-8">
-      <a href="/notifications?eventid=<%= eventid %>" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
+      <button id="notify" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
         Notify
-      </a>
+      </button>
     </div>
+
+    <form id="notifyforms" class="hidden" action="/notifications/addnotifications" method="POST">
+      <label>Number minimum tickets to be notified:</label>
+      <input type="number" name="minimumtickets"/>
+      <input type="hidden" name="event" value="<%= eventid %>" />
+      
+      <button type="submit"
+        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Criar</button>
+    </form>
+
+    <script>
+      document.getElementById('notify').addEventListener('click', function() {
+        document.getElementById('notifyforms').classList.remove('hidden');
+      });
+    </script>
+
 
   </main>
 
