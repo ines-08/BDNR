@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TickETCD</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100">
+
+  <%- include('header.ejs') %>
+
+  <main class="max-w-4xl px-4 py-8 mx-auto">
+
+    <h2 class="mb-4 text-2xl font-bold">Event: '<%= event.name %>'</h2>
+    <h3 class="mb-2 text-lg font-semibold">Notifications</h3>
+    
+    <form id="notifyforms" action="/notifications/addnotifications" method="POST">
+        <label>Number minimum tickets to be notified:</label>
+        <input type="number" name="minimumtickets"/>
+        <input type="hidden" name="event" value="<%= eventid %>" />
+        
+        <button type="submit"
+          class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Criar</button>
+      </form>
+  </main>
+
+  <hr class="mb-4">
+
+  <%- include('footer.ejs') %>
+
+</body>
+</html>

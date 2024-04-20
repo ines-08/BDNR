@@ -12,6 +12,7 @@ const utils = require('./utils/utils');
 
 const { Etcd3 } = require("etcd3");
 const { getSearchResults } = require('./controllers/apiController');
+const notificationsRoutes = require("./routes/notificationsRoutes");
 
 const app = express();
 const db = new Etcd3({ hosts: utils.config.cluster.dev });
@@ -42,6 +43,10 @@ app.use('/event', eventRoutes(db));
 // Tickets
 app.use('/tickets', ticketsRoutes(db));
 app.use('/buytickets', ticketsRoutes(db));
+
+// Notification
+app.use('/notifications', notificationsRoutes(db));
+app.use('/addnotifications', notificationsRoutes(db));
 
 // Profile
 app.use('/profile', profileRoutes(db));
