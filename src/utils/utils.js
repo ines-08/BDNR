@@ -50,26 +50,26 @@ async function getEventLocationKeys(db) {
     return db.get('event:locations').json();
 }
 
-function getNotifications(db, req, eventname, eventID, numberMin) {
+function getNotifications(db, req, eventID, numberMin, username) {
     const watcher = db.watch().key(`event:${eventID}`).watcher();
 
-    watcher.on('put', (res) => {
+    watcher.on('put', async (res) => {
 
-            const value = JSON.parse(res.value.toString());
-            const currentQuantity = parseInt(value.current_quantity);
+        const value = JSON.parse(res.value.toString());
+        const currentQuantity = parseInt(value.current_quantity);
 
-            if (currentQuantity < numberMin) {
-                console.log(`ALARM: Event ${eventID} has low ticket quantity (${currentQuantity})`);
-            }
+        if (currentQuantity <= numberMin) {      
+            const notification = await db.get(`notification:${username}:${eventID}`).json();
+            notification.active = true;
+            await db.put(`notification:${username}:${eventID}`).value(JSON.stringify(notification));
+        }
     });
 
     watcher.on('error', (err) => {
-            console.error('Watcher error:', err);
+        console.error('Watcher error:', err);
     });
 
     req.app.locals.watchers.push(watcher);
-    
-    console.log(req.app.locals.watchers)
 }
 
 module.exports = { 

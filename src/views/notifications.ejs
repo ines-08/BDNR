@@ -16,12 +16,14 @@
 
     <% if (notifications && notifications.length > 0) { %>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <% notifications.forEach(notification => {
-             eventData = JSON.parse(notification.event) %>
-          <div class="p-4 border border-gray-200 rounded-md">
-            <h4 class="mb-2 text-lg font-semibold"><%= eventData.name %></h4>
-            <h4> Number minimum tickets: <%= notification.numbermin %></h4>
-          </div>
+        <% notifications.forEach(notification => { %>
+          <a href="/event?id=<%= notification.event.id %>">
+            <div class="p-4 border rounded-md <%= notification.info.active ? 'something-else' : 'something' %>">
+              <h4 class="mb-2 text-lg font-semibold"><%= notification.event.name %></h4>
+              <h4> Minimum number of tickets: <%= notification.info.limit %></h4>
+              <h4> Current number of tickets: <%= notification.event.current_quantity %></h4>
+            </div>
+          </a>
         <% }); %>
       </div>
     <% } else { %>

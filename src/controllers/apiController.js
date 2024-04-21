@@ -116,6 +116,7 @@ async function getSearchResults(db, req, res) {
         }
         
         res.send(JSON.stringify(events, null, 2));
+        
     } catch (error) {
         res.send(JSON.stringify([]));
     }

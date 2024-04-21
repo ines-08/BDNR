@@ -3,22 +3,24 @@ const utils = require('../utils/utils');
 async function getNotificationsPage(db, req, res) {
 
         if (!req.session.userInfo) {
-            req.flash('error', 'Event not found');
+            req.flash('error', 'You need login first');
+            res.redirect('/home');
         }
     
         try {
+
             const notifications = [];
             const username = req.session.userInfo.username;
             const nots = await db.getAll().prefix(`notification:${username}:`).json();
             
-            if(nots) {
+            if (nots) {
                 for (key in nots) {
                     const parts = key.split(":");
                     const eventID = parts[2];
-                    let event = await db.get(`event:${eventID}`);
+                    const event = await db.get(`event:${eventID}`).json();
                     notifications.push({
-                        event,
-                        'numbermin': nots[key]
+                        event: { ...event, id: eventID },
+                        info: nots[key],
                     })
                 }
             }
@@ -40,10 +42,15 @@ async function addNotifications(db, req, res) {
     const numberMin = req.body?.minimumtickets;
    
     try {
-        await db.put(`notification:${username}:${eventID}`).value(numberMin);
-        const event = await db.get(`event:${eventID}`).json();
-        utils.getNotifications(db, req, event.name, eventID, numberMin);
 
+        await db.put(`notification:${username}:${eventID}`).value(JSON.stringify({
+            'limit': numberMin, 
+            'active': false
+        }));
+
+        utils.getNotifications(db, req, eventID, numberMin, username);
+
+        req.flash('success', 'parabens, colocaste notificacao nisto!');
         res.redirect(`/event?id=${eventID}`);
     
     } catch(error) {
@@ -52,7 +59,6 @@ async function addNotifications(db, req, res) {
         res.redirect('/home');
     }
 }
-
 
 module.exports = {
     getNotificationsPage,

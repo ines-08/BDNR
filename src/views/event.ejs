@@ -10,11 +10,21 @@
 
   <%- include('header.ejs') %>
 
+  <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
+    <div class="px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded-md">
+      <%= error_message %>
+    </div>
+  <% } %>
+
+  <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
+    <div class="px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded-md">
+      <%= success_message %>
+    </div>
+  <% } %>
 
   <main class="max-w-4xl px-4 py-8 mx-auto">
 
     <h2 class="mb-4 text-2xl font-bold">Event '<%= event.name %>'</h2>
-    <h2 class="mb-4 text-2xl font-bold">EventID '<%= eventid %>'</h2>
     <h4 class="mb-2"><%= event.description %></h4>
     <h4 class="mb-2">In: <%= event.location %></h4>
     <h4 class="mb-2">Type: <%= event.type %></h4>

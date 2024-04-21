@@ -21,7 +21,6 @@ async function getStatistics(db, req, res) {
                     stats[event_type][ticket_types[ticket_type]] = price_per_ticket_type;
                 else
                     stats[event_type][ticket_types[ticket_type]] += price_per_ticket_type;
-
             }
         }
         stats[event_type]['total'] = total;
@@ -40,6 +39,7 @@ async function createEvent(db, req, res) {
     });
 
     try {
+        
         // add event
         const eventInfo = { 
             name: req.body.eventName,
