@@ -4,6 +4,7 @@ async function getRootPage(req, res) {
 
     if (req.session.userInfo) {
         res.redirect('/home');
+
         return;
     }
 

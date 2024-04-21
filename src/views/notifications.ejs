@@ -13,6 +13,20 @@
   <main class="max-w-4xl px-4 py-8 mx-auto">
 
     <h2 class="mb-4 text-2xl font-bold">All Notifications</h2>
+
+    <% if (notifications && notifications.length > 0) { %>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <% notifications.forEach(notification => {
+             eventData = JSON.parse(notification.event) %>
+          <div class="p-4 border border-gray-200 rounded-md">
+            <h4 class="mb-2 text-lg font-semibold"><%= eventData.name %></h4>
+            <h4> Number minimum tickets: <%= notification.numbermin %></h4>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No tickets found!</p>
+    <% } %>
     
   </main>
 
