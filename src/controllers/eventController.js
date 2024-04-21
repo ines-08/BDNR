@@ -34,7 +34,7 @@ async function getEventPage(db, req, res) {
             event: event,
             eventID: eventID,
             tickets: tickets,
-            isFavourite: isFavourites
+            isFavourite: isFavourites,
         });
 
     } catch (error) {
