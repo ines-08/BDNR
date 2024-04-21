@@ -4,34 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TickETCD</title>
-  <!-- Link to Tailwind CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <!-- Link to your custom CSS file -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100">
 
   <%- include('header.ejs') %>
 
-  <main class="max-w-4xl mx-auto px-4 py-8">
+  <main class="max-w-4xl px-4 py-8 mx-auto">
 
     <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-4">
+      <div class="px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded-md">
         <%= error_message %>
       </div>
     <% } %>
 
     <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
-      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md mb-4">
+      <div class="px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded-md">
         <%= success_message %>
       </div>
     <% } %>
 
-    <h2 class="text-2xl font-bold mb-4">Homepage</h2>
+    <h2 class="mb-4 text-2xl font-bold">Homepage</h2>
 
-    <form action="/home" method="GET" class="mb-4 flex items-center space-x-4">
-      <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
-      <select name="type" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+    <form action="/home" method="GET" class="flex items-center mb-4 space-x-4">
+      <input type="text" name="search" placeholder="Search..." value="<%= typeof search !== 'undefined' ? search : '' %>" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+      <select name="type" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
         <option value="all" <%= typeof type !== 'undefined' && type === 'all' ? 'selected' : '' %>>All Event Types</option>
         <% if (eventTypes && eventTypes.length > 0) { %>
           <% eventTypes.forEach(eventType => { %>
@@ -39,7 +36,7 @@
           <% }); %>
         <% } %>
       </select>
-      <select name="location" class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+      <select name="location" class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
         <% if (eventLocations && eventLocations.length > 0) { %>
           <% eventLocations.forEach(eventLocation => { %>
             <option value="<%= eventLocation %>" <%= typeof location !== 'undefined' && location === eventLocation ? 'selected' : '' %>><%= eventLocation %></option>
@@ -47,11 +44,11 @@
         <% } %>
         <option value="all" <%= typeof location === 'undefined' || location === 'all' ? 'selected' : '' %>>All Locations</option>
       </select>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">Search</button>
+      <button type="submit" class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600">Search</button>
     </form>
 
     <% if (events && events.length > 0) { %>
-      <h3 class="text-lg font-semibold mb-2">Events:</h3>
+      <h3 class="mb-2 text-lg font-semibold">Events:</h3>
       <ul class="list-disc list-inside">
         <% events.forEach(event => { %>
           <li><a href="/event?id=<%= event.id %>" class="text-blue-500 hover:underline"><%= event.name %></a></li>

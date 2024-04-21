@@ -182,7 +182,11 @@ def generate_notifications(user_data, event_data):
             n_tickets = info['current_quantity']
             if random.random() < NOTIFICATION_PROBABILITY and n_tickets > 0:
                 event_id = event.split(':')[1]
-                notifications[f'notification:{user_id}:{event_id}'] = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
+                limit = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
+                notifications[f'notification:{user_id}:{event_id}'] = {
+                    'limit': limit,
+                    'active': False,
+                }
 
     return notifications
 

@@ -4,6 +4,7 @@ async function getRootPage(req, res) {
 
     if (req.session.userInfo) {
         res.redirect('/home');
+
         return;
     }
 
@@ -20,6 +21,18 @@ async function login(db, req, res) {
         const user = await db.get(`user:${username}`)?.json();  
         if (user && user.password === password) {
             req.session.userInfo = { ...user, username: username };
+
+            const notifications = await db.getAll().prefix(`notification:${username}:`).json();
+        
+            if (notifications) {
+                for (const notification in notifications) {
+                    const eventID = notification.split(':')[2];
+                    const numberMin = notifications[notification];
+                    const event = await db.get(`event:${eventID}`).json();
+                    utils.getNotifications(db, req, eventID, numberMin, username)
+                }
+            }
+
             res.redirect('/home');
         } else {
             req.flash('error', 'Invalid login credentials');
@@ -27,6 +40,7 @@ async function login(db, req, res) {
         }
 
     } catch (error) {
+        console.log(error)
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/');
     }

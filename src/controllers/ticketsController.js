@@ -57,6 +57,8 @@ async function buyTickets(db, req, res) {
     }
     
     try{
+        let oldEvent = await db.get(`event:${eventID}`).json();
+
         let oldData = await db.get(`purchase:${username}:${eventID}`).json();
 
         //data.push(oldData)
@@ -78,8 +80,9 @@ async function buyTickets(db, req, res) {
                 'price': oldTickets.price
             }
             await db.put(`ticket:${eventID}:${value[v].type}`).value(JSON.stringify(data));
-            
+            oldEvent.current_quantity -= value[v].quantity
         }
+        await db.put(`event:${eventID}`).value(JSON.stringify(oldEvent));
         res.redirect(`/event?id=${eventID}`);
     } catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');

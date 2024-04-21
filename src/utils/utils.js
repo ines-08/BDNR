@@ -50,6 +50,28 @@ async function getEventLocationKeys(db) {
     return db.get('event:locations').json();
 }
 
+function getNotifications(db, req, eventID, numberMin, username) {
+    const watcher = db.watch().key(`event:${eventID}`).watcher();
+
+    watcher.on('put', async (res) => {
+
+        const value = JSON.parse(res.value.toString());
+        const currentQuantity = parseInt(value.current_quantity);
+
+        if (currentQuantity <= numberMin) {      
+            const notification = await db.get(`notification:${username}:${eventID}`).json();
+            notification.active = true;
+            await db.put(`notification:${username}:${eventID}`).value(JSON.stringify(notification));
+        }
+    });
+
+    watcher.on('error', (err) => {
+        console.error('Watcher error:', err);
+    });
+
+    req.app.locals.watchers.push(watcher);
+}
+
 module.exports = { 
     getResponse, 
     getNodeInfo, 
@@ -60,6 +82,7 @@ module.exports = {
     getTicketTypes,
     getEventTypeKeys,
     getEventLocationKeys,
+    getNotifications,
     config, 
     data_config
 };

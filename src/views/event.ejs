@@ -10,10 +10,21 @@
 
   <%- include('header.ejs') %>
 
+  <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
+    <div class="px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded-md">
+      <%= error_message %>
+    </div>
+  <% } %>
 
-  <main class="max-w-4xl mx-auto px-4 py-8">
+  <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
+    <div class="px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded-md">
+      <%= success_message %>
+    </div>
+  <% } %>
 
-    <h2 class="text-2xl font-bold mb-4">Event '<%= event.name %>'</h2>
+  <main class="max-w-4xl px-4 py-8 mx-auto">
+
+    <h2 class="mb-4 text-2xl font-bold">Event '<%= event.name %>'</h2>
     <h4 class="mb-2"><%= event.description %></h4>
     <h4 class="mb-2">In: <%= event.location %></h4>
     <h4 class="mb-2">Type: <%= event.type %></h4>
@@ -22,19 +33,19 @@
     
     <form method="POST" action="/event/<%= isFavourite ? 'remove-favourite' : 'add-favourite' %>" class="mb-4">
       <input value="<%= eventID %>" name="eventID" type="hidden">
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
+      <button type="submit" class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600">
         <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
       </button>
     </form>
     <hr class="mb-4">
 
-    <h3 class="text-lg font-semibold mb-2">Tickets details</h3>
+    <h3 class="mb-2 text-lg font-semibold">Tickets details</h3>
 
     <% if (tickets && tickets.length > 0) { %>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <% tickets.forEach(ticket => { %>
-          <div class="border border-gray-200 rounded-md p-4">
-            <h4 class="text-lg font-semibold mb-2"><%= ticket.type %></h4>
+          <div class="p-4 border border-gray-200 rounded-md">
+            <h4 class="mb-2 text-lg font-semibold"><%= ticket.type %></h4>
             <ul>
               <li>Price: <%= ticket.price %>$</li>
               <li>Current quantity: <%= ticket.current_quantity %></li>
@@ -48,10 +59,32 @@
     <% } %>
     
     <div class="flex justify-center mt-8">
-      <a href="/tickets?eventid=<%= eventid %>" class="bg-blue-500 text-white px-6 py-3 rounded-full hover:bg-blue-600 transition duration-300">
+      <a href="/tickets?eventid=<%= eventid %>" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
         Buy Tickets
       </a>
     </div>
+
+    <div class="flex justify-center mt-8">
+      <button id="notify" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
+        Notify
+      </button>
+    </div>
+
+    <form id="notifyforms" class="hidden" action="/notifications/addnotifications" method="POST">
+      <label>Number minimum tickets to be notified:</label>
+      <input type="number" name="minimumtickets"/>
+      <input type="hidden" name="event" value="<%= eventid %>" />
+      
+      <button type="submit"
+        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Criar</button>
+    </form>
+
+    <script>
+      document.getElementById('notify').addEventListener('click', function() {
+        document.getElementById('notifyforms').classList.remove('hidden');
+      });
+    </script>
+
 
   </main>
 

@@ -26,7 +26,6 @@ async function getEventPage(db, req, res) {
         if (favourites) {
             isFavourites = favourites.includes(eventID);
         }
-
     
         res.render('event', {
             user: req.session.userInfo,
@@ -34,7 +33,7 @@ async function getEventPage(db, req, res) {
             event: event,
             eventID: eventID,
             tickets: tickets,
-            isFavourite: isFavourites
+            isFavourite: isFavourites,
         });
 
     } catch (error) {
@@ -45,7 +44,8 @@ async function getEventPage(db, req, res) {
 
 async function addFavourite(db, req, res){
     const eventID = req.body.eventID;
-    try{
+
+    try {
         const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
 
         if (!favourites) {
@@ -58,6 +58,7 @@ async function addFavourite(db, req, res){
 
         res.redirect(`/event?id=${eventID}`);
     }
+    
     catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
@@ -66,7 +67,8 @@ async function addFavourite(db, req, res){
 
 async function removeFavourite(db, req, res){
     const eventID = req.body.eventID;
-    try{
+
+    try {
         const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
 
         if (favourites) {
@@ -76,6 +78,7 @@ async function removeFavourite(db, req, res){
 
         res.redirect(`/event?id=${eventID}`);
     }
+
     catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');

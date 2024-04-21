@@ -29,7 +29,7 @@ async function getHomePage(db, req, res) {
             location: location,
             events: events,
             eventTypes: eventTypes,
-            eventLocations: eventLocations
+            eventLocations: eventLocations,
         });
     
     } catch (error) {
