@@ -109,8 +109,6 @@ async function deleteTickets(db, req, res) {
     
             let oldTickets = await db.get(`ticket:${eventID}:${deleted.tickets[index].type}`).json();
     
-            console.log("OLD INFORMATION ", oldTickets);
-            console.log("DELETED INFORMATION ", deleted.tickets[index]);
             let data = {
                 'total_quantity': oldTickets.total_quantity,
                 'current_quantity': oldTickets.current_quantity + Number(deleted.tickets[index].quantity),
