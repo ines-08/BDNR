@@ -57,6 +57,8 @@ async function buyTickets(db, req, res) {
     }
     
     try{
+        let oldEvent = await db.get(`event:${eventID}`).json();
+
         let oldData = await db.get(`purchase:${username}:${eventID}`).json();
 
         //data.push(oldData)
@@ -78,8 +80,9 @@ async function buyTickets(db, req, res) {
                 'price': oldTickets.price
             }
             await db.put(`ticket:${eventID}:${value[v].type}`).value(JSON.stringify(data));
-            
+            oldEvent.current_quantity -= value[v].quantity
         }
+        await db.put(`event:${eventID}`).value(JSON.stringify(oldEvent));
         res.redirect(`/event?id=${eventID}`);
     } catch (error) {
         req.flash('error', 'Internal server error: lost DB connection');
@@ -93,7 +96,8 @@ async function deleteTickets(db, req, res) {
 
     try {
         const purchase = await db.get(`purchase:${username}:${eventID}`).json();
-    
+        let oldEvent = await db.get(`event:${eventID}`).json();
+
         let mantained = [];
         let deleted = [];
         for (let key in purchase) {
@@ -114,10 +118,11 @@ async function deleteTickets(db, req, res) {
                 'current_quantity': oldTickets.current_quantity + Number(deleted.tickets[index].quantity),
                 'price': oldTickets.price
             }
-    
+            oldEvent.current_quantity += Number(deleted.tickets[index].quantity);
             await db.put(`ticket:${eventID}:${deleted.tickets[index].type}`).value(JSON.stringify(data));
         }
     
+        await db.put(`event:${eventID}`).value(JSON.stringify(oldEvent));
         await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify(mantained));
         res.redirect(`/profile?username=${username}`);
     } catch(error) {
