@@ -36,7 +36,7 @@ async function addNotifications(db, req, res) {
     const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const numberMin = req.body?.minimumtickets;
-    console.log("inside addNotifs: ", req.app.locals.watchers);
+    //console.log("inside addNotifs: ", req.app.locals.watchers);
     try {
         await db.put(`notification:${username}:${eventID}`).value(numberMin);
 
@@ -60,7 +60,7 @@ async function addNotifications(db, req, res) {
         });
 
         req.app.locals.watchers.push(watcher);
-        console.log(req.app.locals.watchers);
+        //console.log(req.app.locals.watchers);
         res.redirect(`/event?id=${eventID}`);
     
     } catch(error) {
