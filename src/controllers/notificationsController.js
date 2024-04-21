@@ -36,41 +36,39 @@ async function addNotifications(db, req, res) {
     const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const numberMin = req.body?.minimumtickets;
-    
+    console.log("inside addNotifs: ", req.app.locals.watchers);
     try {
         await db.put(`notification:${username}:${eventID}`).value(numberMin);
 
-        // const watcher = client.watch();
+        const watcher = db.watch().key(`event:${eventID}`).watcher();
 
-        // watcher.prefix('event:').create().then(() => {
-        //     console.log('Watching for changes on event quantities...');
-        // });
+        watcher.on('put', (res) => {
+            console.log("dcfdcgvghvbhgvb");
+            //  res.event => {
+            //     const key = event.key.toString();
+            //     const value = JSON.parse(event.value.toString());
+            //     const eventID = key.split(':')[1];
+            //     const currentQuantity = parseInt(value.current_quantity);
 
-        // watcher.on('data', (res) => {
-        //     res.events.forEach(event => {
-        //         const key = event.kv.key.toString();
-        //         const value = JSON.parse(event.kv.value.toString());
-        //         const eventID = key.split(':')[1];
-        //         const currentQuantity = parseInt(value.current_quantity);
+            //     if (currentQuantity < numberMin) {
+            //         sendAlarm(eventID, currentQuantity);
+            //     }
+        });
 
-        //         if (currentQuantity < numberMin) {
-        //             sendAlarm(eventID, currentQuantity);
-        //         }
-        //     });
-        // });
+        watcher.on('error', (err) => {
+             console.error('Watcher error:', err);
+        });
 
-        // watcher.on('error', (err) => {
-        //     console.error('Watcher error:', err);
-        // });
-
+        req.app.locals.watchers.push(watcher);
+        console.log(req.app.locals.watchers);
         res.redirect(`/event?id=${eventID}`);
     
     } catch(error) {
+        console.log(error);
         req.flash('error', 'Internal server error: lost DB connection');
         res.redirect('/home');
     }
 }
-
 
 function sendAlarm(eventID, currentQuantity) {
     console.log(`ALARM: Event ${eventID} has low ticket quantity (${currentQuantity})`);

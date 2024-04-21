@@ -18,6 +18,8 @@ const app = express();
 const db = new Etcd3({ hosts: utils.config.cluster.dev });
 const PORT = utils.config.port
 
+const watchers = [];
+app.locals.watchers = watchers;
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'secret', resave: true, saveUninitialized: true }));
@@ -46,7 +48,7 @@ app.use('/buytickets', ticketsRoutes(db));
 
 // Notification
 app.use('/notifications', notificationsRoutes(db));
-app.use('/addnotifications', notificationsRoutes(db));
+app.use('/addnotifications', notificationsRoutes(db, watchers));
 
 // Profile
 app.use('/profile', profileRoutes(db));
