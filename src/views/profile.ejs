@@ -12,42 +12,40 @@
   <%- include('header.ejs') %>
 
 
-  <main class="max-w-4xl mx-auto px-4 py-8">
+  <main class="max-w-4xl px-4 py-8 mx-auto">
 
-    <h3 class="text-xl font-semibold mb-4">User info:</h3>
+    <h3 class="mb-4 text-xl font-semibold">User info:</h3>
 
     <div class="flex flex-wrap mb-4">
-      <div class="flex items-center mr-6 mb-2">
-        <h4 class="text-lg font-semibold mr-2">Username:</h4>
+      <div class="flex items-center mb-2 mr-6">
+        <h4 class="mr-2 text-lg font-semibold">Username:</h4>
         <p><%= user.username %></p>
       </div>
-      <div class="flex items-center mr-6 mb-2">
-        <h4 class="text-lg font-semibold mr-2">Email:</h4>
+      <div class="flex items-center mb-2 mr-6">
+        <h4 class="mr-2 text-lg font-semibold">Email:</h4>
         <p><%= user.email %></p>
       </div>
-      <div class="flex items-center mr-6 mb-2">
-        <h4 class="text-lg font-semibold mr-2">Password:</h4>
+      <div class="flex items-center mb-2 mr-6">
+        <h4 class="mr-2 text-lg font-semibold">Password:</h4>
         <p><%= user.password %> :D</p>
       </div>
       <div class="flex items-center mb-2">
-        <h4 class="text-lg font-semibold mr-2">Role:</h4>
+        <h4 class="mr-2 text-lg font-semibold">Role:</h4>
         <p><%= user.role %></p>
       </div>
     </div>
 
-
-
     <hr class="my-8">
 
-    <h3 class="text-xl font-semibold mb-4">User purchases:</h3>
+    <h3 class="mb-4 text-xl font-semibold">User purchases:</h3>
 
     <% if (purchases && purchases.length > 0) { %>
       <div class="grid grid-cols-1 gap-4 mb-4">
         <% purchases.forEach(purchase => { %>
-          <div class="border border-gray-200 p-4 flex justify-between items-start">
+          <div class="flex items-start justify-between p-4 border border-gray-200">
             <div>
-              <a href="/event?id=<%= purchase.event_id %>" class="text-blue-500 font-semibold block mb-2"><%= purchase.event_name %></a>
-              <p class="text-gray-600 mb-2"><%= purchase.info.date %></p>
+              <a href="/event?id=<%= purchase.event_id %>" class="block mb-2 font-semibold text-blue-500"><%= purchase.event_name %></a>
+              <p class="mb-2 text-gray-600"><%= purchase.info.date %></p>
             </div>
             <ul>
               <% purchase.info.tickets.forEach(ticket => { %>
@@ -55,8 +53,16 @@
                   <span class="font-semibold">Type:</span> <%= ticket.type %> -
                   <span class="font-semibold">Quantity:</span> <%= ticket.quantity %>
                 </li>
+                
               <% }); %>
             </ul>
+            <form action="/tickets/deletetickets" method="POST">
+              <input type="hidden" name="event" value="<%= purchase.event_id %>" />
+              <input type="hidden" name="date" value="<%= purchase.info.date %>" />
+              <input type="hidden" name="tickets" value="<%= purchase.info.tickets %>" />
+              <button type="submit"
+                class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">X</button>
+            </form>
           </div>
         <% }); %>
       </div>
@@ -68,7 +74,7 @@
 
     <hr class="my-8">
 
-    <h3 class="text-xl font-semibold mb-4">Favourite Events</h3>
+    <h3 class="mb-4 text-xl font-semibold">Favourite Events</h3>
     <% if (favourites && favourites.length > 0) { %>
       <ul class="mb-4">
         <% favourites.forEach(favorite => { %>
