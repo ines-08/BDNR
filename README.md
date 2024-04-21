@@ -181,7 +181,10 @@ Exemplos da formatação das key-value pairs usadas no projecto:
     ],
 
     // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : 82,
+    "notification:<USERNAME>:<EVENT_ID>" : {
+        "limit": 42,
+        "active": true,
+    },
 
     // Static event locations
     "event:locations": ["A", "B", "C"],
