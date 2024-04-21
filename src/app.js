@@ -46,6 +46,7 @@ app.use('/event', eventRoutes(db));
 // Tickets
 app.use('/tickets', ticketsRoutes(db));
 app.use('/buytickets', ticketsRoutes(db));
+app.use('/deletetickets', ticketsRoutes(db));
 
 // Notification
 app.use('/notifications', notificationsRoutes(db));

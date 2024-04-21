@@ -55,8 +55,16 @@
                   <span class="font-semibold">Type:</span> <%= ticket.type %> -
                   <span class="font-semibold">Quantity:</span> <%= ticket.quantity %>
                 </li>
+                
               <% }); %>
             </ul>
+            <form action="/tickets/deletetickets" method="POST">
+              <input type="hidden" name="event" value="<%= purchase.event_id %>" />
+              <input type="hidden" name="date" value="<%= purchase.info.date %>" />
+              <input type="hidden" name="tickets" value="<%= purchase.info.tickets %>" />
+              <button type="submit"
+                class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">X</button>
+            </form>
           </div>
         <% }); %>
       </div>

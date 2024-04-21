@@ -164,7 +164,7 @@ def generate_purchases(user_data, event_data, tickets_data):
                     # If we have at least one purchased ticket, insert record
                     if len(purchase_tickets):
                         event_purchases.append({
-                            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
+                            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y, %H:%M:%S"),
                             "tickets": purchase_tickets
                         })
 
