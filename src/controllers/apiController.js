@@ -33,7 +33,7 @@ async function inputSearch(input, res, db) {
         });
 
     } catch (error) {
-        res.send(JSON.stringify([]));
+        return new Set();
     }
 }
 
@@ -48,7 +48,7 @@ async function typeSearch(type, res, db) {
         }
         return result;
     } catch (error) {
-        res.send(JSON.stringify([]));
+        return result;
     }
 }
 
@@ -63,7 +63,7 @@ async function locationSearch(location, res, db) {
         }
         return result;
     } catch (error) {
-        res.send(JSON.stringify([]));
+        return result;
     }
 }
 

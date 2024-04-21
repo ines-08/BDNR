@@ -8,21 +8,11 @@
 </head>
 <body class="bg-gray-100">
 
-  <%- include('header.ejs') %>
+  <%- include('header.ejs', { location: 'Home' }) %>
 
   <main class="max-w-4xl px-4 py-8 mx-auto">
 
-    <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
-      <div class="px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded-md">
-        <%= error_message %>
-      </div>
-    <% } %>
-
-    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
-      <div class="px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded-md">
-        <%= success_message %>
-      </div>
-    <% } %>
+    <%- include('feedback.ejs') %>
 
     <h2 class="mb-4 text-2xl font-bold">Homepage</h2>
 

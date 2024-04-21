@@ -4,7 +4,6 @@ async function getRootPage(req, res) {
 
     if (req.session.userInfo) {
         res.redirect('/home');
-
         return;
     }
 
@@ -18,10 +17,10 @@ async function login(db, req, res) {
     const { username, password } = req.body;
 
     try {
+        
         const user = await db.get(`user:${username}`)?.json();  
         if (user && user.password === password) {
             req.session.userInfo = { ...user, username: username };
-
             const notifications = await db.getAll().prefix(`notification:${username}:`).json();
         
             if (notifications) {
@@ -33,27 +32,30 @@ async function login(db, req, res) {
                 }
             }
 
+            req.flash('success', 'Login success');
             res.redirect('/home');
+
         } else {
-            req.flash('error', 'Invalid login credentials');
+            req.flash('error', 'Invalid login credentials!');
             res.redirect('/');
         }
 
     } catch (error) {
         console.log(error)
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in login action');
         res.redirect('/');
     }
 };
 
 async function logout(req, res) {
+
     try {
         req.session.userInfo = null;
-        req.flash('success', 'Logout!');
+        req.flash('success', 'Logout successfully!');
         res.redirect('/');
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in logout action');
         res.redirect('/');
     }
 };
@@ -75,7 +77,7 @@ async function register(db, req, res) {
         res.redirect('/');
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in register action!');
         res.redirect('/');
     }
 };
