@@ -112,7 +112,7 @@ async function getAdminPage(db, req, res) {
 
             try {
                 const nodeInfo = await utils.getNodeInfo(node);
-                nodes.push(JSON.stringify(nodeInfo))
+                nodes.push(nodeInfo)
             } catch (error) {
                 nodes.push(JSON.stringify({ name: node, message: "Node not alive!" }));
             }
@@ -123,9 +123,10 @@ async function getAdminPage(db, req, res) {
         const eventLocations = await utils.getEventLocationKeys(db);   
         const ticketTypes = await utils.getTicketTypes(db);
         
+        
         res.render('admin', {
             user: req.session.userInfo,
-            clusterInfo: JSON.stringify(clusterInfo),
+            clusterInfo: clusterInfo,
             nodes: nodes,
             statistics: stats,
             eventTypes: eventTypes,

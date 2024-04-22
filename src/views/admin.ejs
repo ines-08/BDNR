@@ -83,27 +83,75 @@
       <div id="dbstats">
         <div class="mb-8">
           <h3 class="text-xl font-semibold mb-2">Cluster Info</h3>
-          <p>
-            <%= clusterInfo %>
-          </p>
+            <div class="flex flex-wrap">
+              <% clusterInfo.members.forEach(member => { %>
+              <div class="w-1/2 mb-4 px-2">
+                <div class="border border-gray-300 p-3 rounded">
+                  <div class="mb-2">
+                    <span class="font-semibold">Name:</span>
+                    <span><%= member.name %></span>
+                  </div>
+                  <div class="mb-2">
+                    <span class="font-semibold">Peer URL:</span>
+                    <span><%= member.peerURLs[0] %></span>
+                  </div>
+                  <div>
+                    <span class="font-semibold">Client URL:</span>
+                    <span><%= member.clientURLs[0] %></span>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+            </div>
         </div>
+        
+        
 
         <div class="mb-8">
           <h3 class="text-xl font-semibold mb-2">Nodes Info</h3>
-          <% if (nodes && nodes.length> 0) { %>
-            <ul>
-              <% nodes.forEach(node=> { %>
-                <li>
-                  <h4>
-                    <%= node %>
-                  </h4>
-                </li>
-                <% }); %>
-            </ul>
-            <% } else { %>
-              <p>No nodes found!</p>
-              <% } %>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <% nodes.forEach(node => { %>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+              <div class="px-6 py-4">
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">Name:</span>
+                  <span class="text-gray-800"><%= node.name %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">ID:</span>
+                  <span class="text-gray-800"><%= node.id %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">State:</span>
+                  <span class="text-gray-800"><%= node.state %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">Start Time:</span>
+                  <span class="text-gray-800"><%= node.startTime %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">Leader:</span>
+                  <span class="text-gray-800"><%= node.leaderInfo.leader %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">Uptime:</span>
+                  <span class="text-gray-800"><%= node.leaderInfo.uptime %></span>
+                </div>
+                <div class="mb-4">
+                  <span class="font-semibold text-gray-600">Recv Append Request Count:</span>
+                  <span class="text-gray-800"><%= node.recvAppendRequestCnt %></span>
+                </div>
+                <div>
+                  <span class="font-semibold text-gray-600">Send Append Request Count:</span>
+                  <span class="text-gray-800"><%= node.sendAppendRequestCnt %></span>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
         </div>
+        
+        
       </div>
 
       <% if (Object.keys(statistics).length> 0) { %>
@@ -126,7 +174,6 @@
         <% } %>
 
           <div class="w-full px-4 hidden" id="createEvent">
-            <h2 class="text-2xl font-bold mb-4">Create Event</h2>
             <form action="/admin/createEvent" method="POST" class="space-y-4">
               <div class="flex">
                 <!-- event info -->
@@ -202,9 +249,9 @@
                       </div>
                       <% }); %>
                   </div>
-                  <div class="text-center">
+                  <div class="text-center py-6">
                     <input type="submit" value="Create Event"
-                      class="bg-blue-500 text-white px-10 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
+                      class="bg-blue-500 text-white px-20 py-4 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
                   </div>
                 </div>
               </div>
