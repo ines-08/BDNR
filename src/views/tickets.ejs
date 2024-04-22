@@ -8,10 +8,11 @@
     </head>
 
     <body class="bg-gray-100">
+
         <%- include('header.ejs') %>
     
         <main class="container px-4 py-8 mx-auto">
-            <h2 class="mb-4 text-2xl font-semibold">Tickets for '<%=  event.name %>'</h2>
+            <h2 class="mb-4 text-2xl font-semibold">Tickets for '<%=  event.name %>'</h2><br>
             <form action="/tickets/buytickets" method="POST" onsubmit="return validateForm()">
                 <input type="hidden" name="event" value="<%= eventid %>" />
                 <div class="flex flex-wrap -mx-2">
@@ -31,9 +32,11 @@
                         </div>
                     <% }); %>
                 </div>
+                <br>
                 <div class="flex justify-center">
+                    
                     <button type="submit"
-                        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Comprar</button>
+                        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Buy</button>
                 </div>
             </form>
         </main>

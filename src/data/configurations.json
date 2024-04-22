@@ -30,7 +30,6 @@
       "Oxford",
       "Cambridge"
     ],
-
     "EVENT_TYPES": ["concert", "theater", "dance", "magic", "circus"],
     "TICKET_TYPES": {
       "pink": {"minPrice": 100, "maxPrice": 200, "minQuantity": 10, "maxQuantity": 100},

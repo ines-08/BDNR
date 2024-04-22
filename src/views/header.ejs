@@ -1,25 +1,41 @@
-
-<header class="flex items-center justify-between px-8 py-4 text-white bg-gray-800">
-    <div>
-        <h1 class="text-2xl font-bold">TickETCD</h1>
-        <h2 class="text-sm">Consistency in Every Ticket</h2>
+<header class="flex items-center justify-between px-8 py-4 text-white bg-gray-800 relative">
+    <a href="/">
+        <div>
+            <h1 class="text-2xl font-bold">TickETCD</h1>
+            <h2 class="text-sm">Consistency in Every Ticket</h2>
+        </div>
+    </a>
+    <div class="flex items-center">
+        <% if (user && user.username) { %>
+            <div class="ml-auto">
+                <a href="/profile?username=<%= user.username %>" class="text-blue-300">Welcome, <%= user.username %>!</a>
+            </div>
+            <div class="ml-8">
+                <span class="text-blue-300">|</span>
+            </div>
+        <% } %>
+        <% if (user && user.role == 'admin') { %>
+            <div class="ml-8">
+                <a href="/admin" class="text-blue-300">Admin Page</a>
+            </div>
+            <div class="ml-8">
+                <span class="text-blue-300">|</span>
+            </div>
+        <% } %>
+        <% if (user) { %>
+            <div class="ml-8">
+                <form action="/notifications" method="GET">
+                    <button type="submit" class="text-blue-300">Notifications</button>
+                </form>
+            </div>
+            <div class="ml-8">
+                <span class="text-blue-300">|</span>
+            </div>
+            <div class="ml-8">
+                <form action="/logout" method="POST">
+                    <button type="submit" class="text-blue-300">Logout</button>
+                </form>
+            </div>
+        <% } %>
     </div>
-    <% if (user && user.username) { %>
-        <div class="ml-auto">
-            <a href="/profile?username=<%= user.username %>" class="text-blue-300">Welcome, <%= user.username %></a>
-        </div>
-    <% } %>
-    <% if (user && user.role == 'admin') { %>
-        <div class="ml-4">
-            <a href="/admin" class="text-blue-300">Admin Page</a>
-        </div>
-    <% } %>
-    <% if (user) { %>
-        <div class="ml-4">
-            <form action="/logout" method="POST">
-                <button type="submit" class="text-blue-300">Logout</button>
-            </form>
-        </div>
-    <% } %>
 </header>
-

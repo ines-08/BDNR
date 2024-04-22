@@ -1,14 +1,10 @@
 async function inputSearch(input, res, db) {
     const wordsArray = input.split(" ");
-
-    // Iterate through the array and decode each word and convert to lowercase
     for (let i = 0; i < wordsArray.length; i++) {
-        // Decode the URI component to replace "%20" with space
         wordsArray[i] = decodeURIComponent(wordsArray[i]).toLowerCase();
     }
 
     const eventMatches = new Map();
-
     try {
         for (const input of wordsArray) {
             const matches = await db.getAll().prefix(`search:text:${input}`).json();
@@ -33,12 +29,13 @@ async function inputSearch(input, res, db) {
         });
 
     } catch (error) {
-        res.send(JSON.stringify([]));
+        return new Set();
     }
 }
 
 async function typeSearch(type, res, db) {
     result = new Set();
+
     try {
         const matches = await db.get(`search:type:${type}`).json();
         if (matches) {
@@ -46,10 +43,9 @@ async function typeSearch(type, res, db) {
                 result.add(matches[key])
             }
         }
-        return result;
-    } catch (error) {
-        res.send(JSON.stringify([]));
-    }
+    } catch (error) { ; }
+
+    return result;
 }
 
 async function locationSearch(location, res, db) {
@@ -61,17 +57,16 @@ async function locationSearch(location, res, db) {
                 result.add(matches[key])
             }
         }
-        return result;
-    } catch (error) {
-        res.send(JSON.stringify([]));
-    }
+    } catch (error) { ; }
+    
+    return result;
 }
 
 async function getSearchResults(db, req, res) {
 
     try {
         
-        // ensure we do not have default values
+        // Ensure we do not have default values
         if (req?.query.input === '' && req?.query.type === 'all' && req?.query.location === 'all') {
             const default_search = await db.getAll().prefix('event:').limit(10).json();
             res.send(JSON.stringify(default_search, null, 2));
@@ -98,7 +93,6 @@ async function getSearchResults(db, req, res) {
         if (searchedFields.length > 1) {
             // Use reduce to compute the intersection
             result = searchedFields.slice(1).reduce((intersection, set) => {
-                // Filter elements in intersection set to keep only those present in the current set
                 return new Set([...intersection].filter(element => set.has(element)));
             }, result);
         }
@@ -114,7 +108,6 @@ async function getSearchResults(db, req, res) {
                 events.push(event);
             }
         }
-        
         res.send(JSON.stringify(events, null, 2));
         
     } catch (error) {
