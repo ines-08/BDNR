@@ -11,16 +11,16 @@ async function getNotificationsPage(db, req, res) {
 
             const notifications = [];
             const username = req.session.userInfo.username;
-            const nots = await db.getAll().prefix(`notification:${username}:`).json();
+            const keys = await db.getAll().prefix(`notification:${username}:`).json();
             
-            if (nots) {
-                for (key in nots) {
+            if (keys) {
+                for (let key in keys) {
                     const parts = key.split(":");
                     const eventID = parts[2];
                     const event = await db.get(`event:${eventID}`).json();
                     notifications.push({
                         event: { ...event, id: eventID },
-                        info: nots[key],
+                        info: keys[key],
                     })
                 }
             }
@@ -37,6 +37,7 @@ async function getNotificationsPage(db, req, res) {
 }
 
 async function addNotifications(db, req, res) {
+
     const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const numberMin = req.body?.minimumtickets;

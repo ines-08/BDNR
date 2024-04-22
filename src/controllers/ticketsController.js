@@ -34,6 +34,7 @@ async function getTicketsPage(db, req, res) {
 };
 
 async function buyTickets(db, req, res) {
+
     const username = req.session.userInfo.username;
     const eventID = req.body?.event;
     const listType = req.body?.tickettype;
@@ -56,7 +57,7 @@ async function buyTickets(db, req, res) {
          "tickets": value
     }
     
-    try{
+    try {
 
         let oldEvent = await db.get(`event:${eventID}`).json();
         let oldData = await db.get(`purchase:${username}:${eventID}`).json();
@@ -68,7 +69,7 @@ async function buyTickets(db, req, res) {
             await db.put(`purchase:${username}:${eventID}`).value(JSON.stringify([data]));
         }
 
-        for (v in value) {
+        for (let v in value) {
             let oldTickets = await db.get(`ticket:${eventID}:${value[v].type}`).json();
             let data = {
                 'total_quantity': oldTickets.total_quantity,
@@ -91,28 +92,29 @@ async function buyTickets(db, req, res) {
 };
 
 async function deleteTickets(db, req, res) {
+
     const username = req.session.userInfo.username;
     const eventID = req.body.event;
 
     try {
+
         const purchase = await db.get(`purchase:${username}:${eventID}`).json();
         let oldEvent = await db.get(`event:${eventID}`).json();
 
         let mantained = [];
         let deleted = [];
         for (let key in purchase) {
-    
             if (purchase[key].date != req.body.date) {
                 mantained.push(purchase[key]);
+            } else {
+                deleted = purchase[key];
             }
-    
-            else deleted = purchase[key];
         }
         
         for (let index in deleted.tickets) {
     
             let oldTickets = await db.get(`ticket:${eventID}:${deleted.tickets[index].type}`).json();
-    
+
             let data = {
                 'total_quantity': oldTickets.total_quantity,
                 'current_quantity': oldTickets.current_quantity + Number(deleted.tickets[index].quantity),
@@ -132,7 +134,6 @@ async function deleteTickets(db, req, res) {
         req.flash('error', 'Error deleting tickets');
         res.redirect('/home');
     }
-    
 }
 
 module.exports = {

@@ -24,7 +24,7 @@ def process_data_chunk(keys, values, node):
     for key, value in zip(keys, values):
         process_data(key, value, node)
 
-def populate(data):
+def populate_parallel(data):
 
     keys = list(data.keys())
     values = list(data.values())
@@ -55,7 +55,7 @@ def main():
         data = json.load(file)
         file.close()
     
-    # populate(data)
+    # populate_parallel(data)
     populate_single(data)
 
 if __name__ == "__main__":

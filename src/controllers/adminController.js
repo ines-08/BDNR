@@ -3,16 +3,15 @@ const { v4: uuidv4 } = require('uuid');
 
 async function getStatistics(db, req, res) {
     let stats = {}
+
     const event_types = await utils.getEventTypeKeys(db);
-    
     for (const event_type of event_types) {
         const events = await db.get(`search:type:${event_type}`).json();
         let total = 0;
         stats[event_type] = {};
-        for (const event_id in events) {
-            
-            const ticket_types = await utils.getTicketTypes(db);
 
+        for (const event_id in events) {
+            const ticket_types = await utils.getTicketTypes(db);
             for (const ticket_type in ticket_types) {
                 const details = await db.get(`ticket:${events[event_id]}:${ticket_types[ticket_type]}`).json();
                 const price_per_ticket_type = details.price * (details.total_quantity - details.current_quantity);
@@ -23,6 +22,7 @@ async function getStatistics(db, req, res) {
                     stats[event_type][ticket_types[ticket_type]] += price_per_ticket_type;
             }
         }
+
         stats[event_type]['total'] = total;
     }
     return stats;
@@ -40,7 +40,7 @@ async function createEvent(db, req, res) {
 
     try {
         
-        // add event
+        // Add event
         const eventInfo = { 
             name: req.body.eventName,
             description : req.body.eventDescription,
@@ -51,7 +51,7 @@ async function createEvent(db, req, res) {
         }
         await db.put(`event:${event_id}`).value(JSON.stringify(eventInfo));
 
-        // add tickets
+        // Add tickets
         for (const ticketType of ticketTypes) {
             const ticketTypeLowerCase = ticketType.toLowerCase();
             const quantityKey = `${ticketTypeLowerCase}TotalQuantity`;
@@ -65,7 +65,7 @@ async function createEvent(db, req, res) {
             await db.put(`ticket:${event_id}:${ticketTypeLowerCase}`).value(JSON.stringify(ticketInfo));
         }
 
-        // add words to search index
+        // Add words to search index
         const words = utils.getWords([req.body.eventName, req.body.eventDescription, req.body.eventLocation]);
         for (const word of words) {
             const wordIndex = await db.get(`search:text:${word}`);
@@ -79,7 +79,7 @@ async function createEvent(db, req, res) {
             }
         }
 
-        // add location and type to their respective indexes
+        // Add location and type to their respective indexes
         const eventTypeKeys = await utils.getEventTypeKeys(db);
         const eventLocationKeys = await utils.getEventLocationKeys(db);
         const eventTypeAndLocationKeys = eventTypeKeys.concat(eventLocationKeys);
@@ -93,11 +93,11 @@ async function createEvent(db, req, res) {
             }
         }
 
-        req.flash('success', 'Event successfully generated');
+        req.flash('success', 'Event successfully generated!');
         res.redirect(`/home`);
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in creating event action!');
         res.redirect('/home');
     }
 }
@@ -115,7 +115,7 @@ async function getAdminPage(db, req, res) {
                 const nodeInfo = await utils.getNodeInfo(node);
                 nodes.push(JSON.stringify(nodeInfo))
             } catch (error) {
-                nodes.push(JSON.stringify({ name: node, message: "NOT FOUND, MORREU!" }));
+                nodes.push(JSON.stringify({ name: node, message: "Node not alive!" }));
             }
         }
 
@@ -135,7 +135,7 @@ async function getAdminPage(db, req, res) {
         });
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in getting Admin page details');
         res.redirect('/home');
     }
 }

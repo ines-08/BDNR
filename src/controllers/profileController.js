@@ -50,7 +50,7 @@ async function getProfilePage(db, req, res) {
         });
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in getting Profile page details');
         res.redirect('/');
     }
 }

@@ -1,4 +1,3 @@
-from operator import ge
 from faker import Faker
 import sys
 import json
@@ -15,6 +14,7 @@ with open(config_path, 'r') as file:
     config = json.load(file)
     file.close()
 
+# Load configs
 NUM_USERS = config['NUM_USERS']
 NUM_EVENTS = config['NUM_EVENTS']
 ADMIN_PROBABILITY = config['ADMIN_PROBABILITY']

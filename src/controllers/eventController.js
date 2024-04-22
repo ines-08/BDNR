@@ -21,11 +21,7 @@ async function getEventPage(db, req, res) {
         }
 
         const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
-
-        let isFavourites = false;
-        if (favourites) {
-            isFavourites = favourites.includes(eventID);
-        }
+        const isFavourites = favourites ? favourites.includes(eventID) : false;
     
         res.render('event', {
             user: req.session.userInfo,
@@ -52,8 +48,7 @@ async function addFavourite(db, req, res){
 
         if (!favourites) {
             await db.put(`favourite:${req.session.userInfo.username}`).value(JSON.stringify([eventID]));
-        }
-        else {
+        } else {
             favourites.push(eventID);
             await db.put(`favourite:${req.session.userInfo.username}`).value(JSON.stringify(favourites));
         }
@@ -72,8 +67,8 @@ async function removeFavourite(db, req, res){
     const eventID = req.body.eventID;
 
     try {
+        
         const favourites = await db.get(`favourite:${req.session.userInfo.username}`).json();
-
         if (favourites) {
             const updatedFavs = favourites.filter(item => item !== eventID);
             await db.put(`favourite:${req.session.userInfo.username}`).value(JSON.stringify(updatedFavs));
