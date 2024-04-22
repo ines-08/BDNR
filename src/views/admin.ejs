@@ -128,19 +128,17 @@
 
       <script>
         document.addEventListener('DOMContentLoaded', function () {
-          var statistics = <% - JSON.stringify(statistics) %>;
+          // Define statistics variable using EJS
+          var statistics = <%- JSON.stringify(statistics) %>; // disclaimer: vs code highlights error but this line works fine
+
+          // JavaScript code to create pie charts
           var types = Object.keys(statistics);
           types.forEach(function (type) {
             var ctx = document.getElementById(type + 'Chart').getContext('2d');
             var dataKeys = Object.keys(statistics[type]).filter(key => key !== 'total');
             var dataValues = dataKeys.map(key => statistics[type][key]);
-            var total = dataValues.reduce((acc, cur) => acc + cur, 0); 
-            var dataColors = [
-              'green',
-              'pink',
-              'red',
-              'yellow'
-            ];
+            var total = dataValues.reduce((acc, cur) => acc + cur, 0); // Calculate total
+            var dataColors = [<%- ticketTypes.map(type => `'${type.toLowerCase()}'`).join(', ') %>];
             var myChart = new Chart(ctx, {
               type: 'doughnut',
               data: {
