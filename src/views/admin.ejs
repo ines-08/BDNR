@@ -117,39 +117,47 @@
                   <span class="font-semibold text-gray-600">Name:</span>
                   <span class="text-gray-800"><%= node.name %></span>
                 </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">ID:</span>
-                  <span class="text-gray-800"><%= node.id %></span>
-                </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">State:</span>
-                  <span class="text-gray-800"><%= node.state %></span>
-                </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">Start Time:</span>
-                  <span class="text-gray-800"><%= node.startTime %></span>
-                </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">Leader:</span>
-                  <span class="text-gray-800"><%= node.leaderInfo.leader %></span>
-                </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">Uptime:</span>
-                  <span class="text-gray-800"><%= node.leaderInfo.uptime %></span>
-                </div>
-                <div class="mb-4">
-                  <span class="font-semibold text-gray-600">Recv Append Request Count:</span>
-                  <span class="text-gray-800"><%= node.recvAppendRequestCnt %></span>
-                </div>
-                <div>
-                  <span class="font-semibold text-gray-600">Send Append Request Count:</span>
-                  <span class="text-gray-800"><%= node.sendAppendRequestCnt %></span>
-                </div>
+                <% if (node.error_message) { %>
+                  <div class="mb-4">
+                    <span class="font-semibold text-red-600">Error Message:</span>
+                    <span class="text-red-800"><%= node.error_message %></span>
+                  </div>
+                <% } else { %>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">ID:</span>
+                    <span class="text-gray-800"><%= node.id %></span>
+                  </div>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">State:</span>
+                    <span class="text-gray-800"><%= node.state %></span>
+                  </div>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">Start Time:</span>
+                    <span class="text-gray-800"><%= node.startTime %></span>
+                  </div>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">Leader:</span>
+                    <span class="text-gray-800"><%= node.leaderInfo.leader %></span>
+                  </div>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">Uptime:</span>
+                    <span class="text-gray-800"><%= node.leaderInfo.uptime %></span>
+                  </div>
+                  <div class="mb-4">
+                    <span class="font-semibold text-gray-600">Recv Append Request Count:</span>
+                    <span class="text-gray-800"><%= node.recvAppendRequestCnt %></span>
+                  </div>
+                  <div>
+                    <span class="font-semibold text-gray-600">Send Append Request Count:</span>
+                    <span class="text-gray-800"><%= node.sendAppendRequestCnt %></span>
+                  </div>
+                <% } %>
               </div>
             </div>
             <% }); %>
           </div>
         </div>
+        
         
         
       </div>

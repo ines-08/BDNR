@@ -114,7 +114,7 @@ async function getAdminPage(db, req, res) {
                 const nodeInfo = await utils.getNodeInfo(node);
                 nodes.push(nodeInfo)
             } catch (error) {
-                nodes.push(JSON.stringify({ name: node, message: "Node not alive!" }));
+                nodes.push({ name: node, error_message: "Node not alive!" });
             }
         }
 
