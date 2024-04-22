@@ -5,16 +5,21 @@ const flash = require("connect-flash");
 const profileRoutes = require('./routes/profileRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const eventRoutes = require('./routes/eventRoutes');
+const ticketsRoutes = require('./routes/ticketsRoutes')
 const rootRoutes = require('./routes/rootRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const utils = require('./utils/utils');
 
 const { Etcd3 } = require("etcd3");
 const { getSearchResults } = require('./controllers/apiController');
+const notificationsRoutes = require("./routes/notificationsRoutes");
 
 const app = express();
 const db = new Etcd3({ hosts: utils.config.cluster.dev });
 const PORT = utils.config.port
+
+const watchers = [];
+app.locals.watchers = watchers;
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +32,7 @@ app.set('views', './views');
 app.use('/', rootRoutes(db));
 app.use('/login', rootRoutes(db));
 app.use('/register', rootRoutes(db));
+app.use('/logout', rootRoutes(db));
 
 // Home
 app.use('/home', homeRoutes(db));
@@ -36,6 +42,15 @@ app.use('/admin', adminRoutes(db));
 
 // Event
 app.use('/event', eventRoutes(db));
+
+// Tickets
+app.use('/tickets', ticketsRoutes(db));
+app.use('/buytickets', ticketsRoutes(db));
+app.use('/deletetickets', ticketsRoutes(db));
+
+// Notification
+app.use('/notifications', notificationsRoutes(db));
+app.use('/addnotifications', notificationsRoutes(db, watchers));
 
 // Profile
 app.use('/profile', profileRoutes(db));

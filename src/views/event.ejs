@@ -4,50 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TickETCD</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
 
-  <header>
-    <h1>TickETCD</h1>
-    <h2>Consistency in Every Ticket</h2>
-  </header>
+  <%- include('header.ejs') %>
 
-  <main>
+  <main class="max-w-4xl px-4 py-10 mx-auto">
+    
+    <%- include('feedback.ejs') %>
 
-    <h2>Event '<%= event.name %>'<h2>
-    <h4><%= event.description %></h4>
-    <h4>In: <%= event.location %></h4>
-    <h4>Type: <%= event.type %></h4>
-    <h4>Date: <%= event.date %></h4>
-    <h4>Current we've <%= event.current_quantity %> total tickets to purchase</h4>
+    <div class="md:flex md:justify-between">
+      <div class="md:w-2/3 md:pr-8">
+        <h2 class="mb-4 text-2xl font-bold">Event '<%= event.name %>'</h2>
+        <p class="mb-2"><%= event.description %></p>
+        <p class="mb-2">Location: <%= event.location %></p>
+        <p class="mb-2">Type: <%= event.type %></p>
+        <p class="mb-2">Date: <%= event.date %></p>
+        <p class="mb-8">Currently we have <%= event.current_quantity %> total tickets available</p>
 
-    <hr></hr>
+        <div class="mt-9">
+          <h3 class="mb-4 text-lg font-semibold">Tickets Details</h3>
 
-    <h3>Tickets details</h3>
+          <% if (tickets && tickets.length > 0) { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <% tickets.forEach(ticket => { %>
+                <div class="p-4 border border-gray-200 rounded-md">
+                  <h4 class="mb-2 text-lg font-semibold"><%= ticket.type %></h4>
+                  <ul>
+                    <li>Price: <%= ticket.price %> $</li>
+                    <li>Current quantity: <%= ticket.current_quantity %></li>
+                    <li>Total quantity: <%= ticket.total_quantity %></li>
+                  </ul>
+                </div>
+              <% }); %>
+            </div>
+            <br><br><br>
+          <% } else { %>
+            <p>No tickets found!</p>
+          <% } %>
+        </div>
+      </div>
 
-    <% if (tickets && tickets.length > 0) { %>
-      <ul>
-        <% tickets.forEach(ticket => { %>
-          <li><%= ticket.type %></li>
-          <ul>
-            <li>Price: <%= ticket.price %></li>
-            <li>Current quantity: <%= ticket.current_quantity %></li>
-            <li>Total quantity: <%= ticket.total_quantity %></li>
-          </ul>
-        <% }); %>
-      </ul>
-    <% } else { %>
-      <p>No tickets found!</p>
-    <% } %>
+      <div class="md:w-1/3 md:pr-8">
+        <div class="flex flex-col items-center md:items-end">
+      
+          <div class="w-full">
+            <form method="GET" action="/tickets?eventid=<%= eventid %>" class="mb-4" id="ticketForm">
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow" id="buyTicketsBtn">
+                Buy Tickets
+              </button>
+            </form>
+          </div>
+      
+          <div class="w-full">
+            <form method="POST" action="/event/<%= isFavourite ? 'remove-favourite' : 'add-favourite' %>" class="mb-4">
+              <input value="<%= eventID %>" name="eventID" type="hidden">
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">
+                <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
+              </button>
+            </form>
+          </div>
+      
+          <div class="w-full">
+            <button id="notify" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">
+              Notify
+            </button>
+          </div>
+      
+          <div class="w-full">
+            <form id="notifyforms" class="hidden" action="/notifications/addnotifications" method="POST">
+              <br>
+              <label class="block mb-2">Minimum number of tickets to be notified:</label>
+              <input type="number" name="minimumtickets" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+              <input type="hidden" name="event" value="<%= eventid %>" />
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <script>
+      document.getElementById('notify').addEventListener('click', function() {
+        document.getElementById('notifyforms').classList.remove('hidden');
+      });
+
+      document.getElementById("buyTicketsBtn").addEventListener("click", function(event) {
+      event.preventDefault();
+      var formAction = document.getElementById("ticketForm").getAttribute("action");
+      window.location.href = formAction;
+    });
+    </script>
 
   </main>
 
-  <hr>
+  <hr class="my-6">
 
-  <footer>
-    <p>BDNR @ 2024</p>
-  </footer>
+  <%- include('footer.ejs') %>
 
 </body>
 </html>

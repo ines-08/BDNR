@@ -12,7 +12,9 @@ script_dir = os.path.dirname(__file__)
 config_path = os.path.join(script_dir, 'configurations.json')
 with open(config_path, 'r') as file:
     config = json.load(file)
+    file.close()
 
+# Load configs
 NUM_USERS = config['NUM_USERS']
 NUM_EVENTS = config['NUM_EVENTS']
 ADMIN_PROBABILITY = config['ADMIN_PROBABILITY']
@@ -162,7 +164,7 @@ def generate_purchases(user_data, event_data, tickets_data):
                     # If we have at least one purchased ticket, insert record
                     if len(purchase_tickets):
                         event_purchases.append({
-                            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y %H:%M"),
+                            "date": fake.future_datetime(end_date='+30d').strftime("%d-%m-%Y, %H:%M:%S"),
                             "tickets": purchase_tickets
                         })
 
@@ -180,9 +182,20 @@ def generate_notifications(user_data, event_data):
             n_tickets = info['current_quantity']
             if random.random() < NOTIFICATION_PROBABILITY and n_tickets > 0:
                 event_id = event.split(':')[1]
-                notifications[f'notification:{user_id}:{event_id}'] = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
+                limit = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
+                notifications[f'notification:{user_id}:{event_id}'] = {
+                    'limit': limit,
+                    'active': False,
+                }
 
     return notifications
+
+def generate_static_data():
+    return {
+        'event:locations': EVENT_LOCATIONS,
+        'event:types': EVENT_TYPES,
+        'ticket:types': [*TICKET_TYPES],
+    }
 
 def main():
 
@@ -199,6 +212,7 @@ def main():
     tickets_data = generate_tickets(event_data)
     purchase_data = generate_purchases(user_data, event_data, tickets_data)
     notifications_data = generate_notifications(user_data, event_data)
+    static_data = generate_static_data()
 
     data = { 
         **user_data, 
@@ -210,6 +224,7 @@ def main():
         **tickets_data,
         **purchase_data,
         **notifications_data,
+        **static_data,
     }
 
     with open(sys.argv[1], "w") as file:

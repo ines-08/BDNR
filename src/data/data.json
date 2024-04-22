@@ -1,1290 +1,1025 @@
 {
-  "user:ymckee": {
-    "name": "Robin Salazar",
-    "email": "lowens@example.org",
-    "password": "YEiDXvMUFh",
+  "user:felicia50": {
+    "name": "Karen Richard",
+    "email": "kylesullivan@example.com",
+    "password": "DkEmScxECD",
     "role": "admin"
   },
-  "user:andrew12": {
-    "name": "Wesley Brooks",
-    "email": "josephstewart@example.com",
-    "password": "WOGRLaYpkc",
+  "user:lindseyashley": {
+    "name": "Megan Holmes",
+    "email": "heatheratkins@example.com",
+    "password": "IHUAWInhAE",
     "role": "user"
   },
-  "user:alexis31": {
-    "name": "Ann Davis",
-    "email": "vmoore@example.com",
-    "password": "OBXlmTxHUv",
+  "user:garychavez": {
+    "name": "Tyler Thompson",
+    "email": "victoria95@example.com",
+    "password": "XRhudxkUka",
     "role": "user"
   },
-  "user:michellegarcia": {
-    "name": "Kenneth Cruz",
-    "email": "jennifer95@example.net",
-    "password": "XMpsgxHSxg",
+  "user:adambean": {
+    "name": "Cheyenne Ward",
+    "email": "anthony93@example.com",
+    "password": "SKUtHzNkkS",
     "role": "user"
   },
-  "user:oshelton": {
-    "name": "Melanie Garcia",
-    "email": "john88@example.org",
-    "password": "MjAhcbcWAS",
+  "user:allison28": {
+    "name": "Kristopher Perry",
+    "email": "turnertroy@example.org",
+    "password": "hUWSQlhEIS",
     "role": "user"
   },
-  "user:curtisrodriguez": {
-    "name": "Kathleen Villa",
-    "email": "erinlewis@example.org",
-    "password": "CPgfBOVNgk",
+  "user:yatesbradley": {
+    "name": "Savannah Avila",
+    "email": "brianwilson@example.net",
+    "password": "TrYttyHiOZ",
     "role": "user"
   },
-  "user:crawfordkathleen": {
-    "name": "Sara Bates",
-    "email": "william89@example.org",
-    "password": "nFhXErGbMI",
+  "user:josephbrown": {
+    "name": "Yvonne Martin",
+    "email": "thomas05@example.org",
+    "password": "GVeNdKpLXd",
     "role": "user"
   },
-  "user:lrodriguez": {
-    "name": "John Johnson",
-    "email": "bhernandez@example.com",
-    "password": "BZhMsLzXRN",
+  "user:ellisonsara": {
+    "name": "Tamara Solomon",
+    "email": "hcollier@example.net",
+    "password": "hAWvsVWIDD",
     "role": "user"
   },
-  "user:ahunter": {
-    "name": "Amanda Smith",
-    "email": "hmack@example.com",
-    "password": "DeCHItsPNh",
+  "user:ythompson": {
+    "name": "Kevin Lawrence",
+    "email": "deborah02@example.org",
+    "password": "QAkkHCyuCn",
     "role": "user"
   },
-  "user:boydthomas": {
-    "name": "Bryan Brown",
-    "email": "ymedina@example.org",
-    "password": "etyXnHrWHo",
+  "user:deborah01": {
+    "name": "Cody Young",
+    "email": "maryholmes@example.net",
+    "password": "cNiRFLgoFS",
     "role": "user"
   },
-  "event:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": {
-    "name": "Region affect night",
-    "description": "Evening special lose record process opportunity. Court home else fast. View significant moment whole hour condition.",
-    "location": "Scottland",
-    "type": "Concert",
-    "date": "27-04-2024 11:25",
-    "current_quantity": 37
+  "user:allisonwaters": {
+    "name": "Derek Rodgers",
+    "email": "ericmcclain@example.net",
+    "password": "RJRFPcgGyw",
+    "role": "user"
   },
-  "event:3637a940-dce8-4cb8-b69d-95b863416d10": {
-    "name": "North special around attack contain able",
-    "description": "Memory wonder necessary example difference break. Allow myself institution kid. Many interesting maintain guess lot here.",
-    "location": "East Jason",
-    "type": "Dance",
-    "date": "22-04-2024 05:38",
-    "current_quantity": 11
+  "event:92b3de5a-2805-4864-aed8-c5113dbc5aa5": {
+    "name": "Him common begin discover",
+    "description": "Wide open away early change. Feeling she on end according consider visit.",
+    "location": "Cardiff",
+    "type": "circus",
+    "date": "08-05-2024 08:27",
+    "current_quantity": 6
   },
-  "event:600694b6-3124-4597-b39b-c1b89bdf30ed": {
-    "name": "Design understand someone beautiful for",
-    "description": "Son clear consider. Body maybe worry position information. When at account deep.",
-    "location": "West Danielle",
-    "type": "Dance",
-    "date": "05-04-2024 02:46",
-    "current_quantity": 9
-  },
-  "event:4abbf297-5395-4215-8cce-eff707e7be84": {
-    "name": "Themselves whether book walk character fine",
-    "description": "Far product safe view. Heart thank mission. Mission degree many list travel support.",
-    "location": "Port Rhonda",
-    "type": "Dance",
-    "date": "20-04-2024 12:55",
-    "current_quantity": 27
-  },
-  "event:70865141-cf36-4d8c-9ae1-f7f1b24984c9": {
-    "name": "Military career establish these explain",
-    "description": "Writer identify from memory left. First between poor imagine stop easy concern. Total young look white local Democrat. Meet daughter teach spring nation thought prepare. Image major life per.",
-    "location": "Port Keith",
-    "type": "Magic",
-    "date": "20-04-2024 05:34",
-    "current_quantity": 0
-  },
-  "event:ed528d99-5ad7-401c-9ec4-00a58646a675": {
-    "name": "Mrs cell party idea",
-    "description": "Believe chair side city. Tree girl yourself. Republican discuss employee another late left. Music opportunity factor let truth exactly interesting forget.",
-    "location": "North Jennifer",
-    "type": "Concert",
-    "date": "23-04-2024 07:55",
+  "event:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "name": "Summer street dog statement indeed",
+    "description": "Open write either. Call her player entire. Other easy anyone news miss director.",
+    "location": "Glasgow",
+    "type": "dance",
+    "date": "26-04-2024 23:43",
     "current_quantity": 2
   },
-  "event:7b018ef5-8746-433d-8269-72ae7cd91808": {
-    "name": "Certainly agency guess teacher can director",
-    "description": "Enter stage guess watch. Air door only.",
-    "location": "Millerhaven",
-    "type": "Circus",
-    "date": "03-04-2024 07:15",
-    "current_quantity": 9
-  },
-  "event:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": {
-    "name": "I sort history candidate",
-    "description": "Foreign early chance more central business authority. These major by rock. Product industry beautiful wall.",
-    "location": "South Angelamouth",
-    "type": "Circus",
-    "date": "19-04-2024 18:01",
-    "current_quantity": 541
-  },
-  "event:6b4428c6-88f2-482c-b0f9-de4feb2cc892": {
-    "name": "Floor community go four",
-    "description": "Peace newspaper each seek finally indeed successful. Really month so every opportunity.",
-    "location": "North Brandon",
-    "type": "Theater",
-    "date": "19-04-2024 08:27",
+  "event:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "name": "Ten table simply small west",
+    "description": "Structure operation opportunity. Along whatever fact. Wait enough exist.",
+    "location": "Brighton",
+    "type": "concert",
+    "date": "08-05-2024 03:48",
     "current_quantity": 1
   },
-  "event:9a819fae-5576-463f-955d-f4e8313ea007": {
-    "name": "Someone nearly raise assume",
-    "description": "Good south decision. Have because figure word pay wear.",
-    "location": "Andersonmouth",
-    "type": "Magic",
-    "date": "22-04-2024 13:51",
-    "current_quantity": 161
+  "event:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": {
+    "name": "Reveal old cultural",
+    "description": "Check company various leave road draw significant. Decide customer top behind fine.",
+    "location": "Cambridge",
+    "type": "circus",
+    "date": "22-04-2024 09:34",
+    "current_quantity": 215
   },
-  "search:event:view": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3",
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "event:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": {
+    "name": "Five international there sort",
+    "description": "Wait sign per. History without why. Doctor explain decide just. Possible cause pick particularly break usually.",
+    "location": "Brighton",
+    "type": "concert",
+    "date": "17-05-2024 21:01",
+    "current_quantity": 11
+  },
+  "event:842d2338-b3ea-48b8-b038-a6aa19349822": {
+    "name": "Exist surface material information",
+    "description": "Keep off piece personal great. Matter white right easy but memory yes. Play consumer former federal officer strategy join.",
+    "location": "Portsmouth",
+    "type": "concert",
+    "date": "26-04-2024 07:05",
+    "current_quantity": 75
+  },
+  "event:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "name": "Sure hundred daughter him",
+    "description": "Sea others operation south rate on study. Research citizen glass phone glass it anything. Movie need represent cause management. Hot unit price vote down fight create. Eye rate admit provide.",
+    "location": "Portsmouth",
+    "type": "concert",
+    "date": "18-05-2024 05:11",
+    "current_quantity": 5
+  },
+  "event:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "name": "Research service find save need",
+    "description": "Nature east likely. Minute form future poor.",
+    "location": "Cambridge",
+    "type": "dance",
+    "date": "09-05-2024 18:33",
+    "current_quantity": 107
+  },
+  "event:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": {
+    "name": "Experience contain training once student",
+    "description": "Scene real part doctor partner smile. Into just behind campaign ball word.",
+    "location": "York",
+    "type": "magic",
+    "date": "24-04-2024 19:05",
+    "current_quantity": 121
+  },
+  "event:08f04a1d-01b4-4fd8-985c-3dd97b60509e": {
+    "name": "Offer him very like",
+    "description": "Drive through produce glass indeed. Man account cup area matter ground generation. Political different black person. Measure claim similar share.",
+    "location": "Sheffield",
+    "type": "circus",
+    "date": "06-05-2024 08:35",
+    "current_quantity": 3
+  },
+  "search:text:according": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:feeling": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:end": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:visit": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:cardiff": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:discover": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:away": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:him": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927",
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
+  ],
+  "search:text:consider": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:she": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:common": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:wide": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:early": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:on": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
+  ],
+  "search:text:change": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:begin": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
+  ],
+  "search:text:open": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:condition": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:glasgow": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:region": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:anyone": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:opportunity": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3",
-    "ed528d99-5ad7-401c-9ec4-00a58646a675",
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:text:dog": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:home": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:indeed": [
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:hour": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:miss": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:court": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:either": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:special": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3",
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:statement": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:scottland": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:summer": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:moment": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:director": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:whole": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:street": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:process": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:other": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:evening": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:her": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:lose": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:player": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:else": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:easy": [
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:night": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:entire": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:fast": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:news": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:significant": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:write": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:affect": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:call": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:record": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
+  "search:text:west": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:jason": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:ten": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:necessary": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:structure": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:difference": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:along": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:institution": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:table": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:east": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:simply": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:myself": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:opportunity": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:kid": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:enough": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:able": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:exist": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:contain": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:whatever": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:memory": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:brighton": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:maintain": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:wait": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:here": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:operation": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:guess": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:fact": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:wonder": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:small": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:break": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:behind": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:lot": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:cultural": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:attack": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:company": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:north": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "ed528d99-5ad7-401c-9ec4-00a58646a675",
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:text:reveal": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:around": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:cambridge": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:interesting": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:road": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:example": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:significant": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:allow": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
+  "search:text:fine": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:many": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:customer": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:consider": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:decide": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:at": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:leave": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:danielle": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:various": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:clear": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:top": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:position": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:draw": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:when": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:check": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:understand": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:old": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7"
   ],
-  "search:event:beautiful": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:break": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:account": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:particularly": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:west": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:cause": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:someone": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed",
-    "9a819fae-5576-463f-955d-f4e8313ea007"
+  "search:text:doctor": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:maybe": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:five": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:design": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:sign": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:for": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:per": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:body": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:explain": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:deep": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:history": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:worry": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:there": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:information": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:without": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:son": [
-    "600694b6-3124-4597-b39b-c1b89bdf30ed"
+  "search:text:possible": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:travel": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:pick": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:whether": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:international": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:far": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:sort": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:rhonda": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:usually": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:walk": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:why": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:product": [
-    "4abbf297-5395-4215-8cce-eff707e7be84",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:just": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:safe": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:join": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:port": [
-    "4abbf297-5395-4215-8cce-eff707e7be84",
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:strategy": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:degree": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:play": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:character": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:matter": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822",
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:mission": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:right": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:book": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:consumer": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:themselves": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:former": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:thank": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:federal": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:fine": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:material": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:heart": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:personal": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:list": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:keep": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:support": [
-    "4abbf297-5395-4215-8cce-eff707e7be84"
+  "search:text:yes": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:nation": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:officer": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:stop": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:but": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:career": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:off": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:these": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:piece": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:life": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:white": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:thought": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:great": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:poor": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:memory": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:young": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:surface": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:white": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:information": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:concern": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:portsmouth": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:imagine": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:anything": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:military": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:unit": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:prepare": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:study": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:writer": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:down": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:look": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:phone": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:meet": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:hundred": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:identify": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:glass": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927",
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:teach": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:eye": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:major": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:management": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:left": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9",
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:daughter": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:image": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:create": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:per": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:hot": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:between": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:research": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:easy": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:need": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:establish": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:fight": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:total": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:admit": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:democrat": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:movie": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:first": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:provide": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:local": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:rate": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:spring": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:south": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:keith": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:it": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:explain": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:price": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:from": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:others": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:daughter": [
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9"
+  "search:text:citizen": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:forget": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:represent": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:cell": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:vote": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:believe": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:sure": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:yourself": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:sea": [
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:jennifer": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:poor": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:city": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:minute": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:idea": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:form": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:employee": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:future": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:truth": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:find": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:another": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:likely": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:party": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:service": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:tree": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:save": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:music": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:nature": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:chair": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:east": [
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:let": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:contain": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:side": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:smile": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:republican": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:once": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:discuss": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:student": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:mrs": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:campaign": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:girl": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:york": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:exactly": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:experience": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:factor": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:ball": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:late": [
-    "ed528d99-5ad7-401c-9ec4-00a58646a675"
+  "search:text:scene": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:door": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:partner": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:only": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:word": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:millerhaven": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:part": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:can": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:real": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:stage": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:training": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:air": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:into": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:agency": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:produce": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:director": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:black": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:enter": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:political": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:watch": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:sheffield": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:teacher": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:offer": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:certainly": [
-    "7b018ef5-8746-433d-8269-72ae7cd91808"
+  "search:text:generation": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:history": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:ground": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:authority": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:cup": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:central": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:man": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:early": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:different": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:rock": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:measure": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:more": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:claim": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:business": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:like": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:south": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77",
-    "9a819fae-5576-463f-955d-f4e8313ea007"
+  "search:text:very": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:sort": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:account": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:candidate": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:through": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:chance": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:area": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:industry": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:person": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:i": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:share": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:wall": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:similar": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:angelamouth": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:text:drive": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:foreign": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:type:concert": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "842d2338-b3ea-48b8-b038-a6aa19349822",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:by": [
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
+  "search:type:theater": [],
+  "search:type:dance": [
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:so": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:type:magic": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:month": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:type:circus": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:four": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:London": [],
+  "search:location:Manchester": [],
+  "search:location:Liverpool": [],
+  "search:location:Birmingham": [],
+  "search:location:Glasgow": [
+    "39b543d1-e093-4f65-9545-022cdca6af95"
   ],
-  "search:event:successful": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:Leeds": [],
+  "search:location:Sheffield": [
+    "08f04a1d-01b4-4fd8-985c-3dd97b60509e"
   ],
-  "search:event:floor": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:Newcastle": [],
+  "search:location:Bristol": [],
+  "search:location:Cardiff": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5"
   ],
-  "search:event:every": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:Edinburgh": [],
+  "search:location:Belfast": [],
+  "search:location:Southampton": [],
+  "search:location:Nottingham": [],
+  "search:location:Brighton": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:newspaper": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:Leicester": [],
+  "search:location:Portsmouth": [
+    "842d2338-b3ea-48b8-b038-a6aa19349822",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:finally": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:York": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:each": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "search:location:Oxford": [],
+  "search:location:Cambridge": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1"
   ],
-  "search:event:indeed": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:lindseyashley": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:seek": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:garychavez": [
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "dc5fa693-c4b4-4993-8fcc-e62fccf2f927"
   ],
-  "search:event:really": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:adambean": [
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:community": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:allison28": [
+    "92b3de5a-2805-4864-aed8-c5113dbc5aa5",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1",
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:go": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:yatesbradley": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "8ca9be86-03d5-48f3-a5b8-d054f2f02bb1",
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:peace": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:josephbrown": [
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb",
+    "842d2338-b3ea-48b8-b038-a6aa19349822"
   ],
-  "search:event:brandon": [
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
+  "favourite:ellisonsara": [
+    "f17f5f7b-0b19-4c21-beb6-0a6fd27e328d"
   ],
-  "search:event:pay": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
+  "favourite:ythompson": [
+    "2abd4a42-e449-42d1-a80a-3bbc74b42cb7",
+    "21254782-2d2a-4ef2-b8b0-f73b66bf0a8f"
   ],
-  "search:event:wear": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
+  "favourite:deborah01": [],
+  "favourite:allisonwaters": [
+    "39b543d1-e093-4f65-9545-022cdca6af95",
+    "4b9f6de3-a2c0-4488-b738-1019de9ff3cb"
   ],
-  "search:event:nearly": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:good": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:raise": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:figure": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:assume": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:have": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:andersonmouth": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:word": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:because": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "search:event:decision": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "favourite:ymckee": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "600694b6-3124-4597-b39b-c1b89bdf30ed",
-    "4abbf297-5395-4215-8cce-eff707e7be84"
-  ],
-  "favourite:andrew12": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3"
-  ],
-  "favourite:alexis31": [
-    "0bb8a6f6-22ed-4952-bd1e-8e7494764ca3",
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "600694b6-3124-4597-b39b-c1b89bdf30ed",
-    "7b018ef5-8746-433d-8269-72ae7cd91808",
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
-  ],
-  "favourite:michellegarcia": [
-    "4abbf297-5395-4215-8cce-eff707e7be84",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
-  ],
-  "favourite:oshelton": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "600694b6-3124-4597-b39b-c1b89bdf30ed",
-    "70865141-cf36-4d8c-9ae1-f7f1b24984c9",
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "favourite:curtisrodriguez": [
-    "4abbf297-5395-4215-8cce-eff707e7be84",
-    "ed528d99-5ad7-401c-9ec4-00a58646a675",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77"
-  ],
-  "favourite:crawfordkathleen": [],
-  "favourite:lrodriguez": [
-    "9a819fae-5576-463f-955d-f4e8313ea007"
-  ],
-  "favourite:ahunter": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10",
-    "0f8ae5a9-3a3e-4497-9ab9-375836d72c77",
-    "6b4428c6-88f2-482c-b0f9-de4feb2cc892"
-  ],
-  "favourite:boydthomas": [
-    "3637a940-dce8-4cb8-b69d-95b863416d10"
-  ],
-  "ticket:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3:pink": {
-    "total_quantity": 52,
+  "ticket:92b3de5a-2805-4864-aed8-c5113dbc5aa5:pink": {
+    "total_quantity": 34,
     "current_quantity": 0,
-    "price": 169.13
+    "price": 161.53
   },
-  "ticket:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3:yellow": {
-    "total_quantity": 97,
-    "current_quantity": 2,
-    "price": 331.88
-  },
-  "ticket:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3:green": {
-    "total_quantity": 315,
-    "current_quantity": 4,
-    "price": 74.44
-  },
-  "ticket:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3:red": {
-    "total_quantity": 418,
-    "current_quantity": 31,
-    "price": 50.05
-  },
-  "ticket:3637a940-dce8-4cb8-b69d-95b863416d10:pink": {
-    "total_quantity": 76,
+  "ticket:92b3de5a-2805-4864-aed8-c5113dbc5aa5:yellow": {
+    "total_quantity": 95,
     "current_quantity": 0,
-    "price": 149.16
+    "price": 349.3
   },
-  "ticket:3637a940-dce8-4cb8-b69d-95b863416d10:yellow": {
-    "total_quantity": 88,
+  "ticket:92b3de5a-2805-4864-aed8-c5113dbc5aa5:green": {
+    "total_quantity": 314,
     "current_quantity": 6,
-    "price": 346.38
+    "price": 73.92
   },
-  "ticket:3637a940-dce8-4cb8-b69d-95b863416d10:green": {
-    "total_quantity": 324,
-    "current_quantity": 5,
-    "price": 79.01
-  },
-  "ticket:3637a940-dce8-4cb8-b69d-95b863416d10:red": {
-    "total_quantity": 109,
+  "ticket:92b3de5a-2805-4864-aed8-c5113dbc5aa5:red": {
+    "total_quantity": 498,
     "current_quantity": 0,
-    "price": 62.32
+    "price": 62.81
   },
-  "ticket:600694b6-3124-4597-b39b-c1b89bdf30ed:pink": {
-    "total_quantity": 39,
-    "current_quantity": 0,
-    "price": 152.93
+  "ticket:39b543d1-e093-4f65-9545-022cdca6af95:pink": {
+    "total_quantity": 74,
+    "current_quantity": 2,
+    "price": 146.52
   },
-  "ticket:600694b6-3124-4597-b39b-c1b89bdf30ed:yellow": {
-    "total_quantity": 80,
-    "current_quantity": 0,
-    "price": 271.8
-  },
-  "ticket:600694b6-3124-4597-b39b-c1b89bdf30ed:green": {
-    "total_quantity": 102,
-    "current_quantity": 9,
-    "price": 79.13
-  },
-  "ticket:600694b6-3124-4597-b39b-c1b89bdf30ed:red": {
-    "total_quantity": 300,
-    "current_quantity": 0,
-    "price": 51.16
-  },
-  "ticket:4abbf297-5395-4215-8cce-eff707e7be84:pink": {
-    "total_quantity": 24,
-    "current_quantity": 0,
-    "price": 184.52
-  },
-  "ticket:4abbf297-5395-4215-8cce-eff707e7be84:yellow": {
+  "ticket:39b543d1-e093-4f65-9545-022cdca6af95:yellow": {
     "total_quantity": 88,
-    "current_quantity": 23,
-    "price": 333.65
-  },
-  "ticket:4abbf297-5395-4215-8cce-eff707e7be84:green": {
-    "total_quantity": 429,
-    "current_quantity": 4,
-    "price": 71.15
-  },
-  "ticket:4abbf297-5395-4215-8cce-eff707e7be84:red": {
-    "total_quantity": 588,
     "current_quantity": 0,
-    "price": 68.41
+    "price": 339.44
   },
-  "ticket:70865141-cf36-4d8c-9ae1-f7f1b24984c9:pink": {
-    "total_quantity": 80,
+  "ticket:39b543d1-e093-4f65-9545-022cdca6af95:green": {
+    "total_quantity": 498,
     "current_quantity": 0,
-    "price": 118.84
+    "price": 74.92
   },
-  "ticket:70865141-cf36-4d8c-9ae1-f7f1b24984c9:yellow": {
-    "total_quantity": 81,
+  "ticket:39b543d1-e093-4f65-9545-022cdca6af95:red": {
+    "total_quantity": 282,
     "current_quantity": 0,
-    "price": 298.01
+    "price": 55.01
   },
-  "ticket:70865141-cf36-4d8c-9ae1-f7f1b24984c9:green": {
-    "total_quantity": 360,
+  "ticket:4b9f6de3-a2c0-4488-b738-1019de9ff3cb:pink": {
+    "total_quantity": 27,
+    "current_quantity": 0,
+    "price": 173.7
+  },
+  "ticket:4b9f6de3-a2c0-4488-b738-1019de9ff3cb:yellow": {
+    "total_quantity": 97,
+    "current_quantity": 0,
+    "price": 282.96
+  },
+  "ticket:4b9f6de3-a2c0-4488-b738-1019de9ff3cb:green": {
+    "total_quantity": 281,
+    "current_quantity": 1,
+    "price": 70.28
+  },
+  "ticket:4b9f6de3-a2c0-4488-b738-1019de9ff3cb:red": {
+    "total_quantity": 342,
+    "current_quantity": 0,
+    "price": 51.39
+  },
+  "ticket:2abd4a42-e449-42d1-a80a-3bbc74b42cb7:pink": {
+    "total_quantity": 13,
+    "current_quantity": 8,
+    "price": 109.69
+  },
+  "ticket:2abd4a42-e449-42d1-a80a-3bbc74b42cb7:yellow": {
+    "total_quantity": 87,
+    "current_quantity": 0,
+    "price": 286.49
+  },
+  "ticket:2abd4a42-e449-42d1-a80a-3bbc74b42cb7:green": {
+    "total_quantity": 420,
+    "current_quantity": 207,
+    "price": 77.61
+  },
+  "ticket:2abd4a42-e449-42d1-a80a-3bbc74b42cb7:red": {
+    "total_quantity": 264,
+    "current_quantity": 0,
+    "price": 62.13
+  },
+  "ticket:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f:pink": {
+    "total_quantity": 47,
+    "current_quantity": 0,
+    "price": 168.88
+  },
+  "ticket:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f:yellow": {
+    "total_quantity": 90,
+    "current_quantity": 0,
+    "price": 307.95
+  },
+  "ticket:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f:green": {
+    "total_quantity": 176,
+    "current_quantity": 11,
+    "price": 70.14
+  },
+  "ticket:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f:red": {
+    "total_quantity": 152,
+    "current_quantity": 0,
+    "price": 69.18
+  },
+  "ticket:842d2338-b3ea-48b8-b038-a6aa19349822:pink": {
+    "total_quantity": 98,
+    "current_quantity": 66,
+    "price": 138.43
+  },
+  "ticket:842d2338-b3ea-48b8-b038-a6aa19349822:yellow": {
+    "total_quantity": 88,
+    "current_quantity": 3,
+    "price": 327.71
+  },
+  "ticket:842d2338-b3ea-48b8-b038-a6aa19349822:green": {
+    "total_quantity": 118,
     "current_quantity": 0,
     "price": 75.22
   },
-  "ticket:70865141-cf36-4d8c-9ae1-f7f1b24984c9:red": {
-    "total_quantity": 108,
+  "ticket:842d2338-b3ea-48b8-b038-a6aa19349822:red": {
+    "total_quantity": 534,
+    "current_quantity": 6,
+    "price": 55.21
+  },
+  "ticket:dc5fa693-c4b4-4993-8fcc-e62fccf2f927:pink": {
+    "total_quantity": 71,
     "current_quantity": 0,
-    "price": 56.18
+    "price": 146.91
   },
-  "ticket:ed528d99-5ad7-401c-9ec4-00a58646a675:pink": {
-    "total_quantity": 60,
-    "current_quantity": 0,
-    "price": 163.85
-  },
-  "ticket:ed528d99-5ad7-401c-9ec4-00a58646a675:yellow": {
-    "total_quantity": 100,
-    "current_quantity": 2,
-    "price": 258.18
-  },
-  "ticket:ed528d99-5ad7-401c-9ec4-00a58646a675:green": {
-    "total_quantity": 299,
-    "current_quantity": 0,
-    "price": 74.78
-  },
-  "ticket:ed528d99-5ad7-401c-9ec4-00a58646a675:red": {
-    "total_quantity": 306,
-    "current_quantity": 0,
-    "price": 55.61
-  },
-  "ticket:7b018ef5-8746-433d-8269-72ae7cd91808:pink": {
-    "total_quantity": 45,
-    "current_quantity": 0,
-    "price": 187.25
-  },
-  "ticket:7b018ef5-8746-433d-8269-72ae7cd91808:yellow": {
-    "total_quantity": 87,
-    "current_quantity": 0,
-    "price": 200.77
-  },
-  "ticket:7b018ef5-8746-433d-8269-72ae7cd91808:green": {
-    "total_quantity": 102,
+  "ticket:dc5fa693-c4b4-4993-8fcc-e62fccf2f927:yellow": {
+    "total_quantity": 86,
     "current_quantity": 1,
-    "price": 76.39
+    "price": 251.11
   },
-  "ticket:7b018ef5-8746-433d-8269-72ae7cd91808:red": {
-    "total_quantity": 576,
-    "current_quantity": 8,
-    "price": 52.97
-  },
-  "ticket:0f8ae5a9-3a3e-4497-9ab9-375836d72c77:pink": {
-    "total_quantity": 10,
-    "current_quantity": 5,
-    "price": 123.06
-  },
-  "ticket:0f8ae5a9-3a3e-4497-9ab9-375836d72c77:yellow": {
-    "total_quantity": 98,
-    "current_quantity": 1,
-    "price": 246.74
-  },
-  "ticket:0f8ae5a9-3a3e-4497-9ab9-375836d72c77:green": {
-    "total_quantity": 250,
+  "ticket:dc5fa693-c4b4-4993-8fcc-e62fccf2f927:green": {
+    "total_quantity": 272,
     "current_quantity": 4,
-    "price": 71.86
+    "price": 72.41
   },
-  "ticket:0f8ae5a9-3a3e-4497-9ab9-375836d72c77:red": {
-    "total_quantity": 531,
-    "current_quantity": 531,
-    "price": 58.17
-  },
-  "ticket:6b4428c6-88f2-482c-b0f9-de4feb2cc892:pink": {
-    "total_quantity": 89,
+  "ticket:dc5fa693-c4b4-4993-8fcc-e62fccf2f927:red": {
+    "total_quantity": 600,
     "current_quantity": 0,
-    "price": 129.08
+    "price": 56.37
   },
-  "ticket:6b4428c6-88f2-482c-b0f9-de4feb2cc892:yellow": {
-    "total_quantity": 98,
+  "ticket:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1:pink": {
+    "total_quantity": 87,
     "current_quantity": 1,
-    "price": 245.38
+    "price": 140.74
   },
-  "ticket:6b4428c6-88f2-482c-b0f9-de4feb2cc892:green": {
-    "total_quantity": 226,
+  "ticket:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1:yellow": {
+    "total_quantity": 90,
+    "current_quantity": 21,
+    "price": 261.23
+  },
+  "ticket:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1:green": {
+    "total_quantity": 216,
+    "current_quantity": 33,
+    "price": 79.49
+  },
+  "ticket:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1:red": {
+    "total_quantity": 340,
+    "current_quantity": 52,
+    "price": 51.45
+  },
+  "ticket:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d:pink": {
+    "total_quantity": 52,
+    "current_quantity": 6,
+    "price": 143.64
+  },
+  "ticket:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d:yellow": {
+    "total_quantity": 93,
+    "current_quantity": 6,
+    "price": 345.91
+  },
+  "ticket:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d:green": {
+    "total_quantity": 188,
+    "current_quantity": 109,
+    "price": 79.88
+  },
+  "ticket:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d:red": {
+    "total_quantity": 399,
     "current_quantity": 0,
-    "price": 74.23
+    "price": 54.29
   },
-  "ticket:6b4428c6-88f2-482c-b0f9-de4feb2cc892:red": {
-    "total_quantity": 367,
+  "ticket:08f04a1d-01b4-4fd8-985c-3dd97b60509e:pink": {
+    "total_quantity": 77,
+    "current_quantity": 2,
+    "price": 187.82
+  },
+  "ticket:08f04a1d-01b4-4fd8-985c-3dd97b60509e:yellow": {
+    "total_quantity": 81,
     "current_quantity": 0,
-    "price": 65.27
+    "price": 217.68
   },
-  "ticket:9a819fae-5576-463f-955d-f4e8313ea007:pink": {
-    "total_quantity": 70,
+  "ticket:08f04a1d-01b4-4fd8-985c-3dd97b60509e:green": {
+    "total_quantity": 343,
+    "current_quantity": 1,
+    "price": 74.53
+  },
+  "ticket:08f04a1d-01b4-4fd8-985c-3dd97b60509e:red": {
+    "total_quantity": 485,
     "current_quantity": 0,
-    "price": 109.63
+    "price": 51.65
   },
-  "ticket:9a819fae-5576-463f-955d-f4e8313ea007:yellow": {
-    "total_quantity": 99,
-    "current_quantity": 0,
-    "price": 269.11
-  },
-  "ticket:9a819fae-5576-463f-955d-f4e8313ea007:green": {
-    "total_quantity": 494,
-    "current_quantity": 144,
-    "price": 78.84
-  },
-  "ticket:9a819fae-5576-463f-955d-f4e8313ea007:red": {
-    "total_quantity": 101,
-    "current_quantity": 17,
-    "price": 53.78
-  },
-  "purchase:ymckee:3637a940-dce8-4cb8-b69d-95b863416d10": [
+  "purchase:lindseyashley:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
     {
-      "date": "27-04-2024 16:24",
+      "date": "27-04-2024, 01:35:59",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 55
+        }
+      ]
+    },
+    {
+      "date": "08-05-2024, 20:25:09",
       "tickets": [
         {
           "type": "pink",
-          "quantity": 42
-        }
-      ]
-    },
-    {
-      "date": "04-04-2024 22:58",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 12
-        },
-        {
-          "type": "green",
-          "quantity": 17
-        },
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "13-04-2024 16:35",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 11
-        },
-        {
-          "type": "green",
-          "quantity": 215
-        }
-      ]
-    }
-  ],
-  "purchase:ymckee:4abbf297-5395-4215-8cce-eff707e7be84": [
-    {
-      "date": "03-04-2024 16:48",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 229
-        }
-      ]
-    },
-    {
-      "date": "15-04-2024 21:18",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 273
-        }
-      ]
-    }
-  ],
-  "purchase:ymckee:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "04-04-2024 08:07",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 35
-        },
-        {
-          "type": "green",
-          "quantity": 342
-        }
-      ]
-    },
-    {
-      "date": "16-04-2024 10:40",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 25
-        },
-        {
-          "type": "green",
-          "quantity": 15
-        }
-      ]
-    },
-    {
-      "date": "10-04-2024 01:48",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 6
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:ymckee:7b018ef5-8746-433d-8269-72ae7cd91808": [
-    {
-      "date": "24-04-2024 17:15",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 49
-        },
-        {
-          "type": "green",
-          "quantity": 33
-        },
-        {
-          "type": "red",
-          "quantity": 542
-        }
-      ]
-    },
-    {
-      "date": "23-04-2024 01:20",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 25
-        },
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "date": "24-04-2024 07:28",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 19
-        },
-        {
-          "type": "green",
-          "quantity": 30
-        }
-      ]
-    }
-  ],
-  "purchase:ymckee:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "06-04-2024 18:39",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 8
-        },
-        {
-          "type": "green",
-          "quantity": 178
-        }
-      ]
-    }
-  ],
-  "purchase:andrew12:4abbf297-5395-4215-8cce-eff707e7be84": [
-    {
-      "date": "18-04-2024 19:19",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 24
-        }
-      ]
-    },
-    {
-      "date": "06-04-2024 02:52",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 24
-        },
-        {
-          "type": "yellow",
-          "quantity": 24
-        }
-      ]
-    },
-    {
-      "date": "20-04-2024 02:55",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 19
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 237
-        }
-      ]
-    }
-  ],
-  "purchase:andrew12:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "04-04-2024 09:00",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 78
-        },
-        {
-          "type": "red",
-          "quantity": 79
-        }
-      ]
-    },
-    {
-      "date": "24-04-2024 20:51",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 28
-        },
-        {
-          "type": "red",
-          "quantity": 38
-        }
-      ]
-    }
-  ],
-  "purchase:andrew12:7b018ef5-8746-433d-8269-72ae7cd91808": [
-    {
-      "date": "18-04-2024 12:25",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 10
-        },
-        {
-          "type": "green",
-          "quantity": 8
-        }
-      ]
-    },
-    {
-      "date": "18-04-2024 19:46",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 22
-        },
-        {
-          "type": "yellow",
-          "quantity": 2
-        },
-        {
-          "type": "green",
-          "quantity": 20
-        },
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "date": "11-04-2024 19:07",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 4
-        },
-        {
-          "type": "green",
-          "quantity": 9
-        },
-        {
-          "type": "red",
-          "quantity": 12
-        }
-      ]
-    }
-  ],
-  "purchase:andrew12:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "11-04-2024 22:31",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 21
-        }
-      ]
-    },
-    {
-      "date": "24-04-2024 12:53",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 62
+          "quantity": 5
         },
         {
           "type": "yellow",
@@ -1292,67 +1027,205 @@
         },
         {
           "type": "green",
-          "quantity": 32
+          "quantity": 195
+        }
+      ]
+    }
+  ],
+  "purchase:lindseyashley:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": [
+    {
+      "date": "11-05-2024, 12:37:42",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 46
+        }
+      ]
+    },
+    {
+      "date": "26-04-2024, 18:53:25",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 27
         },
         {
           "type": "red",
-          "quantity": 134
-        }
-      ]
-    },
-    {
-      "date": "18-04-2024 21:15",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 13
-        },
-        {
-          "type": "yellow",
-          "quantity": 36
-        },
-        {
-          "type": "green",
-          "quantity": 11
+          "quantity": 120
         }
       ]
     }
   ],
-  "purchase:alexis31:600694b6-3124-4597-b39b-c1b89bdf30ed": [
+  "purchase:lindseyashley:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
     {
-      "date": "18-04-2024 20:29",
+      "date": "08-05-2024, 09:39:48",
       "tickets": [
         {
-          "type": "pink",
-          "quantity": 23
-        },
-        {
-          "type": "yellow",
-          "quantity": 58
-        }
-      ]
-    },
-    {
-      "date": "10-04-2024 12:39",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 11
-        },
-        {
-          "type": "green",
-          "quantity": 32
+          "type": "red",
+          "quantity": 24
         }
       ]
     }
   ],
-  "purchase:alexis31:4abbf297-5395-4215-8cce-eff707e7be84": [
+  "purchase:lindseyashley:08f04a1d-01b4-4fd8-985c-3dd97b60509e": [
     {
-      "date": "30-04-2024 14:38",
+      "date": "16-05-2024, 10:38:22",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 64
+        },
+        {
+          "type": "yellow",
+          "quantity": 79
+        },
+        {
+          "type": "green",
+          "quantity": 185
+        },
+        {
+          "type": "red",
+          "quantity": 305
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024, 22:57:34",
       "tickets": [
         {
           "type": "yellow",
-          "quantity": 18
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 70
+        },
+        {
+          "type": "red",
+          "quantity": 14
+        }
+      ]
+    }
+  ],
+  "purchase:garychavez:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
+    {
+      "date": "12-05-2024, 04:21:27",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 29
+        },
+        {
+          "type": "yellow",
+          "quantity": 41
+        },
+        {
+          "type": "green",
+          "quantity": 26
+        },
+        {
+          "type": "red",
+          "quantity": 355
+        }
+      ]
+    },
+    {
+      "date": "15-05-2024, 01:00:25",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:garychavez:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "10-05-2024, 10:04:00",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 281
+        },
+        {
+          "type": "red",
+          "quantity": 103
+        }
+      ]
+    }
+  ],
+  "purchase:garychavez:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": [
+    {
+      "date": "30-04-2024, 00:45:29",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 20
+        }
+      ]
+    },
+    {
+      "date": "28-04-2024, 03:00:36",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 67
+        },
+        {
+          "type": "red",
+          "quantity": 288
+        }
+      ]
+    }
+  ],
+  "purchase:garychavez:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": [
+    {
+      "date": "06-05-2024, 16:06:52",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 65
+        }
+      ]
+    }
+  ],
+  "purchase:garychavez:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": [
+    {
+      "date": "25-04-2024, 16:10:11",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "yellow",
+          "quantity": 45
+        },
+        {
+          "type": "green",
+          "quantity": 67
+        }
+      ]
+    },
+    {
+      "date": "13-05-2024, 22:33:51",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 16
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024, 22:24:31",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 16
         },
         {
           "type": "green",
@@ -1360,140 +1233,475 @@
         },
         {
           "type": "red",
-          "quantity": 53
-        }
-      ]
-    },
-    {
-      "date": "13-04-2024 23:44",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 4
-        },
-        {
-          "type": "green",
-          "quantity": 77
-        },
-        {
-          "type": "red",
-          "quantity": 1
+          "quantity": 11
         }
       ]
     }
   ],
-  "purchase:alexis31:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
+  "purchase:garychavez:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": [
     {
-      "date": "26-04-2024 17:51",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 28
-        },
-        {
-          "type": "yellow",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "11-04-2024 23:56",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 15
-        },
-        {
-          "type": "yellow",
-          "quantity": 6
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "12-04-2024 11:36",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 9
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 9
-        }
-      ]
-    }
-  ],
-  "purchase:alexis31:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "07-04-2024 02:52",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 243
-        }
-      ]
-    },
-    {
-      "date": "27-04-2024 05:44",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 45
-        },
-        {
-          "type": "green",
-          "quantity": 12
-        }
-      ]
-    }
-  ],
-  "purchase:alexis31:9a819fae-5576-463f-955d-f4e8313ea007": [
-    {
-      "date": "07-04-2024 14:59",
+      "date": "18-05-2024, 01:16:56",
       "tickets": [
         {
           "type": "pink",
           "quantity": 50
         },
         {
-          "type": "yellow",
-          "quantity": 76
+          "type": "green",
+          "quantity": 191
         },
         {
-          "type": "green",
-          "quantity": 229
+          "type": "red",
+          "quantity": 278
         }
       ]
     },
     {
-      "date": "18-04-2024 01:46",
+      "date": "04-05-2024, 02:19:12",
       "tickets": [
         {
           "type": "yellow",
-          "quantity": 6
+          "quantity": 7
+        },
+        {
+          "type": "red",
+          "quantity": 317
+        }
+      ]
+    },
+    {
+      "date": "27-04-2024, 20:40:50",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 10
+        },
+        {
+          "type": "yellow",
+          "quantity": 10
         }
       ]
     }
   ],
-  "purchase:michellegarcia:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": [
+  "purchase:garychavez:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
     {
-      "date": "01-05-2024 14:19",
+      "date": "11-05-2024, 03:52:53",
       "tickets": [
         {
           "type": "pink",
-          "quantity": 51
+          "quantity": 30
+        },
+        {
+          "type": "yellow",
+          "quantity": 13
+        },
+        {
+          "type": "red",
+          "quantity": 314
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
+    {
+      "date": "27-04-2024, 13:44:29",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 25
+        },
+        {
+          "type": "red",
+          "quantity": 38
+        }
+      ]
+    },
+    {
+      "date": "20-05-2024, 17:27:22",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 104
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": [
+    {
+      "date": "05-05-2024, 05:33:26",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 73
+        },
+        {
+          "type": "green",
+          "quantity": 19
+        }
+      ]
+    },
+    {
+      "date": "09-05-2024, 00:49:17",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 13
+        },
+        {
+          "type": "green",
+          "quantity": 176
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": [
+    {
+      "date": "21-05-2024, 20:15:32",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 15
+        },
+        {
+          "type": "red",
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "date": "19-05-2024, 08:15:04",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 26
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": [
+    {
+      "date": "14-05-2024, 00:17:37",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "yellow",
+          "quantity": 15
+        },
+        {
+          "type": "red",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "date": "07-05-2024, 16:58:59",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 15
+        }
+      ]
+    },
+    {
+      "date": "07-05-2024, 09:46:12",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 31
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": [
+    {
+      "date": "09-05-2024, 23:47:47",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 26
+        },
+        {
+          "type": "green",
+          "quantity": 117
+        }
+      ]
+    },
+    {
+      "date": "24-04-2024, 16:19:22",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 50
+        },
+        {
+          "type": "green",
+          "quantity": 11
+        },
+        {
+          "type": "red",
+          "quantity": 284
+        }
+      ]
+    }
+  ],
+  "purchase:adambean:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
+    {
+      "date": "01-05-2024, 13:08:53",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 28
+        },
+        {
+          "type": "green",
+          "quantity": 31
+        },
+        {
+          "type": "red",
+          "quantity": 40
+        }
+      ]
+    }
+  ],
+  "purchase:allison28:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
+    {
+      "date": "15-05-2024, 21:24:02",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 18
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:allison28:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "16-05-2024, 13:39:40",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 171
+        }
+      ]
+    },
+    {
+      "date": "23-04-2024, 10:41:26",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 45
+        },
+        {
+          "type": "yellow",
+          "quantity": 86
+        },
+        {
+          "type": "red",
+          "quantity": 177
+        }
+      ]
+    }
+  ],
+  "purchase:allison28:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": [
+    {
+      "date": "07-05-2024, 06:48:21",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 50
+        },
+        {
+          "type": "red",
+          "quantity": 244
+        }
+      ]
+    },
+    {
+      "date": "17-05-2024, 22:47:34",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 3
+        },
+        {
+          "type": "green",
+          "quantity": 32
+        }
+      ]
+    }
+  ],
+  "purchase:allison28:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": [
+    {
+      "date": "06-05-2024, 10:51:56",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 28
+        }
+      ]
+    },
+    {
+      "date": "07-05-2024, 05:12:18",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 15
+        }
+      ]
+    }
+  ],
+  "purchase:yatesbradley:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "11-05-2024, 19:59:44",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024, 00:14:24",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 29
+        }
+      ]
+    }
+  ],
+  "purchase:yatesbradley:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": [
+    {
+      "date": "17-05-2024, 12:29:38",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 11
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "05-05-2024, 05:31:58",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "yellow",
+          "quantity": 3
+        },
+        {
+          "type": "green",
+          "quantity": 13
+        },
+        {
+          "type": "red",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:yatesbradley:842d2338-b3ea-48b8-b038-a6aa19349822": [
+    {
+      "date": "02-05-2024, 01:44:11",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 108
+        }
+      ]
+    },
+    {
+      "date": "08-05-2024, 07:56:54",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 524
+        }
+      ]
+    },
+    {
+      "date": "12-05-2024, 23:55:43",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 60
+        },
+        {
+          "type": "green",
+          "quantity": 5
+        }
+      ]
+    }
+  ],
+  "purchase:yatesbradley:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": [
+    {
+      "date": "13-05-2024, 14:36:30",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 8
+        }
+      ]
+    },
+    {
+      "date": "18-05-2024, 00:02:59",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "yellow",
+          "quantity": 38
+        }
+      ]
+    },
+    {
+      "date": "28-04-2024, 20:17:56",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 10
+        },
+        {
+          "type": "green",
+          "quantity": 55
+        },
+        {
+          "type": "red",
+          "quantity": 4
+        }
+      ]
+    }
+  ],
+  "purchase:yatesbradley:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
+    {
+      "date": "23-04-2024, 17:29:49",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 30
         },
         {
           "type": "red",
@@ -1502,27 +1710,453 @@
       ]
     },
     {
-      "date": "14-04-2024 14:27",
+      "date": "18-05-2024, 00:36:08",
       "tickets": [
         {
-          "type": "green",
-          "quantity": 137
+          "type": "pink",
+          "quantity": 6
+        },
+        {
+          "type": "yellow",
+          "quantity": 14
         }
       ]
     },
     {
-      "date": "30-04-2024 20:12",
+      "date": "05-05-2024, 04:53:41",
       "tickets": [
         {
-          "type": "red",
-          "quantity": 373
+          "type": "pink",
+          "quantity": 3
         }
       ]
     }
   ],
-  "purchase:michellegarcia:3637a940-dce8-4cb8-b69d-95b863416d10": [
+  "purchase:josephbrown:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
     {
-      "date": "04-04-2024 12:59",
+      "date": "13-05-2024, 10:33:00",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 8
+        },
+        {
+          "type": "green",
+          "quantity": 14
+        }
+      ]
+    }
+  ],
+  "purchase:josephbrown:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "21-05-2024, 18:22:21",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 16
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 7
+        }
+      ]
+    }
+  ],
+  "purchase:josephbrown:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": [
+    {
+      "date": "22-04-2024, 21:59:02",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 18
+        }
+      ]
+    },
+    {
+      "date": "08-05-2024, 03:09:08",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:josephbrown:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
+    {
+      "date": "26-04-2024, 11:02:00",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 5
+        },
+        {
+          "type": "yellow",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "08-05-2024, 14:45:31",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 5
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": [
+    {
+      "date": "21-05-2024, 16:40:46",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": [
+    {
+      "date": "23-04-2024, 06:55:31",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "date": "26-04-2024, 21:47:48",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 22
+        },
+        {
+          "type": "green",
+          "quantity": 131
+        },
+        {
+          "type": "red",
+          "quantity": 20
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:842d2338-b3ea-48b8-b038-a6aa19349822": [
+    {
+      "date": "09-05-2024, 07:43:08",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 5
+        },
+        {
+          "type": "green",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": [
+    {
+      "date": "27-04-2024, 06:39:33",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 9
+        },
+        {
+          "type": "yellow",
+          "quantity": 9
+        },
+        {
+          "type": "green",
+          "quantity": 7
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": [
+    {
+      "date": "10-05-2024, 10:10:16",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 8
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": [
+    {
+      "date": "21-05-2024, 04:08:43",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "green",
+          "quantity": 48
+        },
+        {
+          "type": "red",
+          "quantity": 7
+        }
+      ]
+    }
+  ],
+  "purchase:ellisonsara:08f04a1d-01b4-4fd8-985c-3dd97b60509e": [
+    {
+      "date": "20-05-2024, 06:01:44",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 53
+        },
+        {
+          "type": "red",
+          "quantity": 111
+        }
+      ]
+    }
+  ],
+  "purchase:ythompson:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
+    {
+      "date": "18-05-2024, 20:53:07",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:ythompson:39b543d1-e093-4f65-9545-022cdca6af95": [
+    {
+      "date": "10-05-2024, 02:31:27",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 10
+        }
+      ]
+    },
+    {
+      "date": "23-04-2024, 18:11:41",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 5
+        }
+      ]
+    },
+    {
+      "date": "29-04-2024, 16:08:21",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:ythompson:842d2338-b3ea-48b8-b038-a6aa19349822": [
+    {
+      "date": "24-04-2024, 00:32:04",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 27
+        },
+        {
+          "type": "yellow",
+          "quantity": 8
+        },
+        {
+          "type": "green",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:ythompson:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": [
+    {
+      "date": "16-05-2024, 17:45:17",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 13
+        }
+      ]
+    }
+  ],
+  "purchase:ythompson:08f04a1d-01b4-4fd8-985c-3dd97b60509e": [
+    {
+      "date": "13-05-2024, 00:08:12",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 12
+        },
+        {
+          "type": "red",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "02-05-2024, 04:53:42",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 18
+        },
+        {
+          "type": "red",
+          "quantity": 46
+        }
+      ]
+    }
+  ],
+  "purchase:deborah01:92b3de5a-2805-4864-aed8-c5113dbc5aa5": [
+    {
+      "date": "22-04-2024, 14:13:42",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:deborah01:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": [
+    {
+      "date": "14-05-2024, 08:19:22",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 51
+        }
+      ]
+    },
+    {
+      "date": "30-04-2024, 20:10:03",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 1
+        },
+        {
+          "type": "green",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:deborah01:08f04a1d-01b4-4fd8-985c-3dd97b60509e": [
+    {
+      "date": "15-05-2024, 12:47:55",
+      "tickets": [
+        {
+          "type": "pink",
+          "quantity": 2
+        },
+        {
+          "type": "yellow",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "purchase:allisonwaters:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": [
+    {
+      "date": "24-04-2024, 14:09:43",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "date": "20-05-2024, 00:05:52",
+      "tickets": [
+        {
+          "type": "green",
+          "quantity": 3
+        }
+      ]
+    }
+  ],
+  "purchase:allisonwaters:842d2338-b3ea-48b8-b038-a6aa19349822": [
+    {
+      "date": "27-04-2024, 19:55:32",
+      "tickets": [
+        {
+          "type": "red",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "date": "22-04-2024, 06:17:55",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 17
+        },
+        {
+          "type": "red",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:allisonwaters:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": [
+    {
+      "date": "08-05-2024, 09:50:57",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 42
+        },
+        {
+          "type": "green",
+          "quantity": 6
+        }
+      ]
+    },
+    {
+      "date": "12-05-2024, 03:39:08",
+      "tickets": [
+        {
+          "type": "yellow",
+          "quantity": 2
+        }
+      ]
+    }
+  ],
+  "purchase:allisonwaters:08f04a1d-01b4-4fd8-985c-3dd97b60509e": [
+    {
+      "date": "20-05-2024, 10:21:38",
       "tickets": [
         {
           "type": "pink",
@@ -1530,823 +2164,209 @@
         },
         {
           "type": "red",
-          "quantity": 102
-        }
-      ]
-    },
-    {
-      "date": "07-04-2024 04:45",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 2
-        },
-        {
-          "type": "yellow",
-          "quantity": 61
-        },
-        {
-          "type": "green",
-          "quantity": 16
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:600694b6-3124-4597-b39b-c1b89bdf30ed": [
-    {
-      "date": "11-04-2024 20:25",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 243
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "24-04-2024 06:25",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 76
-        }
-      ]
-    },
-    {
-      "date": "14-04-2024 08:05",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 2
-        },
-        {
-          "type": "red",
-          "quantity": 7
-        }
-      ]
-    },
-    {
-      "date": "07-04-2024 19:52",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "06-04-2024 15:02",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 2
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": [
-    {
-      "date": "14-04-2024 07:22",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 5
-        },
-        {
-          "type": "yellow",
-          "quantity": 94
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "19-04-2024 22:59",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 34
-        },
-        {
-          "type": "red",
-          "quantity": 37
-        }
-      ]
-    }
-  ],
-  "purchase:michellegarcia:9a819fae-5576-463f-955d-f4e8313ea007": [
-    {
-      "date": "18-04-2024 21:23",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 16
-        },
-        {
-          "type": "yellow",
-          "quantity": 11
-        },
-        {
-          "type": "red",
-          "quantity": 24
-        }
-      ]
-    }
-  ],
-  "purchase:oshelton:3637a940-dce8-4cb8-b69d-95b863416d10": [
-    {
-      "date": "22-04-2024 06:29",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 5
-        }
-      ]
-    },
-    {
-      "date": "12-04-2024 04:42",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 35
-        },
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "purchase:oshelton:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "29-04-2024 23:49",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 24
-        },
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "date": "04-04-2024 03:42",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 7
-        }
-      ]
-    }
-  ],
-  "purchase:oshelton:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": [
-    {
-      "date": "30-04-2024 21:37",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 243
-        }
-      ]
-    }
-  ],
-  "purchase:oshelton:9a819fae-5576-463f-955d-f4e8313ea007": [
-    {
-      "date": "23-04-2024 04:36",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 2
-        },
-        {
-          "type": "green",
-          "quantity": 121
-        },
-        {
-          "type": "red",
-          "quantity": 28
-        }
-      ]
-    },
-    {
-      "date": "07-04-2024 22:20",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 3
-        },
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 32
-        }
-      ]
-    },
-    {
-      "date": "29-04-2024 02:50",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:curtisrodriguez:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "18-04-2024 02:53",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:curtisrodriguez:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "17-04-2024 07:14",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 15
-        },
-        {
-          "type": "green",
-          "quantity": 12
-        },
-        {
-          "type": "red",
-          "quantity": 77
-        }
-      ]
-    }
-  ],
-  "purchase:curtisrodriguez:7b018ef5-8746-433d-8269-72ae7cd91808": [
-    {
-      "date": "15-04-2024 19:03",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": [
-    {
-      "date": "18-04-2024 06:56",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 83
-        }
-      ]
-    },
-    {
-      "date": "27-04-2024 15:23",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 77
-        },
-        {
-          "type": "green",
-          "quantity": 16
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:3637a940-dce8-4cb8-b69d-95b863416d10": [
-    {
-      "date": "09-04-2024 20:20",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 25
-        },
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:600694b6-3124-4597-b39b-c1b89bdf30ed": [
-    {
-      "date": "20-04-2024 02:07",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 18
-        },
-        {
-          "type": "green",
-          "quantity": 19
-        },
-        {
-          "type": "red",
-          "quantity": 5
-        }
-      ]
-    },
-    {
-      "date": "18-04-2024 08:57",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 4
-        }
-      ]
-    },
-    {
-      "date": "21-04-2024 14:02",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 35
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:4abbf297-5395-4215-8cce-eff707e7be84": [
-    {
-      "date": "23-04-2024 14:25",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 77
-        }
-      ]
-    },
-    {
-      "date": "20-04-2024 02:02",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 15
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "01-05-2024 23:04",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 2
-        }
-      ]
-    },
-    {
-      "date": "07-04-2024 03:16",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "18-04-2024 17:25",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 2
-        }
-      ]
-    },
-    {
-      "date": "16-04-2024 08:06",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 12
-        },
-        {
-          "type": "red",
-          "quantity": 47
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:7b018ef5-8746-433d-8269-72ae7cd91808": [
-    {
-      "date": "08-04-2024 15:28",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 5
-        }
-      ]
-    }
-  ],
-  "purchase:crawfordkathleen:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "01-05-2024 16:05",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 3
-        },
-        {
-          "type": "yellow",
-          "quantity": 5
-        }
-      ]
-    },
-    {
-      "date": "26-04-2024 13:27",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 172
-        }
-      ]
-    },
-    {
-      "date": "14-04-2024 18:26",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": [
-    {
-      "date": "23-04-2024 09:13",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 4
-        }
-      ]
-    },
-    {
-      "date": "25-04-2024 10:15",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 14
-        }
-      ]
-    },
-    {
-      "date": "14-04-2024 06:47",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 72
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:3637a940-dce8-4cb8-b69d-95b863416d10": [
-    {
-      "date": "03-04-2024 11:17",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 6
-        },
-        {
-          "type": "red",
-          "quantity": 4
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:600694b6-3124-4597-b39b-c1b89bdf30ed": [
-    {
-      "date": "22-04-2024 04:09",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 41
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:4abbf297-5395-4215-8cce-eff707e7be84": [
-    {
-      "date": "16-04-2024 21:03",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 16
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:70865141-cf36-4d8c-9ae1-f7f1b24984c9": [
-    {
-      "date": "07-04-2024 02:46",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "28-04-2024 05:07",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "purchase:lrodriguez:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "05-04-2024 01:03",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "red",
-          "quantity": 63
-        }
-      ]
-    }
-  ],
-  "purchase:ahunter:3637a940-dce8-4cb8-b69d-95b863416d10": [
-    {
-      "date": "30-04-2024 03:39",
-      "tickets": [
-        {
-          "type": "yellow",
           "quantity": 8
         }
       ]
     },
     {
-      "date": "15-04-2024 09:26",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 5
-        }
-      ]
-    },
-    {
-      "date": "21-04-2024 05:47",
+      "date": "01-05-2024, 19:08:35",
       "tickets": [
         {
           "type": "green",
-          "quantity": 6
+          "quantity": 4
         }
       ]
     }
   ],
-  "purchase:ahunter:600694b6-3124-4597-b39b-c1b89bdf30ed": [
-    {
-      "date": "25-04-2024 19:23",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        },
-        {
-          "type": "green",
-          "quantity": 7
-        }
-      ]
-    },
-    {
-      "date": "04-04-2024 01:05",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 2
-        },
-        {
-          "type": "red",
-          "quantity": 10
-        }
-      ]
-    },
-    {
-      "date": "23-04-2024 05:16",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    }
+  "notification:lindseyashley:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "limit": 3,
+    "active": false
+  },
+  "notification:lindseyashley:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "limit": 112,
+    "active": false
+  },
+  "notification:garychavez:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "limit": 117,
+    "active": false
+  },
+  "notification:adambean:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:adambean:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": {
+    "limit": 223,
+    "active": false
+  },
+  "notification:adambean:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "limit": 8,
+    "active": false
+  },
+  "notification:adambean:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": {
+    "limit": 114,
+    "active": false
+  },
+  "notification:allison28:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 4,
+    "active": false
+  },
+  "notification:allison28:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:allison28:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": {
+    "limit": 216,
+    "active": false
+  },
+  "notification:allison28:842d2338-b3ea-48b8-b038-a6aa19349822": {
+    "limit": 85,
+    "active": false
+  },
+  "notification:yatesbradley:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:yatesbradley:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "limit": 4,
+    "active": false
+  },
+  "notification:yatesbradley:f17f5f7b-0b19-4c21-beb6-0a6fd27e328d": {
+    "limit": 118,
+    "active": false
+  },
+  "notification:yatesbradley:08f04a1d-01b4-4fd8-985c-3dd97b60509e": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:josephbrown:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 7,
+    "active": false
+  },
+  "notification:josephbrown:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": {
+    "limit": 216,
+    "active": false
+  },
+  "notification:josephbrown:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": {
+    "limit": 21,
+    "active": false
+  },
+  "notification:josephbrown:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "limit": 2,
+    "active": false
+  },
+  "notification:josephbrown:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "limit": 111,
+    "active": false
+  },
+  "notification:ellisonsara:92b3de5a-2805-4864-aed8-c5113dbc5aa5": {
+    "limit": 15,
+    "active": false
+  },
+  "notification:ellisonsara:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:ellisonsara:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "limit": 9,
+    "active": false
+  },
+  "notification:ellisonsara:21254782-2d2a-4ef2-b8b0-f73b66bf0a8f": {
+    "limit": 19,
+    "active": false
+  },
+  "notification:ellisonsara:842d2338-b3ea-48b8-b038-a6aa19349822": {
+    "limit": 75,
+    "active": false
+  },
+  "notification:ellisonsara:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:ellisonsara:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "limit": 116,
+    "active": false
+  },
+  "notification:ythompson:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:ythompson:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "limit": 7,
+    "active": false
+  },
+  "notification:ythompson:2abd4a42-e449-42d1-a80a-3bbc74b42cb7": {
+    "limit": 222,
+    "active": false
+  },
+  "notification:deborah01:39b543d1-e093-4f65-9545-022cdca6af95": {
+    "limit": 6,
+    "active": false
+  },
+  "notification:deborah01:842d2338-b3ea-48b8-b038-a6aa19349822": {
+    "limit": 74,
+    "active": false
+  },
+  "notification:deborah01:8ca9be86-03d5-48f3-a5b8-d054f2f02bb1": {
+    "limit": 114,
+    "active": false
+  },
+  "notification:deborah01:08f04a1d-01b4-4fd8-985c-3dd97b60509e": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:allisonwaters:92b3de5a-2805-4864-aed8-c5113dbc5aa5": {
+    "limit": 12,
+    "active": false
+  },
+  "notification:allisonwaters:4b9f6de3-a2c0-4488-b738-1019de9ff3cb": {
+    "limit": 3,
+    "active": false
+  },
+  "notification:allisonwaters:842d2338-b3ea-48b8-b038-a6aa19349822": {
+    "limit": 66,
+    "active": false
+  },
+  "notification:allisonwaters:dc5fa693-c4b4-4993-8fcc-e62fccf2f927": {
+    "limit": 1,
+    "active": false
+  },
+  "notification:allisonwaters:08f04a1d-01b4-4fd8-985c-3dd97b60509e": {
+    "limit": 7,
+    "active": false
+  },
+  "event:locations": [
+    "London",
+    "Manchester",
+    "Liverpool",
+    "Birmingham",
+    "Glasgow",
+    "Leeds",
+    "Sheffield",
+    "Newcastle",
+    "Bristol",
+    "Cardiff",
+    "Edinburgh",
+    "Belfast",
+    "Southampton",
+    "Nottingham",
+    "Brighton",
+    "Leicester",
+    "Portsmouth",
+    "York",
+    "Oxford",
+    "Cambridge"
   ],
-  "purchase:ahunter:ed528d99-5ad7-401c-9ec4-00a58646a675": [
-    {
-      "date": "15-04-2024 14:56",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "date": "16-04-2024 03:11",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 3
-        },
-        {
-          "type": "red",
-          "quantity": 2
-        }
-      ]
-    },
-    {
-      "date": "19-04-2024 13:50",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        }
-      ]
-    }
+  "event:types": [
+    "concert",
+    "theater",
+    "dance",
+    "magic",
+    "circus"
   ],
-  "purchase:ahunter:7b018ef5-8746-433d-8269-72ae7cd91808": [
-    {
-      "date": "01-05-2024 15:23",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:ahunter:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": [
-    {
-      "date": "21-04-2024 14:41",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 3
-        },
-        {
-          "type": "green",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:ahunter:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "19-04-2024 19:23",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 2
-        },
-        {
-          "type": "green",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "28-04-2024 11:49",
-      "tickets": [
-        {
-          "type": "pink",
-          "quantity": 1
-        },
-        {
-          "type": "yellow",
-          "quantity": 2
-        }
-      ]
-    },
-    {
-      "date": "12-04-2024 06:59",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 2
-        }
-      ]
-    }
-  ],
-  "purchase:boydthomas:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": [
-    {
-      "date": "23-04-2024 15:04",
-      "tickets": [
-        {
-          "type": "green",
-          "quantity": 3
-        }
-      ]
-    }
-  ],
-  "purchase:boydthomas:6b4428c6-88f2-482c-b0f9-de4feb2cc892": [
-    {
-      "date": "13-04-2024 08:26",
-      "tickets": [
-        {
-          "type": "red",
-          "quantity": 1
-        }
-      ]
-    },
-    {
-      "date": "06-04-2024 15:18",
-      "tickets": [
-        {
-          "type": "yellow",
-          "quantity": 1
-        }
-      ]
-    }
-  ],
-  "notification:ymckee:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 27,
-  "notification:ymckee:3637a940-dce8-4cb8-b69d-95b863416d10": 10,
-  "notification:ymckee:6b4428c6-88f2-482c-b0f9-de4feb2cc892": 6,
-  "notification:andrew12:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 28,
-  "notification:andrew12:ed528d99-5ad7-401c-9ec4-00a58646a675": 7,
-  "notification:alexis31:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 38,
-  "notification:alexis31:7b018ef5-8746-433d-8269-72ae7cd91808": 10,
-  "notification:michellegarcia:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": 544,
-  "notification:michellegarcia:6b4428c6-88f2-482c-b0f9-de4feb2cc892": 2,
-  "notification:curtisrodriguez:4abbf297-5395-4215-8cce-eff707e7be84": 29,
-  "notification:curtisrodriguez:7b018ef5-8746-433d-8269-72ae7cd91808": 15,
-  "notification:curtisrodriguez:9a819fae-5576-463f-955d-f4e8313ea007": 166,
-  "notification:crawfordkathleen:4abbf297-5395-4215-8cce-eff707e7be84": 33,
-  "notification:lrodriguez:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 32,
-  "notification:ahunter:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 42,
-  "notification:ahunter:600694b6-3124-4597-b39b-c1b89bdf30ed": 9,
-  "notification:ahunter:7b018ef5-8746-433d-8269-72ae7cd91808": 14,
-  "notification:ahunter:0f8ae5a9-3a3e-4497-9ab9-375836d72c77": 548,
-  "notification:ahunter:9a819fae-5576-463f-955d-f4e8313ea007": 170,
-  "notification:boydthomas:0bb8a6f6-22ed-4952-bd1e-8e7494764ca3": 28,
-  "notification:boydthomas:600694b6-3124-4597-b39b-c1b89bdf30ed": 15,
-  "notification:boydthomas:6b4428c6-88f2-482c-b0f9-de4feb2cc892": 5
+  "ticket:types": [
+    "pink",
+    "yellow",
+    "green",
+    "red"
+  ]
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TickETCD</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100">
+
+  <%- include('header.ejs') %>
+
+  <main class="max-w-4xl px-4 py-8 mx-auto">
+
+    <h2 class="mb-4 text-2xl font-bold">All Notifications</h2>
+
+    <% if (notifications && notifications.length > 0) { %>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <% notifications.forEach(notification => { %>
+          <a href="/event?id=<%= notification.event.id %>">
+
+            <% if (notification.info.active){ %>
+              <div class="p-4 bg-blue-300 border rounded-md">
+            <% } else { %>
+              <div class="p-4 bg-gray-100 border rounded-md">
+            <% } %>  
+                <h4 class="mb-2 text-lg font-semibold"><%= notification.event.name %></h4>
+                <h4> Minimum number of tickets: <%= notification.info.limit %></h4>
+                <h4> Current number of tickets: <%= notification.event.current_quantity %></h4>
+            </div>
+          
+          </a>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No notifications found!</p>
+    <% } %>
+    
+  </main>
+
+  <hr class="mb-4">
+
+  <%- include('footer.ejs') %>
+
+</body>
+</html>

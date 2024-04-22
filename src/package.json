@@ -7,14 +7,18 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "etcd3": "1.1.2",
-    "ejs": "^3.1.6",
     "connect-flash": "^0.1.1",
-    "express-session": "^1.17.2"
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "etcd3": "1.1.2",
+    "express": "^4.18.2",
+    "express-session": "^1.17.2",
+    "uuid": "^9.0.1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
 }

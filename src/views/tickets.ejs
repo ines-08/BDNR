@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TickETCD</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body class="bg-gray-100">
+
+        <%- include('header.ejs') %>
+    
+        <main class="container px-4 py-8 mx-auto">
+            <h2 class="mb-4 text-2xl font-semibold">Tickets for '<%=  event.name %>'</h2><br>
+            <form action="/tickets/buytickets" method="POST" onsubmit="return validateForm()">
+                <input type="hidden" name="event" value="<%= eventid %>" />
+                <div class="flex flex-wrap -mx-2">
+                    <% tickets.forEach(ticket => { %>
+                        <div class="w-full px-2 mb-4 sm:w-1/2 md:w-1/3 lg:w-1/4">
+                            <div class="p-4 bg-white border border-gray-200 rounded-lg">
+                                <p class="mb-2 text-lg font-semibold"><%= ticket.type %></p>
+                                <ul class="mb-2 ml-4">
+                                    <li>Price: <%= ticket.price %></li>
+                                    <li>Current quantity: <%= ticket.current_quantity %></li>
+                                </ul>
+                                <label class="block">Number of tickets:</label>
+                                <input type="hidden" name="tickettype" value="<%= ticket.type %>"/>
+                                <input type="number" name="ticketquantity" min="1" max="<%= ticket.current_quantity %>"
+                                    class="px-3 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <br>
+                <div class="flex justify-center">
+                    
+                    <button type="submit"
+                        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Buy</button>
+                </div>
+            </form>
+        </main>
+    </body>
+    
+    <script>
+        function validateForm() {
+            var inputs = document.querySelectorAll('input[type="number"]');
+            var hasValue = false;
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() !== "") {
+                    hasValue = true;
+                    break;
+                }
+            }
+            if (!hasValue) {
+                alert("Please enter a value for at least one field.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    
+    
+
+    <%- include('footer.ejs') %>
+
+</html>

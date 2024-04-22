@@ -6,53 +6,51 @@
   <title>TickETCD</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
 
-  <header>
-    <h1>TickETCD</h1>
-    <h2>Consistency in Every Ticket</h2>
-  </header>
+  <%- include('header.ejs', {user : undefined}) %>
 
-  <main>
+  <main class="max-w-4xl px-4 py-10 mx-auto">
 
-    <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
-      <div class="error-message"><%= error_message %></div>
-    <% } %>
+    <%- include('feedback.ejs') %>
+    
+    <div class="form-container flex flex-col md:flex-row items-start justify-start space-y-8 md:space-y-0 md:space-x-8">
 
-    <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
-      <div class="success-message"><%= success_message %></div>
-    <% } %>
+      <section id="login" class="flex flex-col items-center flex-1 px-10 py-6">
+        <h2 class="text-lg font-semibold mb-4">Login</h2>
+        <form action="/login" method="POST" class="flex flex-col items-stretch">
+          <label for="username" class="mb-1">Username:</label>
+          <input type="text" id="username" name="username" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
   
-    <div class="form-container">
-      <section id="login">
-        <h2>Login</h2>
-        <form action="/login" method="POST">
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br><br>
-          <input type="submit" value="Login">
+          <label for="password" class="mb-1">Password:</label>
+          <input type="password" id="password" name="password" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+  
+          <input type="submit" value="Login" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300 w-full">
         </form>
       </section>
-
-      <section id="register">
-        <h2>Register</h2>
-        <form action="/register" method="POST">
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email"><br>
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br><br>
-          <input type="submit" value="Register">
+  
+      <section id="register" class="flex flex-col items-center flex-1 px-10 py-6">
+        <h2 class="text-lg font-semibold mb-4">Register</h2>
+        <form action="/register" method="POST" class="flex flex-col items-stretch">
+          <label for="name" class="mb-1">Name:</label>
+          <input type="text" id="name" name="name" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+  
+          <label for="email" class="mb-1">Email:</label>
+          <input type="email" id="email" name="email" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+  
+          <label for="username_register" class="mb-1">Username:</label>
+          <input type="text" id="username_register" name="username" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+  
+          <label for="password_register" class="mb-1">Password:</label>
+          <input type="password" id="password_register" name="password" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500" required>
+  
+          <input type="submit" value="Register" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300 w-full">
         </form>
       </section>
     </div>
   </main>
-
-  <footer>
-    <p>BDNR @ 2024</p>
-  </footer>
-
+  
+    <%- include('footer.ejs') %>
+    
 </body>
 </html>
