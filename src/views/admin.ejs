@@ -57,68 +57,90 @@
         </div>
         <% } %>
 
-          <div class="w-full md:w-1/2 px-4">
+          <div class="w-full px-4">
             <h2 class="text-2xl font-bold mb-4">Create Event</h2>
             <form action="/admin/createEvent" method="POST" class="space-y-4">
-              <div class="space-y-4">
-                <h4 class="text-lg font-semibold">Event Details</h4>
-                <div class="flex flex-col space-y-2">
-                  <label for="eventName" class="text-sm font-medium">Event Name:</label>
-                  <input type="text" id="eventName" name="eventName" required
-                    class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+              <div class="flex">
+                <!-- event info -->
+                <div class="space-y-4 w-1/2 px-4">
+                  <h4 class="text-lg font-semibold">Event Details</h4>
+                  <div class="flex flex-col space-y-2">
+                    <label for="eventName" class="text-sm font-medium">Event Name:</label>
+                    <input type="text" id="eventName" name="eventName" required
+                      class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                  </div>
+                  <div class="flex flex-col space-y-2">
+                    <label for="eventDescription" class="text-sm font-medium">Event Description:</label>
+                    <textarea id="eventDescription" name="eventDescription" rows="4" cols="50" required
+                      class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"></textarea>
+                  </div>
+                  <div class="flex flex-col space-y-2">
+                    <label for="eventLocation" class="text-sm font-medium">Event Location:</label>
+                    <select id="eventLocation" name="eventLocation" required
+                      class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                      <option value="" disabled selected>Select Event Location</option>
+                      <% if (eventLocations && eventLocations.length> 0) { %>
+                        <% eventLocations.forEach(location=> { %>
+                          <option value="<%= location %>">
+                            <%= location %>
+                          </option>
+                          <% }); %>
+                            <% } %>
+                    </select>
+                  </div>
+                  <div class="flex flex-col space-y-2">
+                    <label for="eventType" class="text-sm font-medium">Event Type:</label>
+                    <select id="eventType" name="eventType" required
+                      class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                      <option value="" disabled selected>Select Event Type</option>
+                      <% if (eventTypes && eventTypes.length> 0) { %>
+                        <% eventTypes.forEach(type=> { %>
+                          <option value="<%= type %>">
+                            <%= type %>
+                          </option>
+                          <% }); %>
+                            <% } %>
+                    </select>
+                  </div>
+                  <div class="flex flex-col space-y-2">
+                    <label for="eventDate" class="text-sm font-medium">Event Date:</label>
+                    <input class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+                      type="datetime-local" id="eventDate" name="eventDate" required>
+                  </div>
                 </div>
-                <div class="flex flex-col space-y-2">
-                  <label for="eventDescription" class="text-sm font-medium">Event Description:</label>
-                  <textarea id="eventDescription" name="eventDescription" rows="4" cols="50" required
-                    class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"></textarea>
-                </div>
-                <div class="flex flex-col space-y-2">
-                  <label for="eventLocation" class="text-sm font-medium">Event Location:</label>
-                  <select id="eventLocation" name="eventLocation" required
-                    class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
-                    <option value="" disabled selected>Select Event Location</option>
-                    <% if (eventLocations && eventLocations.length> 0) { %>
-                      <% eventLocations.forEach(location=> { %>
-                        <option value="<%= location %>">
-                          <%= location %>
-                        </option>
-                        <% }); %>
-                          <% } %>
-                  </select>
-                </div>
-              </div>
-
-              <div class="space-y-4">
-                <h4 class="text-lg font-semibold">Tickets</h4>
-                <div class="grid grid-cols-2 gap-4">
-                  <% ticketTypes.forEach(ticketType=> { %>
-                    <div class="border border-gray-300 rounded-md px-4 py-2">
-                      <h5 class="font-semibold mb-2">
-                        <%= ticketType %>
-                      </h5>
-                      <div class="flex flex-col space-y-2">
-                        <label for="<%= ticketType.toLowerCase() %>TotalQuantity" class="text-sm font-medium">Total
-                          Quantity:</label>
-                        <input type="number" id="<%= ticketType.toLowerCase() %>TotalQuantity"
-                          name="<%= ticketType.toLowerCase() %>TotalQuantity" required min="1"
-                          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                <!-- ticket info -->
+                <div class="space-y-4 w-1/2 px-4">
+                  <h4 class="text-lg font-semibold">Tickets</h4>
+                  <div class="grid grid-cols-2 gap-4">
+                    <% ticketTypes.forEach(ticketType=> { %>
+                      <div class="border border-gray-300 rounded-md px-4 py-2">
+                        <h5 class="font-semibold mb-2">
+                          <%= ticketType %>
+                        </h5>
+                        <div class="flex flex-col space-y-2">
+                          <label for="<%= ticketType.toLowerCase() %>TotalQuantity" class="text-sm font-medium">Total
+                            Quantity:</label>
+                          <input type="number" id="<%= ticketType.toLowerCase() %>TotalQuantity"
+                            name="<%= ticketType.toLowerCase() %>TotalQuantity" required min="1"
+                            class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                          <label for="<%= ticketType.toLowerCase() %>TicketPrice"
+                            class="text-sm font-medium">Price:</label>
+                          <input type="number" id="<%= ticketType.toLowerCase() %>TicketPrice"
+                            name="<%= ticketType.toLowerCase() %>TicketPrice" step="0.01" required min="1"
+                            class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                        </div>
                       </div>
-                      <div class="flex flex-col space-y-2">
-                        <label for="<%= ticketType.toLowerCase() %>TicketPrice"
-                          class="text-sm font-medium">Price:</label>
-                        <input type="number" id="<%= ticketType.toLowerCase() %>TicketPrice"
-                          name="<%= ticketType.toLowerCase() %>TicketPrice" step="0.01" required min="1"
-                          class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
-                      </div>
-                    </div>
-                    <% }); %>
+                      <% }); %>
+                  </div>
+                  <div class="text-center">
+                    <input type="submit" value="Create Event"
+                      class="bg-blue-500 text-white px-10 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
+                  </div>
                 </div>
               </div>
-
-              <div>
-                <input type="submit" value="Create Event"
-                  class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 cursor-pointer transition duration-300">
-              </div>
+              
             </form>
           </div>
     </main>
@@ -142,7 +164,7 @@
             var myChart = new Chart(ctx, {
               type: 'doughnut',
               data: {
-                labels: dataKeys.map((key, index) => `${key}: ${(dataValues[index] / total * 100).toFixed(2)}%`), 
+                labels: dataKeys.map((key, index) => `${key}: ${(dataValues[index] / total * 100).toFixed(2)}%`),
                 datasets: [{
                   label: 'Ticket Sales (USD$)',
                   data: dataValues,
@@ -162,4 +184,5 @@
         });
       </script>
 </body>
+
 </html>

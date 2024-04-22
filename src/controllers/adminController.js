@@ -39,7 +39,6 @@ async function createEvent(db, req, res) {
     });
 
     try {
-        
         // Add event
         const eventInfo = { 
             name: req.body.eventName,

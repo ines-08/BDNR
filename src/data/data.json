@@ -1,4 +1,10 @@
 {
+  "user:felicia50": {
+    "name": "Karen Richard",
+    "email": "kylesullivan@example.com",
+    "password": "DkEmScxECD",
+    "role": "admin"
+  },
   "user:lindseyashley": {
     "name": "Megan Holmes",
     "email": "heatheratkins@example.com",
