@@ -42,7 +42,7 @@ async function getProfilePage(db, req, res) {
         }
 
         res.render('profile', { 
-            user: user, 
+            user: { ...user, username: userID }, 
             purchases: purchases,
             favourites: favourite_names,
             error_message: req.flash('error'), 

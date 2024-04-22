@@ -10,10 +10,12 @@
 
   <%- include('header.ejs', {user : undefined}) %>
 
-  <main class="flex flex-col items-center justify-center py-10">
+  <main class="max-w-4xl px-4 py-10 mx-auto">
+
     <%- include('feedback.ejs') %>
     
     <div class="form-container flex flex-col md:flex-row items-start justify-start space-y-8 md:space-y-0 md:space-x-8">
+
       <section id="login" class="flex flex-col items-center flex-1 px-10 py-6">
         <h2 class="text-lg font-semibold mb-4">Login</h2>
         <form action="/login" method="POST" class="flex flex-col items-stretch">

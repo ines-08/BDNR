@@ -34,10 +34,12 @@ async function getEventPage(db, req, res) {
             eventID: eventID,
             tickets: tickets,
             isFavourite: isFavourites,
+            error_message: req.flash('error'), 
+            success_message: req.flash('success'),
         });
 
     } catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error getting event details page');
         res.redirect('/home');
     }
 }
@@ -56,11 +58,12 @@ async function addFavourite(db, req, res){
             await db.put(`favourite:${req.session.userInfo.username}`).value(JSON.stringify(favourites));
         }
 
+        req.flash('success', 'Event added to your favourites list');
         res.redirect(`/event?id=${eventID}`);
     }
     
     catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in add favourite action');
         res.redirect('/home');
     }
 }
@@ -76,11 +79,12 @@ async function removeFavourite(db, req, res){
             await db.put(`favourite:${req.session.userInfo.username}`).value(JSON.stringify(updatedFavs));
         }
 
+        req.flash('success', 'Event removed from your favourites list');
         res.redirect(`/event?id=${eventID}`);
     }
 
     catch (error) {
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error in remove favourite action');
         res.redirect('/home');
     }
 }

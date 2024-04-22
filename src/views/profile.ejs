@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TickETCD</title>
-  <!-- Link to your custom CSS file -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="bg-gray-100">
 
   <%- include('header.ejs') %>
 
-
   <main class="max-w-4xl px-4 py-8 mx-auto">
 
-    <h3 class="mb-4 text-xl font-semibold">User info:</h3>
+    <%- include('feedback.ejs') %>
+
+    <h3 class="mb-4 text-xl font-semibold">Profile info:</h3>
 
     <div class="flex flex-wrap mb-4">
       <div class="flex items-center mb-2 mr-6">
@@ -25,17 +25,11 @@
         <h4 class="mr-2 text-lg font-semibold">Email:</h4>
         <p><%= user.email %></p>
       </div>
-      <div class="flex items-center mb-2 mr-6">
-        <h4 class="mr-2 text-lg font-semibold">Password:</h4>
-        <p><%= user.password %> :D</p>
-      </div>
       <div class="flex items-center mb-2">
         <h4 class="mr-2 text-lg font-semibold">Role:</h4>
         <p><%= user.role %></p>
       </div>
     </div>
-
-    <a href="/notifications" class="mb-4 text-xl font-semibold">My Notifications</a>
 
     <hr class="my-8">
 
@@ -71,8 +65,6 @@
     <% } else { %>
       <p>No purchases found!</p>
     <% } %>
-    
-    
 
     <hr class="my-8">
 

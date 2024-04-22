@@ -31,7 +31,7 @@ async function getNotificationsPage(db, req, res) {
             });
 
         } catch (error) {
-            req.flash('error', 'Internal server error: lost DB connection');
+            req.flash('error', 'Error on getting Notification details page');
             res.redirect('/home');
         }
 }
@@ -50,12 +50,11 @@ async function addNotifications(db, req, res) {
 
         utils.getNotifications(db, req, eventID, numberMin, username);
 
-        req.flash('success', 'parabens, colocaste notificacao nisto!');
+        req.flash('success', `You will be notified when the number of tickets for this event is less than ${numberMin}`);
         res.redirect(`/event?id=${eventID}`);
     
     } catch(error) {
-        console.log(error);
-        req.flash('error', 'Internal server error: lost DB connection');
+        req.flash('error', 'Error when creating notification');
         res.redirect('/home');
     }
 }

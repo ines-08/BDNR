@@ -4,91 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TickETCD</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
   <%- include('header.ejs') %>
 
-  <% if (typeof error_message !== 'undefined' && error_message.length > 0) { %>
-    <div class="px-4 py-3 mb-4 text-red-700 bg-red-100 border border-red-400 rounded-md">
-      <%= error_message %>
-    </div>
-  <% } %>
-
-  <% if (typeof success_message !== 'undefined' && success_message.length > 0) { %>
-    <div class="px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded-md">
-      <%= success_message %>
-    </div>
-  <% } %>
-
-  <main class="max-w-4xl px-4 py-8 mx-auto">
-
-    <h2 class="mb-4 text-2xl font-bold">Event '<%= event.name %>'</h2>
-    <h4 class="mb-2"><%= event.description %></h4>
-    <h4 class="mb-2">In: <%= event.location %></h4>
-    <h4 class="mb-2">Type: <%= event.type %></h4>
-    <h4 class="mb-2">Date: <%= event.date %></h4>
-    <h4 class="mb-4">Current we've <%= event.current_quantity %> total tickets to purchase</h4>
+  <main class="max-w-4xl px-4 py-10 mx-auto">
     
-    <form method="POST" action="/event/<%= isFavourite ? 'remove-favourite' : 'add-favourite' %>" class="mb-4">
-      <input value="<%= eventID %>" name="eventID" type="hidden">
-      <button type="submit" class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600">
-        <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
-      </button>
-    </form>
-    <hr class="mb-4">
+    <%- include('feedback.ejs') %>
 
-    <h3 class="mb-2 text-lg font-semibold">Tickets details</h3>
+    <div class="md:flex md:justify-between">
+      <div class="md:w-2/3 md:pr-8">
+        <h2 class="mb-4 text-2xl font-bold">Event '<%= event.name %>'</h2>
+        <p class="mb-2"><%= event.description %></p>
+        <p class="mb-2">Location: <%= event.location %></p>
+        <p class="mb-2">Type: <%= event.type %></p>
+        <p class="mb-2">Date: <%= event.date %></p>
+        <p class="mb-8">Currently we have <%= event.current_quantity %> total tickets available</p>
 
-    <% if (tickets && tickets.length > 0) { %>
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <% tickets.forEach(ticket => { %>
-          <div class="p-4 border border-gray-200 rounded-md">
-            <h4 class="mb-2 text-lg font-semibold"><%= ticket.type %></h4>
-            <ul>
-              <li>Price: <%= ticket.price %>$</li>
-              <li>Current quantity: <%= ticket.current_quantity %></li>
-              <li>Total quantity: <%= ticket.total_quantity %></li>
-            </ul>
-          </div>
-        <% }); %>
+        <div class="mt-9">
+          <h3 class="mb-4 text-lg font-semibold">Tickets Details</h3>
+
+          <% if (tickets && tickets.length > 0) { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <% tickets.forEach(ticket => { %>
+                <div class="p-4 border border-gray-200 rounded-md">
+                  <h4 class="mb-2 text-lg font-semibold"><%= ticket.type %></h4>
+                  <ul>
+                    <li>Price: <%= ticket.price %> $</li>
+                    <li>Current quantity: <%= ticket.current_quantity %></li>
+                    <li>Total quantity: <%= ticket.total_quantity %></li>
+                  </ul>
+                </div>
+              <% }); %>
+            </div>
+            <br><br><br>
+          <% } else { %>
+            <p>No tickets found!</p>
+          <% } %>
+        </div>
       </div>
-    <% } else { %>
-      <p>No tickets found!</p>
-    <% } %>
-    
-    <div class="flex justify-center mt-8">
-      <a href="/tickets?eventid=<%= eventid %>" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
-        Buy Tickets
-      </a>
-    </div>
 
-    <div class="flex justify-center mt-8">
-      <button id="notify" class="px-6 py-3 text-white transition duration-300 bg-blue-500 rounded-full hover:bg-blue-600">
-        Notify
-      </button>
-    </div>
-
-    <form id="notifyforms" class="hidden" action="/notifications/addnotifications" method="POST">
-      <label>Number minimum tickets to be notified:</label>
-      <input type="number" name="minimumtickets"/>
-      <input type="hidden" name="event" value="<%= eventid %>" />
+      <div class="md:w-1/3 md:pr-8">
+        <div class="flex flex-col items-center md:items-end">
       
-      <button type="submit"
-        class="px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600">Criar</button>
-    </form>
+          <div class="w-full">
+            <form method="GET" action="/tickets?eventid=<%= eventid %>" class="mb-4" id="ticketForm">
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow" id="buyTicketsBtn">
+                Buy Tickets
+              </button>
+            </form>
+          </div>
+      
+          <div class="w-full">
+            <form method="POST" action="/event/<%= isFavourite ? 'remove-favourite' : 'add-favourite' %>" class="mb-4">
+              <input value="<%= eventID %>" name="eventID" type="hidden">
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">
+                <%= isFavourite ? 'Remove from Favorites' : 'Add to Favorites' %>
+              </button>
+            </form>
+          </div>
+      
+          <div class="w-full">
+            <button id="notify" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">
+              Notify
+            </button>
+          </div>
+      
+          <div class="w-full">
+            <form id="notifyforms" class="hidden" action="/notifications/addnotifications" method="POST">
+              <br>
+              <label class="block mb-2">Minimum number of tickets to be notified:</label>
+              <input type="number" name="minimumtickets" class="border border-gray-300 rounded-md px-3 py-2 mb-4 focus:outline-none focus:border-blue-500">
+              <input type="hidden" name="event" value="<%= eventid %>" />
+              <button type="submit" class="w-full px-4 py-2 text-white transition duration-300 bg-blue-500 rounded-md hover:bg-blue-600 flex-grow">Create</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+    
 
     <script>
       document.getElementById('notify').addEventListener('click', function() {
         document.getElementById('notifyforms').classList.remove('hidden');
       });
-    </script>
 
+      document.getElementById("buyTicketsBtn").addEventListener("click", function(event) {
+      event.preventDefault();
+      var formAction = document.getElementById("ticketForm").getAttribute("action");
+      window.location.href = formAction;
+    });
+    </script>
 
   </main>
 
-  <hr class="mb-4">
+  <hr class="my-6">
 
   <%- include('footer.ejs') %>
 
