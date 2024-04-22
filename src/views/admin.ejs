@@ -9,39 +9,105 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Define statistics variable using EJS
+    var statistics = <%- JSON.stringify(statistics) %>; // disclaimer: vs code highlights error but this line works fine
+
+    // JavaScript code to create pie charts
+    var types = Object.keys(statistics);
+    types.forEach(function (type) {
+      var ctx = document.getElementById(type + 'Chart').getContext('2d');
+      var dataKeys = Object.keys(statistics[type]).filter(key => key !== 'total');
+      var dataValues = dataKeys.map(key => statistics[type][key]);
+      var total = dataValues.reduce((acc, cur) => acc + cur, 0); // Calculate total
+      var dataColors = [<%- ticketTypes.map(type => `'${type.toLowerCase()}'`).join(', ') %>];
+      var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: dataKeys.map((key, index) => `${key}: ${(dataValues[index] / total * 100).toFixed(2)}%`),
+          datasets: [{
+            label: 'Ticket Sales (USD$)',
+            data: dataValues,
+            backgroundColor: dataColors,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: false,
+          maintainAspectRatio: false,
+          legend: {
+            position: 'right'
+          }
+        }
+      });
+    });
+  });
+
+  function showDiv(divId) {
+    var dbstatsDiv = document.getElementById('dbstats');
+    var statisticsDiv = document.getElementById('statistics');
+    var createEventDiv = document.getElementById('createEvent');
+
+    if (divId === 'dbstats') {
+      dbstatsDiv.classList.remove('hidden');
+      statisticsDiv.classList.add('hidden');
+      createEventDiv.classList.add('hidden');
+    } else if (divId === 'statistics') {
+      dbstatsDiv.classList.add('hidden');
+      statisticsDiv.classList.remove('hidden');
+      createEventDiv.classList.add('hidden');
+    } else if (divId === 'createEvent') {
+      dbstatsDiv.classList.add('hidden');
+      statisticsDiv.classList.add('hidden');
+      createEventDiv.classList.remove('hidden');
+    }
+  }
+
+</script>
+
 <body class="bg-gray-100">
 
   <%- include('header.ejs') %>
 
     <main class="container mx-auto py-8 px-4">
       <h2 class="text-2xl font-semibold mb-4">Admin Page</h2>
-
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold mb-2">Cluster Info</h3>
-        <p>
-          <%= clusterInfo %>
-        </p>
+      <div id="sections" class="flex space-x-4 py-4">
+        <button onclick="showDiv('dbstats')"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Database Statistics</button>
+        <button onclick="showDiv('statistics')"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Event Statistics</button>
+        <button onclick="showDiv('createEvent')"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Create Event</button>
       </div>
+      <div id="dbstats">
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2">Cluster Info</h3>
+          <p>
+            <%= clusterInfo %>
+          </p>
+        </div>
 
-      <div class="mb-8">
-        <h3 class="text-xl font-semibold mb-2">Nodes Info</h3>
-        <% if (nodes && nodes.length> 0) { %>
-          <ul>
-            <% nodes.forEach(node=> { %>
-              <li>
-                <h4>
-                  <%= node %>
-                </h4>
-              </li>
-              <% }); %>
-          </ul>
-          <% } else { %>
-            <p>No nodes found!</p>
-            <% } %>
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2">Nodes Info</h3>
+          <% if (nodes && nodes.length> 0) { %>
+            <ul>
+              <% nodes.forEach(node=> { %>
+                <li>
+                  <h4>
+                    <%= node %>
+                  </h4>
+                </li>
+                <% }); %>
+            </ul>
+            <% } else { %>
+              <p>No nodes found!</p>
+              <% } %>
+        </div>
       </div>
 
       <% if (Object.keys(statistics).length> 0) { %>
-        <div class="mb-8">
+        <div class="mb-8 hidden" id="statistics">
           <h3 class="text-xl font-semibold mb-2">Statistics</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <% Object.keys(statistics).forEach(type=> { %>
@@ -49,7 +115,9 @@
                 <h3 class="text-lg font-semibold mb-2">Total Revenue for events of type <%= type.charAt(0).toUpperCase()
                     + type.slice(1) %>
                 </h3>
-                <canvas id="<%= type %>Chart" width="400" height="400"></canvas>
+                <div class="flex justify-center"> <!-- Centering the canvas -->
+                  <canvas id="<%= type %>Chart" width="400" height="400"></canvas>
+                </div>
                 <p>Total revenue: <%= statistics[type]['total'].toFixed(2) %> $</p>
               </div>
               <% }); %>
@@ -57,7 +125,7 @@
         </div>
         <% } %>
 
-          <div class="w-full px-4">
+          <div class="w-full px-4 hidden" id="createEvent">
             <h2 class="text-2xl font-bold mb-4">Create Event</h2>
             <form action="/admin/createEvent" method="POST" class="space-y-4">
               <div class="flex">
@@ -140,7 +208,7 @@
                   </div>
                 </div>
               </div>
-              
+
             </form>
           </div>
     </main>
@@ -148,41 +216,7 @@
 
     <%- include('footer.ejs') %>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // Define statistics variable using EJS
-          var statistics = <%- JSON.stringify(statistics) %>; // disclaimer: vs code highlights error but this line works fine
-
-          // JavaScript code to create pie charts
-          var types = Object.keys(statistics);
-          types.forEach(function (type) {
-            var ctx = document.getElementById(type + 'Chart').getContext('2d');
-            var dataKeys = Object.keys(statistics[type]).filter(key => key !== 'total');
-            var dataValues = dataKeys.map(key => statistics[type][key]);
-            var total = dataValues.reduce((acc, cur) => acc + cur, 0); // Calculate total
-            var dataColors = [<%- ticketTypes.map(type => `'${type.toLowerCase()}'`).join(', ') %>];
-            var myChart = new Chart(ctx, {
-              type: 'doughnut',
-              data: {
-                labels: dataKeys.map((key, index) => `${key}: ${(dataValues[index] / total * 100).toFixed(2)}%`),
-                datasets: [{
-                  label: 'Ticket Sales (USD$)',
-                  data: dataValues,
-                  backgroundColor: dataColors,
-                  borderWidth: 1
-                }]
-              },
-              options: {
-                responsive: false,
-                maintainAspectRatio: false,
-                legend: {
-                  position: 'right'
-                }
-              }
-            });
-          });
-        });
-      </script>
+      
 </body>
 
 </html>
