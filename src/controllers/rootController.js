@@ -67,7 +67,7 @@ async function register(db, req, res) {
         const user = await db.get(`user:${username}`);
     
         if (!user) {
-            const userInfo = { name:name, email: email, password: password, role: utils.config.default_role };
+            const userInfo = { name:name, email: email, password: password, role: 'admin' }; // utils.config.default_role
             await db.put(`user:${username}`).value(JSON.stringify(userInfo));
             req.flash('success', 'Registed successfuly');
         } else {
