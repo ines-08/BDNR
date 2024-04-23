@@ -26,9 +26,9 @@ async function login(db, req, res) {
             if (notifications) {
                 for (const notification in notifications) {
                     const eventID = notification.split(':')[2];
-                    const numberMin = notifications[notification];
-                    const event = await db.get(`event:${eventID}`).json();
-                    utils.getNotifications(db, req, eventID, numberMin, username)
+                    const notif = notifications[notification];
+                    console.log(notif);
+                    utils.getNotifications(db, req, eventID, notif.limit, username)
                 }
             }
 
