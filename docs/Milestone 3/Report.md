@@ -16,10 +16,12 @@
 - Em que posição está nas db-engines.com?
 - History
 - Licencing Model
-- Community
-- Documentation
+- Community (quer ligadas ao projecto, quer externas)
+- Documentation (existencia, qualidade)
 
 ### 2.2 - Features
+
+armazenamento, utilização, 
 
 #### 2.2.1 - Consistency features
 
@@ -53,7 +55,11 @@
 
 ## 3.2 - Conceptual Data Model
 
+em UML
+
 ## 3.3 - Physical Data Model
+
+modelo físico da tecnologi a utilizar
 
 ## 3.4 - Data Structures
 
@@ -61,17 +67,25 @@
 
 ## 3.6 - Architecture
 
+arquitetura, flow diagram, incluindo configs e python, cluster e tal
+
 ## 3.7 - Features
 
 ### 3.7.1 - Data processing
 
 ### 3.7.2 - Queries
 
-### 3.7.3 - Limitations
+### 3.7.3 - Specific Features
+
+- prefix (na realidade é getAll() mas que não tem custo grande por é de replicação total, logo dá para fazer isto)
+- notifications (como o etcd é )
+- cluster/node saúde
+
+### 3.7.4 - Limitations
 
 - Povoação não-em-bloco
 - Transactions
-- Pesquisa sem queries complexas (por timeline, por número de bilhetes...)
+- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo)
 - Updates de data structures, como da pesquisa;
 
 ## 4. Conclusion
@@ -91,3 +105,4 @@
 -
 -
 -
+
