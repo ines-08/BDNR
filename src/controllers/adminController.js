@@ -93,7 +93,7 @@ async function createEvent(db, req, res) {
         }
 
         req.flash('success', 'Event successfully generated!');
-        res.redirect(`/home`);
+        res.redirect(`/event?id=${event_id}`);
 
     } catch (error) {
         req.flash('error', 'Error in creating event action!');
