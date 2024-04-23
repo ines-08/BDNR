@@ -49,6 +49,7 @@ def generate_user_data():
         users[f"user:{username}"] = { 
             "name": fake.name(), "email": fake.email(), "password": password, "role": role 
         }
+    users['user:admin'] = { "name": "admin", "email": "admin@gmail.com", "password": "admin123", "role": "admin" }
     return users
 
 def generate_event_data():
