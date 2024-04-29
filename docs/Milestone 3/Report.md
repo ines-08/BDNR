@@ -46,8 +46,16 @@ It can be especified if we want to monitor only the PUT, only the GET operations
 
 - For example, map-reduce support
 
+Regarding data processing features, etcd does not provide much. As an example, functions like counts, sums, averages, map-reduces that are supported by other databases have no translation in etcd, making mandatory to process information after querying the database.
+As it can be seen in the oficial documentation of etcd, the main features supported by etcd are methods to read, write and delete data, besides the ability to monitor changes in a given key-value pair plus the possibility of knowing the version of the key (version is required internally to achieve consistency in a distributed system) and seeing old values for a given key.
+
+However, it is not only in data processing features that etcd is not ideal, also on the data types that can be stored in etcd. These types consist in strings and numbers, so there are no lists, sets or more complex data types.
+To bypass this limitation, one possible approach (implemented on the demo that is going to be described later on this report) is to use functions like ".json()" and ".stringify()". With those functions we can transform a list or any other data type into a string, and then store it in etcd.
+
+( https://etcd.io/docs/v3.6/dev-guide/interacting_v3/ )
+
 ### 2.3 - Data Model
-The data model can be seen in a logical and physical way
+The data model can be seen in a logical and physical way. Throughout this section both of them are going to be described shortly.
 
 #### 2.3.1 - Logical View
 The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time.
@@ -74,6 +82,26 @@ Regarding the watchers, via the API, it is possible to create them and generate 
 
 ### 2.6 - Problematic Scenarios
 
+As previously discussed, the lack of data processing features is a problematic scenario in etcd. It is not possible to perform complex operations on the data, like aggregations, joins, etc. and require pos-processing of data, making these operations less efficient.
+Besides this, etcd allows to search keys by prefix however they do not allow to do it by suffix. This adds some constraints to the aggregates' creation. As an example we could easily get the amount of tickets available using the aggregate:
+ticket:<event>:<ticket_type> : {
+    current_quantity: int64,
+    ...
+}
+
+because we can search for all keys that start with ticket:<event> and then sum the results (the current_quantity field) but we could not get the quantity of available tickets of a given type. If sufix search was implemented we could do it more efficiently.
+Another problematic scenario is related with the restricted data types that can be stored in the database (numbers and strings). Since we need to keep a json encoded as string when more complex types are required, this makes attribute search impossible, so if I want to know only a given field, I have to recieve the entire entity and then select the attribute manually.
+
+Etcd was developed to deal with small key-value pairs, typically designed to metadata. Hence, the maximum size of any request is 1.5 MiB. Similarly, the suggested maximum size of the database is 8 GiB (2 GiB is the default). With that said, we can conclude that this database was not built to be used as a cache, as it is not designed to store large amounts of data.
+
+Fast disks are vital for etcd performance and stability. Slow disks increase request latency and cluster instability. Etcd's consensus protocol requires timely storage of metadata to a log, with most cluster members writing every request to disk. Etcd also checkpoints its state to disk for log truncation, and delays in these writes can cause heartbeat timeouts, triggering cluster elections and instability. Etcd is highly sensitive to disk write latency, needing at least 50 sequential IOPS (e.g., from a 7200 RPM disk) and ideally 500 sequential IOPS (e.g., from a local SSD or high-performance virtualized block device) for heavily loaded clusters. This limitation, together with the inability of writting a block of key-value pairs in one operation - would eventually surpass the 1.5MiB of request - makes the entire cluster slower when facing lots of consecutive writes. This drawback is noticeable when populating an etcd database for example.
+
+Furthermore, etcd can also become problematic due to its own nature of replicating data totally. Yes, it is possible to have several nodes running to ensure data is (almost) never lost, however this makes the entire system slower with the increase of nodes, precisely due to data consistency and replication.
+
+
+
+( https://etcd.io/docs/v3.4/dev-guide/limit/ )
+( https://etcd.io/docs/v3.3/op-guide/hardware/ )
 ### 2.7 - ECTD vs. Other Solutions
 
 - advantages and drawbacks noutras key-value solutions
