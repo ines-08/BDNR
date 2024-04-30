@@ -10,7 +10,8 @@ $collection = $mongoClient->miniforum->topics;
 $topic = [
     "title" => $_POST['title'],
     "body" => $_POST['body'],
-    "author" => $_POST['author']
+    "author" => $_POST['author'],
+    "likes" => 0,
 ];
 $insertResult = $collection->insertOne($topic);
 

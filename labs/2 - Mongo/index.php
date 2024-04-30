@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +26,7 @@
         $collection = $mongoClient->miniforum->topics;
         $topics = $collection->find();
 
+        echo "Welcome " . $_SESSION['username'];
         // There is a specific topic to show
         if (isset($_GET['topic'])) {
 
@@ -31,6 +37,15 @@
             echo "<h2> Topic '" . $topic['title'] . "'</h2>";
             echo "<h5><strong>Author:</strong> " . $topic['author'] . "</h5>";
             echo "<p>\"" . $topic['body'] . "\"</p>";
+            echo "<p>" . strval($topic['likes']) . " likes </p>";
+            ?>
+
+            <form method="POST" action="like.php">
+                <input hidden name="title" value=<?= $topic['title'] ?> />
+                <button type=submit>Like</button>
+            </form>
+
+            <?php
             echo "<hr></hr>";
             
             // Display comments
