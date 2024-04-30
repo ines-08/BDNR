@@ -1,0 +1,13 @@
+{
+    "require": {
+        "laudis/neo4j-php-client": "^3.0",
+        "php-http/curl-client": "^2.3",
+        "guzzlehttp/psr7": "^2.6",
+        "php-http/message": "^1.16"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
