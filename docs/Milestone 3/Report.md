@@ -28,15 +28,23 @@ ETCD, developed by CoreOS, is a distributed key-value store that is widely used 
 
 As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems. As an example, ETCD is used in Kubernetes.
 
-#### 2.2.1 - Consistency features
+#### 2.2.1 - Replication and node communication features
+This database works in a distributed way, that is, it's a cluster of machines (nodes). In etcd the number of nodes is always odd (1, 3, 5, etc). These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
+Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes.
+In ETCD there is a total replication of the data.
+ETCD is built on the Raft consensus algorithm to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. This algorithm is based on quorums and as the name suggests it is used to have a consensus between all nodes about the values that are being stored in the database, taking into account that one or more nodes may fail. In etcd, for a cluster with n members, the quorum size is (n/2)+1. For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum.
+(https://www.ibm.com/topics/etcd)
+(https://etcd.io/docs/v3.4/op-guide/clustering/)
+(https://etcd.io/docs/v3.3/faq/)
+(https://raft.github.io/)
+
+#### 2.2.2 - Consistency features
 
 ETCD provides sequential consistency, which is the stronger form of consistency that can be obtained in distributed systems. This means that, independently of the node of the cluster that receives the request from the client, it reads the same events in the same order.
-(https://etcd.io/docs/v3.3/learning/api_guarantees/)
 
-#### 2.2.2 - Replication features
-This database works in a distributed form, that is, it's a cluster of machines (nodes). Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes.
-In ETCD there is a total replication of the data.
-ETCD is built on the Raft consensus algorithm to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. (https://www.ibm.com/topics/etcd)
+Consistency is one of the advantages of using a distributed database. It allows for multiple nodes to be updated at the same time, which can lead to inconsistencies in the data. To avoid this, ETCD provides a quorum like strategy, which ensures that the data is consistent across all nodes in the cluster even if some nodes are down at that given moment.
+(https://etcd.io/docs/v3.3/learning/api_guarantees/)
 
 #### 2.2.3 - Watcher feature
 ETCD provides a functionality called watcher. this watcher can be used to monitor a given key-value pair over time based on the operations executed over that key.
