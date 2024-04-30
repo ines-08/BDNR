@@ -7,11 +7,15 @@
     <body>
         <h1>Bookit! 2</h1>
         <h2>Latest Bookmarks</h2>
+        <h3>Welcome {{session.username}}</h3>
+        <form action="/logout" method="get">
+            <button type="submit">Logout</button>
+        </form>
         <ul>
             {% for bookmark in bookmarks %}
             <li>
                 <h2>
-                    <a href="{bookmark[0]}">{{ bookmark[0] }}</a>
+                    <a href="{{url_for('bookmarks', url_md5=bookmark[2])}}">{{ bookmark[0] }}</a>
                 </h2>
                 <ul>
                     {% for tag in bookmark[1] %}

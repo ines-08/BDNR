@@ -1,0 +1,58 @@
+{
+    "name": "stefanak-michal/bolt",
+    "description": "PHP library for communication with Neo4j graph database over TCP socket with Bolt protocol specification",
+    "keywords": ["neo4j", "bolt", "socket", "database"],
+    "homepage": "https://github.com/neo4j-php/Bolt",
+    "type": "library",
+    "readme": "README.md",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=9"
+    },
+    "support": {
+        "issues": "https://github.com/neo4j-php/Bolt/issues",
+        "source": "https://github.com/neo4j-php/Bolt",
+		"docs": "https://www.neo4j.com/docs/bolt/current/"
+    },
+    "funding": [
+        {
+            "type": "ko-fi",
+            "url": "https://ko-fi.com/michalstefanak"
+        }
+    ],
+    "authors": [
+        {
+            "name": "Michal Stefanak",
+            "role": "Developer",
+            "homepage": "https://www.linkedin.com/in/michalstefanak/"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bolt\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bolt\\tests\\": "tests/"
+        }
+    },
+    "suggest": {
+        "laudis/neo4j-php-client": "Neo4j-PHP-Client is the most advanced PHP Client for Neo4j",
+        "stefanak-michal/neo4j-bolt-wrapper": "Wrapper for Neo4j PHP Bolt library to simplify usage.",
+        "ext-sockets": "Needed when using Socket connection class",
+        "ext-openssl": "Needed when using StreamSocket connection class with SSL"
+    },
+    "scripts": {
+        "test": [
+            "@putenv XDEBUG_MODE=debug",
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit"
+        ]
+    }
+}

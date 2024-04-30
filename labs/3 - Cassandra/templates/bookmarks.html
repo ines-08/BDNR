@@ -4,11 +4,15 @@
     <title>Bookmark</title>
 </head>
 <body>
-    <h1>Bookmark</h1>
+    <h1>URL: 
+        <a href="{{ bookmark[0][0] }}">{{ bookmark[0][0] }}</a>
+    </h1>
+    <h2>Created at: {{ bookmark[0][2].strftime('%Y-%m-%d %H:%M:%S')}}</h2>
+    <h2>Tags</h2>
     <ul>
-       {{
-        bookmarks
-       }}
+        {% for tag in bookmark[0][1] %}
+        <li>{{ tag }}</li>
+        {% endfor %}
     </ul>
 </body>
 </html>
