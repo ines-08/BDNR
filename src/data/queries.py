@@ -1,12 +1,11 @@
 import subprocess
 
-# Please change this in PROD environment
 ETCD_NODES = {
-    "etcd1" : "http://localhost:2381", 
-    "etcd2" : "http://localhost:2382", 
-    "etcd3" : "http://localhost:2383", 
-    "etcd4" : "http://localhost:2384", 
-    "etcd5" : "http://localhost:2385",     
+    "etcd1" : "http://etcd1:2379", 
+    "etcd2" : "http://etcd2:2379", 
+    "etcd3" : "http://etcd3:2379", 
+    "etcd4" : "http://etcd4:2379", 
+    "etcd5" : "http://etcd5:2379",     
 }
 
 DEFAULT_NODE = 'etcd1'
