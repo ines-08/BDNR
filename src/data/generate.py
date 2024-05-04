@@ -190,7 +190,7 @@ def generate_notifications(user_data, event_data):
                 limit = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
                 notifications[f'notification:{user_id}:{event_id}'] = {
                     'limit': limit,
-                    'active': False,
+                    'active': n_tickets < limit,
                 }
 
     return notifications
