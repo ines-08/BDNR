@@ -4,8 +4,10 @@
 - [Prototype](#prototype)
     - [Run](#run)
     - [Endpoints](#endpoints)
+    - [Credentials](#credentials)
     - [Data](#data)
-    - [Manual Queries](#manual-queries)
+    - [Manual Queries](#manual-qsueries)
+    - [Design](#design)
 
 ## Documentation
 
@@ -59,6 +61,13 @@ $ python3 data/populate.py <INPUT> [-p]
 ```
 
 If the `-p` flag is active, the populate runs in parallel mode, distributing the workload across each of the nodes in the cluster.
+
+### Credentials
+
+All credentials can be found in the `data.json` file generated during setup. By default, we add two predefined accounts:
+
+- `user / user123` - for a regular user account;
+- `admin / admin123` - for an account with administrator privileges;
 
 ### Endpoints
 
@@ -244,6 +253,44 @@ $ make queries
 ```
 
 Given that ETCD does not have any explicit query language or a terminal client, this is the only way to perform raw queries.
+
+### Design
+
+#### Login / register page
+
+![Login](./imgs/login.png)
+
+#### Home page
+
+![Home](./imgs/home.png)
+
+#### Profile page
+
+![Profile](./imgs/profile.png)
+
+#### Event page
+
+![Event](./imgs/event.png)
+
+#### Purschase page
+
+![Buy](./imgs/buy.png)
+
+### Notifications page
+
+![Notifications](./imgs/notifications.png)
+
+#### Admin - Database info
+
+![Admin BD](./imgs/admin-database.png)
+
+#### Admin - Event statistics
+
+![Admin Statistics](./imgs/admin-statistics.png)
+
+#### Admin - Event creation
+
+![Admin Event](./imgs/admin-event.png)
 
 --- 
 
