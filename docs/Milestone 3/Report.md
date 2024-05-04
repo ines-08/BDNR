@@ -6,7 +6,11 @@
 
 ## Abstract
 
+O presente relatório tem como objectivo explorar de forma teórica e com uma componente prática uma tecnologia de base de dados não relacional de um dos paradigmas estudados, ETCD, uma base de dados baseada em key-value muito utilizada para consistência em sistemas distribuídos.
+Ao longo do presente documento apresentam-se informações introdutórias da tecnologia bem como especificadades e utilizações da mesma. De seguida, aborda-se um use case scenario, assim como os modelos desenvolvidos para suporte da solução encontrada para o referido. Por último, explica-se a implementação do protótipo usando ETCD tendo em conta a ideação mencionada e algumas considerações de features implementadas neste paradigma.
+
 ## 1 - Introduction
+
 
 ## 2 - Techonology
 
