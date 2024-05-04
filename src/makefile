@@ -1,4 +1,4 @@
-all: cleanup setup generate populate
+all: cleanup_db cleanup_containers setup generate populate
 
 cleanup_containers:
 	-docker stop etcd1

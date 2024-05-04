@@ -38,6 +38,8 @@ def populate_parallel(data, n):
     with ThreadPoolExecutor(max_workers=n) as executor:
         for i, node in enumerate(ETCD_NODES.keys()):
             executor.submit(process_data_chunk, key_chunks[i], value_chunks[i], node)
+    print(f"Populate done. Inserted {len(data.items())} key-value pairs")
+
 
 def populate_single(data):
     for key, value in data.items():
