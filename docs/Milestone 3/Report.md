@@ -13,7 +13,8 @@ Ao longo do presente documento apresentam-se informações introdutórias da tec
 
 O aumento da quantidade de dados levou à criação de novas soluções para tornar o armazenamento mais eficiente: bases de dados não relacionais.
 Desta forma, surgiu o paradigma explorado neste relatório, key-value através da abordagem com a ETCD.
-Este tipo de base de dados key-value são das mais simples das bases de dados não relacionais. Tem um design muito simples, uma vez que depende do desenho da key, o que permite uma grande escalabilidade e melhor performance em relação às bases de dados relacionais.
+Este tipo de base de dados key-value tem um design muito simples e de aprendizagem rápida, uma vez que apenas depende do desenho da key e todo o processamento e manipulação necessária fica do lado da aplicação. Estas tecnologias de NoSQL permitem uma grande escalabilidade e melhor performance em relação às bases de dados relacionais.
+A ETCD é uma base de dados frequentemente utilizada para configuração de sistemas de clusters. É especialmente usada por causa da forte consistência entre nós que permite, e que vai explorado nas próximas secções, assim através dos use cases desta tecnologia e do protótipo desenvolvido.
 
 ## 2 - Techonology
 
