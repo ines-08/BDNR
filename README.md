@@ -52,7 +52,7 @@ $ make populate           # Populate the cluster with generated
 
 #### Note
 
-The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the population process slow.
+The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
 
 To mitigate this situation somewhat, we chose to populate in parallel mode, distributing the values to each of the nodes in the cluster:
 
