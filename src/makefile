@@ -1,4 +1,4 @@
-all: cleanup requirements setup generate populate
+all: cleanup setup generate populate
 
 cleanup_containers:
 	-docker stop etcd1
@@ -19,16 +19,15 @@ cleanup_db:
 	mkdir db
 	touch db/db.empty
 
-requirements:
-	python3 -m pip install -r requirements.txt
-
 setup:
 	docker-compose up -d
 
 generate:
+	python3 -m pip install -r requirements.txt
 	python3 data/generate.py data/data.json
 
 populate:
 	python3 data/populate.py data/data.json 5
 
-cleanup: cleanup_containers cleanup_db
+query:
+	python3 data/query.py
