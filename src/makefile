@@ -20,7 +20,7 @@ cleanup_db:
 	touch db/db.empty
 
 requirements:
-	pip3 install Faker
+	python3 -m pip install -r requirements.txt
 
 setup:
 	docker-compose up -d

@@ -111,37 +111,36 @@ async function createEvent(db, req, res) {
 
 async function getAdminPage(db, req, res) {
 
-    let message = "init-";
-
     try {
 
-        message += "1"
-        const clusterInfo = await utils.getClusterMembers(utils.config.cluster[0]);
-        message += "2"
+        let clusterInfo = null;
+        for (const node of utils.config.cluster) {
+            let info;
+            try {
+                info = await utils.getClusterMembers(node);
+            } catch {;} finally {
+                if (!clusterInfo) {
+                    clusterInfo = info;
+                    break;
+                }
+            }
+        }
+
         const nodes = [];
         
         for (const node of utils.config.cluster) {
-            message += "3"
             try {
                 const nodeInfo = await utils.getNodeInfo(node);
-                message += "4"
                 nodes.push(nodeInfo)
             } catch (error) {
-                message += "5"
                 nodes.push({ name: node, error_message: "Node not alive!" });
             }
         }
 
-        message += "6"
         const stats = await getStatistics(db, req, res);
-        message += "7"
         const eventTypes = await utils.getEventTypeKeys(db); 
-        message += "8"
         const eventLocations = await utils.getEventLocationKeys(db); 
-        message += "9"  
         const ticketTypes = await utils.getTicketTypes(db);
-
-        message += "A"
         
         res.render('admin', {
             user: req.session.userInfo,
@@ -154,7 +153,7 @@ async function getAdminPage(db, req, res) {
         });
 
     } catch (error) {
-        req.flash('error', message);
+        req.flash('error', 'Error when getting Admin page details');
         res.redirect('/home');
     }
 }
