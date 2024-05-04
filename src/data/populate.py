@@ -23,23 +23,21 @@ def process_data_chunk(keys, values, node):
     for key, value in zip(keys, values):
         process_data(key, value, node)
 
-def populate_parallel(data, n):
-    assert(n <= len(ETCD_NODES))
+def populate_parallel(data):
 
     keys = list(data.keys())
     values = list(data.values())
 
     # Divide the data into chunks for parallel processing
-    chunk_size = len(keys) // n
+    chunk_size = len(keys) // len(ETCD_NODES)
     key_chunks = [keys[i:i+chunk_size] for i in range(0, len(keys), chunk_size)]
     value_chunks = [values[i:i+chunk_size] for i in range(0, len(values), chunk_size)]
 
     # Processes the chunks in parallel on different nodes
-    with ThreadPoolExecutor(max_workers=n) as executor:
+    with ThreadPoolExecutor(max_workers=len(ETCD_NODES)) as executor:
         for i, node in enumerate(ETCD_NODES.keys()):
             executor.submit(process_data_chunk, key_chunks[i], value_chunks[i], node)
     print(f"Populate done. Inserted {len(data.items())} key-value pairs")
-
 
 def populate_single(data):
     for key, value in data.items():
@@ -49,7 +47,7 @@ def populate_single(data):
 def main():
 
     if len(sys.argv) not in [2, 3]:
-        print("Usage: python populate.py <INPUT> [N]")
+        print("Usage: python populate.py <INPUT> [-p]")
         sys.exit(1)
 
     JSON_FILE = sys.argv[1]
@@ -57,8 +55,8 @@ def main():
         data = json.load(file)
         file.close()
 
-    if len(sys.argv) == 3 and sys.argv[2]:
-        populate_parallel(data, int(sys.argv[2]))
+    if len(sys.argv) == 3 and sys.argv[2] == '-p':
+        populate_parallel(data)
     else:
         populate_single(data)
 

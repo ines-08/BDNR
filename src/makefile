@@ -27,7 +27,7 @@ generate:
 	python3 data/generate.py data/data.json
 
 populate:
-	python3 data/populate.py data/data.json 5
+	python3 data/populate.py data/data.json -p
 
 query:
-	python3 data/query.py
+	python3 query/queries.py query/queries.json

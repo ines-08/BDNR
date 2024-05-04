@@ -1,0 +1,12 @@
+[
+    { 
+        "description": "A simple put", 
+        "code": "put some thing", 
+        "output": false 
+    },
+    { 
+        "description": "Getting all ticket types", 
+        "code": "get ticket:types", 
+        "output": true 
+    }
+]
