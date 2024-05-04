@@ -13,7 +13,7 @@ Beyond this README, more focused on the prototype, the following are available:
 
 - [Milestone 1 Presentation](./docs/Milestone%201/Milestone1.pdf)
 - [Milestone 2 Presentation](./docs/Milestone%202/Milestone2.pdf)
-- [Milestone 3 Final Presentation](./docs/Milestone%203/Milestone3.pdf)
+- [Milestone 3 Presentation](./docs/Milestone%203/Milestone3.pdf)
 - [Final Report](./docs/Milestone%203/Report.md)
 
 ## Prototype
@@ -55,10 +55,10 @@ The setup step that takes the longest time is the populate step. ETCD does not h
 To mitigate this situation somewhat, we chose to populate in parallel mode, distributing the values to each of the nodes in the cluster:
 
 ```bash
-$ python3 data/populate.py <INPUT> [N]
+$ python3 data/populate.py <INPUT> [-p]
 ```
 
-N represents the value of parallelism, which is at most the number of nodes in the cluster. N is 5 for default reasons.
+If the `-p` flag is active, the populate runs in parallel mode, distributing the workload across each of the nodes in the cluster.
 
 ### Endpoints
 
