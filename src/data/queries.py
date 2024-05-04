@@ -19,7 +19,7 @@ QUERIES = [
 def run_query(query, output=True):
     command = f"ETCDCTL_API=3 etcdctl --endpoints={DEFAULT_ADDRESS} {query}"
     subprocess.run([
-        "docker-compose", "-f", "docker-compose-dev.yml", 
+        "docker-compose",
         "exec", DEFAULT_NODE, "sh", "-c", command
     ], 
         stdout=subprocess.DEVNULL if not output else None, 
