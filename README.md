@@ -62,13 +62,13 @@ If the `-p` flag is active, the populate runs in parallel mode, distributing the
 
 ### Endpoints
 
-`/`: Used for login or registration;
-`/home[?search=<INPUT>]`: Homepage. By default, it displays some events. If the user searches (using the search field), it shows the search results.
-`/admin`: Admin page displaying database cluster statistics, events, and event creation;
-`/profile?username=<USERNAME>`: Displays details of a user profile, favourite events and last purchases;
-`/notifications`: Displays the current user notifications;
-`/event?id=<ID>`: Displays details of an event;
-`/tickets?eventid=<ID>`: Used for purchasing tickets;
+- `/`: Used for login or registration;
+- `/home[?search=<INPUT>]`: Homepage. By default, it displays some events. If the user searches (using the search field), it shows the search results.
+- `/admin`: Admin page displaying database cluster statistics, events, and event creation;
+- `/profile?username=<USERNAME>`: Displays details of a user profile, favourite events and last purchases;
+- `/notifications`: Displays the current user notifications;
+- `/event?id=<ID>`: Displays details of an event;
+- `/tickets?eventid=<ID>`: Used for purchasing tickets;
 
 ### Data
 
@@ -76,8 +76,8 @@ The generated data follows the configurations described in `data/configuration.j
 
 ```json
 {
-    "NUM_USERS": 10,
-    "NUM_EVENTS": 10,
+    "NUM_USERS": 20,
+    "NUM_EVENTS": 20,
     "ADMIN_PROBABILITY": 0.1,
     "FAVOURITE_PROBABILITY": 0.3,
     "EVENT_PURCHASE_LIMIT": 3,
@@ -218,12 +218,20 @@ Examples of the formatting of the key-value pairs used in the prototype:
 
 ### Manual Queries
 
-There is also the possibility of running some queries externally to the prototype. The queries are described in a data file located at `data/queries.json`:
+There is also the possibility of running some queries externally to the prototype. The queries are described in a data file located at `query/queries.json`:
 
 ```json
 [
-    { "description": "A simple put", "code": "put some thing", "output": false },
-    { "description": "Getting all ticket types", "code": "get ticket:types", "output": true }
+    { 
+        "description": "A simple put", 
+        "code": "put some thing", 
+        "output": false 
+    },
+    { 
+        "description": "Getting all ticket types", 
+        "code": "get ticket:types", 
+        "output": true 
+    }
 ]
 ```
 
@@ -232,7 +240,7 @@ We can also choose whether we want to see the output or not, as well as choose a
 After the database containers are instantiated and populated, the previous queries can be executed manually using:
 
 ```bash
-$ make query
+$ make queries
 ```
 
 Given that ETCD does not have any explicit query language or a terminal client, this is the only way to perform raw queries.

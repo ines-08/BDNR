@@ -29,5 +29,5 @@ generate:
 populate:
 	python3 data/populate.py data/data.json -p
 
-query:
+queries:
 	python3 query/queries.py query/queries.json

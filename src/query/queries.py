@@ -1,4 +1,6 @@
 import subprocess
+import json
+import sys
 
 ETCD_NODES = {
     "etcd1" : "http://etcd1:2379", 
@@ -11,11 +13,6 @@ ETCD_NODES = {
 DEFAULT_NODE = 'etcd1'
 DEFAULT_ADDRESS = ETCD_NODES[DEFAULT_NODE]
 
-QUERIES = [
-    { "description": "A simple put", "code": "put some thing", "output": False },
-    { "description": "Getting all ticket types", "code": "get ticket:types", "output": True }
-]
-
 def run_query(query, output=True):
     command = f"ETCDCTL_API=3 etcdctl --endpoints={DEFAULT_ADDRESS} {query}"
     subprocess.run([
@@ -26,11 +23,22 @@ def run_query(query, output=True):
         stderr=subprocess.DEVNULL if not output else None, 
         check=True
     )
+    print('\n')
 
-def run():
+def main():
+
+    if len(sys.argv) != 2:
+        print("Usage: python queries.py <INPUT>")
+        sys.exit(1)
+
+    JSON_FILE = sys.argv[1]
+    with open(JSON_FILE, "r") as file:
+        QUERIES = json.load(file)
+        file.close()
+
     for query in QUERIES:
         print(query['description'])
         run_query(query['code'], query['output'])
 
 if __name__ == '__main__':
-    run()
+    main()
