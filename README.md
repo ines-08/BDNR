@@ -27,7 +27,7 @@ $ cd src/
 $ make
 ```
 
-This will:
+This process can be time-consuming. Please see the [note](#note). This instruction will:
 
 - Stop and remove previous containers if they exist;
 - Remove old versions of the database in `/db` if they exist;
@@ -47,6 +47,18 @@ $ make setup              # Create infrastructure/containers
 $ make generate           # Generate data
 $ make populate           # Populate the cluster with generated
 ```
+
+#### Note
+
+The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the population process slow.
+
+To mitigate this situation somewhat, we chose to populate in parallel mode, distributing the values to each of the nodes in the cluster:
+
+```bash
+$ python3 data/populate.py <INPUT> [N]
+```
+
+N represents the value of parallelism, which is at most the number of nodes in the cluster. N is 5 for default reasons.
 
 ### Endpoints
 
