@@ -11,6 +11,9 @@ Ao longo do presente documento apresentam-se informações introdutórias da tec
 
 ## 1 - Introduction
 
+O aumento da quantidade de dados levou à criação de novas soluções para tornar o armazenamento mais eficiente: bases de dados não relacionais.
+Desta forma, surgiu o paradigma explorado neste relatório, key-value através da abordagem com a ETCD.
+Este tipo de base de dados key-value são das mais simples das bases de dados não relacionais. Tem um design muito simples, uma vez que depende do desenho da key, o que permite uma grande escalabilidade e melhor performance em relação às bases de dados relacionais.
 
 ## 2 - Techonology
 
