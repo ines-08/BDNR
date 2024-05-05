@@ -120,7 +120,7 @@ Furthermore, etcd can also become problematic due to its own nature of replicati
 ( https://etcd.io/docs/v3.4/dev-guide/limit/ )
 ( https://etcd.io/docs/v3.3/op-guide/hardware/ )
 
-### 2.7 - ECTD vs. Other Solutions
+### 2.7 - ETCD vs. Other Solutions
 
 - advantages and drawbacks noutras key-value solutions
 
@@ -131,7 +131,7 @@ The main drawback is the performance of ETCD and the lack of ability of insertin
 
 ## 3 - Prototype
 
-De forma a validar as principais features, qualidades e botlenecks da tecnologia ETCD enunciada, criamos um protótipo or prova de conceito movido a este paradigma key-value.
+To validate the main features, qualities, and potential bottlenecks of the mentioned ETCD technology, a prototype — proof of concept based on this key-value paradigm — was developed and presented in the following sections.
 
 ### 3.1 - Topic
 
@@ -145,44 +145,150 @@ To ensure the system is immune to such issues, it is necessary to rely on a data
 
 TickETCD, a web application for purchasing tickets for events, uses ETCD as a solution to the aforementioned problems. The implementation details will be described in the following subsections.
 
-## 3.2 - Conceptual Data Model
+### 3.2 - Conceptual Data Model
 
-De forma a dar resposta a 
+In order to meet the needs of the application, the following relationships have been designed, as shown in figure [F1]:
 
-UML
+![UML](../../imgs/UML.png)
 
-Um hotel tem vários.... explicação das relações por texto.
+An event has a name, location, date, type, a description, and a total quantity of available tickets. Each event may offer various ticket types, each associated with a price, as well as their initial and current total quantity. Users, identified by their name, email, password, and role, can have favorite events and request notifications when the quantity of tickets for a specific event reaches a certain limit. Additionally, users can purchase various types of tickets.
 
-## 3.3 - Physical Data Model
+### 3.3 - Physical Data Model and Data Structures
 
-modelo físico da tecnologia utilizar
+O Conceptual Data Model anterior poderia ser desenhado recorrendo a bases de dados relacionais, permitindo uma busca direta pelas relações entre entidades. No caso do paradigma key-value utilizado no ETCD, é necessário recorrer à redundância dos dados para assegurar o conhecimento integral de todas as relações. 
 
-## 3.4 - Data Structures
+De seguida são apresentadas as estruturas de keys e valores utilizados para a concepção de toda a estrutura de dados necessária à populate de TickETCD. Note-se que por motivos de visualização foi utilizado JSON, embora de facto fisicamente sejam apenas strings, pois ETCD não suporta outros tipos de dados como valores para as suas chaves.
 
-- With illustrative values
+```json
+{
+    // User
+    "user:<USERNAME>": { 
+        "name": "user", 
+        "email": "user@gmail.com", 
+        "password": "user123", 
+        "role": "admin"
+    },
 
-## 3.6 - Architecture
+    // Event
+    "event:<ID>": {
+        "name": "event", 
+        "description": "a simple event", 
+        "location": "porto",
+        "type": "concert",
+        "date": "2024-02-13",
+        "current_quantity": "14",
+    },
 
+    // Search Events by Text
+    "search:text:<WORD>": [
+        "EVENT_ID_1",
+        "EVENT_ID_2",
+    ],
+
+    // Search Events by Type
+    "search:type:<TYPE>": [
+        "EVENT_ID_3",
+        "EVENT_ID_4",
+    ],
+
+    // Search Events by Location
+    "search:location:<LOCATION>": [
+        "EVENT_ID_5",
+        "EVENT_ID_6",
+    ],
+
+    // Favourite relationship
+    "favourite:<USERNAME>": [
+        "EVENT_ID_1",
+        "EVENT_ID_2",
+        "EVENT_ID_3",
+    ],
+
+    // Ticket
+    "ticket:<EVENT_ID>:<TYPE>": {
+        "total_quantity": "34", 
+        "current_quantity": "23", 
+        "price": "23.30",
+    },
+
+    // Purchase
+    "purchase:<USERNAME>:<EVENT_ID>": [
+        {
+            "date": "2024-03-14 13:45:00",
+            "tickets": [
+                {
+                    "type": "red",
+                    "quantity": "3",
+                },
+                {
+                    "type": "green",
+                    "quantity": "42",
+                },
+            ]
+        },
+        {
+            "date": "2024-03-16 02:40:00",
+            "tickets": [
+                {
+                    "type": "pink",
+                    "quantity": "45",
+                },
+                {
+                    "type": "green",
+                    "quantity": "78",
+                },
+            ]
+        },
+    ],
+
+    // Notification
+    "notification:<USERNAME>:<EVENT_ID>" : {
+        "limit": 42,
+        "active": true,
+    },
+
+    // Static event locations
+    "event:locations": ["A", "B", "C"],
+
+    // Static event types
+    "event:types": ["D", "E", "F", "G"],
+
+    // Static ticket types
+    "ticket:types": ["H", "I", "J"],
+}
+
+Forma bela de colocar json com valores bonitos no latex, explorar isto
+
+Além dos principais objectos caracterizados no Conceptual Data Model, 
+Estruturas auxiliares
+
+### 3.4 - Architecture
+
+Auxiliados com makefile para cada um dos sub-steps
 arquitetura, flow diagram, incluindo configs e python, cluster e tal
 
-## 3.7 - Features
+Falar da biblioteca Faker, ficheiros de configuração, docker, cluster, server with node and tailwind, biblitoeca ECTD3 da Microsoft.
 
-### 3.7.1 - Data processing
+### 3.5 - Features
 
-### 3.7.2 - Queries
+#### 3.5.1 - Data processing
 
-### 3.7.3 - Specific Features
+#### 3.5.2 - Queries
+
+#### 3.5.3 - Specific Features
 
 - prefix (na realidade é getAll() mas que não tem custo grande por é de replicação total, logo dá para fazer isto)
 - notifications (como o etcd é )
 - cluster/node saúde
 
-### 3.7.4 - Limitations
+#### 3.5.4 - Limitations
 
-- Povoação não-em-bloco
-- Transactions
-- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo)
+- Redundância excessiva, para combater as relações que poderiam simplesmente serem usadas em modo relacional
+- Povoação não-em-bloco, explicar o processo de ser lento. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal 
+- Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal
+- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo). A função
 - Updates de data structures, como da pesquisa;
+- JSON.stringigy / JSON.parse, para values, torna ineficiente quando comparado com outras soluções como redis
 
 ## 4. Conclusion
 
