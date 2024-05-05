@@ -135,24 +135,15 @@ De forma a validar as principais features, qualidades e botlenecks da tecnologia
 
 ### 3.1 - Topic
 
-Num cenário clássico de compra de bilhetes para eventos, a consistência dos daods é a característica mais importante a ter em conta. Cada evento deve, por exemplo, apresentar em tempo real as suas informações atualizadas, assim como o número de bilhetes restantes. Uma falha.
+In a classic scenario of purchasing tickets for events, data consistency is the most important aspect to consider. For example, each event should display its updated information in real-time, including the number of remaining tickets, regardless of the number of simultaneous purchases occurring. A failure in data replication and propagation within the system can result in event overbooking, inaccurately computed purchases, and potential revenue loss.
 
-Para que o sistema seja imune a esse tipo de problemas, é necessário uma base de dados que seja simultaneamente:
+To ensure the system is immune to such issues, it is necessary to rely on a database that is simultaneously:
 
-- distribuída, para
-- com replicação total, em vez de consistência eventual, para que seja sempre tudo updated. 
+- Distributed, for horizontal scalability ensuring the system can handle the growing workload effectively;
+- Fully-replicated, where every data read returns the latest data write across all clusters and nodes, something that is not achievable with eventual consistency;
+- Highly available, to have no single point of failure and gracefully tolerate hardware failures and network partitions.
 
-TickETCD, uma aplicação para compra de bilhetes para eventos, usa ETCD como resposta aos problemas anteriormente enunciados. Nos seguintes. uma vez que a replicação total, qualquer nó do cluster estará mais que preparado para.
-
-ECTD dá a resposta a um porblema qe vamos tentar resolver usando ETCD.
-
-A ideia
-
-- Bilhetes. O porquê de ser adequado neste caso (porque a replicação é total).
-
-Por outro lado, quer-se um sistema. Não é adequado por tempos de espera, pois ETCD morre a performance em troca da availability.
-
-Os detalhes de implementação serão enunciados nas seguintes subsecções.
+TickETCD, a web application for purchasing tickets for events, uses ETCD as a solution to the aforementioned problems. The implementation details will be described in the following subsections.
 
 ## 3.2 - Conceptual Data Model
 
