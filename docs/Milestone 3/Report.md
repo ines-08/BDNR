@@ -189,6 +189,8 @@ Similarly to a user, the information about an event can be accessed by a simple 
 
 #### 3.3.3 - Ticket
 
+Given an event and a ticket type, it is possible to determine their current characteristics by using the key in the format `ticket:<EVENT_ID>:<TYPE>`. Example:
+
 ```json
 "ticket:92fe965d-a189-4f26-844c-0979c6ca035e:pink": {
     "total_quantity": "34", 
@@ -197,41 +199,24 @@ Similarly to a user, the information about an event can be accessed by a simple 
 }
 ```
 
+The ticket type is the same and fixed for all events, so there would be no issue in declaring this key in the format `ticket:<TYPE>:<EVENT_ID>`. The ticket types are included in the static auxiliary structures to be explored later.
 
+#### 3.3.4 - Notification
 
-#### 3.3.3 - Favourite
+Given that a user can activate a notification for a specific event, the structure `notification:<USERNAME>:<EVENT_ID>` was used to store this data:
 
 ```json
-"notification:<USERNAME>:92fe965d-a189-4f26-844c-0979c6ca035e" : {
+"notification:johndoe:92fe965d-a189-4f26-844c-0979c6ca035e" : {
     "limit": 42,
     "active": true,
 },
 ```
 
-Da forma como está estruturada, permite conhecer com prefix logo todos os eventos com.
+As defined, and leveraging ETCD's feature of searching by key prefix, the system also has direct access to all notifications for a user by searching only for prefix `notification:<USERNAME>`. This way post-processing was avoided.
 
-#### 3.3.3 - Favourite
+#### 3.3.5 - Favourite
 
-```json
-
-
-```
-
-#### 3.3.3 - Favourite
-
-```json
-
-
-```
-
-#### 3.3.3 - Favourite
-
-```json
-
-
-```
-
-#### 3.3.8 - Favourite
+With the key in the format `favorite:<USERNAME>`, a single operation is sufficient to ensure the retrieval of all events marked as favorites by the user:
 
 ```json
 "favourite:johndoe": [
@@ -240,68 +225,70 @@ Da forma como está estruturada, permite conhecer com prefix logo todos os event
 ]
 ```
 
+#### 3.3.6 - Purchase
 
+Due to potential key collisions in a distributed context, indexing keys by timestamp became unfeasible. Therefore, the purchase history of a user for an event can be queried using the key `purchase:<USERNAME>:<EVENT_ID>`. Example:
 
 ```json
-
-    // Search Events by Text
-    "search:text:<WORD>": [
-        "EVENT_ID_1",
-        "EVENT_ID_2",
-    ],
-
-    // Search Events by Type
-    "search:type:<TYPE>": [
-        "EVENT_ID_3",
-        "EVENT_ID_4",
-    ],
-
-    // Search Events by Location
-    "search:location:<LOCATION>": [
-        "EVENT_ID_5",
-        "EVENT_ID_6",
-    ],
-
-    // Purchase
-    "purchase:<USERNAME>:<EVENT_ID>": [
-        {
-            "date": "2024-03-14 13:45:00",
-            "tickets": [
-                {
-                    "type": "red",
-                    "quantity": "3",
-                },
-                {
-                    "type": "green",
-                    "quantity": "42",
-                },
-            ]
-        },
-        {
-            "date": "2024-03-16 02:40:00",
-            "tickets": [
-                {
-                    "type": "pink",
-                    "quantity": "45",
-                },
-                {
-                    "type": "green",
-                    "quantity": "78",
-                },
-            ]
-        },
-    ],
-
-    // Static event locations
-    "event:locations": ["A", "B", "C"],
-
-    // Static event types
-    "event:types": ["D", "E", "F", "G"],
-
-    // Static ticket types
-    "ticket:types": ["H", "I", "J"],
-}
+"purchase:johndoe:ad25c85c-6714-4d1f-857b-9bcd1a45ccb9": [
+    {
+        "date": "2024-03-14 13:45:00",
+        "tickets": [
+            {
+                 "type": "red",
+                "quantity": "3"
+            },
+            {
+                "type": "green",
+                "quantity": "42"
+            }
+        ]
+    }
+]
 ```
+
+A purchase is characterized by an array of transactions, each containing a timestamp and a list of purchased tickets. Since the event ID is already present in the key, redundancy was avoided by not including the event identification again here, as it already contains these tickets.
+
+Just like in the case of notifications, leveraging ETCD's feature of searching by key prefix, the system also has direct access to all user purchases by searching only for the prefix `purchase:<USERNAME>`, without requiring post-processing.
+
+#### 3.3.7 - Search
+
+One of the features to explore in TickETCD is the search for events by string, type, and location. Since ETCD, being a key-value database, does not allow searching by values but only by keys, an inverted index was implemented:
+
+```json
+"search:text:some": [
+    "92fe965d-a189-4f26-844c-0979c6ca035e",
+    "ad25c85c-6714-4d1f-857b-9bcd1a45ccb9"
+],
+
+"search:type:concert": [
+    "f2af5c43-7cad-49f8-88c1-2ff7e8fe8d81"
+],
+
+"search:location:lisbon": [
+    "97636456-a096-4868-9dc1-aac79a22961c",
+    "f2af5c43-7cad-49f8-88c1-2ff7e8fe8d81",
+    "c78f3b62-9fc9-4f05-9651-61354d720edc"
+]
+```
+
+As observed, the key is constructed based on the search type followed by the input, in the format `search:<SEARCH_TYPE>:<INPUT>`. Its value is always a list of events that owns these characteristics. This also requires initial processing and runtime processing of the strings that constitute the event, such as the name and description, something to emphasize in the limitations of this implementation.
+
+The text search leverages ETCD's prefix search feature, allowing users to search not only for a single word but also for the prefix of that word and obtain the same results without additional computational cost.
+
+#### 3.3.8 - Static data
+
+To ensure and enforce system constraints, some static auxiliary structures have been added to the database. Examples:
+
+```json
+"event:locations": ["lisbon", "porto", "braga"],
+
+"event:types": ["concert", "theater", "dance", "magic", "circus"],
+
+"ticket:types": ["pink", "blue", "green", "red"],
+```
+
+Event locations, event types, and ticket types are frequently accessed structures, allowing for rapid data selection without the need for complex queries or additional post-processing. However, this adds more redundancy to the system.
 
 ### 3.4 - Architecture
 
@@ -309,6 +296,8 @@ Auxiliados com makefile para cada um dos sub-steps
 arquitetura, flow diagram, incluindo configs e python, cluster e tal
 
 Falar da biblioteca Faker, ficheiros de configuração, docker, cluster, server with node and tailwind, biblitoeca ECTD3 da Microsoft.
+
+Passos auxiliados e automatizados com o provided makefile, falar disso no fim desta secção
 
 ### 3.5 - Features
 
