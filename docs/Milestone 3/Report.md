@@ -199,7 +199,7 @@ Given an event and a ticket type, it is possible to determine their current char
 }
 ```
 
-The ticket type is the same and fixed for all events, so there would be no issue in declaring this key in the format `ticket:<TYPE>:<EVENT_ID>`. The ticket types are included in the static auxiliary structures to be explored later.
+The ticket type is the same and fixed for all events, so there would be no issue in declaring this key in the format `ticket:<TYPE>:<EVENT_ID>`. The ticket types will be addressed in a later section.
 
 #### 3.3.4 - Notification
 
@@ -227,7 +227,7 @@ With the key in the format `favorite:<USERNAME>`, a single operation is sufficie
 
 #### 3.3.6 - Purchase
 
-Due to potential key collisions in a distributed context, indexing keys by timestamp became unfeasible. Therefore, the purchase history of a user for an event can be queried using the key `purchase:<USERNAME>:<EVENT_ID>`. Example:
+Due to potential key collisions in a distributed context, indexing purchase keys by timestamp became unfeasible. Therefore, the purchase history of a user for an event can be queried using the key `purchase:<USERNAME>:<EVENT_ID>`. Example:
 
 ```json
 "purchase:johndoe:ad25c85c-6714-4d1f-857b-9bcd1a45ccb9": [
@@ -292,12 +292,19 @@ Event locations, event types, and ticket types are frequently accessed structure
 
 ### 3.4 - Architecture
 
-Auxiliados com makefile para cada um dos sub-steps
-arquitetura, flow diagram, incluindo configs e python, cluster e tal
+The architecture of the prototype can be illustrated according to the schema present in the Figure [Y]:
 
-Falar da biblioteca Faker, ficheiros de configuração, docker, cluster, server with node and tailwind, biblitoeca ECTD3 da Microsoft.
+![Architecture Design](...)
 
-Passos auxiliados e automatizados com o provided makefile, falar disso no fim desta secção
+To simulate a distributed system and evaluate its capabilities, the project deployed a cluster comprising five interconnected ETCD nodes through an internal network using Docker containers. Furthermore, employing Docker as well, a web application powered by Node.js was created, featuring a frontend crafted using the Tailwind CSS framework. The Microsoft etcd3 library served as a server-side solution for interfacing the cluster and the web application.
+
+The TickETCD's data is generated using the Python Faker library and a configuration file. Among other factors, this stage allows for changing the number of created users, the number of events, the probability of a user being an administrator, the probability of creating and triggering a notification, choosing locations and event types, as well as ticket types and price ranges. These configurations are important to establish a system governed by scalable and parameterizable data. Although the data is invented and probabilistic, it is also reliable, adapted to reality, and aligned with the application's needs.
+
+The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
+
+The system is designed to allow manual querying of information in the database at any given time. Due to the absence of a proprietary querying language or a command line interface, a Python script consuming queries in JSON format is utilized for this purpose, directly injecting commands into the Docker containers.
+
+The setup and execution of all steps is aided and automated with the provided makefile.
 
 ### 3.5 - Features
 
@@ -311,7 +318,7 @@ Passos auxiliados e automatizados com o provided makefile, falar disso no fim de
 - notifications (como o etcd é )
 - cluster/node saúde
 
-#### 3.5.4 - Limitations
+#### 3.6 - Limitations
 
 - Redundância excessiva, para combater as relações que poderiam simplesmente serem usadas em modo relacional
 - Povoação não-em-bloco, explicar o processo de ser lento. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal 
