@@ -20,25 +20,22 @@ A ETCD é uma base de dados frequentemente utilizada para configuração de sist
 
 ## 2 - Techonology
 
-### 2.1 - Overview
+ETCD is a distributed key-value store. Key-value stores are a type of NoSQL database paradigm that stores data as a collection of key-value pairs, where each key is unique and associated with a single value.
 
-- ETCD é uma key-value store. O que são key-values stores? Fazer um pequeno background.
-- Em que posição está nas db-engines.com?
-- History
-- Licencing Model
-- Community (quer ligadas ao projecto, quer externas)
-- Documentation (existencia, qualidade)
+This database system was initially developed by CoreOS in 2013, when it had its first release. In 2018, RedHat announced the acquisition of CoreOS, and IBM announced the acquisition of RedHat in the same year.
 
+ETCD is free and follows an open-source licensing model. Its official documentation features many tutorials, demos, and installation instructions, as well as an extensive FAQ. The community is active and supportive, with user and developer forums on Google Groups, real-time updates on Twitter, and discussions on GitHub. Additionally, contributors and maintainers hold weekly online meetings via Zoom, with meeting documentation available and sessions archived on YouTube. As of the date of this report, it ranks 54th among the most used database engines and 5th in the key-value paradigm, according to the evaluation on db-engines.com.
 
-Key-value stores are a type of NoSQL database that stores data as a collection of key-value pairs, where each key is unique and associated with a single value. These databases are designed for high-speed retrieval and simple data models. Key-value stores are commonly used for caching, session management, and storing user preferences.
+The name "etcd" originated from two ideas: the unix "/etc" folder and "d"istributed systems. The "/etc" folder is a place to store configuration data for a single system, whereas etcd stores configuration information for large-scale distributed systems. Thus, it is widely used for configuration management, service discovery, and coordination in distributed systems.
 
-ETCD, developed by CoreOS, is a distributed key-value store that is widely used for configuration management, service discovery, and coordination in distributed systems. It provides a reliable way to store data across a cluster of machines and ensures strong consistency guarantees. Unlike most other NoSQL databases, ETCD is designed to be highly available and fault-tolerant, making it a popular choice for storing data in distributed systems. As specified by the CAP theorem, in order to achieve strong consistency, ETCD must sacrifice performance, which makes it not ideal for projects where the time of execution is crucial.
+ETCD provides a reliable way to store data across a cluster of machines and ensures strong consistency guarantees. Unlike most other NoSQL databases, ETCD is designed to be highly available and fault-tolerant, making it a popular choice for storing data in distributed systems. As specified by the CAP theorem (Consistency, Availability, Partition tolerance), in order to achieve strong consistency, ETCD sacrifices performance, which makes it not ideal for projects where execution time is crucial.
 
-### 2.2 - Features
+### 2.1 - Features
 
 As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems. As an example, ETCD is used in Kubernetes.
 
 #### 2.2.1 - Replication and node communication features
+
 This database works in a distributed way, that is, it's a cluster of machines (nodes). In etcd the number of nodes is always odd (1, 3, 5, etc). These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
 Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
 Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes.
@@ -57,6 +54,7 @@ Consistency is one of the advantages of using a distributed database. It allows 
 (https://etcd.io/docs/v3.3/learning/api_guarantees/)
 
 #### 2.2.3 - Watcher feature
+
 ETCD provides a functionality called watcher. this watcher can be used to monitor a given key-value pair over time based on the operations executed over that key.
 It can be especified if we want to monitor only the PUT, only the GET operations, or both, depending of the problem.
 
@@ -73,9 +71,11 @@ To bypass this limitation, one possible approach (implemented on the demo that i
 ( https://etcd.io/docs/v3.6/dev-guide/interacting_v3/ )
 
 ### 2.3 - Data Model
+
 The data model can be seen in a logical and physical way. Throughout this section both of them are going to be described shortly.
 
 #### 2.3.1 - Logical View
+
 The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time.
 
 A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation. Compaction removes old generations and values except the latest one.
@@ -96,6 +96,7 @@ It is also possible to delete key-value pairs using the delete operation.
 Regarding the watchers, via the API, it is possible to create them and generate a function that is going to run at each operation over the key that is being watched / monitored.
 
 (https://github.com/microsoft/etcd3/blob/master/src/test)
+
 ### 2.5 - Use Cases
 
 ### 2.6 - Problematic Scenarios
@@ -116,10 +117,9 @@ Fast disks are vital for etcd performance and stability. Slow disks increase req
 
 Furthermore, etcd can also become problematic due to its own nature of replicating data totally. Yes, it is possible to have several nodes running to ensure data is (almost) never lost, however this makes the entire system slower with the increase of nodes, precisely due to data consistency and replication.
 
-
-
 ( https://etcd.io/docs/v3.4/dev-guide/limit/ )
 ( https://etcd.io/docs/v3.3/op-guide/hardware/ )
+
 ### 2.7 - ECTD vs. Other Solutions
 
 - advantages and drawbacks noutras key-value solutions
@@ -128,8 +128,6 @@ As previously mentioned, ETCD is not like most key-value databases. It is recomm
 The main advantage of ETCD is the ability of having more than one point of failure. Thanks to the leader election algorithms and the Raft consensus algorithm, if more than 50% of the nodes are up and running, the system will be able to continue working and accept new operations over the database. Then, when the nodes that fail recover, the state is fully replicated to those nodes achieving the sequential consistency that is needed and guaranteed by the API.
 Other advantage, as specified in ETCD documentation, the maximum reliable database size of ETCD is of several gigabytes while others (e.g ZooKeeper and Consul) can support until hundreds of megabytes.
 The main drawback is the performance of ETCD and the lack of ability of inserting larges amount of data in a block. Operations on database are restrict to one at a time.
-
-### 2.8 - Benchmarking
 
 ## 3 - Prototype
 
