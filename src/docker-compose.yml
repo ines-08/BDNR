@@ -2,6 +2,21 @@ version: '3'
 
 services:
 
+  server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: ["node", "app.js", "3000"]
+    container_name: server
+    depends_on:
+      - etcd1
+      - etcd2
+      - etcd3
+      - etcd4
+      - etcd5
+
   etcd1:
     image: quay.io/coreos/etcd
     command: [
@@ -10,8 +25,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd1:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://0.0.0.0:2381", 
-      "--advertise-client-urls", "http://etcd1:2381", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd1:2379", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -19,8 +34,6 @@ services:
     container_name: etcd1
     volumes: 
           - ./db/etcd1:/etcd-data
-    ports:
-      - '2381:2381'
 
   etcd2:
     image: quay.io/coreos/etcd
@@ -30,8 +43,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd2:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://0.0.0.0:2382", 
-      "--advertise-client-urls", "http://etcd2:2382", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd2:2379",
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -39,9 +52,7 @@ services:
     container_name: etcd2
     volumes: 
           - ./db/etcd2:/etcd-data
-    ports:
-      - '2382:2382'
-  
+
   etcd3:
     image: quay.io/coreos/etcd
     command: [
@@ -50,8 +61,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd3:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://0.0.0.0:2383", 
-      "--advertise-client-urls", "http://etcd3:2383", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd3:2379", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -59,8 +70,6 @@ services:
     container_name: etcd3
     volumes: 
           - ./db/etcd3:/etcd-data
-    ports:
-      - '2383:2383'
   
   etcd4:
     image: quay.io/coreos/etcd
@@ -70,8 +79,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd4:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://0.0.0.0:2384", 
-      "--advertise-client-urls", "http://etcd4:2384",  
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd4:2379", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -79,8 +88,6 @@ services:
     container_name: etcd4
     volumes: 
           - ./db/etcd4:/etcd-data
-    ports:
-      - '2384:2384'
   
   etcd5:
     image: quay.io/coreos/etcd
@@ -90,8 +97,8 @@ services:
       "--data-dir", "/etcd-data",
       "--initial-advertise-peer-urls", "http://etcd5:2380", 
       "--listen-peer-urls", "http://0.0.0.0:2380", 
-      "--listen-client-urls", "http://0.0.0.0:2385", 
-      "--advertise-client-urls", "http://etcd5:2385", 
+      "--listen-client-urls", "http://0.0.0.0:2379", 
+      "--advertise-client-urls", "http://etcd5:2379", 
       "--initial-cluster-token", "etcd-cluster", 
       "--initial-cluster", "node1=http://etcd1:2380,node2=http://etcd2:2380,node3=http://etcd3:2380,node4=http://etcd4:2380,node5=http://etcd5:2380", 
       "--initial-cluster-state", "new"
@@ -99,5 +106,3 @@ services:
     container_name: etcd5
     volumes: 
           - ./db/etcd5:/etcd-data
-    ports:
-      - '2385:2385'
