@@ -131,17 +131,40 @@ The main drawback is the performance of ETCD and the lack of ability of insertin
 
 ## 3 - Prototype
 
+De forma a validar as principais features, qualidades e botlenecks da tecnologia ETCD enunciada, criamos um protótipo or prova de conceito movido a este paradigma key-value.
+
 ### 3.1 - Topic
+
+Num cenário clássico de compra de bilhetes para eventos, a consistência dos daods é a característica mais importante a ter em conta. Cada evento deve, por exemplo, apresentar em tempo real as suas informações atualizadas, assim como o número de bilhetes restantes. Uma falha.
+
+Para que o sistema seja imune a esse tipo de problemas, é necessário uma base de dados que seja simultaneamente:
+
+- distribuída, para
+- com replicação total, em vez de consistência eventual, para que seja sempre tudo updated. 
+
+TickETCD, uma aplicação para compra de bilhetes para eventos, usa ETCD como resposta aos problemas anteriormente enunciados. Nos seguintes. uma vez que a replicação total, qualquer nó do cluster estará mais que preparado para.
+
+ECTD dá a resposta a um porblema qe vamos tentar resolver usando ETCD.
+
+A ideia
 
 - Bilhetes. O porquê de ser adequado neste caso (porque a replicação é total).
 
+Por outro lado, quer-se um sistema. Não é adequado por tempos de espera, pois ETCD morre a performance em troca da availability.
+
+Os detalhes de implementação serão enunciados nas seguintes subsecções.
+
 ## 3.2 - Conceptual Data Model
 
-em UML
+De forma a dar resposta a 
+
+UML
+
+Um hotel tem vários.... explicação das relações por texto.
 
 ## 3.3 - Physical Data Model
 
-modelo físico da tecnologi a utilizar
+modelo físico da tecnologia utilizar
 
 ## 3.4 - Data Structures
 
@@ -182,9 +205,8 @@ arquitetura, flow diagram, incluindo configs e python, cluster e tal
 
 ## Annexes
 
--
--
--
--
--
-
+- 
+- 
+- 
+- 
+- 
