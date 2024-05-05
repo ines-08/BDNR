@@ -155,29 +155,94 @@ An event has a name, location, date, type, a description, and a total quantity o
 
 ### 3.3 - Physical Data Model and Data Structures
 
-O Conceptual Data Model anterior poderia ser desenhado recorrendo a bases de dados relacionais, permitindo uma busca direta pelas relações entre entidades. No caso do paradigma key-value utilizado no ETCD, é necessário recorrer à redundância dos dados para assegurar o conhecimento integral de todas as relações. 
+The previous Conceptual Data Model could be implemented physically using relational database schemas, allowing for direct searches for relationships between entities. However, in the case of dealing with the key-value paradigm used in ETCD, it was necessary to resort to data redundancy to ensure complete knowledge of all relationships and still minimize the number of post-processing steps.
 
-De seguida são apresentadas as estruturas de keys e valores utilizados para a concepção de toda a estrutura de dados necessária à populate de TickETCD. Note-se que por motivos de visualização foi utilizado JSON, embora de facto fisicamente sejam apenas strings, pois ETCD não suporta outros tipos de dados como valores para as suas chaves.
+Below are presented the key and value structures used for the design of the entire data structure required by TickETCD. It should be noted that for the purpose of data visualization and manipulation, JSON was used, although physically, they are just strings, as ETCD does not support other data types as values for its keys, as described in the previous sections.
+
+#### 3.3.1 - User
+
+Without any post-processing, it is possible to query all information related to a user by querying the key in the format `user:<USERNAME>`. Example:
 
 ```json
-{
-    // User
-    "user:<USERNAME>": { 
-        "name": "user", 
-        "email": "user@gmail.com", 
-        "password": "user123", 
-        "role": "admin"
-    },
+"user:johndoe": { 
+    "name": "jonh doe", 
+    "email": "john@mail.com", 
+    "password": "john123", 
+    "role": "admin"
+}
+```
 
-    // Event
-    "event:<ID>": {
-        "name": "event", 
-        "description": "a simple event", 
-        "location": "porto",
-        "type": "concert",
-        "date": "2024-02-13",
-        "current_quantity": "14",
-    },
+#### 3.3.2 - Event
+
+Similarly to a user, the information about an event can be accessed by a simple query using the key `event:<ID>`. Example:
+
+```json
+"event:92fe965d-a189-4f26-844c-0979c6ca035e": {
+    "name": "Simple concert", 
+    "description": "A simple event example", 
+    "location": "porto",
+    "type": "concert",
+    "date": "2024-03-13",
+    "current_quantity": "14",
+}
+```
+
+#### 3.3.3 - Ticket
+
+```json
+"ticket:92fe965d-a189-4f26-844c-0979c6ca035e:pink": {
+    "total_quantity": "34", 
+    "current_quantity": "23", 
+    "price": "23.99",
+}
+```
+
+
+
+#### 3.3.3 - Favourite
+
+```json
+"notification:<USERNAME>:92fe965d-a189-4f26-844c-0979c6ca035e" : {
+    "limit": 42,
+    "active": true,
+},
+```
+
+Da forma como está estruturada, permite conhecer com prefix logo todos os eventos com.
+
+#### 3.3.3 - Favourite
+
+```json
+
+
+```
+
+#### 3.3.3 - Favourite
+
+```json
+
+
+```
+
+#### 3.3.3 - Favourite
+
+```json
+
+
+```
+
+#### 3.3.8 - Favourite
+
+```json
+"favourite:johndoe": [
+    "92fe965d-a189-4f26-844c-0979c6ca035e",
+    "ad25c85c-6714-4d1f-857b-9bcd1a45ccb9"
+]
+```
+
+
+
+```json
 
     // Search Events by Text
     "search:text:<WORD>": [
@@ -196,20 +261,6 @@ De seguida são apresentadas as estruturas de keys e valores utilizados para a c
         "EVENT_ID_5",
         "EVENT_ID_6",
     ],
-
-    // Favourite relationship
-    "favourite:<USERNAME>": [
-        "EVENT_ID_1",
-        "EVENT_ID_2",
-        "EVENT_ID_3",
-    ],
-
-    // Ticket
-    "ticket:<EVENT_ID>:<TYPE>": {
-        "total_quantity": "34", 
-        "current_quantity": "23", 
-        "price": "23.30",
-    },
 
     // Purchase
     "purchase:<USERNAME>:<EVENT_ID>": [
@@ -241,12 +292,6 @@ De seguida são apresentadas as estruturas de keys e valores utilizados para a c
         },
     ],
 
-    // Notification
-    "notification:<USERNAME>:<EVENT_ID>" : {
-        "limit": 42,
-        "active": true,
-    },
-
     // Static event locations
     "event:locations": ["A", "B", "C"],
 
@@ -256,11 +301,7 @@ De seguida são apresentadas as estruturas de keys e valores utilizados para a c
     // Static ticket types
     "ticket:types": ["H", "I", "J"],
 }
-
-Forma bela de colocar json com valores bonitos no latex, explorar isto
-
-Além dos principais objectos caracterizados no Conceptual Data Model, 
-Estruturas auxiliares
+```
 
 ### 3.4 - Architecture
 
