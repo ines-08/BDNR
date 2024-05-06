@@ -99,7 +99,7 @@ Regarding the watchers, via the API, it is possible to create them and generate 
 
 ### 2.5 - Use Cases
 
-TODO
+TODO by Zé
 
 ### 2.6 - Problematic Scenarios
 
@@ -165,7 +165,7 @@ An event has a name, location, date, type, a description, and a total quantity o
 
 The previous Conceptual Data Model could be implemented physically using relational database schemas, allowing for direct searches for relationships between entities. However, in the case of dealing with the key-value paradigm used in ETCD, it was necessary to resort to data redundancy to ensure complete knowledge of all relationships and still minimize the number of post-processing steps.
 
-Below are presented the key and value structures used for the design of the entire data structure required by TickETCD. It should be noted that for the purpose of data visualization and manipulation, JSON was used, although physically, they are just strings, as ETCD does not support other data types as values for its keys, as described in the previous sections.
+Below are presented the key and value structures and agregates used for the design of the entire data structure required by TickETCD. It should be noted that for the purpose of data visualization and manipulation, JSON was used, although physically, they are just strings after serialization, as ETCD does not support other data types as values for its keys, as described in the previous sections.
 
 #### 3.4.1 - User
 
@@ -326,11 +326,16 @@ Given that the database is a distributed cluster of five nodes, the architecture
 
 ### 3.6 - Features
 
-Introdução às features, usadas para testar as capacidades mas também as fragilidades da tecnologia ETCD bem como da própria
+Na secção seguinte serão analisadas as funcionalidades implementadas em TickETCD, de forma a testar as capacidades mas também as fragilidades da tecnologia ETCD bem como de um modo geral o próprio paradigma key-value.
 
 #### 3.6.1 - Data processing
 
+Ver Searching, por exemplo
+
 #### 3.6.2 - Queries
+
+Como indicado em previous sections, duas das principais 
+Ver M2
 
 #### 3.6.3 - Specific Features
 
@@ -338,24 +343,52 @@ Introdução às features, usadas para testar as capacidades mas também as frag
 - notifications (como o etcd é )
 - cluster/node saúde
 
+Atenção: ativação de notifications ou até info de clusters NÃO CONTA COMO QUERY, pois é a partir apenas da ETCD API, não propriamente um acesso aos dados colocados lá.
+
 #### 3.7 - Limitations
 
-Embora ETCD seja adequado para a maioria dos casos explorados no protótipo TickETCD, há situações onde
+Although ETCD is suitable for most cases explored in the TickETCD prototype, there are situations where an implementation with another NoSQL paradigm or even a relational mode would be more favorable.
 
-- Redundância excessiva, para combater as relações que poderiam simplesmente serem usadas em modo relacional
-- Povoação não-em-bloco, explicar o processo de ser lento. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal . O processo de editar um evento, por exemplo, seria danoso pois teria de ser retirados todas as referencias e voltar a colocar.
+The dataset used is indeed very redundant, ensuring a proper establishment of all the relationships proposed in the Conceptual Data Model and minimizing post-processing by the application, since there are only GET and PUT operations. Therefore, even with a reduced number of users, tickets, and events, it easily scales to hundreds of key-value pairs. A relational approach would be much more efficient in terms of space, but it would also require further processing by the application, which is suppressed in the case of key-value pairs with the addition of this redundancy.
 
+The entire dataset must then be fully-replicated, impacting the system response time on any request to update values in the database. In case of ticket sales, the processing speed of the system would also be a factor to consider when choosing this technology.
 
-- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo). Foi-nos impossível criar uma timeline com as transactions efetuadas, por exemplo, por ser impraticável indexar as queries por timestamp (ficando a ser por isso mais estáveis) e consumo
+ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Given the exponential growth of key-values, this becomes a slow process. In real-world cases where ETCD is used, for example in Kubernetes for configuration maintenance, this is not a relevant issue because configurations are mostly finite, small in size, and do not grow much. On the other hand, since TickETCD is a web application for ticket sales management, the initial setup becomes a limiting factor of the system.
 
-- Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal
+Unlike other key-value paradigm technologies, ETCD does not support additional data types in the value of each key beyond strings. This brought a significant limitation in terms of processing objects and the design of the Physical Data Model itself. There are cases in the system where this difficulty could have been overcome by adding extra redundancy, as explained in the following example:
+
+```json
+"user:johndoe": { 
+    "name": "jonh doe", 
+    "email": "john@mail.com", 
+    "password": "john123", 
+    "role": "admin"
+}
+
+"user:johndoe:name": "jonh doe"
+"user:johndoe:email": "john@mail.com"
+"user:johndoe:password": "john123"
+"user:johndoe:role": "admin"
+```
+
+This would avoid resorting to serialization and deserialization of objects at runtime, before and after accessing the database. However, the first strategy was adopted in the prototype for two main reasons. On one hand, this example cannot be generalized for all the application's needs. In cases like the Favorite aggregate, for spatial efficiency reasons, the value would have to be an array with the IDs of the favorite events, otherwise we would have a key of the format `favorite:johndoe:<EVENT_ID>` with a boolean value for all username-event combinations or only for true combinations. In either case, to discover the set of favorite events for a user, as many queries as events in the system would have to be performed. In the case of creating the Purchase aggregate, it is even more harmful, since it is impossible, in a concurrent context, to create keys based on timestamps due to probable key collisions. On the other hand, the approach with more redundancy is not scalable, as for a simple aggregate with N attributes, it would result in N queries to the system and subsequent processing of its data. Therefore, it is always necessary to resort to auxiliary data structures, such as arrays and objects, to meet the application's needs. Given these constraints of the system, and even though there is no solution capable of addressing the tradeoff exposed, the approach with a query and subsequent serialization/deserialization is more suitable for TickETCD.
+
+Ainda dentro da computação de valores.
+Falar que a feature de statistics foi implementada para observar a necessidade desse para pequenas coisas, que em modelos relacionais rapidamente se fariam com AVG ou SUM.
+
+Falar da pesquisa por values que n pode ser, Poderia ser em modo document-based, porque é mais simples. Tem de se retirar tudo, e depois filtrar com a aplicação.
+index invertido, mas teve de levar um grande pós-processamento de strings para ser viável
+- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo). Foi-nos impossível criar uma timeline com as transactions efetuadas, por exemplo, por ser impraticável indexar as queries por timestamp (ficando a ser por isso mais estáveis) e consumo de memória
+bottleneck no search
+No caso de search é ainda pior. Um overhead que não estaríamos dispostos a ter
 - Updates de data structures, como da pesquisa;
+De forma semelhate, Não houve implementação total de CRUD em eventos processo de editar um evento, por exemplo, seria danoso pois teria de ser retirados todas as referencias e voltar a colocar. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal.
 
-- JSON.stringigy / JSON.parse, para values, torna ineficiente quando comparado com outras soluções como redis
+- Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal.
 
 ## 4. Conclusion
 
-TODO
+TODO by Ines
 
 ## References
 
