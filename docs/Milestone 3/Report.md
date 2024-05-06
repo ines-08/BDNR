@@ -9,7 +9,7 @@
 ## 1 - Introduction
 
 ## 2 - Techonology
-
+In this section the chosen technology, ETCD, is going to be described in terms of features, data model, advantages, limitations an some use cases are also presented. 
 ### 2.1 - Overview
 
 - ETCD é uma key-value store. O que são key-values stores? Fazer um pequeno background.
@@ -29,7 +29,8 @@ ETCD, developed by CoreOS, is a distributed key-value store that is widely used 
 As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems. As an example, ETCD is used in Kubernetes.
 
 #### 2.2.1 - Replication and node communication features
-This database works in a distributed way, that is, it's a cluster of machines (nodes). In etcd the number of nodes is always odd (1, 3, 5, etc). These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+This database works in a distributed way, that is, it's a cluster of machines (nodes). This cluster can be generated through an internal network between several nodes, connected by HTTPS. In etcd the number of nodes is always odd (1, 3, 5, etc). These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via HTTP + TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+In terms of load balancing, it is usefull to state that there is a leader node. This node is responsible for ensuring data replication among non-leader nodes and balance the distribution of request among those nodes.
 Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
 Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes.
 In ETCD there is a total replication of the data.
@@ -66,9 +67,9 @@ To bypass this limitation, one possible approach (implemented on the demo that i
 The data model can be seen in a logical and physical way. Throughout this section both of them are going to be described shortly.
 
 #### 2.3.1 - Logical View
-The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time.
+The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time. The term revision is, in fact, a version of the key-value pair and it is possible to see the previous revisions of a given pair.
 
-A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation. Compaction removes old generations and values except the latest one.
+A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation.
 
 #### 2.3.2 - Physiscal View
 
@@ -87,6 +88,12 @@ Regarding the watchers, via the API, it is possible to create them and generate 
 
 (https://github.com/microsoft/etcd3/blob/master/src/test)
 ### 2.5 - Use Cases
+As previously mentioned, etcd is used mainly to perform system configurations in distributed systems.
+The most important use cases are:
+* Kubernetes
+* Container Linux by CoreOS
+
+( https://etcd.io/docs/v3.1/learning/why/ )
 
 ### 2.6 - Problematic Scenarios
 
