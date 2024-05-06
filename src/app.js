@@ -15,8 +15,8 @@ const { getSearchResults } = require('./controllers/apiController');
 const notificationsRoutes = require("./routes/notificationsRoutes");
 
 const app = express();
-const db = new Etcd3({ hosts: utils.config.cluster.dev });
-const PORT = utils.config.port
+const db = new Etcd3({ hosts: utils.config.cluster });
+const PORT = utils.config.port;
 
 const watchers = [];
 app.locals.watchers = watchers;

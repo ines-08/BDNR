@@ -1,64 +1,92 @@
 # TickETCD - BDNR Project
 
-- [Run](#run)
-    - [Dev](#dev)
-    - [Docker](#docker)
-- [Endpoints](#endpoints)
-- [Data](#data)
-- [Queries](#queries)
+- [Documentation](#documentation)
+- [Prototype](#prototype)
+    - [Run](#run)
+    - [Endpoints](#endpoints)
+    - [Credentials](#credentials)
+    - [Data](#data)
+    - [Manual Queries](#manual-qsueries)
+    - [Design](#design)
 
-## Run
+## Documentation
 
-### Dev -> DEPRECATE THIS STEP BEFORE SUBMISSION
+Beyond this README, more focused on the prototype, the following are available:
 
-```bash
-$ cd src/
-$ docker-compose -f docker-compose-dev.yml up -d
-$ python3 /data/generate.py data/data.json
-$ python3 /data/populate.py data/data.json
-$ npm install
-$ npm run
-```
+- [Milestone 1 Presentation](./docs/Milestone%201/Milestone1.pdf)
+- [Milestone 2 Presentation](./docs/Milestone%202/Milestone2.pdf)
+- [Milestone 3 Presentation](./docs/Milestone%203/Milestone3.pdf)
+- [Final Report](./docs/Milestone%203/Report.md)
 
-Só há um servidor disponível: [localhost:3001](http://localhost:3001) e à partida é só necessário inicializar os containers ETCD apenas uma vez, assim como a criação de dados e povoação.
+## Prototype
 
-### Docker
+### Run
+
+To instantiate the entire prototype, it is necessary to run the makefile:
 
 ```bash
 $ cd src/
 $ make
 ```
 
-O script irá:
+This process can be time-consuming. Please see the [note](#note). This instruction will:
 
-- Parar e eliminar os anteriores containers, caso existam;
-- Eliminar antigas versões da base de dados em /db, caso existam;
-- Criar toda uma nova infraestrutura/containers do projecto: 5 nós ectd e 3 servers;
-- Criar volumes /db/etcdX para todos os nós ETCD existentes no cluster;
-- Instalar as dependências necessárias do Python para os passos seguintes;
-- Gerar dados;
-- Povoar o cluster com os dados gerados de forma paralela;
+- Stop and remove previous containers if they exist;
+- Remove old versions of the database in `/db` if they exist;
+- Create a new infrastructure and containers for the project: a cluster with 5 ETCD nodes and one server;
+- Create volumes `/db/etcdX` for all existing ETCD nodes in the cluster;
+- Generate data according to the `data/configurations.json` file;
+- Populate the cluster with the generated data in parallel;
 
-Os servidores estão disponíveis em [localhost:3001](http://localhost:3001), [localhost:3002](http://localhost:3002) ou [localhost:3003](http://localhost:3003).
+The server will be available at [localhost:3000](http://localhost:3000/).
 
-## Endpoints 
+If you wish, you can run these commands separately:
 
-- `/`, para login ou register;
-- `/admin`, admin page, com estatísticas de base de dados, eventos e criação de eventos;
-- `/home[?search=<SOMETHING>]`, para a homepage. Por default são apresentados alguns eventos, caso o utilizador pesquise (search field), são apresentados os seus resultados;
-- `/profile?username=<USERNAME>`, para apresentação dos detalhes de um profile;
-- `/event?id=<ID>`, para apresentação dos detalhes de um evento;
-- `/tickets?eventid=<ID>`, para compra de bilhetes;
-- `/api/search?input=<INPUT>`, retorna, em JSON, os detalhes dos eventos que têm textos (name, location ou description) que fazem match total ou parcial com a string INPUT;
+```bash
+$ make cleanup_containers # Stop and remove previous containers
+$ make cleanup_db         # Remove old versions of the database
+$ make setup              # Create infrastructure/containers
+$ make generate           # Generate data
+$ make populate           # Populate the cluster with generated
+```
 
-## Data
+#### Note
 
-Os dados gerados seguem as configurações descritas em `configuration.json`:
+The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
+
+To mitigate this situation somewhat, we chose to populate in parallel mode, distributing the values to each of the nodes in the cluster:
+
+```bash
+$ python3 data/populate.py <INPUT> [-p]
+```
+
+If the `-p` flag is active, the populate runs in parallel mode, distributing the workload across each of the nodes in the cluster.
+
+### Credentials
+
+All credentials can be found in the `data.json` file generated during setup. By default, we add two predefined accounts:
+
+- `user / user123` - for a regular user account;
+- `admin / admin123` - for an account with administrator privileges;
+
+### Endpoints
+
+- `/`: Used for login or registration;
+- `/home[?search=<INPUT>]`: Homepage. By default, it displays some events. If the user searches (using the search field), it shows the search results.
+- `/admin`: Admin page displaying database cluster statistics, events, and event creation;
+- `/profile?username=<USERNAME>`: Displays details of a user profile, favourite events and last purchases;
+- `/notifications`: Displays the current user notifications;
+- `/event?id=<ID>`: Displays details of an event;
+- `/tickets?eventid=<ID>`: Used for purchasing tickets;
+
+### Data
+
+The generated data follows the configurations described in `data/configuration.json`. Parameters example:
 
 ```json
 {
-    "NUM_USERS": 10,
-    "NUM_EVENTS": 10,
+    "NUM_USERS": 20,
+    "NUM_EVENTS": 20,
     "ADMIN_PROBABILITY": 0.1,
     "FAVOURITE_PROBABILITY": 0.3,
     "EVENT_PURCHASE_LIMIT": 3,
@@ -77,28 +105,28 @@ Os dados gerados seguem as configurações descritas em `configuration.json`:
 }
 ```
 
-Atualmente há geração completa dos seguintes agregados:
+The currently generated complete aggregates are:
 
 - `User` (username, user, email, password, role);
 - `Event` (id, name, description, location, type, date, current_quantity);
 - `Ticket` (total_quantity, current_quantity, price);
 
-E há geração das seguintes relações:
+And the following relations are generated:
 
-- `Favourite` (entre um user e eventos);
+- `Favourite` (between a user and events);
 - `Search (text, type, location)` (event string indexes);
-- `Purchase` (entre um user e um evento);
-- `Notification` (entre um user e um evento);
+- `Purchase` (between a user and an event);
+- `Notification` (between a user and an event);
 
-Por motivos de eficiência, foram gerados também estas estruturas auxiliares:
+For efficiency reasons, the following auxiliary structures are also generated:
 
-- `ticket:types`: tipos possíveis para um evento;
-- `event:types`: tipos possíveis para um evento;
-- `event:locations`: localizações possíveis para um evento; 
+- `ticket:types`: possible types for an event;
+- `event:types`: possible types for an event;
+- `event:locations`: possible locations for an event;
 
-Exemplos da formatação das key-value pairs usadas no projecto:
+Examples of the formatting of the key-value pairs used in the prototype:
 
-```json
+```js
 {
     // User
     "user:<USERNAME>": { 
@@ -197,19 +225,79 @@ Exemplos da formatação das key-value pairs usadas no projecto:
 }
 ```
 
-## Queries
+### Manual Queries
 
-Há também hipótese de correr algumas queries em modo externo ao protótipo. As queries estão descritas nesta estrutura de dados presente em `data/queries.py`:
+There is also the possibility of running some queries externally to the prototype. The queries are described in a data file located at `query/queries.json`:
 
-```python
-QUERIES = [
-    { "description": "A simple put", "code": "put some thing", "output": False },
-    { "description": "Getting all ticket types", "code": "get ticket:types", "output": True }
+```json
+[
+    { 
+        "description": "A simple put", 
+        "code": "put some thing", 
+        "output": false 
+    },
+    { 
+        "description": "Getting all ticket types", 
+        "code": "get ticket:types", 
+        "output": true 
+    }
 ]
 ```
 
-Depois dos containers da base de dados ficarem instanciados, as queries podem ser rodadas usando:
+We can also choose whether we want to see the output or not, as well as choose a brief description to know what is currently running. Typically in ETCD, the output of PUT methods is just OK, so they are ignored.
+
+After the database containers are instantiated and populated, the previous queries can be executed manually using:
 
 ```bash
-$ python3 data/queries.py
+$ make queries
 ```
+
+Given that ETCD does not have any explicit query language or a terminal client, this is the only way to perform raw queries.
+
+### Design
+
+#### Login / register page
+
+![Login](./imgs/login.png)
+
+#### Home page
+
+![Home](./imgs/home.png)
+
+#### Profile page
+
+![Profile](./imgs/profile.png)
+
+#### Event page
+
+![Event](./imgs/event.png)
+
+#### Purschase page
+
+![Buy](./imgs/buy.png)
+
+### Notifications page
+
+![Notifications](./imgs/notifications.png)
+
+#### Admin - Database info
+
+![Admin BD](./imgs/admin-database.png)
+
+#### Admin - Event statistics
+
+![Admin Statistics](./imgs/admin-statistics.png)
+
+#### Admin - Event creation
+
+![Admin Event](./imgs/admin-event.png)
+
+--- 
+
+## Project by:
+
+- Fábio Sá, up202007658@up.pt
+- Inês Gaspar, up202007210@up.pt
+- José Gaspar, up202008561@up.pt
+
+FEUP, BDNR, 2024
