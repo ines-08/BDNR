@@ -42,7 +42,7 @@ This database works in a cluster of machines (nodes), most times, in a distribut
 
 ETCD is built on the Raft consensus algorithm to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. This algorithm is based on quorums and as the name suggests it is used to have a consensus between a majority of nodes about the values that are being stored in the database, taking into account that one or more nodes may fail. In etcd, for a cluster with n members, the quorum size is (n/2)+1. For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum.
 
-These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via HTTP + TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+These nodes do not need to be physically together, even though it may affect request latency. Etcd basically stablishes connection between nodes via HTTP + TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
 In terms of load balancing, it is usefull to state that there is a leader node. This node is responsible for ensuring data replication among non-leader nodes and balance the distribution of request among those nodes.
 Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
 
