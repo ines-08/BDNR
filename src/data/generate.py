@@ -49,7 +49,11 @@ def generate_user_data():
         users[f"user:{username}"] = { 
             "name": fake.name(), "email": fake.email(), "password": password, "role": role 
         }
+
+    # Default credentials
     users['user:admin'] = { "name": "admin", "email": "admin@gmail.com", "password": "admin123", "role": "admin" }
+    users['user:user'] = { "name": "user", "email": "user@gmail.com", "password": "user123", "role": "user" }
+    
     return users
 
 def generate_event_data():
@@ -186,7 +190,7 @@ def generate_notifications(user_data, event_data):
                 limit = max(random.randint(n_tickets - 10, n_tickets + 10), 1)
                 notifications[f'notification:{user_id}:{event_id}'] = {
                     'limit': limit,
-                    'active': False,
+                    'active': n_tickets < limit,
                 }
 
     return notifications

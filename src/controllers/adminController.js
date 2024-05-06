@@ -4,28 +4,36 @@ const { v4: uuidv4 } = require('uuid');
 async function getStatistics(db, req, res) {
     let stats = {}
 
-    const event_types = await utils.getEventTypeKeys(db);
-    for (const event_type of event_types) {
-        const events = await db.get(`search:type:${event_type}`).json();
-        let total = 0;
-        stats[event_type] = {};
+    try {
+        
+        const event_types = await utils.getEventTypeKeys(db);
+        for (const event_type of event_types) {
+            const events = await db.get(`search:type:${event_type}`).json();
+            let total = 0;
+            stats[event_type] = {};
 
-        for (const event_id in events) {
-            const ticket_types = await utils.getTicketTypes(db);
-            for (const ticket_type in ticket_types) {
-                const details = await db.get(`ticket:${events[event_id]}:${ticket_types[ticket_type]}`).json();
-                const price_per_ticket_type = details.price * (details.total_quantity - details.current_quantity);
-                total += price_per_ticket_type;
-                if (!stats[event_type][ticket_types[ticket_type]])
-                    stats[event_type][ticket_types[ticket_type]] = price_per_ticket_type;
-                else
-                    stats[event_type][ticket_types[ticket_type]] += price_per_ticket_type;
+            for (const event_id in events) {
+                const ticket_types = await utils.getTicketTypes(db);
+                for (const ticket_type in ticket_types) {
+                    const details = await db.get(`ticket:${events[event_id]}:${ticket_types[ticket_type]}`).json();
+                    const price_per_ticket_type = details.price * (details.total_quantity - details.current_quantity);
+                    total += price_per_ticket_type;
+                    if (!stats[event_type][ticket_types[ticket_type]])
+                        stats[event_type][ticket_types[ticket_type]] = price_per_ticket_type;
+                    else
+                        stats[event_type][ticket_types[ticket_type]] += price_per_ticket_type;
+                }
             }
-        }
 
-        stats[event_type]['total'] = total;
+            stats[event_type]['total'] = total;
+        }
+    
+    } catch (e)  {   
+        console.log(e);
+
+    } finally {
+        return stats;
     }
-    return stats;
 }
 
 async function createEvent(db, req, res) {
@@ -105,11 +113,22 @@ async function getAdminPage(db, req, res) {
 
     try {
 
-        const clusterInfo = await utils.getClusterMembers(utils.config.cluster.dev[0]);
+        let clusterInfo = null;
+        for (const node of utils.config.cluster) {
+            let info;
+            try {
+                info = await utils.getClusterMembers(node);
+            } catch {;} finally {
+                if (!clusterInfo) {
+                    clusterInfo = info;
+                    break;
+                }
+            }
+        }
+
         const nodes = [];
         
-        for (const node of utils.config.cluster.dev) {
-
+        for (const node of utils.config.cluster) {
             try {
                 const nodeInfo = await utils.getNodeInfo(node);
                 nodes.push(nodeInfo)
@@ -120,9 +139,8 @@ async function getAdminPage(db, req, res) {
 
         const stats = await getStatistics(db, req, res);
         const eventTypes = await utils.getEventTypeKeys(db); 
-        const eventLocations = await utils.getEventLocationKeys(db);   
+        const eventLocations = await utils.getEventLocationKeys(db); 
         const ticketTypes = await utils.getTicketTypes(db);
-        
         
         res.render('admin', {
             user: req.session.userInfo,
@@ -135,7 +153,7 @@ async function getAdminPage(db, req, res) {
         });
 
     } catch (error) {
-        req.flash('error', 'Error in getting Admin page details');
+        req.flash('error', 'Error when getting Admin page details');
         res.redirect('/home');
     }
 }
