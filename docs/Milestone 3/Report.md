@@ -6,23 +6,22 @@
 
 ## Abstract
 
-The present report aims to explore, both theoretically and practically, the ETCD technology, a non-relational database using key-value paradigm.
-
-Throughout the document, characteristics of the technology are presented, as well as its specificities and use cases. Next, a specific scenario is addressed, along with the strategies supporting the solution found. Finally, the implementation of the prototype using ETCD is explained, considering the aforementioned ideation, ETCD characteristics and some considerations of features in this paradigm.
+O presente relatório tem como objectivo explorar de forma teórica e com uma componente prática uma tecnologia de base de dados não relacional de um dos paradigmas estudados, base de dados baseadas em key-value. Neste sentido, ETCD foi a tecnologia escolhida para abordar este paradigma, esta base de dados é muito utilizada para consistência em sistemas distribuídos.
+Ao longo do presente documento apresentam-se informações introdutórias da tecnologia bem como especificadades e utilizações da mesma. De seguida, aborda-se um use case scenario, assim como os modelos desenvolvidos para suporte da solução encontrada para o referido. Por último, explica-se a implementação do protótipo usando ETCD tendo em conta a ideação mencionada e algumas considerações de features implementadas neste paradigma.
 
 ## 1 - Introduction
 
-O aumento da quantidade de dados levou à criação de novas soluções para tornar o armazenamento mais eficiente: bases de dados não relacionais.
-Desta forma, surgiu o paradigma explorado neste relatório, key-value através da abordagem com a ETCD.
-
-Este tipo de base de dados key-value tem um design muito simples e de aprendizagem rápida, uma vez que apenas depende do desenho da key e todo o processamento e manipulação necessária fica do lado da aplicação. Estas tecnologias de NoSQL permitem uma grande escalabilidade e melhor performance em relação às bases de dados relacionais.
-A ETCD é uma base de dados frequentemente utilizada para configuração de sistemas de clusters. É especialmente usada por causa da forte consistência entre nós que permite, e que vai explorado nas próximas secções, assim através dos use cases desta tecnologia e do protótipo desenvolvido.
+O aumento da quantidade de dados e a complexidade dos sistemas levaram à criação de novas soluções de base de dados, de forma a aumentar a capacidade de armazenamento e torná-las mais eficientes: bases de dados não relacionais.
+Desta forma, surgiu um dos paradigmas explorado neste relatório, key-value através da abordagem com a ETCD.
+Este tipo de base de dados consiste no armazenamento dos dados em conjuntos de pares key-value, sendo que cada chave é um identificador único para o valor correspondente.
+Esta abordagem tem um design muito simples e de aprendizagem rápida, uma vez que apenas depende do desenho da key e a maioria do processamento e manipulação necessária fica do lado da aplicação. Estas tecnologias de NoSQL permitem uma grande escalabilidade e melhor performance em relação às bases de dados relacionais. Assim, são muitas vezes utilizadas como sistemas de caching, onde os dados são temporariamente armazenados para acesso rápido.
+A ETCD é uma base de dados frequentemente utilizada para configuração de sistemas de clusters/distribuídos. É especialmente usada por causa da forte consistência entre nós que permite, e que vai explorado nas próximas secções, assim através dos use cases desta tecnologia e do protótipo desenvolvido.
 
 ## 2 - Techonology
 
-ETCD is a distributed key-value store. Key-value stores are a type of NoSQL database paradigm that stores data as a collection of key-value pairs, where each key is unique and associated with a single value.
+In this section the chosen technology, ETCD, is going to be described in terms of features, data model, advantages, limitations an some use cases are also presented. 
 
-This database system was initially developed by CoreOS in 2013, when it had its first release. In 2018, RedHat announced the acquisition of CoreOS, and IBM announced the acquisition of RedHat in the same year.
+### 2.1 - Overview
 
 ETCD is free and follows an open-source licensing model. Its official documentation features many tutorials, demos, and installation instructions, as well as an extensive FAQ. The community is active and supportive, with user and developer forums on Google Groups, real-time updates on Twitter, and discussions on GitHub. Additionally, contributors and maintainers hold weekly online meetings via Zoom, with meeting documentation available and sessions archived on YouTube. As of the date of this report, it ranks 54th among the most used database engines and 5th in the key-value paradigm, according to the evaluation on db-engines.com.
 
@@ -38,15 +37,21 @@ ETCD provides a reliable way to store data across a cluster of machines and ensu
 
 ### 2.1 - Features
 
-As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems. As an example, ETCD is used in Kubernetes.
+As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems.
 
 #### 2.2.1 - Replication and node communication features
 
-This database works in a distributed way, that is, it's a cluster of machines (nodes). In etcd the number of nodes is always odd (1, 3, 5, etc). These nodes do not need to be physically together. Etcd basically stablishes connection between nodes via TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+This database works in a cluster of machines (nodes), most times, in a distributed way (number of nodes of the cluster differ from 1). This cluster can be generated through an internal network between several nodes, connected by HTTPS. In etcd the number of nodes is preferably odd (1, 3, 5, etc) for resource management purposes.
+
+ETCD is built on the Raft consensus algorithm to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. This algorithm is based on quorums and as the name suggests it is used to have a consensus between a majority of nodes about the values that are being stored in the database, taking into account that one or more nodes may fail. In etcd, for a cluster with n members, the quorum size is (n/2)+1. For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum.
+
+These nodes do not need to be physically together, even though it may affect request latency. Etcd basically stablishes connection between nodes via HTTP + TLS. If the IP of the node is not known, etcd has a "discovery mode" that will find the node's IP address and establish the connection.
+In terms of load balancing, it is usefull to state that there is a leader node. This node is responsible for ensuring data replication among non-leader nodes and balance the distribution of request among those nodes.
 Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
-Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes.
-In ETCD there is a total replication of the data.
-ETCD is built on the Raft consensus algorithm to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. This algorithm is based on quorums and as the name suggests it is used to have a consensus between all nodes about the values that are being stored in the database, taking into account that one or more nodes may fail. In etcd, for a cluster with n members, the quorum size is (n/2)+1. For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum.
+
+Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes, even if the leader is down - reelection is done. As such, having a leader does not represent a critical point of failure for the system. It only fails if the majority of nodes are down - consensus not obtained.
+In ETCD there is a total replication of the data, that is - full-replication.
+
 (https://www.ibm.com/topics/etcd)
 (https://etcd.io/docs/v3.4/op-guide/clustering/)
 (https://etcd.io/docs/v3.3/faq/)
@@ -56,13 +61,17 @@ ETCD is built on the Raft consensus algorithm to ensure data store consistency a
 
 ETCD provides sequential consistency, which is the stronger form of consistency that can be obtained in distributed systems. This means that, independently of the node of the cluster that receives the request from the client, it reads the same events in the same order.
 
+Note that eventual consistency is not enough, specially in critical systems where, if in any moment, there are inconsistent states on the nodes, since they probably have configurations of systems stored in it (main purpose of ETCD), can cause critical problems to the systems, making it, for example, vulnerable to some mallicious attacks.
+
 Consistency is one of the advantages of using a distributed database. It allows for multiple nodes to be updated at the same time, which can lead to inconsistencies in the data. To avoid this, ETCD provides a quorum like strategy, which ensures that the data is consistent across all nodes in the cluster even if some nodes are down at that given moment.
 (https://etcd.io/docs/v3.3/learning/api_guarantees/)
 
 #### 2.2.3 - Watcher feature
 
-ETCD provides a functionality called watcher. this watcher can be used to monitor a given key-value pair over time based on the operations executed over that key.
+ETCD provides a functionality called watcher. this watcher can be used to monitor a given value of a certain key over time based on the operations executed over that key.
+
 It can be especified if we want to monitor only the PUT, only the GET operations, or both, depending of the problem.
+With this feature we can see how useful this database is regarding system configurations. With this monitoring feature it is extremely easy to see modifications in critical variables, helping to prevent any unwanted result.
 
 #### 2.2.4 - Data processing features
 
@@ -72,19 +81,19 @@ Regarding data processing features, etcd does not provide much. As an example, f
 As it can be seen in the oficial documentation of etcd, the main features supported by etcd are methods to read, write and delete data, besides the ability to monitor changes in a given key-value pair plus the possibility of knowing the version of the key (version is required internally to achieve consistency in a distributed system) and seeing old values for a given key.
 
 However, it is not only in data processing features that etcd is not ideal, also on the data types that can be stored in etcd. These types consist in strings and numbers, so there are no lists, sets or more complex data types.
-To bypass this limitation, one possible approach (implemented on the demo that is going to be described later on this report) is to use functions like ".json()" and ".stringify()". With those functions we can transform a list or any other data type into a string, and then store it in etcd.
+To bypass this limitation, one possible approach (implemented on the demo that is going to be described later on this report) is to use functions to serialize and deserialize json objects. With those functions we can transform a list or any other data type into a string, and then store it in etcd.
 
 ( https://etcd.io/docs/v3.6/dev-guide/interacting_v3/ )
 
 ### 2.3 - Data Model
 
-The data model can be seen in a logical and physical way. Throughout this section both of them are going to be described shortly.
+The data model can be seen in a logical and physical way. Throughout this section both of them are going to be described.
 
 #### 2.3.1 - Logical View
 
-The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time.
+The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time. The term revision is, in fact, a version of the key-value pair and it is possible to see the previous revisions of a given pair.
 
-A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation. Compaction removes old generations and values except the latest one.
+A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation.
 
 #### 2.3.2 - Physiscal View
 
@@ -104,6 +113,12 @@ Regarding the watchers, via the API, it is possible to create them and generate 
 (https://github.com/microsoft/etcd3/blob/master/src/test)
 
 ### 2.5 - Use Cases
+As previously mentioned, etcd is used mainly to perform system configurations in distributed systems.
+The most important use cases are:
+* Kubernetes
+* Container Linux by CoreOS
+
+( https://etcd.io/docs/v3.1/learning/why/ )
 
 TODO by Zé
 
