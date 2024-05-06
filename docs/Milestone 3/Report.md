@@ -30,6 +30,12 @@ The name "etcd" originated from two ideas: the unix "/etc" folder and "d"istribu
 
 ETCD provides a reliable way to store data across a cluster of machines and ensures strong consistency guarantees. Unlike most other NoSQL databases, ETCD is designed to be highly available and fault-tolerant, making it a popular choice for storing data in distributed systems. As specified by the CAP theorem (Consistency, Availability, Partition tolerance), in order to achieve strong consistency, ETCD sacrifices performance, which makes it not ideal for projects where execution time is crucial.
 
+(https://etcd.io)
+(https://www.ibm.com/topics/etcd)
+(https://dbdb.io/db/etcd)
+(https://medium.com/@extio/deep-dive-into-etcd-a-distributed-key-value-store-a6a7699d3abc)
+(https://github.com/etcd-io/etcd)
+
 ### 2.1 - Features
 
 As it is going to be described throughout this section, ETCD has several features, some of them unique, that make this database a good choice in many distributed systems. As an example, ETCD is used in Kubernetes.
