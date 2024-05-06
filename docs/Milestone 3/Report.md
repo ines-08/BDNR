@@ -380,7 +380,7 @@ The full-text search feature for events based on their attributes had to resort 
 
 This was the biggest functionality bottleneck encountered in TickETCD considering the purpose of the application and led to the decision not to implement a way to update event data. In fact, a modification to these attributes would trigger a delete of all references to the event's words in all auxiliary structures and subsequent computation of all affected inverted indexes. This update would cause extreme overhead that was chosen not to be supported in this prototype.
 
-- Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal.
+- Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal. Propriedades ACID
 
 ## 4. Conclusion
 
