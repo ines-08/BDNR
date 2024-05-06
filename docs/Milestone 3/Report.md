@@ -1,4 +1,4 @@
-# ECTD Report
+# ETCD Report
 
 - Fábio Sá, up202007658@up.pt
 - Inês Gaspar, up202007210@up.pt
@@ -99,6 +99,8 @@ Regarding the watchers, via the API, it is possible to create them and generate 
 
 ### 2.5 - Use Cases
 
+TODO
+
 ### 2.6 - Problematic Scenarios
 
 As previously discussed, the lack of data processing features is a problematic scenario in etcd. It is not possible to perform complex operations on the data, like aggregations, joins, etc. and require pos-processing of data, making these operations less efficient.
@@ -145,7 +147,13 @@ To ensure the system is immune to such issues, it is necessary to rely on a data
 
 TickETCD, a web application for purchasing tickets for events, uses ETCD as a solution to the aforementioned problems. The implementation details will be described in the following subsections.
 
-### 3.2 - Conceptual Data Model
+### 3.2 - Dataset
+
+Given the unavailability of data of this nature suitable for the application, TickETCD's data is generated using the Python Faker library and a configuration file. Among other factors, this stage allows for changing the number of created users, the number of events, the probability of a user being an administrator, the probability of creating and triggering a notification, choosing locations and event types, as well as ticket types and price ranges.
+
+These configurations are important to establish a system governed by scalable and parameterizable data. Although the data is invented and probabilistic, it is also reliable, adapted, and aligned with reality.
+
+### 3.3 - Conceptual Data Model
 
 In order to meet the needs of the application, the following relationships have been designed, as shown in figure [F1]:
 
@@ -153,13 +161,13 @@ In order to meet the needs of the application, the following relationships have 
 
 An event has a name, location, date, type, a description, and a total quantity of available tickets. Each event may offer various ticket types, each associated with a price, as well as their initial and current total quantity. Users, identified by their name, email, password, and role, can have favorite events and request notifications when the quantity of tickets for a specific event reaches a certain limit. Additionally, users can purchase various types of tickets.
 
-### 3.3 - Physical Data Model and Data Structures
+### 3.4 - Physical Data Model and Data Structures
 
 The previous Conceptual Data Model could be implemented physically using relational database schemas, allowing for direct searches for relationships between entities. However, in the case of dealing with the key-value paradigm used in ETCD, it was necessary to resort to data redundancy to ensure complete knowledge of all relationships and still minimize the number of post-processing steps.
 
 Below are presented the key and value structures used for the design of the entire data structure required by TickETCD. It should be noted that for the purpose of data visualization and manipulation, JSON was used, although physically, they are just strings, as ETCD does not support other data types as values for its keys, as described in the previous sections.
 
-#### 3.3.1 - User
+#### 3.4.1 - User
 
 Without any post-processing, it is possible to query all information related to a user by querying the key in the format `user:<USERNAME>`. Example:
 
@@ -172,7 +180,7 @@ Without any post-processing, it is possible to query all information related to 
 }
 ```
 
-#### 3.3.2 - Event
+#### 3.4.2 - Event
 
 Similarly to a user, the information about an event can be accessed by a simple query using the key `event:<ID>`. Example:
 
@@ -187,7 +195,7 @@ Similarly to a user, the information about an event can be accessed by a simple 
 }
 ```
 
-#### 3.3.3 - Ticket
+#### 3.4.3 - Ticket
 
 Given an event and a ticket type, it is possible to determine their current characteristics by using the key in the format `ticket:<EVENT_ID>:<TYPE>`. Example:
 
@@ -201,7 +209,7 @@ Given an event and a ticket type, it is possible to determine their current char
 
 The ticket type is the same and fixed for all events, so there would be no issue in declaring this key in the format `ticket:<TYPE>:<EVENT_ID>`. The ticket types will be addressed in a later section.
 
-#### 3.3.4 - Notification
+#### 3.4.4 - Notification
 
 Given that a user can activate a notification for a specific event, the structure `notification:<USERNAME>:<EVENT_ID>` was used to store this data:
 
@@ -214,7 +222,7 @@ Given that a user can activate a notification for a specific event, the structur
 
 As defined, and leveraging ETCD's feature of searching by key prefix, the system also has direct access to all notifications for a user by searching only for prefix `notification:<USERNAME>`. This way post-processing was avoided.
 
-#### 3.3.5 - Favourite
+#### 3.4.5 - Favourite
 
 With the key in the format `favorite:<USERNAME>`, a single operation is sufficient to ensure the retrieval of all events marked as favorites by the user:
 
@@ -225,7 +233,7 @@ With the key in the format `favorite:<USERNAME>`, a single operation is sufficie
 ]
 ```
 
-#### 3.3.6 - Purchase
+#### 3.4.6 - Purchase
 
 Due to potential key collisions in a distributed context, indexing purchase keys by timestamp became unfeasible. Therefore, the purchase history of a user for an event can be queried using the key `purchase:<USERNAME>:<EVENT_ID>`. Example:
 
@@ -251,7 +259,7 @@ A purchase is characterized by an array of transactions, each containing a times
 
 Just like in the case of notifications, leveraging ETCD's feature of searching by key prefix, the system also has direct access to all user purchases by searching only for the prefix `purchase:<USERNAME>`, without requiring post-processing.
 
-#### 3.3.7 - Search
+#### 3.4.7 - Search
 
 One of the features to explore in TickETCD is the search for events by string, type, and location. Since ETCD, being a key-value database, does not allow searching by values but only by keys, an inverted index was implemented:
 
@@ -276,7 +284,7 @@ As observed, the key is constructed based on the search type followed by the inp
 
 The text search leverages ETCD's prefix search feature, allowing users to search not only for a single word but also for the prefix of that word and obtain the same results without additional computational cost.
 
-#### 3.3.8 - Static data
+#### 3.4.8 - Static data
 
 To ensure and enforce system constraints, some static auxiliary structures have been added to the database. Examples:
 
@@ -290,7 +298,7 @@ To ensure and enforce system constraints, some static auxiliary structures have 
 
 Event locations, event types, and ticket types are frequently accessed structures, allowing for rapid data selection without the need for complex queries or additional post-processing. However, this adds more redundancy to the system.
 
-### 3.4 - Architecture
+### 3.5 - Architecture
 
 The architecture of the prototype can be illustrated according to the schema present in the Figure [Y]:
 
@@ -298,36 +306,56 @@ The architecture of the prototype can be illustrated according to the schema pre
 
 To simulate a distributed system and evaluate its capabilities, the project deployed a cluster comprising five interconnected ETCD nodes through an internal network using Docker containers. Furthermore, employing Docker as well, a web application powered by Node.js was created, featuring a frontend crafted using the Tailwind CSS framework. The Microsoft etcd3 library served as a server-side solution for interfacing the cluster and the web application.
 
-The TickETCD's data is generated using the Python Faker library and a configuration file. Among other factors, this stage allows for changing the number of created users, the number of events, the probability of a user being an administrator, the probability of creating and triggering a notification, choosing locations and event types, as well as ticket types and price ranges. These configurations are important to establish a system governed by scalable and parameterizable data. Although the data is invented and probabilistic, it is also reliable, adapted to reality, and aligned with the application's needs.
+After the dataset specified earlier is generated, there is the step of populating the cluster, which takes the most time. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since this technology is fully replicated and the prototype requires many auxiliary structures, even with just 10 users and 10 events, it easily scales to around 400 key-value pairs, making the populate step slow.
 
-The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
-
-The system is designed to allow manual querying of information in the database at any given time. Due to the absence of a proprietary querying language or a command line interface, a Python script consuming queries in JSON format is utilized for this purpose, directly injecting commands into the Docker containers.
+The system is designed to allow manual querying of information in the database at any given time. Due to the absence of a proprietary querying language or a command line interface, a Python script consuming queries in JSON format is utilized for this purpose, directly injecting commands into the Docker containers using the HTTP API.
 
 The setup and execution of all steps is aided and automated with the provided makefile.
 
-### 3.5 - Features
+After the setup is completed, the prototype allows access to various endpoints to perform tasks and test the functionalities related to the ETCD technology:
 
-#### 3.5.1 - Data processing
+- `/`: Used for login or registration;
+- `/home[?search=<INPUT>]`: Homepage. By default, it displays some events. If the user searches (using the search field), it shows the search results;
+- `/admin`: Admin page displaying database cluster statistics, events, and event creation;
+- `/profile?username=<USERNAME>`: Displays details of a user profile, favourite events and last purchases;
+- `/notifications`: Displays the current user notifications;
+- `/event?id=<ID>`: Displays details of an event;
+- `/tickets?eventid=<ID>`: Used for purchasing tickets;
 
-#### 3.5.2 - Queries
+Given that the database is a distributed cluster of five nodes, the architecture allows for the shutdown of up to two of these nodes, and the system remains intact and fully functional. This is a feature to be explored in the following sections.
 
-#### 3.5.3 - Specific Features
+### 3.6 - Features
+
+Introdução às features, usadas para testar as capacidades mas também as fragilidades da tecnologia ETCD bem como da própria
+
+#### 3.6.1 - Data processing
+
+#### 3.6.2 - Queries
+
+#### 3.6.3 - Specific Features
 
 - prefix (na realidade é getAll() mas que não tem custo grande por é de replicação total, logo dá para fazer isto)
 - notifications (como o etcd é )
 - cluster/node saúde
 
-#### 3.6 - Limitations
+#### 3.7 - Limitations
+
+Embora ETCD seja adequado para a maioria dos casos explorados no protótipo TickETCD, há situações onde
 
 - Redundância excessiva, para combater as relações que poderiam simplesmente serem usadas em modo relacional
-- Povoação não-em-bloco, explicar o processo de ser lento. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal 
+- Povoação não-em-bloco, explicar o processo de ser lento. explicar também que devido à redundância isto explode em exponencial, indexação do search e tal . O processo de editar um evento, por exemplo, seria danoso pois teria de ser retirados todas as referencias e voltar a colocar.
+
+
+- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo). Foi-nos impossível criar uma timeline com as transactions efetuadas, por exemplo, por ser impraticável indexar as queries por timestamp (ficando a ser por isso mais estáveis) e consumo
+
 - Transactions limitadas ou inexistentes. Casos onde o protótipo se dá mal
-- Pesquisa sem queries complexas (por timeline, por número de bilhetes..., por atributos no fundo). A função
 - Updates de data structures, como da pesquisa;
+
 - JSON.stringigy / JSON.parse, para values, torna ineficiente quando comparado com outras soluções como redis
 
 ## 4. Conclusion
+
+TODO
 
 ## References
 
