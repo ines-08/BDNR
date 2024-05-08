@@ -6,16 +6,17 @@
 
 ## Abstract
 
-O presente relatório tem como objectivo explorar de forma teórica e com uma componente prática uma tecnologia de base de dados não relacional de um dos paradigmas estudados, base de dados baseadas em key-value. Neste sentido, ETCD foi a tecnologia escolhida para abordar este paradigma, esta base de dados é muito utilizada para consistência em sistemas distribuídos.
-Ao longo do presente documento apresentam-se informações introdutórias da tecnologia bem como especificadades e utilizações da mesma. De seguida, aborda-se um use case scenario, assim como os modelos desenvolvidos para suporte da solução encontrada para o referido. Por último, explica-se a implementação do protótipo usando ETCD tendo em conta a ideação mencionada e algumas considerações de features implementadas neste paradigma.
+The aim of this report is to explore in a theoretical way and with a practical component a non-relational database technology from one of the paradigms studied, key-value based databases. In this sense, ETCD was the technology chosen to approach this paradigm. This database is widely used for consistency in distributed systems.
+Throughout this document, introductory information on the technology is presented, as well as its specificities and uses. This is followed by a use case scenario, as well as the models developed to support the solution found for it. Finally, the implementation of the prototype using ETCD is explained, taking into account the ideation mentioned and some considerations of the features implemented in this paradigm.
+
 
 ## 1 - Introduction
 
-O aumento da quantidade de dados e a complexidade dos sistemas levaram à criação de novas soluções de base de dados, de forma a aumentar a capacidade de armazenamento e torná-las mais eficientes: bases de dados não relacionais.
-Desta forma, surgiu um dos paradigmas explorado neste relatório, key-value através da abordagem com a ETCD.
-Este tipo de base de dados consiste no armazenamento dos dados em conjuntos de pares key-value, sendo que cada chave é um identificador único para o valor correspondente.
-Esta abordagem tem um design muito simples e de aprendizagem rápida, uma vez que apenas depende do desenho da key e a maioria do processamento e manipulação necessária fica do lado da aplicação. Estas tecnologias de NoSQL permitem uma grande escalabilidade e melhor performance em relação às bases de dados relacionais. Assim, são muitas vezes utilizadas como sistemas de caching, onde os dados são temporariamente armazenados para acesso rápido.
-A ETCD é uma base de dados frequentemente utilizada para configuração de sistemas de clusters/distribuídos. É especialmente usada por causa da forte consistência entre nós que permite, e que vai explorado nas próximas secções, assim através dos use cases desta tecnologia e do protótipo desenvolvido.
+The increase in the amount of data and the complexity of systems has led to the creation of new database solutions in order to increase storage capacity and make them more efficient: non-relational databases.
+In this way, one of the paradigms explored in this report emerged, key-value through the ETCD approach.
+This type of database consists of storing data in sets of key-value pairs, with each key being a unique identifier for the corresponding value.
+This approach has a very simple design and is quick to learn, since it only depends on the design of the key and most of the processing and manipulation required is on the application side. These NoSQL technologies allow for great scalability and better performance than relational databases. They are therefore often used as caching systems, where data is temporarily stored for quick access.
+ETCD is a database often used for setting up cluster/distributed systems. It is especially used because of the strong consistency between nodes that it allows, which will be explored in the following sections, as well as through the use cases of this technology and the prototype developed.
 
 ## 2 - Techonology
 
@@ -405,7 +406,9 @@ This was the biggest functionality bottleneck encountered in TickETCD considerin
 
 ## 4. Conclusion
 
-TODO by Ines
+With the development of this project, we were able to explore in greater depth one of the non-relational database paradigms currently in use, key-value. We had the opportunity to work with a new technology, ETCD, which allowed us to get to know its specificities and the cases in which this type of tool is most suitable for use, since its entire design is very focused on configurations of distributed systems and platforms where it is essential that there is strong consistency between the nodes of the cluster.
+In this way, we have been able to understand how this type of approach, more specifically through ETCD, the characteristics that these databases provide in terms of scalability and consistency, since nowadays with the amount of data and operations that need to be carried out these are fundamental characteristics to be guaranteed by the platforms.
+
 
 ## References
 
