@@ -1,0 +1,564 @@
+%%
+%% This is file `sample-manuscript.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,manuscript')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-manuscript.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+
+\documentclass[screen,review]{acmart}
+
+\usepackage{geometry}
+\geometry{%
+  left=3cm,right=3cm,
+  top=80pt,bottom=80pt, % <===============================================
+  headsep=10pt,
+  a4paper,
+}
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+
+
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title[etcd]{etcd \\
+A key-value NoSQL solution for distributed systems }
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Fábio Sá}
+\email{up202007658@fe.up.pt}
+\affiliation{%
+  \institution{FEUP}
+  \city{Porto}
+  \country{Portugal}
+}
+
+\author{Inês Gaspar}
+\email{up202007210@fe.up.pt}
+\affiliation{%
+  \institution{FEUP}
+  \city{Porto}
+  \country{Portugal}
+}
+
+\author{José A. Gaspar}
+\email{up202008561@fe.up.pt}
+\affiliation{%
+  \institution{FEUP}
+  \city{Porto}
+  \country{Portugal}
+}
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{F. Sá, I. Gaspar, J. A. Gaspar}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+The aim of this report is to explore in a theoretical way and with a practical component a non-relational database technology from one of the paradigms studied, key-value based databases. In this sense, ETCD was the technology chosen to approach this paradigm. This database is widely used for consistency in distributed systems.
+Throughout this document, introductory information on the technology is presented, as well as its specificities and uses. This is followed by a use case scenario, as well as the models developed to support the solution found for it. Finally, the implementation of the prototype using ETCD is explained, taking into account the ideation mentioned and some considerations of the features implemented in this paradigm.
+\end{abstract}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{NoSQL, etcd, Key-Value, consistency, distributed systems, full replicated}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\section{Introduction}
+The increase in the amount of data and the complexity of systems has led to the creation of new database solutions, non-relational databases, with the aim of providing efficient storage and retrieval of data and allowing rapid access in large-scale applications. \\
+In this way, one of the paradigms explored in this report emerged, key-value through the etcd approach.
+This type of database consists of storing data in sets of key-value pairs, with each key being a unique identifier for the corresponding value.
+This approach has a very simple design and is quick to learn, since it only depends on the design of the key and most of the processing and manipulation required is on the application side. These NoSQL technologies allow for great scalability and better performance than relational databases. They are therefore often used as caching systems, where data is temporarily stored for quick access.
+\textit{etcd} is a database often used for setting up cluster/distributed systems. It is especially used because of the strong consistency between nodes that it allows, which will be explored in the following sections, as well as through the use cases of this technology and the prototype developed.
+    
+    
+\section{Technology}
+In this section the chosen technology, etcd \cite{etcd}, is going to be described in terms of features, data model, advantages, limitations an some use cases are also presented.
+
+\subsection{Overview}
+etcd is a distributed key-value store. Key-value stores are a type of NoSQL database paradigm that stores data as a collection of key-value pairs, where each key is unique and associated with a single value.
+This database system was initially developed by CoreOS in 2013, when it had its first release. In 2018, RedHat announced the acquisition of CoreOS, and IBM announced the acquisition of RedHat in the same year.
+etcd is free and follows an open-source licensing model. Its official documentation features many tutorials, demos, and installation instructions, as well as an extensive FAQ. The community is active and supportive, with user and developer forums on Google Groups, real-time updates on Twitter, and discussions on GitHub. Additionally, contributors and maintainers hold weekly online meetings via Zoom, with meeting documentation available and sessions archived on YouTube. As of the date of this report, it ranks 54th among the most used database engines and 5th in the key-value paradigm, according to the evaluation on db-engines.com \cite{db-engines}.
+
+The name "etcd" originated from two ideas: the unix "/etc" folder and "d"istributed systems \cite{dbdb}. The "/etc" folder is a place to store configuration data for a single system, whereas etcd stores configuration information for large-scale distributed systems. Thus, it is widely used for configuration management, service discovery, and coordination in distributed systems.
+
+etcd provides a reliable way to store data across a cluster of machines and ensures strong consistency guarantees. Unlike most other NoSQL databases, etcd is designed to be highly available and fault-tolerant, making it a popular choice for storing data in distributed systems \cite{ibm} \cite{etcd_overview}. As specified by the CAP theorem \cite{ibm_CAP} (Consistency, Availability, Partition tolerance), in order to achieve strong consistency, \textit{etcd} sacrifices performance, which makes it not ideal for projects where execution time is crucial.
+
+\subsection{ACID Properties}
+etcd guarantees the ACID properties (Atomicity, Consistency, Isolation, and Durability). These properties are essential for executing transactions. However, they only exist for one key-value set, i.e. it is not possible to change more than one key-value pair in a transaction.
+A transaction is an atomic If/Then/Else construct over the key-value store. They can be used to protect keys from unintentional concurrent updates, create compare and exchange operations and develop higher-level concurrency control.
+A transaction can atomically process several requests in just one. Modifications to the storage of key values causes the storage revision to be incremented only once for the transaction and all events that are generated by the transaction to have the same revision. However, it is not allowed to change the same key several times in a single transaction.
+All transactions are protected by a set of comparisons. Each comparison checks a single key in the storage. In this way, you can check the absence or presence of a value, compare it to a certain value or check the revision or version of a key. Two different comparisons can be applied to the same key or to different keys. All comparisons are applied atomically: if all comparisons are true, then the transaction was successful and etcd applies the then (success) request block for the transaction, otherwise it is said to have failed and the else (failure) request block is applied.
+
+
+\subsection{Features}
+As it is going to be described throughout this section, etcd has several features, some of them unique, that make this database a good choice in many distributed systems.
+
+\subsubsection{Replication and node communication features}
+This database is built to work in a distributed way\cite{etcd_clustering} (number of nodes / machines of the cluster differ from 1). This cluster can be generated through an internal network between several nodes. In etcd the number of nodes is preferably odd (1, 3, 5, etc) for resource management purposes.
+
+etcd is built on the Raft consensus algorithm \cite{raft} to ensure data store consistency across all nodes in a cluster—table stakes for a fault-tolerant distributed system. This algorithm is based on quorums and as the name suggests it is used to have a consensus between a majority of nodes about the values that are being stored in the database, taking into account that one or more nodes may fail. In etcd, for a cluster with n members, the quorum size is (n/2)+1. For any odd-sized cluster, adding one node will always increase the number of nodes necessary for quorum.
+
+These nodes do not need to be physically together, even though it may affect request latency. etcd basically stablishes connection between nodes via HTTP + TLS. If the IP of the node is not known, etcd has a discovery mode that will find the node's IP address and establish the connection.
+In terms of load balancing, it is usefull to state that there is a leader node. This node is responsible for ensuring data replication among non-leader nodes and balance the distribution of request among those nodes \cite{etcd_faq}.
+Even though it is possible to have multiple nodes in one cluster, etcd does not provide a way to support multiple clusters that can communicate with each other. To implement that feature, some communication protocol must be implemented between the clusters. One approach would be to put the leader node of each cluster in charge of that communication.
+
+Each node has a copy of the data, and the data is replicated across the cluster. This means that, if a node fails, the data is still available on the other nodes, even if the leader is down - reelection is done. As such, having a leader does not represent a critical point of failure for the system. It only fails if the majority of nodes are down, that is, consensus is not obtained.
+In etcd there is a total replication of the data, which means, it's full replicated.
+
+\subsubsection{Consistency features}
+etcd provides sequential consistency, which is the stronger form of consistency that can be obtained in distributed systems. This means that, independently of the node of the cluster that receives the request from the client, it reads the same events in the same order.
+
+Note that eventual consistency is not enough, specially in critical systems where, if in any moment, there are inconsistent states on the nodes, since they probably have configurations of systems stored in it - main purpose of etcd - can cause critical problems to the systems, making it, for example, vulnerable to some mallicious attacks.
+
+It's also important to mention that, each key has a version that is required internally to achieve consistency in the distributed system and etcd allows users to see those versions and the respective values.
+
+Consistency is one of the advantages of using a distributed database. It allows for multiple nodes to be updated at the same time, which can lead to inconsistencies in the data. To avoid this, etcd provides a quorum like strategy, which ensures that the data is consistent across all nodes in the cluster even if some nodes are down at that given moment\cite{etcd_api}.
+
+\subsubsection{Watcher feature}
+etcd provides a functionality called watcher \cite{etcd_watcher}. This watcher can be used to monitor a given value of a certain key over time based on the operations executed over that key-value pair.
+
+It's possible to specify whether to monitor only the PUT, only the GET operations, or both, depending on the problem.
+With this feature it can be seen how useful this database is regarding system configurations. With this monitoring feature it is extremely easy to see modifications in critical variables in real-time (without resort to polling), helping to prevent any unwanted results.
+
+\subsubsection{Data processing features}
+Regarding data processing features, etcd provides a limited range of those. As an example, functions like counts, sums, averages, map-reduces that are supported by other databases have no translation in etcd, making mandatory to process information after querying the database or designing key-value structures in a way to make post-processing unnecessary.
+As it can be seen in the oficial documentation of etcd, the main features supported by etcd are methods to read, write and delete data, besides the ability to monitor changes in a given key-value pair plus the possibility of knowing the version of the key and seeing old values for a given key \cite{etcd_interacting} \cite{etcd_api}.
+
+However, it is not only in data processing features that etcd is not ideal, also on the data types that can be stored in etcd. These types consist in strings and numbers, so there are no lists, sets or more complex data types.
+
+\subsubsection{Prefix feature}
+Etcd as another peculiar feature that can be very handy, the prefix search. This feature allows users to search for a range of keys based on the prefix. Since etcd is fully replicated, it is possible to obtain all the keys with the same prefix only performing one request to exactly one node of the cluster, making this operation efficient.
+
+\subsection{CLI and Client libraries}
+
+etcd provides a CLI, etcdctl \cite{etcd_clt}. Currently in version 3, this command line interface allows interacting with the database at a lower level. It's a wrapper for the documented API.
+
+Due to its widespread use, etcd is combined with various open-source libraries \cite{etcd_library}, ensuring a suitable interface between etcd clusters and the backend of applications that use this technology. Examples include Microsoft's ETCD3 \cite{etcd}, suitable for Javascript and Typescript, and Python-etcd3 [https://github.com/kragniz/python-etcd3] for Python.
+
+\subsection{Data Model}
+The data model can be seen in a logical and physical way \cite{etcd_data_model}. Throughout this section both of them are going to be described.
+
+\subsubsection{Logical View}
+The store's logical view is a flat binary key space with a lexically sorted index for efficient range queries. It maintains multiple revisions, with each atomic mutative operation creating a new revision. Old versions of keys remain accessible through previous revisions, and revisions are indexed for efficient ranging. Revisions are monotonically increasing over time. The term revision is, in fact, a version of the key-value pair and it is possible to see the previous revisions of a given pair.
+
+A key's life spans a generation from creation to deletion, with each key having one or multiple generations. Creating a key increments its version, starting at 1 if it doesn't exist. Deleting a key generates a tombstone, resetting its version to 0. Each modification increments a key's version within its generation.
+
+\subsubsection{Physiscal View}
+etcd stores data in a persistent B-Tree \cite{b-tree}, with each revision containing only the delta from the previous one for efficiency reasons. Keys are represented as 3-tuples (major, sub, type), allowing differentiation and optional special values like tombstones. The B-Tree is ordered lexically for fast ranged lookups over revision deltas. Compaction removes outdated key-value pairs. Additionally, etcd maintains an in-memory B-Tree index for speedy range queries, with keys exposed to users and pointers to modifications in the persistent B-Tree.
+
+\subsection{Supported Data Operations}
+etcd provides an HTTP/JSON API \cite{microsoft} that allows clients to perform CRUD operations on the data store.
+There are mainly 2 operations, GET and PUT. As the names sugest, these operations are used to retrieve a given value based on a key and store a new / existent key-value pair, respectively.
+Still talking about the GET operation, it is possible to specify a range of keys, and the response will be a list of key-value pairs. This range of keys can only be specified by prefix. To exemplify, if the keys app:foo and app:bar exist, the prefix app: can be used to retrieve both keys and their respective values.
+Regarding updates, they are just a new PUT, over the same key.
+It is also possible to delete key-value pairs using the delete operation.
+Another interesting feature provided by the API is the ability to check the cluster' health. Parameters like the leader node and the number of requests can be seen via this API.
+Regarding the watchers, via the API, it is possible to create them and generate a function that is going to run at each operation over the key that is being watched / monitored\cite{etcd_api}.
+
+\subsection{Use Cases}
+As previously mentioned, etcd is used mainly to perform system configurations in distributed systems \cite{etcd_why}.
+The most important use cases are:
+
+\begin{itemize}
+    \item Kubernetes
+    \item Container Linux by CoreOS
+\end{itemize}
+
+\subsection{Problematic Scenarios}
+
+One of the problematic scenarios is related with the restricted data types that can be stored in the database (numbers and strings). Since we need to keep a json encoded as string when more complex types are required, this makes attribute search impossible, so if I want to know only a given field, I have to recieve the entire entity and then select the attribute manually.
+
+etcd was developed to deal with small key-value pairs, typically designed to metadata. Hence, the maximum size of any request is 1.5 MiB. Similarly, the suggested maximum size of the database is 8 GiB (2 GiB is the default). With that said, we can conclude that this database was not built to be used as a cache, as it is not designed to store large amounts of data \cite{etcd_sys_limits}.
+
+Fast disks are vital for etcd performance and stability \cite{etcd_hw}. Slow disks increase request latency and cluster instability. etcd's consensus protocol requires timely storage of metadata to a log, with most cluster members writing every request to disk. Etcd also checkpoints its state to disk for log truncation, and delays in these writes can cause heartbeat timeouts, triggering cluster elections and instability. Etcd is highly sensitive to disk write latency, needing at least 50 sequential IOPS (e.g., from a 7200 RPM disk) and ideally 500 sequential IOPS (e.g., from a local SSD or high-performance virtualized block device) for heavily loaded clusters. This limitation, together with the inability of writting a block of key-value pairs in one operation - would eventually surpass the 1.5MiB of request - makes the entire cluster slower when facing lots of consecutive writes. This drawback is noticeable when populating an etcd database for example.
+
+Furthermore, etcd can also become problematic due to its own nature of replicating data totally. It is possible to have several nodes running to ensure data is (almost) never lost, however this makes the entire system slower with the increase of nodes, precisely due to data consistency and replication.
+
+\subsection{etcd vs. Other Solutions}
+As previously mentioned, etcd is not like most key-value databases. It is recommended to be used when sequential consistency is needed, in distributed systems, and not to be used as a cache, like Redis, for example. There is a tradeoff between having a fast response time and having a consistent state. etcd is made not to be fast but consistent while most key-value databases are made to be fast but not consistent.
+The main advantage of etcd is the ability of having more than one point of failure. Thanks to the leader election algorithms and the Raft consensus algorithm, if more than 50\% of the nodes are up and running, the system will be able to continue working and accept new operations over the database. Then, when the nodes that fail recover, the state is fully replicated to those nodes achieving the sequential consistency that is needed and guaranteed by the API.
+Other advantage, as specified in etcd documentation, the maximum reliable database size of etcd is of several gigabytes while others (e.g ZooKeeper and Consul) can support until hundreds of megabytes.
+The main drawback is the performance of etcd and the lack of ability of inserting larges amount of data in a block. Operations on database are restrict to one at a time.
+
+\section{Prototype}
+To validate the main features, qualities, and potential bottlenecks of the mentioned etcd technology, a prototype — proof of concept based on this key-value paradigm — was developed and presented in the following sections.
+
+\subsection{Topic}
+In a classic scenario of purchasing tickets for events, data consistency is the most important aspect to consider. For example, each event should display its updated information in real-time, including the number of remaining tickets, regardless of the number of simultaneous purchases occurring. A failure in data replication and propagation within the system can result in event overbooking, inaccurately computed purchases, and potential revenue loss.
+
+To ensure the system is immune to such issues, it is necessary to rely on a database that is simultaneously:
+
+\begin{itemize}
+    \item Distributed, for horizontal scalability ensuring the system can handle the growing workload effectively;
+    \item Fully-replicated, where every data read returns the latest data write across all clusters and nodes, something that is not achievable with eventual consistency;
+    \item Highly available, to have no single point of failure and gracefully tolerate hardware failures and network partitions.
+\end{itemize}
+
+TickETCD, a web application for purchasing tickets for events, uses etcd as a solution to the aforementioned problems. The implementation details will be described in the following subsections.
+
+\subsection{Dataset}
+Given the unavailability of data of this nature suitable for the application, TickETCD's data is generated using the Python Faker library and a configuration file. Among other factors, this stage allows for changing the number of created users, the number of events, the probability of a user being an administrator, the probability of creating and triggering a notification, choosing locations and event types, as well as ticket types and price ranges.
+
+These configurations are important to establish a system governed by scalable and parameterizable data. Although the data is invented and probabilistic, it is also reliable, adapted, and aligned with reality.
+
+\subsection{Conceptual Data Model}
+In order to meet the needs of the application, the following relationships have been designed, as shown in figure [F1]:
+
+IMAGE IN HERE
+
+An event has a name, location, date, type, a description, and a total quantity of available tickets. Each event may offer various ticket types, each associated with a price, as well as their initial and current total quantity. Users, identified by their name, email, password, and role, can have favorite events and request notifications when the quantity of tickets for a specific event reaches a certain limit. Additionally, users can purchase various types of tickets.
+
+\subsection{Physical Data Model and Data Structures}
+The previous Conceptual Data Model could be implemented physically using relational database schemas, allowing for direct searches for relationships between entities. However, in the case of dealing with the key-value paradigm used in etcd, it was necessary to resort to data redundancy to ensure complete knowledge of all relationships and still minimize the number of post-processing steps.
+
+Below are presented the key and value structures and agregates used for the design of the entire data structure required by TickETCD. It should be noted that for the purpose of data visualization and manipulation, JSON was used, although physically, they are just strings after serialization, as etcd does not support other data types as values for its keys, as described in the previous sections.
+
+\subsubsection{User}
+Without any post-processing, it is possible to query all information related to a user by querying the key in the format 'user:<USERNAME>'. Example:
+
+\begin{lstlisting}[language=json]
+"user:johndoe": { 
+    "name": "jonh doe", "email": "john@mail.com", 
+    "password": "john123", "role": "admin"
+}
+\end{lstlisting}
+
+\subsubsection{Event}
+Similarly to a user, the information about an event can be accessed by a simple query using the key 'event:<ID>'. Example:
+
+\begin{lstlisting}[language=json]
+"event:92fe965d-a189-4f26-844c-0979c6ca035e": {
+    "name": "Simple concert",  "description": "A simple event example", 
+    "location": "porto", "type": "concert", "date": "2024-03-13",
+    "current_quantity": "14"
+}
+\end{lstlisting}
+
+\subsubsection{Ticket}
+Given an event and a ticket type, it is possible to determine their current characteristics by using the key in the format 'ticket:<EVENT\_ID>:<TYPE>'. Example:
+
+\begin{lstlisting}[language=json]
+"ticket:92fe965d-a189-4f26-844c-0979c6ca035e:pink": {
+    "total_quantity": "34", "current_quantity": "23", "price": "23.99"
+}
+\end{lstlisting}
+
+The ticket type is the same and fixed for all events, so there would be no issue in declaring this key in the format 'ticket:<TYPE>:<EVENT\_ID>'. The ticket types will be addressed in a later section.
+
+\subsubsection{Notification}
+Given that a user can activate a notification for a specific event, the structure \\ 'notification:<USERNAME>:<EVENT\_ID>' was used to store this data:
+
+\begin{lstlisting}[language=json]
+"notification:johndoe:92fe965d-a189-4f26-844c-0979c6ca035e" : {
+    "limit": 42, "active": true
+}
+\end{lstlisting}
+
+As defined, and leveraging etcd's feature of searching by key prefix, the system also has direct access to all notifications for a user by searching only for prefix 'notification:<USERNAME>'. This way post-processing was avoided.
+
+\subsubsection{Favourite}
+With the key in the format \\ 'favorite:<USERNAME>', a single operation is sufficient to ensure the retrieval of all events marked as favorites by the user:
+
+\begin{lstlisting}[language=json]
+"favourite:johndoe": [ "92fe965d-a189-4f26-844c-0979c6ca035e" ]
+\end{lstlisting}
+
+\subsubsection{Purchase}
+Due to potential key collisions in a distributed context, indexing purchase keys by timestamp became unfeasible. Therefore, the purchase history of a user for an event can be queried using the key \\ purchase:<USERNAME>:<EVENT\_ID>. Example:
+
+\begin{lstlisting}[language=json]
+"purchase:johndoe:ad25c85c-6714-4d1f-857b-9bcd1a45ccb9": [ {
+        "date": "2024-03-14 13:45:00",
+        "tickets": [{ "type": "red", "quantity": "3"}]
+} ]
+\end{lstlisting}
+
+A purchase is characterized by an array of transactions, each containing a timestamp and a list of purchased tickets. Since the event ID is already present in the key, redundancy was avoided by not including the event identification again here, as it already contains these tickets.
+
+Just like in the case of notifications, leveraging ETCD's feature of searching by key prefix, the system also has direct access to all user purchases by searching only for the prefix 'purchase:<USERNAME>', without requiring post-processing.
+
+\subsubsection{Search}
+One of the features to explore in TickETCD is the search for events by string, type, and location. Since etcd, being a key-value database, does not allow searching by values but only by keys, an inverted index was implemented:
+
+\begin{lstlisting}[language=json]
+"search:text:some": [ "92fe965d-a189-4f26-844c-0979c6ca035e" ]
+"search:type:concert": [ "f2af5c43-7cad-49f8-88c1-2ff7e8fe8d81" ]
+"search:location:lisbon": [ "97636456-a096-4868-9dc1-aac79a22961c" ]
+\end{lstlisting}
+
+As observed, the key is constructed based on the search type followed by the input, in the format \\ 'search:<SEARCH\_TYPE>:<INPUT>'. Its value is always a list of events that owns these characteristics. This also requires initial processing and runtime processing of the strings that constitute the event, such as the name and description, something to emphasize in the limitations of this implementation.
+
+The text search leverages etcd's prefix search feature, allowing users to search not only for a single word but also for the prefix of that word and obtain the same results without additional computational cost.
+
+\subsubsection{Static data}
+To ensure and enforce system constraints, some static auxiliary structures have been added to the database. Examples:
+
+\begin{lstlisting}[language=json]
+"event:locations": ["lisbon","porto","braga"],
+"event:types": ["concert","theater","dance", "magic","circus"],
+"ticket:types": ["pink","blue","green","red"]
+\end{lstlisting}
+
+Event locations, event types, and ticket types are frequently accessed structures, allowing for rapid data selection without the need for complex queries or additional post-processing. However, this adds more redundancy to the system.
+
+\subsection{Architecture}
+The architecture of the prototype can be illustrated according to the schema present in the Figure [Y]:
+
+IMAGE IN HERE
+
+To simulate a distributed system and evaluate its capabilities, the project deployed a cluster comprising five interconnected etcd nodes through an internal network using Docker containers. Furthermore, employing Docker as well, a web application powered by Node.js was created, featuring a frontend crafted using the Tailwind CSS framework. The Microsoft etcd3 library served as a server-side solution for interfacing the cluster and the web application.
+
+After the dataset specified earlier is generated, there is the step of populating the cluster, which takes the most time. etcd does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since this technology is fully replicated and the prototype requires many auxiliary structures, even with just 10 users and 10 events, it easily scales to around 400 key-value pairs, making the populate step slow.
+
+The system is designed to allow manual querying of information in the database at any given time. Due to the absence of a proprietary querying language, a Python script consuming queries in JSON format is used for this purpose, directly injecting commands into the Docker containers using the command line interface and the HTTP API.
+
+The setup and execution of all steps is aided and automated with the provided makefile.
+
+After the setup is completed, the prototype allows access to various endpoints to perform tasks and test the functionalities related to the etcd technology:
+
+\begin{itemize}
+    \item '/': Used for login or registration;
+    \item '/home[?search=<INPUT>]': Homepage. By default, it displays some events. If the user searches (using the search field), it shows the search results;
+    \item '/admin': Admin page displaying database cluster statistics, events, and event creation;
+    \item '/profile?username=<USERNAME>': Displays details of a user profile, favourite events and last purchases;
+    \item '/notifications': Displays the current user notifications;
+    \item '/event?id=<ID>': Displays details of an event;
+    \item '/tickets?eventid=<ID>': Used for purchasing tickets;
+\end{itemize}
+
+Given that the database is a distributed cluster of five nodes, the architecture allows for the shutdown of up to two of these nodes, and the system remains intact and fully functional. This is a feature to be explored in the following sections.
+
+\subsection{Features}
+
+The features implemented in TickETCD are aimed at exploring ETCD from a practical standpoint, emphasizing its strengths but also highlighting the weaknesses of certain approaches with this technology.
+
+\subsubsection{Data processing and Queries}
+
+TickETCD provides a user registration on the homepage [Figure X], based on the construction of a key-value pair, where the key follows the format user:<USERNAME>, with attributes such as name, email, password, and role added to the value. On the other hand, the login process involves simply a GET request for the possible key, followed by a comparison of the password with the stored attribute if the key exists in the system.
+
+The information displayed on the user profile page [Figure X] is obtained through three queries: a GET request for the key user:<USERNAME> to retrieve the user's personal information, a GET request for the key favourite:<USERNAME> to list the user's favorite events, and a GET request for the key purchase:<USERNAME> to create the purchase history. None of these three behaviors require any post-processing, thanks to the redundancy added during the initial data modeling.
+
+On the event page [Figure X], the user can add or remove that event from their list of favorites. Internally, it's just a PUT request to the value of the key in the format favourite:<USERNAME>, which is a list containing all events marked as favorites by the selected user. Ticket purchases are made on an auxiliary page [Figure X], which categorizes the prices and quantities available for each ticket type for a given event, querying the values of keys in the format event:<EVENTID>:<TYPE>. Internally, during the purchase, a new entry is added to the array stored in the key purchase:<USERNAME>, and there's a subsequent update of the current value of available tickets for each type and globally for the event. It's worth noting that operations in the case of purchases should ideally be performed within a transaction for concurrency reasons, but ETCD doesn't allow transactions manipulating various aggregates, as explored further in the limitations section.
+
+On the notifications page [Figure X], the user can have a visual feedback of their notifications and which ones are active. It's simply a GET request for the key in the format notification:<USERNAME>.
+
+On the admin page [Figure X], the user can view event statistics, created based on queries and subsequent cumbersome post-processing. A limiting factor in implementing this feature is that ETCD doesn't have more advanced data processing features like SUM or AVG provided by relational databases. This will also be analyzed in the limitations section. It's also possible to create an event, generating internally a unique ID and adding as the value to the key event:<ID> the corresponding attributes such as name, location, description, type, and each of the ticket types, including their type, initial quantity, and unit price.
+
+\subsubsection{Specific Features}
+
+The event page features a notification creation mechanism that leverages the Watcher feature of ETCD. Once enabled, the database passively waits for updates to the value of the key event:<EVENTID>. The only way to update its value is by decreasing the value of the current_quantity attribute through a ticket purchase. ETCD takes care of notifying the user as soon as this value falls below the chosen threshold.
+
+Despite not allowing searches by attributes, the creation of auxiliary search structures as seen in the previous section made it possible to leverage ETCD's key prefix search feature. With this, using auxiliary structures in the form of inverted indices, it was possible to provide event searches in the homepage [Figure X] based on locations, types, and also the text contained in both their titles and descriptions.
+
+Being suitable for distributed systems, ETCD provides an API for real-time visualization of the health of the cluster and each of its nodes. A visualizer of this information was implemented on the admin page [Figure X].
+
+\subsection{Limitations}
+Although etcd is suitable for most cases explored in the TickETCD prototype, there are situations where an implementation with another NoSQL paradigm or even a relational mode would be more favorable.
+
+The dataset used is indeed very redundant, ensuring a proper establishment of all the relationships proposed in the Conceptual Data Model and minimizing post-processing by the application, since there are only GET and PUT operations. Therefore, even with a reduced number of users, tickets, and events, it easily scales to hundreds of key-value pairs. A relational approach would be much more efficient in terms of space, but it would also require further processing by the application, which is suppressed in the case of key-value pairs with the addition of this redundancy.
+
+The entire dataset must then be fully-replicated, impacting the system response time on any request to update values in the database. In case of ticket sales, the processing speed of the system would also be a factor to consider when choosing this technology.
+
+etcd does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Given the exponential growth of key-values, this becomes a slow process. In real-world cases where etcd is used, for example in Kubernetes for configuration maintenance, this is not a relevant issue because configurations are mostly finite, small in size, and do not grow much. On the other hand, since TickETCD is a web application for ticket sales management, the initial setup becomes a limiting factor of the system.
+
+Unlike other key-value paradigm technologies, etcd does not support additional data types in the value of each key beyond strings. This brought a significant limitation in terms of processing objects and the design of the Physical Data Model itself. There are cases in the system where this difficulty could have been overcome by adding extra redundancy, as explained in the following example:
+
+\begin{lstlisting}[language=json]
+"user:johndoe": { 
+    "name": "jonh doe",  "email": "john@mail.com", 
+    "password": "john123",  "role": "admin"
+}
+
+"user:johndoe:name": "jonh doe"
+"user:johndoe:email": "john@mail.com"
+"user:johndoe:password": "john123"
+"user:johndoe:role": "admin"
+\end{lstlisting}
+
+This would avoid resorting to serialization and deserialization of objects at runtime, before and after accessing the database. However, the first strategy was adopted in the prototype for two main reasons. On one hand, this example cannot be generalized for all the application's needs. In cases like the Favorite aggregate, for spatial efficiency reasons, the value would have to be an array with the IDs of the favorite events, otherwise we would have a key of the format 'favorite:johndoe:<EVENT\_ID>' with a boolean value for all username-event combinations or only for true combinations. In either case, to discover the set of favorite events for a user, as many queries as events in the system would have to be performed. In the case of creating the Purchase aggregate, it is even more harmful, since it is impossible, in a concurrent context, to create keys based on timestamps due to probable key collisions. On the other hand, the approach with more redundancy is not scalable, as for a simple aggregate with N attributes, it would result in N queries to the system and subsequent processing of its data. Therefore, it is always necessary to resort to auxiliary data structures, such as arrays and objects, to meet the application's needs. Given these constraints of the system, and even though there is no solution capable of addressing the tradeoff exposed, the approach with a query and subsequent serialization/deserialization is more suitable for TickETCD.
+
+Still within the realm of efficient computing, like any key-value paradigm database, etcd does not allow direct access to the attributes of the manipulated values. This results in a very large overhead when the system needs to compute statistics with those attributes. The statistics feature was developed in TickETCD to illustrate this difficulty. Computing a series of visual statistics about the events such as revenue or sales distribution by ticket type was achieved using a lot of external computation. In a system driven by a relational database with support for traditional SQL and operations like AVG, SUM, the task was performed directly within the database system.
+As such, searching for attributes of various aggregates in TickETCD was compromised and reduced to a tiny fraction of what could be expected in a ticket sales system.
+
+The full-text search feature for events based on their attributes had to resort to external pre-computation of inverted indexes outside of etcd to ensure its correct implementation. This caused extreme overhead in processing the name and description strings of the events, as well as the creation of a number of keys equal to the number of different words found throughout the system. This solution is not viable and could be addressed, for example, by using a relational approach with the LIKE operator or even substring search of attributes offered by most databases in the document-based paradigm.
+
+This was the biggest functionality bottleneck encountered in TickETCD considering the purpose of the application and led to the decision not to implement a way to update event data. In fact, a modification to these attributes would trigger a delete of all references to the event's words in all auxiliary structures and subsequent computation of all affected inverted indexes. This update would cause extreme overhead that was chosen not to be supported in this prototype.
+
+etcd has a significant restriction when it comes to transactions. Transactions are allowed within the same aggregate, meaning within the same key-value pair, but not between different aggregates. In a concurrent scenario where the prototype is involved, the lack of general transactions causes consistency problems during concurrent moments. The most important scenario for TickETCD where this robust feature would be crucial is in the purchase scenario. A purchase triggers a comparison, a possible decrease in the overall number of tickets for the event, and a decrease in the quantity of tickets for each type. These operations, which involve different aggregates, can only be implemented sequentially and not atomically.
+
+\section{Conclusion}
+With the development of this project, we were able to explore in greater depth one of the non-relational database paradigms currently in use, key-value. We had the opportunity to work with a new technology, etcd, which allowed us to get to know its specificities and the cases in which this type of tool is most suitable for use, since its entire design is very focused on configurations of distributed systems and platforms where it is essential that there is strong consistency between the nodes of the cluster.
+In this way, we have been able to understand how this type of approach works, more specifically through etcd, and learn the characteristics that these databases provide in terms of scalability and consistency, since nowadays with the amount of data and operations that need to be carried out these are fundamental characteristics to be guaranteed by the platforms.
+
+\section{Annexes}
+
+Imagens e alinhar referencias para cada uma:
+
+- UML
+- Architecture
+- Admin database health
+- Admin event creation
+- Admin event statistics
+- Purchase
+- Event page
+- Home
+- Login/Register
+- Notifications
+- Profile
+
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+\appendix
+
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-manuscript.tex'.
