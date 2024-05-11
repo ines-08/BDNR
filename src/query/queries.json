@@ -1,12 +1,22 @@
 [
     { 
-        "description": "A simple put", 
-        "code": "put some thing", 
+        "description": "Register", 
+        "code": "put user:newUser \"\"name\": \"user\", \"email\": \"user@gmail.com\", \"password\": \"user123\", \"role\": \"admin\"\"", 
         "output": false 
+    },
+    { 
+        "description": "Retrieve the registered user", 
+        "code": "get user:newUser", 
+        "output": true
     },
     { 
         "description": "Getting all ticket types", 
         "code": "get ticket:types", 
+        "output": true 
+    },
+    { 
+        "description": "Simulating a search over the prefix 'a'", 
+        "code": "get search:text:a", 
         "output": true 
     }
 ]
