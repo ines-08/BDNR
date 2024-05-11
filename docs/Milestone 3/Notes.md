@@ -1,18 +1,13 @@
 apontamentos gerais
 
-- zoom problema
-- A key-value NoSQL solution for distributed systems
+- zoom problem
 - referências começam na introdução
 - manter uma constante: ou etcd ou ETCD, e usar sempre essa
 - manter uma constante: full-replicated or full replicated, e usar sempre essa
-- quando exportamos para PDF ficam aquelas linhas vermelhas
 
 - os pontos X.X.X não deveriam ter um \n depois do título?
-- se calhar há uma forma "bonita" de colocar o json
 
-apontamentos em cada tópico
-
-abstract
+apontamentos para o abstract
 
 The present report aims to explore, both theoretically and practically, the ETCD technology, a non-relational database using key-value paradigm.
 
