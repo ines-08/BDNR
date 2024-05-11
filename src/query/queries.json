@@ -1,5 +1,10 @@
 [
     { 
+        "description": "Cluster health", 
+        "code": "-w json endpoint status", 
+        "output": true 
+    },
+    { 
         "description": "Register", 
         "code": "put user:newUser \"\"name\": \"user\", \"email\": \"user@gmail.com\", \"password\": \"user123\", \"role\": \"admin\"\"", 
         "output": false 
@@ -19,4 +24,5 @@
         "code": "get search:text:a", 
         "output": true 
     }
+
 ]
