@@ -1,5 +1,10 @@
 [
     { 
+        "description": "Cluster members", 
+        "code": "-w table member list", 
+        "output": true 
+    },
+    { 
         "description": "Cluster health", 
         "code": "-w json endpoint status", 
         "output": true 
@@ -7,7 +12,7 @@
     { 
         "description": "Register", 
         "code": "put user:newUser \"\"name\": \"user\", \"email\": \"user@gmail.com\", \"password\": \"user123\", \"role\": \"admin\"\"", 
-        "output": false 
+        "output": true
     },
     { 
         "description": "Retrieve the registered user", 
@@ -21,8 +26,22 @@
     },
     { 
         "description": "Simulating a search over the prefix 'a'", 
-        "code": "get search:text:a", 
+        "code": "get --prefix search:text:a", 
+        "output": true 
+    },
+    { 
+        "description": "Simulating a search over the type concert", 
+        "code": "get search:type:concert", 
+        "output": true 
+    },
+    { 
+        "description": "Getting 'user' purchases", 
+        "code": "get --prefix purchase:user", 
+        "output": true 
+    },
+    { 
+        "description": "Getting all event types", 
+        "code": "get event:types", 
         "output": true 
     }
-
 ]
