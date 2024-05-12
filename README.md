@@ -1,12 +1,13 @@
-# TickETCD - BDNR Project
+# Ticketcd - BDNR Project
 
+- [Repository](https://github.com/ines-08/BDNR)
 - [Documentation](#documentation)
 - [Prototype](#prototype)
     - [Run](#run)
     - [Endpoints](#endpoints)
     - [Credentials](#credentials)
     - [Data](#data)
-    - [Manual Queries](#manual-qsueries)
+    - [Manual Queries](#manual-queries)
     - [Design](#design)
 
 ## Documentation
@@ -16,7 +17,7 @@ Beyond this README, more focused on the prototype, the following are available:
 - [Milestone 1 Presentation](./docs/Milestone%201/Milestone1.pdf)
 - [Milestone 2 Presentation](./docs/Milestone%202/Milestone2.pdf)
 - [Milestone 3 Presentation](./docs/Milestone%203/Milestone3.pdf)
-- [Final Report](./docs/Milestone%203/Report.md)
+- [Final Report](./docs/Milestone%203/Report.pdf)
 
 ## Prototype
 
@@ -33,10 +34,10 @@ This process can be time-consuming. Please see the [note](#note). This instructi
 
 - Stop and remove previous containers if they exist;
 - Remove old versions of the database in `/db` if they exist;
-- Create a new infrastructure and containers for the project: a cluster with 5 ETCD nodes and one server;
-- Create volumes `/db/etcdX` for all existing ETCD nodes in the cluster;
+- Create a new infrastructure and containers for the project: a cluster with 5 etcd nodes and one server;
+- Create volumes `/db/etcdX` for all existing etcd nodes in the cluster, where X represents the node index;
 - Generate data according to the `data/configurations.json` file;
-- Populate the cluster with the generated data in parallel;
+- Populate the cluster with the generated data in parallel.
 
 The server will be available at [localhost:3000](http://localhost:3000/).
 
@@ -52,7 +53,7 @@ $ make populate           # Populate the cluster with generated
 
 #### Note
 
-The setup step that takes the longest time is the populate step. ETCD does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
+The setup step that takes the longest time is the populate step. etcd does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
 
 To mitigate this situation somewhat, we chose to populate in parallel mode, distributing the values to each of the nodes in the cluster:
 
@@ -67,7 +68,7 @@ If the `-p` flag is active, the populate runs in parallel mode, distributing the
 All credentials can be found in the `data.json` file generated during setup. By default, we add two predefined accounts:
 
 - `user / user123` - for a regular user account;
-- `admin / admin123` - for an account with administrator privileges;
+- `admin / admin123` - for an account with administrator privileges.
 
 ### Endpoints
 
@@ -77,7 +78,7 @@ All credentials can be found in the `data.json` file generated during setup. By 
 - `/profile?username=<USERNAME>`: Displays details of a user profile, favourite events and last purchases;
 - `/notifications`: Displays the current user notifications;
 - `/event?id=<ID>`: Displays details of an event;
-- `/tickets?eventid=<ID>`: Used for purchasing tickets;
+- `/tickets?eventid=<ID>`: Used for purchasing tickets.
 
 ### Data
 
@@ -109,7 +110,7 @@ The currently generated complete aggregates are:
 
 - `User` (username, user, email, password, role);
 - `Event` (id, name, description, location, type, date, current_quantity);
-- `Ticket` (total_quantity, current_quantity, price);
+- `Ticket` (total_quantity, current_quantity, price).
 
 And the following relations are generated:
 
@@ -122,7 +123,7 @@ For efficiency reasons, the following auxiliary structures are also generated:
 
 - `ticket:types`: possible types for an event;
 - `event:types`: possible types for an event;
-- `event:locations`: possible locations for an event;
+- `event:locations`: possible locations for an event.
 
 Examples of the formatting of the key-value pairs used in the prototype:
 
@@ -244,7 +245,7 @@ There is also the possibility of running some queries externally to the prototyp
 ]
 ```
 
-We can also choose whether we want to see the output or not, as well as choose a brief description to know what is currently running. Typically in ETCD, the output of PUT methods is just OK, so they are ignored.
+We can also choose whether we want to see the output or not, as well as choose a brief description to know what is currently running. Typically in etcd, the output of PUT methods is just OK, so they are ignored.
 
 After the database containers are instantiated and populated, the previous queries can be executed manually using:
 
@@ -252,7 +253,7 @@ After the database containers are instantiated and populated, the previous queri
 $ make queries
 ```
 
-Given that ETCD does not have any explicit query language or a terminal client, this is the only way to perform raw queries.
+Given that etcd does not have any explicit query language or a terminal client, this is the only way to perform raw queries.
 
 ### Design
 
