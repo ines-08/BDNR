@@ -1,5 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor
-from copyreg import constructor
 import sys
 import json
 import subprocess
@@ -25,27 +23,6 @@ def process_data_chunk(keys, values, node):
     for key, value in zip(keys, values):
         process_data(key, value, node)
 
-def populate_parallel(data):
-
-    keys = list(data.keys())
-    values = list(data.values())
-
-    # Divide the data into chunks for parallel processing
-    chunk_size = len(keys) // len(ETCD_NODES)
-    remainder = len(keys) % len(ETCD_NODES)
-    key_chunks = [keys[i:i+chunk_size] for i in range(0, len(keys), chunk_size)]
-    value_chunks = [values[i:i+chunk_size] for i in range(0, len(values), chunk_size)]
-
-    # Processes the chunks in parallel on different nodes
-    with ThreadPoolExecutor(max_workers=len(ETCD_NODES)) as executor:
-        for i, node in enumerate(ETCD_NODES.keys()):
-            executor.submit(process_data_chunk, key_chunks[i], value_chunks[i], node)
-
-    if remainder:
-        remainder_chunk_keys = keys[-remainder:]
-        remainder_chunk_values = values[-remainder:] 
-        process_data_chunk(remainder_chunk_keys, remainder_chunk_values, "etcd1")
-
 def populate_single(data):
     for key, value in data.items():
         process_data(key, value, "etcd1")
@@ -63,12 +40,7 @@ def main():
 
     print(f"Populating ETCD with {len(data.items())} key-value pairs...")
     start_time = time.time()
-
-    if len(sys.argv) == 3 and sys.argv[2] == '-p':
-        populate_parallel(data)
-    else:
-        populate_single(data)
-
+    populate_single(data)
     end_time = time.time()
     print(f"Populate done. Inserted {len(data.items())} key-value pairs in {round(end_time - start_time, 1)} seconds")
 
