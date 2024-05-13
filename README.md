@@ -253,7 +253,7 @@ After the database containers are instantiated and populated, the previous queri
 $ make queries
 ```
 
-Given that etcd does not have any explicit query language or a terminal client, this is the only way to perform raw queries.
+Given that etcd does not have any explicit query language, this is the way to perform raw queries using ectd CLI.
 
 ### Design
 
