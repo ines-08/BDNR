@@ -1,4 +1,4 @@
-# Ticketcd - BDNR Project
+# TickETCD - BDNR Project
 
 - [Repository](https://github.com/ines-08/BDNR)
 - [Documentation](#documentation)
