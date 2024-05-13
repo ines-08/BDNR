@@ -6,6 +6,7 @@
     - [Run](#run)
     - [Endpoints](#endpoints)
     - [Credentials](#credentials)
+    - [Architecture](#architecture)
     - [Data](#data)
     - [Manual Queries](#manual-queries)
     - [Design](#design)
@@ -17,6 +18,7 @@ Beyond this README, more focused on the prototype, the following are available:
 - [Milestone 1 Presentation](./docs/Milestone%201/Milestone1.pdf)
 - [Milestone 2 Presentation](./docs/Milestone%202/Milestone2.pdf)
 - [Milestone 3 Presentation](./docs/Milestone%203/Milestone3.pdf)
+- [Demo](./docs/Milestone%203/Demo.mp4)
 - [Final Report](./docs/Milestone%203/Report.pdf)
 
 ## Prototype
@@ -55,6 +57,10 @@ $ make populate           # Populate the cluster with generated
 
 The setup step that takes the longest time is the populate step. etcd does not have the capability to receive data in bulk, so each key-value pair must be injected directly into the cluster independently and sequentially. Since the prototype requires many auxiliary structures, only 10 users and 10 events easily scale to around 400 key-value pairs, making the populate process slow.
 
+### Architecture
+
+![Architecture](./imgs/architecture.png)
+
 ### Credentials
 
 All credentials can be found in the `data.json` file generated during setup. By default, we add two predefined accounts:
@@ -73,6 +79,8 @@ All credentials can be found in the `data.json` file generated during setup. By 
 - `/tickets?eventid=<ID>`: Used for purchasing tickets.
 
 ### Data
+
+![UML](./imgs/UML.png)
 
 The generated data follows the configurations described in `data/configuration.json`. Parameters example:
 
@@ -273,9 +281,10 @@ Given that etcd does not have any explicit query language or a terminal client, 
 
 ![Notifications](./imgs/notifications.png)
 
-#### Admin - Database info
+#### Admin - Database info & nodes
 
 ![Admin BD](./imgs/admin-database.png)
+![Admin Nodes](./imgs/admin-nodes.png)
 
 #### Admin - Event statistics
 
